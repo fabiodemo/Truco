@@ -20,7 +20,7 @@ class Jogo():
         print(carta2.numero)
         if carta1.numero > carta2.numero:
             ganhador = carta1
-        else 
+        else:
             ganhador = carta2
         return ganhador
     
