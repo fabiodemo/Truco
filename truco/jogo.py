@@ -18,6 +18,11 @@ class Jogo():
     def verificarGanhador(self, carta1, carta2):
         print(carta1.numero)
         print(carta2.numero)
+        if carta1.numero > carta2.numero:
+            ganhador = carta1
+        else 
+            ganhador = carta2
+        return ganhador
     
 
     def quemJogaPrimeiro(jogador1, jogador2, carta1, carta2, ganhador):
