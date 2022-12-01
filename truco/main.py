@@ -12,8 +12,8 @@ def reiniciarJogo():
     baralho.criarBaralho()
     baralho.embaralhar()
     baralho.definirVira(baralho)
-    manilha = baralho.definirManilha()
-    baralho.definirManilhas(manilha)
+    # manilha = baralho.definirManilha()
+    # baralho.definirManilhas(manilha)
     jogador1.criarMao(baralho)
     jogador2.criarMao(baralho)
 
@@ -25,18 +25,16 @@ if __name__ == '__main__':
     baralho = Baralho()
     baralho.embaralhar()
     baralho.definirVira(baralho)
-    manilha = baralho.definirManilha()
-    baralho.definirManilhas(manilha)
+    # manilha = baralho.definirManilha()
+    # baralho.definirManilhas(manilha)
 
     carta1 = 0
     carta2 = 0
     ganhador = 0
 
-    print("\nTime 1")
     nome = str(input("Nome Jogador 1: "))
     jogador1 = jogo.criarJogador(nome, baralho)
 
-    print("Time 2")
     nome = str(input("Nome Jogador 2: "))
     jogador2 = jogo.criarJogador(nome, baralho)
 
@@ -47,8 +45,8 @@ if __name__ == '__main__':
         print("\nCarta que virou: ")
         baralho.printarVira()
 
-        print("\nManilhas: ")
-        baralho.printarManilhas()
+        # print("\nManilhas: ")
+        # baralho.printarManilhas()
 
         #Sorteio pra ver quem joga na primeira rodada
         if jogador1.rodadas == 0 and jogador2.rodadas == 0:
@@ -95,8 +93,6 @@ if __name__ == '__main__':
             limpar()
             print(f"\n{jogador1.nome} jogou a carta: ")
             carta_jogador_01.printarCarta()
-
- 
         else:
             print("Erro")
 
@@ -111,9 +107,9 @@ if __name__ == '__main__':
         carta2 = Carta(carta_jogador_02.retornarNumero(), carta_jogador_02.retornarNaipe())
 
         print("\nCarta ganhadora: ")
-        ganhador = jogo.verificarGanhador(carta1, carta2, -1, -1, manilha)
-        jogo.quemJogaPrimeiro(jogador1, jogador2, -1, -1, carta1, carta2, -1, -1, ganhador)
-        jogo.adicionarPonto(jogador1, jogador2, -1, -1, carta1, carta2, -1, -1, ganhador)
+        ganhador = jogo.verificarGanhador(carta1, carta2)
+        jogo.quemJogaPrimeiro(jogador1, jogador2, carta1, carta2, ganhador)
+        jogo.adicionarPonto(jogador1, jogador2, carta1, carta2, ganhador)
 
         if jogador1.pontos == 2:
             jogador1.adicionarRodada()
@@ -128,12 +124,12 @@ if __name__ == '__main__':
         print(f"\n{jogador1.nome} Pontos {jogador1.pontos}, Rodadas {jogador1.rodadas}")
         print(f"{jogador2.nome} Pontos {jogador2.pontos}, Rodadas {jogador2.rodadas}")
 
-        jogo.quemIniciaRodada(jogador1, jogador2, -1, -1)
+        jogo.quemIniciaRodada(jogador1, jogador2)
 
         if jogador1.rodadas >= 12:
             print(f"\n{jogador1.nome} ganhou o jogo")
             break
 
         elif jogador2.rodadas >= 12:
-            print(f"\n{jogador2.nome} e ganhou o jogo")
+            print(f"\n{jogador2.nome} ganhou o jogo")
             break

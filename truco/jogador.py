@@ -7,18 +7,18 @@ class Jogador():
         self.rodadas = 0
         self.primeiro = False
         self.ultimo = False
-    
+
     def criarMao(self, baralho):
         for i in range(3):
             self.mao.append(baralho.retirarCarta())
     
     def jogarCarta(self, carta_escolhida):
-        return self.mao.pop(carta_escolhida - 1)
+        return self.mao.pop(carta_escolhida -1)
     
     def mostrarMao(self):
         for carta in self.mao:
             carta.printarCarta()
-    
+
     def adicionarPonto(self):
         self.pontos += 1
     
@@ -28,6 +28,3 @@ class Jogador():
     def resetar(self):
         self.pontos = 0
         self.mao = []
-    
-    #def retornarPontos(self):
-    #    return self.pontos

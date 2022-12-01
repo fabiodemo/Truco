@@ -4,26 +4,33 @@ class Carta():
         "3": 10,
         "2": 9,
         "1": 8,
-        "13": 7,
-        "12": 6,
-        "11": 5,
+        "12": 7,
+        "11": 6,
+        "10": 5,
         "7": 4,
         "6": 3,
         "5": 2,
         "4": 1
-    }  
+    }
 
     NAIPES_VALORES = {
-        "Paus": 4,
-        "Copas": 3,
-        "Espadas": 2,
-        "Moles": 1
+        "Espadas": 4,
+        "Ouros": 3,
+        "Copas": 2,
+        "Bastos": 1
+    }
+
+    MANILHA = {
+        "1 de Espadas": 14,
+        "1 de Bastos": 13,
+        "7 de Espadas": 12,
+        "7 de Ouros": 11
     }
 
     def __init__(self, numero, naipe):
         self.numero = numero
         self.naipe = naipe
-    
+
     def verificarCarta(self, carta_jogador_01, carta_jogador_02):
         if self.CARTAS_VALORES[str(carta_jogador_01.numero)] > self.CARTAS_VALORES[str(carta_jogador_02.numero)]:
             return carta_jogador_01
@@ -31,15 +38,20 @@ class Carta():
             return carta_jogador_02
         else:
             return "Empate"
-    
+
     def verificarManilha(self, carta_jogador_01, carta_jogador_02):
-        if self.NAIPES_VALORES[carta_jogador_01.naipe] > self.NAIPES_VALORES[carta_jogador_02.naipe]:
+        if self.MANILHA[carta_jogador_01.numero+" de "+carta_jogador_01.naipe] and self.MANILHA[carta_jogador_02.numero+" de "+carta_jogador_02.naipe] in MANILHA:
+            if self.MANILHA[carta_jogador_01.numero+" de "+carta_jogador_01.naipe] > self.MANILHA[carta_jogador_02.numero+" de "+carta_jogador_02.naipe]:
+                return carta_jogador_01
+            else:
+                return carta_jogador_02
+        elif self.MANILHA[carta_jogador_01.numero+" de "+carta_jogador_01.naipe]:
             return carta_jogador_01
-        elif self.NAIPES_VALORES[carta_jogador_01.naipe] < self.NAIPES_VALORES[carta_jogador_02.naipe]:
+        elif self.MANILHA[carta_jogador_02.numero+" de "+carta_jogador_02.naipe]:
             return carta_jogador_02
         else:
             raise "Erro"
-    
+
     def printarCarta(self):
         if self.numero == 1:
             print(f"A de {self.naipe}")
