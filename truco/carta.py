@@ -52,17 +52,17 @@ class Carta():
         else:
             raise "Erro"
 
-    def printarCarta(self):
-        if self.numero == 1:
-            print(f"A de {self.naipe}")
-        elif self.numero == 13:
-            print(f"K de {self.naipe}")
-        elif self.numero == 12:
-            print(f"J de {self.naipe}")
-        elif self.numero == 11:
-            print(f"Q de {self.naipe}")
+    def printarCarta(self, i):
+        if self.numero == 1 and self.naipe == 'Espadas':
+            print(f"[{i}] ESPADÃO")
+        elif self.numero == 1 and self.naipe == 'Bastos':
+            print(f"[{i}] BASTIÃO")
+        elif self.numero == 7 and self.naipe == 'Espadas':
+            print(f"[{i}] Siete de espadas")
+        elif self.numero == 7 and self.naipe == 'Ouros':
+            print(f"[{i}] Siete de Ouros")
         else:
-            print(f"{self.numero} de {self.naipe}")
+            print(f"[{i}] {self.numero} de {self.naipe}")
 
     def retornarNumero(self):
         return self.numero

@@ -23,8 +23,21 @@ class Jogo():
         print(ganhador.numero)
         return ganhador
     
+    def adicionarPonto(self, jogador1, jogador2, carta1, carta2, ganhador):
+        if ganhador == "Empate":
+            jogador1.adicionarPonto()
+            jogador2.adicionarPonto()
+            return "Empate"
+        elif ganhador == carta1:
+            jogador1.adicionarPonto()
+            ganhador.printarCarta()
+        elif ganhador == carta2:
+            jogador2.adicionarPonto()
+            ganhador.printarCarta()
+        else:
+            return "Erro"
 
-    def quemJogaPrimeiro(jogador1, jogador2, carta1, carta2, ganhador):
+    def quemJogaPrimeiro(self, jogador1, jogador2, carta1, carta2, ganhador):
         if carta1 == ganhador:
             jogador1.primeiro = True
             jogador2.primeiro = False

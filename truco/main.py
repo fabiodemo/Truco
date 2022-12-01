@@ -38,7 +38,7 @@ if __name__ == '__main__':
     nome = str(input("Nome Jogador 2: "))
     jogador2 = jogo.criarJogador(nome, baralho)
 
-    limpar()
+    # limpar()
 
     while True:
 
@@ -65,7 +65,7 @@ if __name__ == '__main__':
             jogador1.mostrarMao()
             carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
             carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
-            limpar()
+            # limpar()
             print(f"\n{jogador1.nome} jogou a carta: ")
             carta_jogador_01.printarCarta()
             
@@ -73,7 +73,7 @@ if __name__ == '__main__':
             jogador2.mostrarMao()
             carta_escolhida = int(input(f"\n{jogador2.nome} Qual carta você quer jogar? "))
             carta_jogador_02 = jogador2.jogarCarta(carta_escolhida)
-            limpar()
+            # limpar()
             print(f"\n{jogador2.nome} jogou a carta: ")
             carta_jogador_02.printarCarta()
 
@@ -82,7 +82,7 @@ if __name__ == '__main__':
             jogador2.mostrarMao()
             carta_escolhida = int(input(f"\n{jogador2.nome} Qual carta você quer jogar? "))
             carta_jogador_02 = jogador2.jogarCarta(carta_escolhida)
-            limpar()
+            # limpar()
             print(f"\n{jogador2.nome} jogou a carta: ")
             carta_jogador_02.printarCarta()
 
@@ -90,13 +90,13 @@ if __name__ == '__main__':
             jogador1.mostrarMao()
             carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
             carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
-            limpar()
+            # limpar()
             print(f"\n{jogador1.nome} jogou a carta: ")
             carta_jogador_01.printarCarta()
         else:
             print("Erro")
 
-        limpar()
+        # limpar()
 
         print(f"\n>> {jogador1.nome} jogou a carta: ")
         carta_jogador_01.printarCarta()

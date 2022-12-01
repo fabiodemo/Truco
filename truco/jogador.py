@@ -16,8 +16,10 @@ class Jogador():
         return self.mao.pop(carta_escolhida -1)
     
     def mostrarMao(self):
+        i = 1
         for carta in self.mao:
-            carta.printarCarta()
+            carta.printarCarta(i)
+            i += 1
 
     def adicionarPonto(self):
         self.pontos += 1
