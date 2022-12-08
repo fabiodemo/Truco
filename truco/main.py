@@ -43,7 +43,7 @@ if __name__ == '__main__':
     while True:
 
         print("\nCarta que virou: ")
-        baralho.printarVira()
+        # baralho.printarVira()
 
         # print("\nManilhas: ")
         # baralho.printarManilhas()
@@ -59,6 +59,7 @@ if __name__ == '__main__':
                 elif sorteado == "jogador2":
                     jogador2.primeiro = True
                     jogador1.ultimo = True
+        # baralho.printarManilhas()
 
         if jogador1.primeiro == True:
             print(f"\n<< {jogador1.nome} - Jogador 1 >>")
@@ -67,7 +68,7 @@ if __name__ == '__main__':
             carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
             # limpar()
             print(f"\n{jogador1.nome} jogou a carta: ")
-            carta_jogador_01.printarCarta()
+            carta_jogador_01.printarCarta(carta_escolhida)
             
             print(f"\n<< {jogador2.nome} - Jogador 2 >>")
             jogador2.mostrarMao()
@@ -75,7 +76,7 @@ if __name__ == '__main__':
             carta_jogador_02 = jogador2.jogarCarta(carta_escolhida)
             # limpar()
             print(f"\n{jogador2.nome} jogou a carta: ")
-            carta_jogador_02.printarCarta()
+            carta_jogador_02.printarCarta(carta_escolhida)
 
         elif jogador2.primeiro == True:
             print(f"\n<< {jogador2.nome} - Jogador 2 >>")
@@ -84,7 +85,7 @@ if __name__ == '__main__':
             carta_jogador_02 = jogador2.jogarCarta(carta_escolhida)
             # limpar()
             print(f"\n{jogador2.nome} jogou a carta: ")
-            carta_jogador_02.printarCarta()
+            carta_jogador_02.printarCarta(carta_escolhida)
 
             print(f"\n<< {jogador1.nome} - Jogador 1 >>")
             jogador1.mostrarMao()
@@ -92,7 +93,7 @@ if __name__ == '__main__':
             carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
             # limpar()
             print(f"\n{jogador1.nome} jogou a carta: ")
-            carta_jogador_01.printarCarta()
+            carta_jogador_01.printarCarta(carta_escolhida)
         else:
             print("Erro")
 

@@ -52,7 +52,9 @@ class Carta():
         else:
             raise "Erro"
 
-    def printarCarta(self, i):
+    def printarCarta(self, i=None):
+        if i == None:
+            i = ""
         if self.numero == 1 and self.naipe == 'Espadas':
             print(f"[{i}] ESPADÃO")
         elif self.numero == 1 and self.naipe == 'Bastos':
