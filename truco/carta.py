@@ -32,25 +32,28 @@ class Carta():
         self.naipe = naipe
 
     def verificarCarta(self, carta_jogador_01, carta_jogador_02):
-        if self.CARTAS_VALORES[str(carta_jogador_01.numero)] > self.CARTAS_VALORES[str(carta_jogador_02.numero)]:
-            return carta_jogador_01
-        elif self.CARTAS_VALORES[str(carta_jogador_01.retornarNumero())] < self.CARTAS_VALORES[str(carta_jogador_02.retornarNumero())]:
-            return carta_jogador_02
+        if verificarManilha(carta_jogador_01, carta_jogador_02) is None:
+            if self.CARTAS_VALORES[str(carta_jogador_01.numero)] > self.CARTAS_VALORES[str(carta_jogador_02.numero)]:
+                return carta_jogador_01
+            elif self.CARTAS_VALORES[str(carta_jogador_01.retornarNumero())] < self.CARTAS_VALORES[str(carta_jogador_02.retornarNumero())]:
+                return carta_jogador_02
+            else:
+                return "Empate"
         else:
-            return "Empate"
+            return verificarManilha(carta_jogador_01, carta_jogador_02)
 
     def verificarManilha(self, carta_jogador_01, carta_jogador_02):
         if self.MANILHA[carta_jogador_01.numero+" de "+carta_jogador_01.naipe] and self.MANILHA[carta_jogador_02.numero+" de "+carta_jogador_02.naipe] in MANILHA:
             if self.MANILHA[carta_jogador_01.numero+" de "+carta_jogador_01.naipe] > self.MANILHA[carta_jogador_02.numero+" de "+carta_jogador_02.naipe]:
                 return carta_jogador_01
-            else:
+            elif self.MANILHA[carta_jogador_02.numero+" de "+carta_jogador_02.naipe] > self.MANILHA[carta_jogador_01.numero+" de "+carta_jogador_01.naipe]:
                 return carta_jogador_02
         elif self.MANILHA[carta_jogador_01.numero+" de "+carta_jogador_01.naipe]:
             return carta_jogador_01
         elif self.MANILHA[carta_jogador_02.numero+" de "+carta_jogador_02.naipe]:
             return carta_jogador_02
         else:
-            raise "Erro"
+            return None
 
     def printarCarta(self, i=None):
         if i == None:
