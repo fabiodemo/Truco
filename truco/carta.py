@@ -13,13 +13,6 @@ class Carta():
         "4": 1
     }
 
-    NAIPES_VALORES = {
-        "Espadas": 4,
-        "Ouros": 3,
-        "Copas": 2,
-        "Bastos": 1
-    }
-
     MANILHA = {
         "1 de Espadas": 14,
         "1 de Bastos": 13,
@@ -32,6 +25,9 @@ class Carta():
         self.naipe = naipe
 
     def verificarCarta(self, carta_jogador_01, carta_jogador_02):
+        print("numeros: ")
+        print(str(carta_jogador_01.retornarNumero()))
+        print(str(carta_jogador_02.retornarNumero()))
         if verificarManilha(carta_jogador_01, carta_jogador_02) is None:
             if self.CARTAS_VALORES[str(carta_jogador_01.numero)] > self.CARTAS_VALORES[str(carta_jogador_02.numero)]:
                 return carta_jogador_01
