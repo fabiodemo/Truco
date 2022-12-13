@@ -31,11 +31,11 @@ class Baralho():
             else:
                 return v.numero + 1
 
-    def definirManilhas(self, manilha):
-        for m in self.cartas:
-            x = m.retornarNumero()
-            if x == manilha:
-                self.manilhas.append(m)
+    # def definirManilhas(self, manilha):
+    #     for m in self.cartas:
+    #         x = m.retornarNumero()
+    #         if x == manilha:
+    #             self.manilhas.append(m)
 
     def retirarCarta(self):
         return self.cartas.pop()

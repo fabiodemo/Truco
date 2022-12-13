@@ -1,6 +1,7 @@
 from baralho import Baralho
 from jogador import Jogador
 import random
+from carta import Carta
 
 class Jogo():
 
@@ -16,12 +17,19 @@ class Jogo():
         return jogador
 
     def verificarGanhador(self, carta1, carta2):
-        if carta1.numero > carta2.numero:
-            ganhador = carta1
+        print("numeros: ")
+        print(str(carta1.numero))
+        print(str(carta2.numero))
+        if Carta.verificarManilha(carta1, carta2) is None:
+            if carta1.numero > carta2.numero:
+                ganhador = carta1
+            else:
+                ganhador = carta2
+            print(ganhador.numero)
+            return ganhador
         else:
-            ganhador = carta2
-        print(ganhador.numero)
-        return ganhador
+            return Carta.verificarManilha(None, carta1, carta2)
+
     
     def adicionarPonto(self, jogador1, jogador2, carta1, carta2, ganhador):
         if ganhador == "Empate":
