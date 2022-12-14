@@ -134,3 +134,6 @@ if __name__ == '__main__':
         elif jogador2.rodadas >= 12:
             print(f"\n{jogador2.nome} ganhou o jogo")
             break
+
+# Corrigir a situação onde há empate em 2 rodadas, e o jogo trava sem possibidade de fazer mais nada.
+# Checar se as cartas na mão dos jogadores acabou, e dar a vitória para quem tiver mais pontos

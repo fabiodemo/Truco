@@ -1,54 +1,37 @@
+from pontos import MANILHA, CARTAS_VALORES
+
 class Carta():
-
-    CARTAS_VALORES = {
-        "3": 10,
-        "2": 9,
-        "1": 8,
-        "12": 7,
-        "11": 6,
-        "10": 5,
-        "7": 4,
-        "6": 3,
-        "5": 2,
-        "4": 1
-    }
-
-    MANILHA = {
-        "1 de Espadas": 14,
-        "1 de Bastos": 13,
-        "7 de Espadas": 12,
-        "7 de Ouros": 11
-    }
 
     def __init__(self, numero, naipe):
         self.numero = numero
         self.naipe = naipe
 
     def verificarCarta(self, carta_jogador_01, carta_jogador_02):
-        print("numeros: ")
-        print(str(carta_jogador_01.retornarNumero()))
-        print(str(carta_jogador_02.retornarNumero()))
-        if verificarManilha(carta_jogador_01, carta_jogador_02) is None:
-            if self.CARTAS_VALORES[str(carta_jogador_01.numero)] > self.CARTAS_VALORES[str(carta_jogador_02.numero)]:
-                return carta_jogador_01
-            elif self.CARTAS_VALORES[str(carta_jogador_01.retornarNumero())] < self.CARTAS_VALORES[str(carta_jogador_02.retornarNumero())]:
-                return carta_jogador_02
-            else:
-                return "Empate"
-        else:
-            return verificarManilha(carta_jogador_01, carta_jogador_02)
-
-    def verificarManilha(self, carta_jogador_01, carta_jogador_02):
-        if self.MANILHA[carta_jogador_01.numero+" de "+carta_jogador_01.naipe] and self.MANILHA[carta_jogador_02.numero+" de "+carta_jogador_02.naipe] in MANILHA:
-            if self.MANILHA[carta_jogador_01.numero+" de "+carta_jogador_01.naipe] > self.MANILHA[carta_jogador_02.numero+" de "+carta_jogador_02.naipe]:
-                return carta_jogador_01
-            elif self.MANILHA[carta_jogador_02.numero+" de "+carta_jogador_02.naipe] > self.MANILHA[carta_jogador_01.numero+" de "+carta_jogador_01.naipe]:
-                return carta_jogador_02
-        elif self.MANILHA[carta_jogador_01.numero+" de "+carta_jogador_01.naipe]:
+        if self.CARTAS_VALORES[str(carta_jogador_01.numero)] > self.CARTAS_VALORES[str(carta_jogador_02.numero)]:
             return carta_jogador_01
-        elif self.MANILHA[carta_jogador_02.numero+" de "+carta_jogador_02.naipe]:
+        elif self.CARTAS_VALORES[str(carta_jogador_01.retornarNumero())] < self.CARTAS_VALORES[str(carta_jogador_02.retornarNumero())]:
             return carta_jogador_02
         else:
+            return "Empate"
+
+    def verificarManilha(self, carta_jogador_01, carta_jogador_02):
+        print(1)
+        if (str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in self.MANILHA and (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in self.MANILHA:
+            print(2)
+            if self.MANILHA[str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe] > self.MANILHA[str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe]:
+                return carta_jogador_01
+                print(3)
+            elif self.MANILHA[str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe] > self.MANILHA[str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe]:
+                return carta_jogador_02
+                print(4)
+        elif (str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in self.MANILHA:
+            return carta_jogador_01
+            print(5)
+        elif (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in self.MANILHA:
+            return carta_jogador_02
+            print(6)
+        else:
+            print("NOnao")
             return None
 
     def printarCarta(self, i=None):

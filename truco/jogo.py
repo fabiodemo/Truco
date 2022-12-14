@@ -1,7 +1,7 @@
 from baralho import Baralho
 from jogador import Jogador
 import random
-from carta import Carta
+from pontos import MANILHA, CARTAS_VALORES
 
 class Jogo():
 
@@ -17,24 +17,26 @@ class Jogo():
         return jogador
 
     def verificarGanhador(self, carta1, carta2):
-        print("numeros: ")
-        print(str(carta1.numero))
-        print(str(carta2.numero))
-        if Carta.verificarManilha(carta1, carta2) is None:
-            if carta1.numero > carta2.numero:
+        # print("numeros: ")
+        # print(str(carta1.numero))
+        # print(str(carta2.numero))
+        if self.verificarManilha(carta1, carta2) is None:
+            if carta1.numero == carta2.numero:
+                ganhador = "Empate"
+            elif CARTAS_VALORES[str(carta1.numero)] > CARTAS_VALORES[str(carta2.numero)]:
                 ganhador = carta1
             else:
                 ganhador = carta2
-            print(ganhador.numero)
+            print(ganhador)
             return ganhador
         else:
-            return Carta.verificarManilha(None, carta1, carta2)
+            return self.verificarManilha(carta1, carta2)
 
     
     def adicionarPonto(self, jogador1, jogador2, carta1, carta2, ganhador):
         if ganhador == "Empate":
-            jogador1.adicionarPonto()
-            jogador2.adicionarPonto()
+            # jogador1.adicionarPonto()
+            # jogador2.adicionarPonto()
             return "Empate"
         elif ganhador == carta1:
             jogador1.adicionarPonto()
@@ -66,3 +68,23 @@ class Jogo():
                 jogador2.ultimo = False
                 jogador1.primeiro = False
                 jogador2.primeiro = True
+
+    def verificarManilha(self, carta_jogador_01, carta_jogador_02):
+        print(1)
+        if (str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in MANILHA and (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA:
+            print(2)
+            if MANILHA[str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe] > MANILHA[str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe]:
+                return carta_jogador_01
+                print(3)
+            elif MANILHA[str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe] > MANILHA[str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe]:
+                return carta_jogador_02
+                print(4)
+        elif (str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in MANILHA:
+            return carta_jogador_01
+            print(5)
+        elif (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA:
+            return carta_jogador_02
+            print(6)
+        else:
+            print("NOnao")
+            return None
