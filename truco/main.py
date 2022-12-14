@@ -122,6 +122,17 @@ if __name__ == '__main__':
             print(f"\n{jogador2.nome} ganhou a rodada")
             reiniciarJogo()
 
+        elif(not(jogador1.checaMao()) and not(jogador2.checaMao())):
+            if jogador1.pontos > jogador2.pontos:
+                jogador1.adicionarRodada()
+                print(f"\n{jogador1.nome} ganhou a rodada")
+                reiniciarJogo()
+
+            elif jogador2.pontos > jogador1.pontos:
+                jogador2.adicionarRodada()
+                print(f"\n{jogador2.nome} ganhou a rodada")
+                reiniciarJogo()
+
         print(f"\n{jogador1.nome} Pontos {jogador1.pontos}, Rodadas {jogador1.rodadas}")
         print(f"{jogador2.nome} Pontos {jogador2.pontos}, Rodadas {jogador2.rodadas}")
 

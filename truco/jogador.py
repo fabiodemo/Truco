@@ -30,3 +30,6 @@ class Jogador():
     def resetar(self):
         self.pontos = 0
         self.mao = []
+
+    def checaMao(self):
+        return self.mao
