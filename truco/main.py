@@ -122,6 +122,7 @@ if __name__ == '__main__':
             print(f"\n{jogador2.nome} ganhou a rodada")
             reiniciarJogo()
 
+        # Testar situação corrigida: empate em 2 rodadas, e o jogo trava sem possibidade de fazer mais nada.
         elif(not(jogador1.checaMao()) and not(jogador2.checaMao())):
             if jogador1.pontos > jogador2.pontos:
                 jogador1.adicionarRodada()
@@ -146,5 +147,4 @@ if __name__ == '__main__':
             print(f"\n{jogador2.nome} ganhou o jogo")
             break
 
-# Corrigir a situação onde há empate em 2 rodadas, e o jogo trava sem possibidade de fazer mais nada.
-# Checar se as cartas na mão dos jogadores acabou, e dar a vitória para quem tiver mais pontos
+        # Criar uma mão viciada para os dois jogadores, para testar melhor as possibilidades
