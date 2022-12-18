@@ -13,7 +13,7 @@ class Baralho():
     def criarBaralho(self):
         for i in ["Espadas", "Ouros", "Copas", "Espadas"]:
             for n in range(1, 13):
-                if n < 8 or n > 10:
+                if n < 8 or n >= 10:
                     self.cartas.append(Carta(n, i))
     
     def embaralhar(self):

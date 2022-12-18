@@ -5,6 +5,7 @@ class Jogador():
         self.mao = []
         self.pontos = 0
         self.rodadas = 0
+        self.invido = 0
         self.primeiro = False
         self.ultimo = False
 
@@ -33,3 +34,6 @@ class Jogador():
 
     def checaMao(self):
         return self.mao
+    
+    def calculaInvido(self):
+        self.invido += 1
