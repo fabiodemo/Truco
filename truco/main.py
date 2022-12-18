@@ -23,7 +23,7 @@ def limpar():
 if __name__ == '__main__':
     jogo = Jogo()
     baralho = Baralho()
-    baralho.embaralhar()
+    # baralho.embaralhar()
     baralho.definirVira(baralho)
     # manilha = baralho.definirManilha()
     # baralho.definirManilhas(manilha)
