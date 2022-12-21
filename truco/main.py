@@ -147,4 +147,16 @@ if __name__ == '__main__':
             print(f"\n{jogador2.nome} ganhou o jogo")
             break
 
-        # Criar uma mão viciada para os dois jogadores, para testar melhor as possibilidades
+'''
+To do:
+- Implementar envido;
+- Implementar real envido;
+- Implementar fata envido;
+- Implementar negação do envido
+- Implementar Truco;
+- Implementar Retruco;
+- Implementar negação do Truco;
+- Implementar Flor;
+- Implementar Contra-flor;
+- Implementar Contra-flor e Resto;
+'''
