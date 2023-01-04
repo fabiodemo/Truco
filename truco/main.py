@@ -149,6 +149,7 @@ if __name__ == '__main__':
 
 '''
 To do:
+- Implementar classificação das cartas [baixa, média, alta];
 - Implementar envido;
 - Implementar real envido;
 - Implementar fata envido;
