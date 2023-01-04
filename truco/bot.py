@@ -1,3 +1,5 @@
+import random 
+
 class Bot():
 
     def __init__(self, nome):
@@ -8,14 +10,18 @@ class Bot():
         self.invido = 0
         self.primeiro = False
         self.ultimo = False
-        self.indinces = [0, 1, 2]
+        self.indices = []
 
     def criarMao(self, baralho):
+        self.indices = [0, 1, 2]
         for i in range(3):
             self.mao.append(baralho.retirarCarta())
     
-    def jogarCarta(self, carta_escolhida):
-        return self.mao.pop(carta_escolhida -1)
+    def jogarCarta(self):
+        carta_escolhida = random.choice(self.indices)
+        print(f'se.findices: {self.indices} pop: {carta_escolhida}')
+        self.indices.remove(carta_escolhida)
+        return self.mao.pop(carta_escolhida)
     
     def mostrarMao(self):
         i = 1

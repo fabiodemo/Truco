@@ -36,7 +36,7 @@ if __name__ == '__main__':
     jogador1 = jogo.criarJogador(nome, baralho)
 
     nome = str(input("Nome Jogador 2: "))
-    jogador2 = jogo.criarJogador(nome, baralho)
+    jogador2 = jogo.criarBot(nome, baralho)
 
     # limpar()
 
@@ -72,20 +72,20 @@ if __name__ == '__main__':
             
             print(f"\n<< {jogador2.nome} - Jogador 2 >>")
             jogador2.mostrarMao()
-            carta_escolhida = int(input(f"\n{jogador2.nome} Qual carta você quer jogar? "))
-            carta_jogador_02 = jogador2.jogarCarta(carta_escolhida)
+            # carta_escolhida = int(input(f"\n{jogador2.nome} Qual carta você quer jogar? "))
+            carta_jogador_02 = jogador2.jogarCarta()
             # limpar()
             print(f"\n{jogador2.nome} jogou a carta: ")
-            carta_jogador_02.printarCarta(carta_escolhida)
+            carta_jogador_02.printarCarta(carta_jogador_02)
 
         elif jogador2.primeiro == True:
             print(f"\n<< {jogador2.nome} - Jogador 2 >>")
             jogador2.mostrarMao()
-            carta_escolhida = int(input(f"\n{jogador2.nome} Qual carta você quer jogar? "))
-            carta_jogador_02 = jogador2.jogarCarta(carta_escolhida)
+            # carta_escolhida = int(input(f"\n{jogador2.nome} Qual carta você quer jogar? "))
+            carta_jogador_02 = jogador2.jogarCarta()
             # limpar()
             print(f"\n{jogador2.nome} jogou a carta: ")
-            carta_jogador_02.printarCarta(carta_escolhida)
+            carta_jogador_02.printarCarta(carta_jogador_02)
 
             print(f"\n<< {jogador1.nome} - Jogador 1 >>")
             jogador1.mostrarMao()

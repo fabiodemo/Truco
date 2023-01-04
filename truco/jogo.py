@@ -1,5 +1,6 @@
 from baralho import Baralho
 from jogador import Jogador
+from bot import Bot
 import random
 from pontos import MANILHA, CARTAS_VALORES
 
@@ -15,6 +16,11 @@ class Jogo():
         jogador = Jogador(nome)
         jogador.criarMao(baralho)
         return jogador
+
+    def criarBot(self, nome, baralho):
+        bot = Bot(nome)
+        bot.criarMao(baralho)
+        return bot
 
     def verificarGanhador(self, carta1, carta2):
         # print("numeros: ")
