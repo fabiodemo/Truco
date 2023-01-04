@@ -18,11 +18,18 @@ class Bot():
             self.mao.append(baralho.retirarCarta())
     
     def jogarCarta(self):
+        self.AjustaIndicesMao(len(self.indices))
         carta_escolhida = random.choice(self.indices)
-        print(f'se.findices: {self.indices} pop: {carta_escolhida}')
+        print(f'self.indices: {self.indices} pop: {carta_escolhida}')
         self.indices.remove(carta_escolhida)
         return self.mao.pop(carta_escolhida)
     
+    def AjustaIndicesMao(self, tam_mao):
+        if(tam_mao) == 2:
+            self.indices = [0, 1]
+        if(tam_mao) == 1:
+            self.indices = [0]
+
     def mostrarMao(self):
         i = 1
         for carta in self.mao:
