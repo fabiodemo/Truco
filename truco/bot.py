@@ -16,11 +16,14 @@ class Bot():
         self.indices = [0, 1, 2]
         for i in range(3):
             self.mao.append(baralho.retirarCarta())
+        for j in self.mao:
+            print(j.retornarNaipe())
     
     def jogarCarta(self):
+        print(len(self.mao))
         self.AjustaIndicesMao(len(self.indices))
         carta_escolhida = random.choice(self.indices)
-        print(f'self.indices: {self.indices} pop: {carta_escolhida}')
+        # print(f'self.indices: {self.indices} pop: {carta_escolhida}')
         self.indices.remove(carta_escolhida)
         return self.mao.pop(carta_escolhida)
     
