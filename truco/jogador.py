@@ -8,6 +8,7 @@ class Jogador():
         self.invido = 0
         self.primeiro = False
         self.ultimo = False
+        self.flor = False
 
     def criarMao(self, baralho):
         for i in range(3):
@@ -37,3 +38,11 @@ class Jogador():
     
     def calculaInvido(self):
         self.invido += 1
+    
+    def checaFlor(self):
+        print('checaflor')
+        if all(carta.retornarNaipe() == self.mao[0].retornarNaipe() for carta in self.mao):
+            print('FLOOOOOOOOOOR\n\n')
+            return True
+
+            

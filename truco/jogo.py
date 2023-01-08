@@ -76,21 +76,19 @@ class Jogo():
                 jogador2.primeiro = True
 
     def verificarManilha(self, carta_jogador_01, carta_jogador_02):
-        print(1)
         if (str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in MANILHA and (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA:
-            print(2)
             if MANILHA[str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe] > MANILHA[str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe]:
                 return carta_jogador_01
-                print(3)
             elif MANILHA[str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe] > MANILHA[str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe]:
                 return carta_jogador_02
-                print(4)
         elif (str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in MANILHA:
             return carta_jogador_01
-            print(5)
         elif (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA:
             return carta_jogador_02
-            print(6)
         else:
-            print("NOnao")
             return None
+
+    def pedirTruco(self, quem_pediu, pontos):
+        if(quem_pediu == 'jogador1'):
+            print("truco")
+        

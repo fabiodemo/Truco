@@ -10,14 +10,13 @@ class Bot():
         self.invido = 0
         self.primeiro = False
         self.ultimo = False
+        self.flor = True
         self.indices = []
 
     def criarMao(self, baralho):
         self.indices = [0, 1, 2]
         for i in range(3):
             self.mao.append(baralho.retirarCarta())
-        for j in self.mao:
-            print(j.retornarNaipe())
     
     def jogarCarta(self):
         print(len(self.mao))
@@ -61,5 +60,6 @@ class Bot():
         print('checaflor')
         if all(carta.retornarNaipe() == self.mao[0].retornarNaipe() for carta in self.mao):
             print('FLOOOOOOOOOOR\n\n')
+            self.flor = True
             return True
             # self.rodadas += 2
