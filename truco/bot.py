@@ -63,3 +63,6 @@ class Bot():
             self.flor = True
             return True
             # self.rodadas += 2
+    
+    def avaliarTruco(self):
+        random.choice([True, False])

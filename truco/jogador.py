@@ -10,6 +10,12 @@ class Jogador():
         self.ultimo = False
         self.flor = False
 
+    def mostrarOpcoes(self):
+        self.mostrarMao()
+        print('[4] Truco')
+        if (len(self.mao) == 3):
+            print('[5] Flor')
+
     def criarMao(self, baralho):
         for i in range(3):
             self.mao.append(baralho.retirarCarta())

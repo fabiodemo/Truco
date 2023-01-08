@@ -65,7 +65,7 @@ if __name__ == '__main__':
         if jogador1.primeiro == True:
             print(f"\n<< {jogador1.nome} - Jogador 1 >>")
             
-            jogador1.mostrarMao()
+            jogador1.mostrarOpcoes()
             carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
             carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
             # limpar()
@@ -95,7 +95,7 @@ if __name__ == '__main__':
             carta_jogador_02.printarCarta(carta_jogador_02)
 
             print(f"\n<< {jogador1.nome} - Jogador 1 >>")
-            jogador1.mostrarMao()
+            jogador1.mostrarOpcoes()
             carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
             carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
             # limpar()
