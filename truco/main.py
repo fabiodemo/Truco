@@ -42,7 +42,7 @@ if __name__ == '__main__':
 
     while True:
 
-        print("\nCarta que virou: ")
+        # print("\nCarta que virou: ")
         # baralho.printarVira()
 
         # print("\nManilhas: ")
@@ -59,6 +59,7 @@ if __name__ == '__main__':
                 elif sorteado == "jogador2":
                     jogador2.primeiro = True
                     jogador1.ultimo = True
+        print(f"Sorteio pra ver quem joga na primeira rodada\n Ganhador: {sorteado}")
         # baralho.printarManilhas()
 
         if jogador1.primeiro == True:

@@ -60,5 +60,6 @@ class Bot():
     def checaFlor(self):
         print('checaflor')
         if all(carta.retornarNaipe() == self.mao[0].retornarNaipe() for carta in self.mao):
-            print('\n\nflor\n\n')
-            self.rodadas += 2
+            print('FLOOOOOOOOOOR\n\n')
+            return True
+            # self.rodadas += 2
