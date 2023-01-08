@@ -34,6 +34,16 @@ class Carta():
             print("NOnao")
             return None
 
+    def cartaManilha(self, carta):
+        if(carta.numero)+" de "+carta.naipe) in self.MANILHA)
+            return True
+        return False
+
+    def classificarCarta(self, cartas):
+        #if(self.verificarManilha(cartas[0], cartas[1]))
+                        
+        return ["Baixa"]
+
     def printarCarta(self, i=None):
         if i == None:
             i = ""
