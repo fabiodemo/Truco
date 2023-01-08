@@ -8,7 +8,7 @@ class Baralho():
         self.vira = []
         self.manilhas = []
         self.cartas = []
-        self.criarBaralho() #?
+        self.criarBaralho() 
 
     def criarBaralho(self):
         for i in ["Espadas", "Ouros", "Copas", "Espadas"]:
