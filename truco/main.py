@@ -49,17 +49,20 @@ if __name__ == '__main__':
         # baralho.printarManilhas()
 
         #Sorteio pra ver quem joga na primeira rodada
-        if jogador1.rodadas == 0 and jogador2.rodadas == 0:
-            if jogador1.pontos == 0 and jogador2.pontos == 0:
-                jogadores = ["jogador1", "jogador2"]
-                sorteado = random.choice(jogadores)
-                if sorteado == "jogador1":
-                    jogador1.primeiro = True
-                    jogador2.ultimo = True
-                elif sorteado == "jogador2":
-                    jogador2.primeiro = True
-                    jogador1.ultimo = True
-        print(f"Sorteio pra ver quem joga na primeira rodada\n Ganhador: {sorteado}")
+        # if jogador1.rodadas == 0 and jogador2.rodadas == 0:
+        #     if jogador1.pontos == 0 and jogador2.pontos == 0:
+        #         jogadores = ["jogador1", "jogador2"]
+        #         sorteado = random.choice(jogadores)
+        #         if sorteado == "jogador1":
+        #             jogador1.primeiro = True
+        #             jogador2.ultimo = True
+        #         elif sorteado == "jogador2":
+        #             jogador2.primeiro = True
+        #             jogador1.ultimo = True
+        # print(f"Sorteio pra ver quem joga na primeira rodada\n Ganhador: {sorteado}")
+        jogador1.primeiro = True
+        jogador2.ultimo = True
+        print(f"Jogador 1 é mão")
         # baralho.printarManilhas()
 
         if jogador1.primeiro == True:
@@ -141,8 +144,10 @@ if __name__ == '__main__':
                 print(f"\n{jogador2.nome} ganhou a rodada")
                 reiniciarJogo()
 
-        print(f"\n{jogador1.nome} Pontos {jogador1.pontos}, Rodadas {jogador1.rodadas}")
-        print(f"{jogador2.nome} Pontos {jogador2.pontos}, Rodadas {jogador2.rodadas}")
+        print("____________________________")
+        print(f"\n|{jogador1.nome} Pontos {jogador1.pontos}, Rodadas {jogador1.rodadas}|")
+        print(f"|{jogador2.nome} Pontos {jogador2.pontos}, Rodadas {jogador2.rodadas}|")
+        print("____________________________")
 
         jogo.quemIniciaRodada(jogador1, jogador2)
 

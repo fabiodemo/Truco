@@ -27,17 +27,20 @@ class Jogo():
         # print("numeros: ")
         # print(str(carta1.numero))
         # print(str(carta2.numero))
-        if self.verificarManilha(carta1, carta2) is None:
-            if carta1.numero == carta2.numero:
-                ganhador = "Empate"
-            elif CARTAS_VALORES[str(carta1.numero)] > CARTAS_VALORES[str(carta2.numero)]:
-                ganhador = carta1
-            else:
-                ganhador = carta2
-            print(ganhador)
-            return ganhador
-        else:
-            return self.verificarManilha(carta1, carta2)
+        ganhador = self.verificarManilha(carta1, carta2)
+        print(ganhador)
+        return ganhador
+        # if self.verificarManilha(carta1, carta2) is None:
+        #     if carta1.numero == carta2.numero:
+        #         ganhador = "Empate"
+        #     elif CARTAS_VALORES[str(carta1.numero)] > CARTAS_VALORES[str(carta2.numero)]:
+        #         ganhador = carta1
+        #     else:
+        #         ganhador = carta2
+        #     print(ganhador)
+        #     return ganhador
+        # else:
+        #     return self.verificarManilha(carta1, carta2)
 
     
     def adicionarPonto(self, jogador1, jogador2, carta1, carta2, ganhador):
@@ -87,7 +90,13 @@ class Jogo():
         elif (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA:
             return carta_jogador_02
         else:
-            return None
+            if CARTAS_VALORES[str(carta_jogador_01.numero)] > CARTAS_VALORES[str(carta_jogador_02.numero)]:
+                return carta_jogador_01
+            elif CARTAS_VALORES[str(carta_jogador_01.retornarNumero())] < CARTAS_VALORES[str(carta_jogador_02.retornarNumero())]:
+                return carta_jogador_02
+            else:
+                return "Empate"
+    
 
     def pedirTruco(self, aceitou):
         print("Truco")
