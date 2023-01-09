@@ -8,6 +8,7 @@ class Jogo():
 
     def __init__(self):
         self.rodadas = []
+        self.truco = 0
     
     def iniciarJogo(self):
         pass
@@ -88,7 +89,11 @@ class Jogo():
         else:
             return None
 
-    def pedirTruco(self, quem_pediu, pontos):
-        if(quem_pediu == 'jogador1'):
-            print("truco")
+    def pedirTruco(self, aceitou):
+        print("Truco")
+        self.truco += 2
+        if(aceitou is False):
+            self.truco -= 1
+        
+
         
