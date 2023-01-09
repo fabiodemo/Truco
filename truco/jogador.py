@@ -3,6 +3,7 @@ class Jogador():
     def __init__(self, nome):
         self.nome = nome
         self.mao = []
+        self.maoRank = []
         self.pontos = 0
         self.rodadas = 0
         self.invido = 0
@@ -19,7 +20,11 @@ class Jogador():
     def criarMao(self, baralho):
         for i in range(3):
             self.mao.append(baralho.retirarCarta())
-    
+        
+        self.maoRank = self.mao[0].classificarCarta(self.mao)
+        
+        print(self.maoRank)    
+
     def jogarCarta(self, carta_escolhida):
         return self.mao.pop(carta_escolhida -1)
     
