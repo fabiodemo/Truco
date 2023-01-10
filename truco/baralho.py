@@ -5,7 +5,7 @@ import random
 class Baralho():
     
     def __init__(self):
-        self.vira = []
+        # self.vira = []
         self.manilhas = []
         self.cartas = []
         self.criarBaralho() 
@@ -19,8 +19,8 @@ class Baralho():
     def embaralhar(self):
         random.shuffle(self.cartas)
     
-    def definirVira(self, baralho):
-        self.vira.append(baralho.retirarCarta())
+    # def definirVira(self, baralho):
+    #     self.vira.append(baralho.retirarCarta())
 
     # def definirManilha(self):
     #     for v in self.vira:

@@ -1,5 +1,5 @@
-# from pontos import MANILHA, CARTAS_VALORES
 import itertools
+from pontos import MANILHA, CARTAS_VALORES
 
 class Carta():
 
@@ -39,24 +39,58 @@ class Carta():
     #         else:
     #             return "Empate"
 
+    def verificarCartaAlta(self, carta_jogador_01, carta_jogador_02):
+        if (str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in MANILHA and (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA:
+            if MANILHA[str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe] > MANILHA[str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe]:
+                return carta_jogador_01
+            elif MANILHA[str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe] > MANILHA[str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe]:
+                return carta_jogador_02
+        elif (str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in MANILHA:
+            return carta_jogador_01
+        elif (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA:
+            return carta_jogador_02
+        else:
+            if CARTAS_VALORES[str(carta_jogador_01.numero)] >= CARTAS_VALORES[str(carta_jogador_02.numero)]:
+                return carta_jogador_01
+            elif CARTAS_VALORES[str(carta_jogador_01.retornarNumero())] < CARTAS_VALORES[str(carta_jogador_02.retornarNumero())]:
+                return carta_jogador_02
+            else:
+                return None
+        
+    def verificarCartaBaixa(self, carta_jogador_01, carta_jogador_02):
+        if (str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in MANILHA and (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA:
+            if MANILHA[str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe] < MANILHA[str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe]:
+                return carta_jogador_01
+            elif MANILHA[str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe] < MANILHA[str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe]:
+                return carta_jogador_02
+        elif (str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in MANILHA:
+            return carta_jogador_01
+        elif (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA:
+            return carta_jogador_02
+        else:
+            if CARTAS_VALORES[str(carta_jogador_01.numero)] <= CARTAS_VALORES[str(carta_jogador_02.numero)]:
+                return carta_jogador_01
+            elif CARTAS_VALORES[str(carta_jogador_01.retornarNumero())] > CARTAS_VALORES[str(carta_jogador_02.retornarNumero())]:
+                return carta_jogador_02
+            else:
+                return None
+
     def cartaManilha(self, carta):
         if(((carta.numero)+" de "+carta.naipe) in self.MANILHA):
             return True
         return False
 
     def classificarCarta(self, cartas):
-        # list = ['', '', '']
-        # # comparacao = self.verificarManilha(self.verificarManilha(cartas[0], cartas[1]))
-        # if(comparacao == cartas[0]):
-        #     list[0] = 'Alta'
-        # elif(comparacao == cartas[0]):
-        #     list[1] = 'Media'
+        carta_alta = self.verificarCartaAlta(self.verificarCartaAlta(cartas[0], cartas[1]), cartas[2])
+        carta_baixa = self.verificarCartaBaixa(self.verificarCartaBaixa(cartas[0], cartas[1]), cartas[2])
+        lista_classificacao = ['', '', '']
         
+        for i in range(len(lista_classificacao)):
+            if carta_alta == cartas[i]: lista_classificacao[i] = 'Alta'
+            if carta_baixa == cartas[i]: lista_classificacao[i] = 'Baixa'
+            if not lista_classificacao[i]: lista_classificacao[i] = 'Média'
 
-        # for a, b in itertools.combinations(cartas, 2):
-            
-        #     print(a.retornarNumero(), b.retornarNumero())
-        return ["Baixa"]
+        return lista_classificacao
 
     def printarCarta(self, i=None):
         if i == None:

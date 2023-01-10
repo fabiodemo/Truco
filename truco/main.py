@@ -11,7 +11,7 @@ def reiniciarJogo():
     baralho.resetarBaralho()
     baralho.criarBaralho()
     baralho.embaralhar()
-    baralho.definirVira(baralho)
+    # baralho.definirVira(baralho)
     # manilha = baralho.definirManilha()
     # baralho.definirManilhas(manilha)
     jogador1.criarMao(baralho)
@@ -38,7 +38,7 @@ if __name__ == '__main__':
     jogo = Jogo()
     baralho = Baralho()
     # baralho.embaralhar() # Voltar a embaralhar para o jogo funcionarnormalmente.
-    baralho.definirVira(baralho)
+    # baralho.definirVira(baralho)
     # manilha = baralho.definirManilha()
     # baralho.definirManilhas(manilha)
 
@@ -158,7 +158,7 @@ if __name__ == '__main__':
                 print(f"\n{jogador2.nome} ganhou a rodada")
                 reiniciarJogo()
 
-        border_msg(f"Jogador 1: {jogador1.nome} Pontos {jogador1.pontos}, Rodadas {jogador1.rodadas}\nJogador 2: {jogador2.nome} Pontos {jogador2.pontos}, Rodadas {jogador2.rodadas}")
+        border_msg(f"Jogador 1 - {jogador1.nome}: Venceu {jogador1.pontos} Rodada(s), {jogador1.rodadas} Pontos Acumulados\nJogador 2 - {jogador2.nome}: Venceu {jogador2.pontos} Rodada(s), {jogador2.rodadas} Pontos Acumulados")
 
         jogo.quemIniciaRodada(jogador1, jogador2)
 
