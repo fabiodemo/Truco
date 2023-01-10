@@ -31,10 +31,21 @@ def border_msg(msg, indent=1, width=None, title=None):
     box += f'╚{"═" * (width + indent * 2)}╝'  # lower_border
     print(box)
 
+def pedirTruco():
+    print('Truco')
+    if(jogador2.avaliarTruco()):
+        jogador1.pediuTruco = True
+        return True
+    else:
+        print('Jogador já pediu truco, escolha outra carta!')
+        return False
+
 if __name__ == '__main__':
     jogo = Jogo()
     baralho = Baralho()
-    # baralho.embaralhar() # Voltar a embaralhar para o jogo funcionarnormalmente.
+    baralho.embaralhar() # Voltar a embaralhar para o jogo funcionarnormalmente.
+    baralho.embaralhar() # Voltar a embaralhar para o jogo funcionarnormalmente.
+
 
     carta1 = 0
     carta2 = 0
@@ -76,16 +87,27 @@ if __name__ == '__main__':
         if jogador1.primeiro == True:
             print(f"\n<< {jogador1.nome} - Jogador 1 >>")
             
-            jogador1.mostrarOpcoes()
-            carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
-            carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
-            # limpar()
-            print(f"\n{jogador1.nome} jogou a carta: ")
-            carta_jogador_01.printarCarta(carta_escolhida)
+            carta_escolhida = 6
+            while (carta_escolhida > len(jogador1.checaMao())):
+                jogador1.mostrarOpcoes()
+                carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
+                if (carta_escolhida <= 3):
+                    carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
+                    # limpar()
+                    print(f"\n{jogador1.nome} jogou a carta: ")
+                    carta_jogador_01.printarCarta(carta_escolhida)
+                elif (carta_escolhida == 4):
+                    if((jogador1.pediuTruco is False) and (pedirTruco())):
+                        jogo.trucoAceito()
+                    else:
+                        jogador1.adicionarRodada()
+                        break
+                elif (carta_escolhida == 5):
+                    print('envido')
             
             print(f"\n<< {jogador2.nome} - Jogador 2 >>")
-            if(len(jogador2.mao) == 3):
-                if(jogador1.flor and jogador2.flor):
+            if (len(jogador2.mao) == 3):
+                if (jogador1.flor and jogador2.flor):
                     print('Contraflor do bot')
                     jogador2.rodadas += 6
                 elif (jogador2.flor):
@@ -175,7 +197,4 @@ To do:
 - Implementar Truco;
 - Implementar Retruco;
 - Implementar negação do Truco;
-- Implementar Flor;
-- Implementar Contra-flor;
-- Implementar Contra-flor e Resto;
 '''

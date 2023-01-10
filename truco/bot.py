@@ -10,7 +10,7 @@ class Bot():
         self.invido = 0
         self.primeiro = False
         self.ultimo = False
-        self.flor = True
+        self.flor = False
         self.indices = []
 
     def criarMao(self, baralho):
@@ -50,6 +50,7 @@ class Bot():
     def resetar(self):
         self.pontos = 0
         self.mao = []
+        self.flor = False
 
     def checaMao(self):
         return self.mao
@@ -64,6 +65,7 @@ class Bot():
             self.flor = True
             return True
             # self.rodadas += 2
+        return False
     
     def avaliarTruco(self):
         random.choice([True, False])

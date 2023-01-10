@@ -10,11 +10,13 @@ class Jogador():
         self.primeiro = False
         self.ultimo = False
         self.flor = False
+        self.pediuTruco = False
 
     def mostrarOpcoes(self):
         self.mostrarMao()
-        print('[4] Truco')
-        if (len(self.mao) == 3):
+        if (self.pediuTruco is False): 
+            print('[4] Truco')
+        if ((len(self.mao)) == 3 and (self.checaFlor())):
             print('[5] Flor')
 
     def criarMao(self, baralho):
@@ -55,5 +57,6 @@ class Jogador():
         if all(carta.retornarNaipe() == self.mao[0].retornarNaipe() for carta in self.mao):
             print('FLOOOOOOOOOOR\n\n')
             return True
+        return False
 
             
