@@ -17,11 +17,12 @@ class Bot():
         self.indices = [0, 1, 2]
         for i in range(3):
             self.mao.append(baralho.retirarCarta())
+        self.checaFlor()
     
     def jogarCarta(self):
-        print(len(self.mao))
-        if (len(self.mao) == 3):
-            self.checaFlor()
+        # print(len(self.mao))
+        # if (len(self.mao) == 3):
+        #     self.checaFlor()
         self.AjustaIndicesMao(len(self.indices))
         carta_escolhida = random.choice(self.indices)
         # print(f'self.indices: {self.indices} pop: {carta_escolhida}')

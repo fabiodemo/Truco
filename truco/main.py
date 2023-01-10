@@ -84,11 +84,12 @@ if __name__ == '__main__':
             carta_jogador_01.printarCarta(carta_escolhida)
             
             print(f"\n<< {jogador2.nome} - Jogador 2 >>")
-            if(jogador1.flor and jogador2.flor):
-                print('Contraflor do bot')
-                jogador2.rodadas += 6
-            elif (jogador2.flor):
-                jogador2.rodadas += 3
+            if(len(jogador2.mao) == 3):
+                if(jogador1.flor and jogador2.flor):
+                    print('Contraflor do bot')
+                    jogador2.rodadas += 6
+                elif (jogador2.flor):
+                    jogador2.rodadas += 3
             jogador2.mostrarMao()
             # carta_escolhida = int(input(f"\n{jogador2.nome} Qual carta você quer jogar? "))
             carta_jogador_02 = jogador2.jogarCarta()
