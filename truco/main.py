@@ -11,9 +11,6 @@ def reiniciarJogo():
     baralho.resetarBaralho()
     baralho.criarBaralho()
     baralho.embaralhar()
-    # baralho.definirVira(baralho)
-    # manilha = baralho.definirManilha()
-    # baralho.definirManilhas(manilha)
     jogador1.criarMao(baralho)
     jogador2.criarMao(baralho)
 
@@ -38,9 +35,6 @@ if __name__ == '__main__':
     jogo = Jogo()
     baralho = Baralho()
     # baralho.embaralhar() # Voltar a embaralhar para o jogo funcionarnormalmente.
-    # baralho.definirVira(baralho)
-    # manilha = baralho.definirManilha()
-    # baralho.definirManilhas(manilha)
 
     carta1 = 0
     carta2 = 0
