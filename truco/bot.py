@@ -68,4 +68,4 @@ class Bot():
         return False
     
     def avaliarTruco(self):
-        random.choice([True, False])
+        return random.choice([True, False])

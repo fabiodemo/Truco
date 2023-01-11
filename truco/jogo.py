@@ -8,7 +8,7 @@ class Jogo():
 
     def __init__(self):
         self.rodadas = []
-        self.truco = 0
+        self.trucoPontos = 0
     
     def iniciarJogo(self):
         pass
@@ -100,9 +100,12 @@ class Jogo():
 
     def trucoAceito(self, aceitou):
         print("Truco")
-        self.truco += 2
+        self.trucoPontos += 2
         if(aceitou is False):
-            self.truco -= 1
+            self.trucoPontos -= 1
+    
+    def retornaTrucoPontos(self):
+        return self.trucoPontos
         
 
         
