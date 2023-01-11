@@ -121,7 +121,8 @@ if __name__ == '__main__':
     baralho.embaralhar() # Voltar a embaralhar para o jogo funcionarnormalmente.
     baralho.embaralhar() # Voltar a embaralhar para o jogo funcionarnormalmente.
 
-    truco_aceito = True
+    truco_aceito = False
+    truco_fugiu = False
     carta1 = 0
     carta2 = 0
     ganhador = 0
@@ -154,29 +155,32 @@ if __name__ == '__main__':
 
         if jogador1.primeiro == True:
             print(f"\n<< {jogador1.nome} - Jogador 1 >>")
+            jogador1.mostrarOpcoes()
+            carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
             
-            carta_escolhida = 6
-            while (carta_escolhida > len(jogador1.checaMao())):
-                jogador1.mostrarOpcoes()
-                carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
-                if (carta_escolhida <= 3):
-                    carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
-                    # limpar()
-                    print(f"\n{jogador1.nome} jogou a carta: ")
-                    carta_jogador_01.printarCarta(carta_escolhida)
-                elif (carta_escolhida == 4):
-                    if((jogador1.pediuTruco is False) and (pedirTruco())):
-                        truco_aceito = jogo.trucoAceito()
-                        while(carta_escolhida > 3):
-                            jogador1.mostrarOpcoes()
-                    else:
-                        truco_aceito = False
-                        jogador1.adicionarRodada()
-                        break
-                elif (carta_escolhida == 5):
-                    print('envido')
-            if (truco_aceito is not False):
-                chamarJogadasBot()
+            if (carta_escolhida <= 3):
+                carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
+                # limpar()
+                print(f"\n{jogador1.nome} jogou a carta: ")
+                carta_jogador_01.printarCarta(carta_escolhida)
+
+            elif (carta_escolhida == 4):
+                if((jogador1.pediuTruco is False) and (pedirTruco())):
+                    truco_aceito = jogo.trucoAceito()
+                
+                    while (carta_escolhida > len(jogador1.checaMao())):
+                        jogador1.mostrarOpcoes()
+
+                else:
+                    truco_fugiu = True
+                    jogador1.adicionarRodada()
+                    break
+
+            elif (carta_escolhida == 5):
+                print('envido')
+
+        if (truco_fugiu is False):
+            chamarJogadasBot()
 
         if jogador1.rodadas >= 12:
             print(f"\n{jogador1.nome} ganhou o jogo")
