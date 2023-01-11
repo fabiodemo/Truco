@@ -33,12 +33,87 @@ def border_msg(msg, indent=1, width=None, title=None):
 
 def pedirTruco():
     print('Truco')
-    if(jogador2.avaliarTruco()):
+    if(jogador1.pediuTruco is not True and jogador2.avaliarTruco()):
         jogador1.pediuTruco = True
         return True
     else:
         print('Jogador já pediu truco, escolha outra carta!')
         return False
+
+def chamarJogadasBot():
+    print(f"\n<< {jogador2.nome} - Jogador 2 >>")
+    if (len(jogador2.mao) == 3):
+        if (jogador1.flor and jogador2.flor):
+            print('Contraflor do bot')
+            jogador2.rodadas += 6
+        elif (jogador2.flor):
+            jogador2.rodadas += 3
+    jogador2.mostrarMao()
+    # carta_escolhida = int(input(f"\n{jogador2.nome} Qual carta você quer jogar? "))
+    carta_jogador_02 = jogador2.jogarCarta()
+    # limpar()
+    print(f"\n{jogador2.nome} jogou a carta: ")
+    carta_jogador_02.printarCarta(carta_jogador_02)
+
+    # elif jogador2.primeiro == True:
+    #     print(f"\n<< {jogador2.nome} - Jogador 2 >>")
+    #     jogador2.mostrarMao()
+    #     # carta_escolhida = int(input(f"\n{jogador2.nome} Qual carta você quer jogar? "))
+    #     carta_jogador_02 = jogador2.jogarCarta()
+    #     # limpar()
+    #     print(f"\n{jogador2.nome} jogou a carta: ")
+    #     carta_jogador_02.printarCarta(carta_jogador_02)
+
+    #     print(f"\n<< {jogador1.nome} - Jogador 1 >>")
+    #     jogador1.mostrarOpcoes()
+    #     carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
+    #     carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
+    #     # limpar()
+    #     print(f"\n{jogador1.nome} jogou a carta: ")
+    #     carta_jogador_01.printarCarta(carta_escolhida)
+    # else:
+    #     print("Erro")
+
+    # limpar()
+
+    print(f"\n>> {jogador1.nome} jogou a carta: ")
+    carta_jogador_01.printarCarta()
+    print(f">> {jogador2.nome} jogou a carta: ")
+    carta_jogador_02.printarCarta()
+
+    carta1 = Carta(carta_jogador_01.retornarNumero(), carta_jogador_01.retornarNaipe())
+    carta2 = Carta(carta_jogador_02.retornarNumero(), carta_jogador_02.retornarNaipe())
+
+    print("\nCarta ganhadora: ")
+    ganhador = jogo.verificarGanhador(carta1, carta2)
+    jogo.quemJogaPrimeiro(jogador1, jogador2, carta1, carta2, ganhador)
+    jogo.adicionarPonto(jogador1, jogador2, carta1, carta2, ganhador)
+
+    if jogador1.pontos == 2:
+        jogador1.adicionarRodada()
+        print(f"\n{jogador1.nome} ganhou a rodada")
+        reiniciarJogo()
+
+    elif jogador2.pontos == 2:
+        jogador2.adicionarRodada()
+        print(f"\n{jogador2.nome} ganhou a rodada")
+        reiniciarJogo()
+
+    # Testar situação corrigida: empate em 2 rodadas, e o jogo trava sem possibidade de fazer mais nada.
+    elif(not(jogador1.checaMao()) and not(jogador2.checaMao())):
+        if jogador1.pontos > jogador2.pontos:
+            jogador1.adicionarRodada()
+            print(f"\n{jogador1.nome} ganhou a rodada")
+            reiniciarJogo()
+
+        elif jogador2.pontos > jogador1.pontos:
+            jogador2.adicionarRodada()
+            print(f"\n{jogador2.nome} ganhou a rodada")
+            reiniciarJogo()
+
+    border_msg(f"Jogador 1 - {jogador1.nome}: Venceu {jogador1.pontos} Rodada(s), {jogador1.rodadas} Pontos Acumulados\nJogador 2 - {jogador2.nome}: Venceu {jogador2.pontos} Rodada(s), {jogador2.rodadas} Pontos Acumulados")
+
+    jogo.quemIniciaRodada(jogador1, jogador2)
 
 if __name__ == '__main__':
     jogo = Jogo()
@@ -46,7 +121,7 @@ if __name__ == '__main__':
     baralho.embaralhar() # Voltar a embaralhar para o jogo funcionarnormalmente.
     baralho.embaralhar() # Voltar a embaralhar para o jogo funcionarnormalmente.
 
-
+    truco_aceito = True
     carta1 = 0
     carta2 = 0
     ganhador = 0
@@ -60,12 +135,6 @@ if __name__ == '__main__':
     # limpar()
 
     while True:
-
-        # print("\nCarta que virou: ")
-        # baralho.printarVira()
-
-        # print("\nManilhas: ")
-        # baralho.printarManilhas()
 
         #Sorteio pra ver quem joga na primeira rodada
         # if jogador1.rodadas == 0 and jogador2.rodadas == 0:
@@ -82,7 +151,6 @@ if __name__ == '__main__':
         jogador1.primeiro = True
         jogador2.ultimo = True
         print(f"Jogador 1 é mão")
-        # baralho.printarManilhas()
 
         if jogador1.primeiro == True:
             print(f"\n<< {jogador1.nome} - Jogador 1 >>")
@@ -99,87 +167,16 @@ if __name__ == '__main__':
                 elif (carta_escolhida == 4):
                     if((jogador1.pediuTruco is False) and (pedirTruco())):
                         truco_aceito = jogo.trucoAceito()
+                        while(carta_escolhida > 3):
+                            jogador1.mostrarOpcoes()
                     else:
                         truco_aceito = False
                         jogador1.adicionarRodada()
                         break
                 elif (carta_escolhida == 5):
                     print('envido')
-            
-            if (truco_aceito):
-                print(f"\n<< {jogador2.nome} - Jogador 2 >>")
-                if (len(jogador2.mao) == 3):
-                    if (jogador1.flor and jogador2.flor):
-                        print('Contraflor do bot')
-                        jogador2.rodadas += 6
-                    elif (jogador2.flor):
-                        jogador2.rodadas += 3
-                jogador2.mostrarMao()
-                # carta_escolhida = int(input(f"\n{jogador2.nome} Qual carta você quer jogar? "))
-                carta_jogador_02 = jogador2.jogarCarta()
-                # limpar()
-                print(f"\n{jogador2.nome} jogou a carta: ")
-                carta_jogador_02.printarCarta(carta_jogador_02)
-
-        # elif jogador2.primeiro == True:
-        #     print(f"\n<< {jogador2.nome} - Jogador 2 >>")
-        #     jogador2.mostrarMao()
-        #     # carta_escolhida = int(input(f"\n{jogador2.nome} Qual carta você quer jogar? "))
-        #     carta_jogador_02 = jogador2.jogarCarta()
-        #     # limpar()
-        #     print(f"\n{jogador2.nome} jogou a carta: ")
-        #     carta_jogador_02.printarCarta(carta_jogador_02)
-
-        #     print(f"\n<< {jogador1.nome} - Jogador 1 >>")
-        #     jogador1.mostrarOpcoes()
-        #     carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
-        #     carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
-        #     # limpar()
-        #     print(f"\n{jogador1.nome} jogou a carta: ")
-        #     carta_jogador_01.printarCarta(carta_escolhida)
-        # else:
-        #     print("Erro")
-
-        # limpar()
-
-        print(f"\n>> {jogador1.nome} jogou a carta: ")
-        carta_jogador_01.printarCarta()
-        print(f">> {jogador2.nome} jogou a carta: ")
-        carta_jogador_02.printarCarta()
-
-        carta1 = Carta(carta_jogador_01.retornarNumero(), carta_jogador_01.retornarNaipe())
-        carta2 = Carta(carta_jogador_02.retornarNumero(), carta_jogador_02.retornarNaipe())
-
-        print("\nCarta ganhadora: ")
-        ganhador = jogo.verificarGanhador(carta1, carta2)
-        jogo.quemJogaPrimeiro(jogador1, jogador2, carta1, carta2, ganhador)
-        jogo.adicionarPonto(jogador1, jogador2, carta1, carta2, ganhador)
-
-        if jogador1.pontos == 2:
-            jogador1.adicionarRodada()
-            print(f"\n{jogador1.nome} ganhou a rodada")
-            reiniciarJogo()
-
-        elif jogador2.pontos == 2:
-            jogador2.adicionarRodada()
-            print(f"\n{jogador2.nome} ganhou a rodada")
-            reiniciarJogo()
-
-        # Testar situação corrigida: empate em 2 rodadas, e o jogo trava sem possibidade de fazer mais nada.
-        elif(not(jogador1.checaMao()) and not(jogador2.checaMao())):
-            if jogador1.pontos > jogador2.pontos:
-                jogador1.adicionarRodada()
-                print(f"\n{jogador1.nome} ganhou a rodada")
-                reiniciarJogo()
-
-            elif jogador2.pontos > jogador1.pontos:
-                jogador2.adicionarRodada()
-                print(f"\n{jogador2.nome} ganhou a rodada")
-                reiniciarJogo()
-
-        border_msg(f"Jogador 1 - {jogador1.nome}: Venceu {jogador1.pontos} Rodada(s), {jogador1.rodadas} Pontos Acumulados\nJogador 2 - {jogador2.nome}: Venceu {jogador2.pontos} Rodada(s), {jogador2.rodadas} Pontos Acumulados")
-
-        jogo.quemIniciaRodada(jogador1, jogador2)
+            if (truco_aceito is not False):
+                chamarJogadasBot()
 
         if jogador1.rodadas >= 12:
             print(f"\n{jogador1.nome} ganhou o jogo")
@@ -188,7 +185,6 @@ if __name__ == '__main__':
         elif jogador2.rodadas >= 12:
             print(f"\n{jogador2.nome} ganhou o jogo")
             break
-
 '''
 To do:
 - Implementar classificação das cartas [baixa, média, alta];
