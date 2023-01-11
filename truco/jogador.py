@@ -57,7 +57,7 @@ class Jogador():
     def checaFlor(self):
         print('checaflor')
         if all(carta.retornarNaipe() == self.mao[0].retornarNaipe() for carta in self.mao):
-            print('FLOOOOOOOOOOR\n\n')
+            print('Flor do Jogador')
             return True
         return False
 

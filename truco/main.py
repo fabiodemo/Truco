@@ -32,7 +32,6 @@ def border_msg(msg, indent=1, width=None, title=None):
     print(box)
 
 def pedirTruco():
-    print('Truco')
     if(jogador1.pediuTruco is not True and jogador2.avaliarTruco()):
         jogador1.pediuTruco = True
         return True

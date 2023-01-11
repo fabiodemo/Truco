@@ -20,12 +20,8 @@ class Bot():
         self.checaFlor()
     
     def jogarCarta(self):
-        # print(len(self.mao))
-        # if (len(self.mao) == 3):
-        #     self.checaFlor()
         self.AjustaIndicesMao(len(self.indices))
         carta_escolhida = random.choice(self.indices)
-        # print(f'self.indices: {self.indices} pop: {carta_escolhida}')
         self.indices.remove(carta_escolhida)
         return self.mao.pop(carta_escolhida)
     
@@ -61,10 +57,9 @@ class Bot():
     def checaFlor(self):
         print('checaflor')
         if all(carta.retornarNaipe() == self.mao[0].retornarNaipe() for carta in self.mao):
-            print('FLOOOOOOOOOOR\n\n')
+            print('Flor do Bot!')
             self.flor = True
             return True
-            # self.rodadas += 2
         return False
     
     def avaliarTruco(self):
