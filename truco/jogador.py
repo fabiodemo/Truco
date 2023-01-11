@@ -45,6 +45,8 @@ class Jogador():
     def resetar(self):
         self.pontos = 0
         self.mao = []
+        self.flor = False
+        self.pediuTruco = False
 
     def checaMao(self):
         return self.mao
