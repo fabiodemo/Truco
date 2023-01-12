@@ -111,3 +111,33 @@ class Carta():
     
     def retornarNaipe(self):
         return self.naipe
+
+    def desenharCarta(self, s):
+        pixel_mostrar_carta = [] 
+        pixel_mostrar_carta.append("┌─────────┐")
+        pixel_mostrar_carta.append("│{}{}. . .│")
+        pixel_mostrar_carta.append("│. . . . .│")
+        pixel_mostrar_carta.append("│. . . . .│")
+        pixel_mostrar_carta.append("│. . {}. .│")
+        pixel_mostrar_carta.append("│. . . . .│")
+        pixel_mostrar_carta.append("│. . . . .│")
+        pixel_mostrar_carta.append("│. . .{}{}│")
+        pixel_mostrar_carta.append("└─────────┘")
+
+        x = ("│.", s[:1], ". . . .│")
+        pixel_mostrar_carta[1] = "".join(x)
+
+        x = ("│. . . .", s[:1], ".│")
+        pixel_mostrar_carta[7] = "".join(x)
+        
+        #  ["Espadas", "Ouros", "Copas", "Espadas"]
+        if "Ouros" in s:
+            pixel_mostrar_carta[4] = "│. . ♦ . .│"
+        if "Paus" in s:
+            pixel_mostrar_carta[4] = "│. . ♣ . .│"
+        if "Copas" in s:
+            pixel_mostrar_carta[4] = "│. . ♥ . .│"
+        if "Espadas" in s:
+            pixel_mostrar_carta[4] = "│. . ♠ . .│"
+
+        return pixel_mostrar_carta

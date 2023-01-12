@@ -126,6 +126,6 @@ class Jogo():
     
     def retornaTrucoPontos(self):
         return self.trucoPontos
-        
-
-        
+    
+    def resetarTrucoPontos(self):
+        self.trucoPontos = 1
