@@ -22,11 +22,7 @@ class Jogador():
 
     def criarMao(self, baralho):
         for i in range(3):
-            self.mao.append(baralho.retirarCarta())
-        
-        self.maoRank = self.mao[0].classificarCarta(self.mao)
-        
-        print(self.maoRank)    
+            self.mao.append(baralho.retirarCarta())  
 
     def jogarCarta(self, carta_escolhida):
         return self.mao.pop(carta_escolhida)
@@ -63,5 +59,3 @@ class Jogador():
             # print('Flor do Jogador')
             return True
         return False
-
-            

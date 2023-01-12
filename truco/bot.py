@@ -5,6 +5,7 @@ class Bot():
     def __init__(self, nome):
         self.nome = nome
         self.mao = []
+        self.maoRank = []
         self.pontos = 0
         self.rodadas = 0
         self.invido = 0
@@ -15,9 +16,11 @@ class Bot():
 
     def criarMao(self, baralho):
         self.indices = [0, 1, 2]
+        
         for i in range(3):
             self.mao.append(baralho.retirarCarta())
         self.flor = self.checaFlor()
+        self.maoRank = self.mao[0].classificarCarta(self.mao)
     
     def jogarCarta(self):
         self.AjustaIndicesMao(len(self.indices))
@@ -28,6 +31,7 @@ class Bot():
     def AjustaIndicesMao(self, tam_mao):
         if(tam_mao) == 2:
             self.indices = [0, 1]
+        
         if(tam_mao) == 1:
             self.indices = [0]
 
