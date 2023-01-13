@@ -2,6 +2,7 @@ from baralho import Baralho
 from carta import Carta
 from jogador import Jogador
 from jogo import Jogo
+from cbr import Cbr
 import random
 import os
 
@@ -14,6 +15,7 @@ def reiniciarJogo():
     jogador1.criarMao(baralho)
     jogador2.criarMao(baralho)
     jogo.resetarTrucoPontos()
+    cbr.reiniciarIndice()
 
 def limpar():
     os.system("clear")
@@ -85,6 +87,9 @@ if __name__ == '__main__':
     baralho = Baralho()
     baralho.embaralhar() # Voltar a embaralhar para o jogo funcionarnormalmente.
     baralho.embaralhar() # Voltar a embaralhar para o jogo funcionarnormalmente.
+    cbr = Cbr()
+    cbr.rodada1()
+    print(cbr.rodada2())
 
     truco_aceito = False
     truco_fugiu = False
