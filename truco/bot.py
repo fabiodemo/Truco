@@ -1,4 +1,5 @@
 import random 
+import pandas as pd
 
 class Bot():
 
@@ -16,6 +17,7 @@ class Bot():
         self.ultimo = False
         self.flor = False
         self.pediuTruco = False
+        self.modeloRegistro = pd.read_csv('../db.csv')
 
     def criarMao(self, baralho):
         self.indices = [0, 1, 2]
@@ -75,7 +77,14 @@ class Bot():
         return False
     
     def avaliarTruco(self, cbr):
-        
+        self.modeloRegistro.jogadorMao = 1
+        self.modeloRegistro.cartaAltaRobo = self.maoRank.index("Alta")
+        self.modeloRegistro.cartaMediaRobo = self.maoRank.index("Media")
+        self.modeloRegistro.cartaBaixaRobo = self.maoRank.index("Baixa")
+        self.modeloRegistro.ganhadorPrimeiraRodada = 2
+        self.modeloRegistro.ganhadorSegundaRodada = 2
+        self.modeloRegistro.ganhadorTerceiraRodada = 2
+        print(self.modeloRegistro)
         return random.choice([True, False])
     
     # implementar retruco do bot
