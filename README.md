@@ -2,12 +2,12 @@
 
  ### Jogo Truco em Python
 
-- **Jogadores:** Pode ser jogado 1v1 ou 2v2.
-- **Número de cartas:** 40 (Não possui 8, 9, 10).
+- **Jogadores:** Pode ser jogado 1v1.
+- **Número de cartas:** 40 (Não possui 8, 9, 10, 13).
 - **Distribuição de cartas:** Cada jogador recebe três cartas.
 - **Objetivo:** Fazer 12 pontos para ganhar.
-- **Sequência das cartas mais fortes:** 3, 2, A, K, J, Q, 7, 6, 5, 4.
-- **Sequência dos naipes mais fortes:** ♣Paus, ♥Copas, ♠Espadas, ♦Moles.
+- **Sequência das cartas mais fortes:** A♠, A♣, 7♠, 7♦, 3, 2, 1, 12, 11, 7, 6, 5, 4.
+- **Naipes:** ♣Paus, ♥Copas, ♠Espadas, ♦Ouros.
 
  ### Definições:
 
