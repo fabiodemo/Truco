@@ -22,7 +22,7 @@ class Cbr():
 
     def atualizarDataframe(self, rodada):
         if (rodada == 1):
-            colunas_string = [
+            colunas = [
                 'naipeCartaAltaRobo', 
                 'naipeCartaMediaRobo',
                 'naipeCartaBaixaRobo', 
@@ -34,9 +34,10 @@ class Cbr():
                 'ganhadorPrimeiraRodada', 
                 'ganhadorSegundaRodada', 
             ]
+            df = pd.read_csv(r'../dbtrucoimitacao_maos.csv', usecols=colunas).fillna(0)
 
         elif (rodada == 2):
-            colunas_string = [
+            colunas = [
                 'naipeCartaAltaRobo', 
                 'naipeCartaMediaRobo',
                 'naipeCartaBaixaRobo', 
@@ -52,9 +53,10 @@ class Cbr():
                 'ganhadorPrimeiraRodada', 
                 'ganhadorSegundaRodada', 
             ]
+            df = pd.read_csv(r'../dbtrucoimitacao_maos.csv', usecols=colunas).fillna(0)
             
         else:
-            colunas_string = [
+            colunas = [
                 'naipeCartaAltaRobo', 
                 'naipeCartaMediaRobo',
                 'naipeCartaBaixaRobo', 
@@ -74,22 +76,29 @@ class Cbr():
                 'ganhadorSegundaRodada', 
                 'ganhadorTerceiraRodada'
             ]
+            df = pd.read_csv(r'../dbtrucoimitacao_maos.csv', usecols=colunas).fillna(0)
 
-        df = self.casos
+        colunas_para_tratar = [
+        'naipeCartaAltaRobo', 'naipeCartaMediaRobo','naipeCartaBaixaRobo', 'naipeCartaAltaHumano','naipeCartaMediaHumano', 'naipeCartaBaixaHumano','naipePrimeiraCartaRobo', 'naipePrimeiraCartaHumano',	'naipeSegundaCartaRobo', 'naipeSegundaCartaHumano','naipeTerceiraCartaRobo', 'naipeTerceiraCartaHumano',
+        ]
+
+        df = df[colunas]
         print(df)
-        colunas_int = [col for col in df.columns if col not in colunas_string]
+        colunas_int = [col for col in colunas if col not in colunas_para_tratar]
+        colunas_string = [col for col in colunas if col in colunas_para_tratar]
         df[colunas_int] = df[colunas_int].astype('int')
         df.replace('ESPADAS', '1', inplace=True)
         df.replace('OURO', '2', inplace=True)
         df.replace('BASTOS', '3', inplace=True)
         df.replace('COPAS', '4', inplace=True)
-        df[colunas_string] = df[colunas_string].astype('int')
+        df = df.astype('int')
         df = df[(df >= 0).all(axis=1)]
         
         return df
 
     def rodada1(self):
         df = self.atualizarDataframe(1)
+        print(df.naipeCartaBaixaRobo)
         print('vai')
         pass
     
