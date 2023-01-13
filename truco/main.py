@@ -119,8 +119,6 @@ if __name__ == '__main__':
     baralho.embaralhar() # Voltar a embaralhar para o jogo funcionarnormalmente.
     baralho.embaralhar() # Voltar a embaralhar para o jogo funcionarnormalmente.
     cbr = Cbr()
-    cbr.rodada1()
-    print(cbr.rodada2())
 
     truco_aceito = False
     truco_fugiu = False

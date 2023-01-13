@@ -6,10 +6,12 @@ class Bot():
         self.nome = nome
         self.mao = []
         self.maoRank = []
+        self.indices = []
+        self.pontuacaoCartas = []
+        self.forcaMao = 0
         self.pontos = 0
         self.rodadas = 0
         self.invido = 0
-        self.indices = []
         self.primeiro = False
         self.ultimo = False
         self.flor = False
@@ -21,12 +23,16 @@ class Bot():
         for i in range(3):
             self.mao.append(baralho.retirarCarta())
         self.flor = self.checaFlor()
-        self.maoRank = self.mao[0].classificarCarta(self.mao)
+        self.pontuacaoCartas, self.maoRank = self.mao[0].classificarCarta(self.mao)
+        self.forcaMao = sum(self.pontuacaoCartas)
+        print(self.pontuacaoCartas)
+        print(self.forcaMao)
     
     def jogarCarta(self):
         self.AjustaIndicesMao(len(self.indices))
         carta_escolhida = random.choice(self.indices)
         self.indices.remove(carta_escolhida)
+        self.pontuacaoCartas.remove(carta_escolhida)
         return self.mao.pop(carta_escolhida)
     
     def AjustaIndicesMao(self, tam_mao):
@@ -68,14 +74,19 @@ class Bot():
             return True
         return False
     
-    def avaliarTruco(self):
+    def avaliarTruco(self, cbr):
+        
         return random.choice([True, False])
     
     # implementar retruco do bot
-    def avaliarAumentarTruco(self, possibilidade):
+    def avaliarAumentarTruco(self, possibilidade, cbr):
         if (possibilidade):
             return True
         return False
 
     def avaliarEnvido(self):
         return None
+
+
+    # def caseBasedReasoning(self):
+        
