@@ -9,10 +9,11 @@ class Bot():
         self.pontos = 0
         self.rodadas = 0
         self.invido = 0
+        self.indices = []
         self.primeiro = False
         self.ultimo = False
         self.flor = False
-        self.indices = []
+        self.pediuTruco = False
 
     def criarMao(self, baralho):
         self.indices = [0, 1, 2]
@@ -71,3 +72,10 @@ class Bot():
         return random.choice([True, False])
     
     # implementar retruco do bot
+    def avaliarAumentarTruco(self, possibilidade):
+        if (possibilidade):
+            return True
+        return False
+
+    def avaliarEnvido(self):
+        return None

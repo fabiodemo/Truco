@@ -44,6 +44,37 @@ def pedirTruco():
         print('Jogador negou o truco!')
         return False
 
+def aumentarTruco(quemPediu):
+    if(quemPediu == jogador1):
+        if(jogador2.pediuTruco == True):
+            opcao = jogador2.avaliarAumentarTruco()
+            
+            if(opcao == 0):
+                return
+            
+            elif(opcao == 1):
+                return
+            
+            elif(opcao == 2):
+                return
+            
+            return jogador2.avaliarTruco()
+    
+    elif (jogador1.pediuTruco == True):
+        opcao = -1
+        while(opcao < 0 or opcao > 2):
+            print(f'[0] Aceitar\n[1] Fugir\n[2] Aumentar')
+            opcao = int(input(f"\n{jogador2.nome} Qual opção você deseja? "))
+            
+            if(opcao == 0):
+                return
+                
+            elif(opcao == 1):
+                return
+                
+            elif(opcao == 2):
+                return
+
 def chamarJogadasBot(carta_jogador_01):
     print(f"\n<< {jogador2.nome} - Jogador 2 >>")
     # jogador2.mostrarMao()
