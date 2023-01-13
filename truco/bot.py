@@ -69,3 +69,5 @@ class Bot():
     
     def avaliarTruco(self):
         return random.choice([True, False])
+    
+    # implementar retruco do bot
