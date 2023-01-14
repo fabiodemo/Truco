@@ -17,35 +17,54 @@ class Bot():
         self.ultimo = False
         self.flor = False
         self.pediuTruco = False
-        self.modeloRegistro = pd.read_csv('../db.csv')
+        self.modeloRegistro = pd.read_csv('../modelo_registro.csv', index_col='idMao')
 
     def criarMao(self, baralho):
         self.indices = [0, 1, 2]
         
+        # Mudar forma de classificação dos dados vindos da base de casos, para ter uma métrica extra de inserção
         for i in range(3):
             self.mao.append(baralho.retirarCarta())
         self.flor = self.checaFlor()
         self.pontuacaoCartas, self.maoRank = self.mao[0].classificarCarta(self.mao)
         self.forcaMao = sum(self.pontuacaoCartas)
-        print(self.pontuacaoCartas)
-        print(self.forcaMao)
+        self.inicializarRegistro()
     
-    def jogarCarta(self):
-        self.AjustaIndicesMao(len(self.indices))
-        carta_escolhida = random.choice(self.indices)
-        self.indices.remove(carta_escolhida)
-        self.pontuacaoCartas.remove(carta_escolhida)
-        return self.mao.pop(carta_escolhida)
-    
+    def jogarCarta(self, cbr):
+        df = cbr.retornarSimilares(self.modeloRegistro)
+        carta_escolhida = 0
+        ordem_carta_jogada = 'CartaRobo'
+
+        if (len(self.indices) == 3): ordem_carta_jogada = 'primeira' + ordem_carta_jogada
+        elif (len(self.indices) == 2): ordem_carta_jogada = 'segunda' + ordem_carta_jogada
+        elif (len(self.indices) == 1): ordem_carta_jogada = 'terceira' + ordem_carta_jogada
+
+        for i in reversed(range(len(df[ordem_carta_jogada].value_counts().index.to_list()))): 
+            aux = df[ordem_carta_jogada].value_counts().index.to_list()[i]
+            
+            if(carta_escolhida in self.pontuacaoCartas):
+                carta_escolhida = aux
+
+        if(carta_escolhida == 0):
+            valor_referencia = df[ordem_carta_jogada].value_counts().index.to_list()[0]
+            carta_escolhida = min(self.pontuacaoCartas, key=lambda x:abs(x-valor_referencia))
+
+        indice = self.pontuacaoCartas.index(carta_escolhida)
+        self.indices.remove(indice)
+        self.pontuacaoCartas.remove(self.pontuacaoCartas[self.pontuacaoCartas.index(carta_escolhida)])
+        self.indices = self.AjustaIndicesMao(len(self.indices))
+        return self.mao.pop(indice)
+
+
     def AjustaIndicesMao(self, tam_mao):
         if(tam_mao) == 2:
-            self.indices = [0, 1]
+            return [0, 1]
         
         if(tam_mao) == 1:
-            self.indices = [0]
+            return [0]
 
     def mostrarMao(self):
-        i = 1
+        i = 0
         for carta in self.mao:
             carta.printarCarta(i)
             i += 1
@@ -71,21 +90,29 @@ class Bot():
     def checaFlor(self):
         # print('checaflor')
         if all(carta.retornarNaipe() == self.mao[0].retornarNaipe() for carta in self.mao):
-            # print('Flor do Bot!')
+            print('Flor do Bot!')
             self.flor = True
             return True
         return False
     
-    def avaliarTruco(self, cbr):
+    def inicializarRegistro(self):
         self.modeloRegistro.jogadorMao = 1
-        self.modeloRegistro.cartaAltaRobo = self.maoRank.index("Alta")
-        self.modeloRegistro.cartaMediaRobo = self.maoRank.index("Media")
-        self.modeloRegistro.cartaBaixaRobo = self.maoRank.index("Baixa")
+        self.modeloRegistro.cartaAltaRobo = self.pontuacaoCartas[self.maoRank.index("Alta")]
+        self.modeloRegistro.cartaMediaRobo = self.pontuacaoCartas[self.maoRank.index("Media")]
+        self.modeloRegistro.cartaBaixaRobo = self.pontuacaoCartas[self.maoRank.index("Baixa")]
         self.modeloRegistro.ganhadorPrimeiraRodada = 2
         self.modeloRegistro.ganhadorSegundaRodada = 2
         self.modeloRegistro.ganhadorTerceiraRodada = 2
-        print(self.modeloRegistro)
-        return random.choice([True, False])
+    
+    def avaliarJogadaHumano(self):
+        pass
+
+    def avaliarTruco(self, cbr):
+        if (self.forcaMao > 40):
+            return True
+        
+        else:
+            return False
     
     # implementar retruco do bot
     def avaliarAumentarTruco(self, possibilidade, cbr):

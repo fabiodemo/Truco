@@ -15,7 +15,6 @@ def reiniciarJogo():
     jogador1.criarMao(baralho)
     jogador2.criarMao(baralho)
     jogo.resetarTrucoPontos()
-    cbr.reiniciarIndice()
 
 def limpar():
     os.system("clear")
@@ -35,7 +34,7 @@ def border_msg(msg, indent=1, width=None, title=None):
     print(box)
 
 def pedirTruco():
-    if(jogador1.pediuTruco is not True and jogador2.avaliarTruco()):
+    if(jogador1.pediuTruco is not True and jogador2.avaliarTruco(cbr)):
         jogador1.pediuTruco = True
         return True
     elif (jogador1.pediuTruco is True):
@@ -58,7 +57,7 @@ def aumentarTruco(quemPediu):
             elif(opcao == 2):
                 return
             
-            return jogador2.avaliarTruco()
+            return jogador2.avaliarTruco(cbr)
     
     elif (jogador1.pediuTruco == True):
         opcao = -1
@@ -79,7 +78,7 @@ def chamarJogadasBot(carta_jogador_01):
     print(f"\n<< {jogador2.nome} - Jogador 2 >>")
     # jogador2.mostrarMao()
     # carta_escolhida = int(input(f"\n{jogador2.nome} Qual carta você quer jogar? "))
-    carta_jogador_02 = jogador2.jogarCarta()
+    carta_jogador_02 = jogador2.jogarCarta(cbr)
     # limpar()
 
     # elif jogador2.primeiro == True:

@@ -1,5 +1,6 @@
 from sklearn.neighbors import NearestNeighbors
 import pandas as pd
+import warnings
 from pontos import MANILHA, CARTAS_VALORES
 
 class Cbr():
@@ -44,8 +45,9 @@ class Cbr():
 
     def retornarSimilares(self, registro):
         df = self.VizinhosProximos()
-        # teste_distancia, teste_indices = nbrs.kneighbors(teste_registro.to_numpy().reshape(1, -1))
-        distancias, indices = self.nbrs.kneighbors(self.casos)
-        jogadas_vencidas = self.casos.iloc[registro.tolist()[0]]
-        jogadas_vencidas = [((jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorSegundaRodada == 2) | (jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2) | (jogadas_vencidas.ganhadorSegundaRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2))]
+        distancias, indices = self.nbrs.kneighbors(registro.to_numpy().reshape(1, -1));
+        print(distancias, indices)
+        print(1)
+        jogadas_vencidas = self.casos.iloc[indices.tolist()[0]]
+        jogadas_vencidas = jogadas_vencidas[((jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorSegundaRodada == 2) | (jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2) | (jogadas_vencidas.ganhadorSegundaRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2))]
         return jogadas_vencidas

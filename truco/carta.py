@@ -103,7 +103,7 @@ class Carta():
                 lista_pontos[i] = self.retornarPontosCarta(cartas[i])
             
             if not lista_classificacao[i]: 
-                lista_classificacao[i] = 'Média'
+                lista_classificacao[i] = 'Media'
                 lista_pontos[i] = self.retornarPontosCarta(cartas[i])
 
 
