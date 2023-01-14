@@ -1,5 +1,0 @@
-Vou dar um resumo breve no começo e para quem tiver interesse vou dar uma história mais ampla.
-TL;DR: Comecei como Cientista de Dados no começo do ano em uma empresa de Engenharia de Automação (total dependente Siemens), em um pequeno time que foi uma prova de conceito e ano que vêm terá metas mais "agressivas". Meu trabalho abrange o que diversos cargos diferentes deveriam fazer (Desenvolvedor de Apps, Engenheiro de Software, Engenheiro de Dados, Engenheiro de Nuvens, Engenheiro de Machine Learning, Administrador de Sistemas, Administrador de Banco de Dados, Suporte de TI, entre outros). Ainda não sou um bom Cientista de Dados, mas estou estudando para melhorar e gostaria de saber algumas dicas do que eu poderia fazer considerando minha experiência e situação atual (procurar novo emprego, continuar e pedir para focar na minha área, etc)?
-Sou formado em Tecnologia em Redes de Computadores, e me inscrevi para o Mestrado em Ciência da Computação, se tudo der certo começo ano que vem. Pretendo ir para a área de Inteligência Artificial, porque é uma das áreas que mais me interessa, porém não estou vendo muito futuro no meu atual emprego.
-
-
