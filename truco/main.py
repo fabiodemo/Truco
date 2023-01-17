@@ -74,34 +74,10 @@ def aumentarTruco(quemPediu):
             elif(opcao == 2):
                 return
 
-def chamarJogadasBot(carta_jogador_01):
+def chamarJogadasBotPrimeiro(carta_jogador_01):
     print(f"\n<< {jogador2.nome} - Jogador 2 >>")
-    # jogador2.mostrarMao()
-    # carta_escolhida = int(input(f"\n{jogador2.nome} Qual carta você quer jogar? "))
     carta_jogador_02 = jogador2.jogarCarta(cbr)
     # limpar()
-
-    # elif jogador2.primeiro == True:
-    #     print(f"\n<< {jogador2.nome} - Jogador 2 >>")
-    #     jogador2.mostrarMao()
-    #     # carta_escolhida = int(input(f"\n{jogador2.nome} Qual carta você quer jogar? "))
-    #     carta_jogador_02 = jogador2.jogarCarta()
-    #     # limpar()
-    #     print(f"\n{jogador2.nome} jogou a carta: ")
-    #     carta_jogador_02.printarCarta(carta_jogador_02)
-
-    #     print(f"\n<< {jogador1.nome} - Jogador 1 >>")
-    #     jogador1.mostrarOpcoes()
-    #     carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
-    #     carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
-    #     # limpar()
-    #     print(f"\n{jogador1.nome} jogou a carta: ")
-    #     carta_jogador_01.printarCarta(carta_escolhida)
-    # else:
-    #     print("Erro")
-
-    # limpar()
-
     print(f"\n>> {jogador1.nome} jogou a carta: ")
     carta_jogador_01.printarCarta()
     print(f">> {jogador2.nome} jogou a carta: ")
@@ -200,28 +176,85 @@ if __name__ == '__main__':
                 
                 else:
                     print('Selecione um valor válido!')
-        if (truco_fugiu is False):
-            carta1, carta2 = chamarJogadasBot(carta_jogador_01)
-            ganhador = jogo.verificarGanhador(carta1, carta2)
-            print("\nCarta ganhadora: ")
-            jogo.quemJogaPrimeiro(jogador1, jogador2, carta1, carta2, ganhador)
-            jogo.adicionarPonto(jogador1, jogador2, carta1, carta2, ganhador)
 
-        if (jogador1.pontos == 2 or jogador2.pontos == 2):
-            ocultar_rodadas = True
-            if jogador1.pontos == 2:
-                jogador1.adicionarRodada(pontos_truco)
-                print(f"\n{jogador1.nome} ganhou a rodada")
-                reiniciarJogo()
+            if (truco_fugiu is False):
+                carta1, carta2 = chamarJogadasBot(carta_jogador_01)
+                ganhador = jogo.verificarGanhador(carta1, carta2)
+                print("\nCarta ganhadora: ")
+                jogo.quemJogaPrimeiro(jogador1, jogador2, carta1, carta2, ganhador)
+                jogo.adicionarPonto(jogador1, jogador2, carta1, carta2, ganhador)
 
-            elif jogador2.pontos == 2:
-                jogador2.adicionarRodada(pontos_truco)
-                print(f"\n{jogador2.nome} ganhou a rodada")
-                reiniciarJogo()
+            if (jogador1.pontos == 2 or jogador2.pontos == 2):
+                ocultar_rodadas = True
+                if jogador1.pontos == 2:
+                    jogador1.adicionarRodada(pontos_truco)
+                    print(f"\n{jogador1.nome} ganhou a rodada")
+                    reiniciarJogo()
 
-            print(jogador1.rodadas)
-            border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.rodadas} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.rodadas} Pontos Acumulados")
-            
+                elif jogador2.pontos == 2:
+                    jogador2.adicionarRodada(pontos_truco)
+                    print(f"\n{jogador2.nome} ganhou a rodada")
+                    reiniciarJogo()
+
+                print(jogador1.rodadas)
+                border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.rodadas} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.rodadas} Pontos Acumulados")
+
+        elif jogador2.primeiro == True:
+            chamarJogadasBot(None)
+            while (carta_escolhida > len(jogador1.checaMao()) or int(carta_escolhida) <= 1):
+                print(f"\n<< {jogador1.nome} - Jogador 1 >>")
+                jogador1.mostrarOpcoes()
+                carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
+                
+                if (carta_escolhida < len(jogador1.checaMao()) and int(carta_escolhida) >= 0):
+                    carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
+                    # limpar()
+                    # print(f"\n{jogador1.nome} jogou a carta: ")
+                    # carta_jogador_01.printarCarta(carta_escolhida)
+                    print(f'carta escolhida {carta_escolhida} \n carta_jogador_01 {carta_jogador_01}')
+                    pontos_truco = jogo.retornaTrucoPontos()
+                    break
+
+                elif (carta_escolhida == 4):
+                    if((jogador1.pediuTruco is False) and (pedirTruco())):
+                        truco_aceito = jogo.trucoAceito(True)
+                        pontos_truco = jogo.retornaTrucoPontos()
+
+                    else:
+                        truco_fugiu = True
+                        truco_aceito = jogo.trucoAceito(False)
+                        print('pontos truco', jogo.retornaTrucoPontos())
+                        pontos_truco = jogo.retornaTrucoPontos()
+                        break
+                        # jogador1.adicionarRodada()
+
+                elif (carta_escolhida == 6):
+                    print('envido')
+                
+                else:
+                    print('Selecione um valor válido!')
+
+            if (truco_fugiu is False):
+                carta1, carta2 = chamarJogadasBot(carta_jogador_01)
+                ganhador = jogo.verificarGanhador(carta1, carta2)
+                print("\nCarta ganhadora: ")
+                jogo.quemJogaPrimeiro(jogador1, jogador2, carta1, carta2, ganhador)
+                jogo.adicionarPonto(jogador1, jogador2, carta1, carta2, ganhador)
+
+            if (jogador1.pontos == 2 or jogador2.pontos == 2):
+                ocultar_rodadas = True
+                if jogador1.pontos == 2:
+                    jogador1.adicionarRodada(pontos_truco)
+                    print(f"\n{jogador1.nome} ganhou a rodada")
+                    reiniciarJogo()
+
+                elif jogador2.pontos == 2:
+                    jogador2.adicionarRodada(pontos_truco)
+                    print(f"\n{jogador2.nome} ganhou a rodada")
+                    reiniciarJogo()
+
+                print(jogador1.rodadas)
+                border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.rodadas} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.rodadas} Pontos Acumulados")
         # Testar situação corrigida: empate em 2 rodadas, e o jogo trava sem possibidade de fazer mais nada.
         if(not(jogador1.checaMao()) and not(jogador2.checaMao()) or truco_fugiu is True):
             ocultar_rodadas = True
