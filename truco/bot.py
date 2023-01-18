@@ -69,15 +69,14 @@ class Bot():
             carta.printarCarta(i)
             i += 1
         
-
-    def adicionarPonto(self, pontos):
+    def adicionarPontos(self, pontos):
         self.pontos += pontos
     
     def adicionarRodada(self):
         self.rodadas += 1
     
     def resetar(self):
-        self.pontos = 0
+        self.rodadas = 0
         self.mao = []
         self.flor = False
 

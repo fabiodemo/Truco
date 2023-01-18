@@ -193,12 +193,12 @@ if __name__ == '__main__':
         if (jogador1.rodadas == 2 or jogador2.rodadas == 2):
             ocultar_pontos_ac = True
             if jogador1.rodadas == 2:
-                jogador1.adicionarRodada(pontos_truco)
+                jogador1.adicionarPontos(jogo.retornaTrucoPontos())
                 print(f"\n{jogador1.nome} ganhou a rodada")
                 reiniciarJogo()
 
             elif jogador2.rodadas == 2:
-                jogador2.adicionarRodada(pontos_truco)
+                jogador2.adicionarPontos(jogo.retornaTrucoPontos())
                 print(f"\n{jogador2.nome} ganhou a rodada")
                 reiniciarJogo()
 
@@ -207,20 +207,21 @@ if __name__ == '__main__':
 
         # Testar situação corrigida: empate em 2 pontos, e o jogo trava sem possibidade de fazer mais nada.
         if(not(jogador1.checaMao()) and not(jogador2.checaMao()) or truco_fugiu is True):
+            pontos_truco = jogo.retornaTrucoPontos()
             ocultar_pontos_ac = True
             if truco_fugiu is True:
                 print(f'pontos truco:: {pontos_truco} | {jogo.retornaTrucoPontos()}')
-                jogador1.adicionarRodada(pontos_truco)
+                jogador1.adicionarPontos(jogo.retornaTrucoPontos())
                 print(f"\n{jogador1.nome} ganhou a rodada")
                 reiniciarJogo()
             
             elif jogador1.rodadas > jogador2.rodadas:
-                jogador1.adicionarRodada(pontos_truco)
+                jogador1.adicionarPontos(jogo.retornaTrucoPontos())
                 print(f"\n{jogador1.nome} ganhou a rodada")
                 reiniciarJogo()
 
             elif jogador2.rodadas > jogador1.rodadas:
-                jogador2.adicionarRodada(pontos_truco)
+                jogador2.adicionarPontos(jogo.retornaTrucoPontos())
                 print(f"\n{jogador2.nome} ganhou a rodada")
                 reiniciarJogo()
             

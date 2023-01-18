@@ -51,11 +51,11 @@ class Jogo():
         
         elif ganhador == carta1:
             jogador1.adicionarRodada()
-            ganhador.adicionarRodada()
+            # ganhador.adicionarRodada()
         
         elif ganhador == carta2:
             jogador2.adicionarRodada()
-            ganhador.adicionarRodada()
+            # ganhador.adicionarRodada()
         
         else:
             return "Erro"
