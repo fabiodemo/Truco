@@ -70,11 +70,11 @@ class Bot():
             i += 1
         
 
-    def adicionarPonto(self):
-        self.pontos += 1
+    def adicionarPonto(self, pontos):
+        self.pontos += pontos
     
-    def adicionarRodada(self, rodadas):
-        self.rodadas += rodadas
+    def adicionarRodada(self):
+        self.rodadas += 1
     
     def resetar(self):
         self.pontos = 0

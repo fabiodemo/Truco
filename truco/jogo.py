@@ -43,19 +43,19 @@ class Jogo():
         #     return self.verificarCartaVencedora(carta1, carta2)
 
     
-    def adicionarPonto(self, jogador1, jogador2, carta1, carta2, ganhador):
+    def adicionarRodada(self, jogador1, jogador2, carta1, carta2, ganhador):
         if ganhador == "Empate":
-            # jogador1.adicionarPonto()
-            # jogador2.adicionarPonto()
+            jogador1.adicionarRodada()
+            jogador2.adicionarRodada()
             return "Empate"
         
         elif ganhador == carta1:
-            jogador1.adicionarPonto()
-            ganhador.printarCarta()
+            jogador1.adicionarRodada()
+            ganhador.adicionarRodada()
         
         elif ganhador == carta2:
-            jogador2.adicionarPonto()
-            ganhador.printarCarta()
+            jogador2.adicionarRodada()
+            ganhador.adicionarRodada()
         
         else:
             return "Erro"

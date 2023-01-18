@@ -36,11 +36,11 @@ class Jogador():
         # print(cartas)
         # print('\n'.join(map('  '.join, zip(*(carta.desenharCarta(c) for c in cartas)))))
 
-    def adicionarPonto(self):
-        self.pontos += 1
-    
+    def adicionarPonto(self, pontos):
+        self.pontos += pontos
+
     def adicionarRodada(self, rodadas):
-        self.rodadas += rodadas
+        self.rodadas += 1
     
     def resetar(self):
         self.pontos = 0
