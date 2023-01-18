@@ -73,7 +73,7 @@ class Jogo():
             pass
 
     def quemIniciaRodada(self, jogador1, jogador2):
-        if jogador1.pontos == 0 and jogador2.pontos == 0:
+        if jogador1.rodadas == 0 and jogador2.rodadas == 0:
             if jogador1.ultimo == True:
                 jogador2.ultimo = True
                 jogador1.ultimo = False

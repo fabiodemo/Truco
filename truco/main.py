@@ -84,9 +84,9 @@ def jogadasHumanas():
         if (carta_escolhida < len(jogador1.checaMao()) and int(carta_escolhida) >= 0):
             carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
             # limpar()
-            # print(f"\n{jogador1.nome} jogou a carta: ")
-            # carta_jogador_01.printarCarta(carta_escolhida)
-            print(f'carta escolhida {carta_escolhida} \n carta_jogador_01 {carta_jogador_01}')
+            print(f"\n{jogador1.nome} jogou a carta: ")
+            carta_jogador_01.printarCarta(carta_escolhida)
+            # print(f'carta escolhida {carta_escolhida} \n carta_jogador_01 {carta_jogador_01}')
             pontos_truco = jogo.retornaTrucoPontos()
             break
 
@@ -131,7 +131,9 @@ def chamarJogadasBot(carta_jogador_01):
     if carta_jogador_01:
         print(1)
 
+    print(f"\n{jogador2.nome} jogou a carta: ")
     carta2 = Carta(carta_jogador_02.retornarNumero(), carta_jogador_02.retornarNaipe())
+    carta_jogador_02.printarCarta(carta2)
 
     return carta2
 
@@ -229,8 +231,6 @@ if __name__ == '__main__':
 
         if (ocultar_pontos_ac is False):
             border_msg(f"Jogador 1 - {jogador1.nome}: Venceu {jogador1.rodadas} Rodada(s)\nJogador 2 - {jogador2.nome}: Venceu {jogador2.rodadas} Rodada(s)")
-
-        jogo.quemIniciaRodada(jogador1, jogador2)
 
         if jogador1.pontos >= 12:
             print(f"\n{jogador1.nome} ganhou o jogo")
