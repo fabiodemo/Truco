@@ -16,8 +16,12 @@ def reiniciarJogo():
     jogador2.criarMao(baralho)
     jogo.resetarTrucoPontos()
 
-def limpar():
+def limpar_tela():
+    """Limpa a tela do usuário após determinado ponto da partida, necessário adaptar pro sistema operacional     utilizado"""
+    # Caso rodar em Linux
     os.system("clear")
+    # Caso rodar em Windows
+    # os.system("cls")
 
 def border_msg(msg, indent=1, width=None, title=None):
     """Print message-box with optional title."""
@@ -100,9 +104,8 @@ def jogadasHumanas():
         
         if (carta_escolhida < len(jogador1.checaMao()) and int(carta_escolhida) >= 0):
             carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
-            # limpar()
-            print(f"\n{jogador1.nome} jogou a carta: ")
-            carta_jogador_01.printarCarta(carta_escolhida)
+            # limpar_tela()
+
             # print(f'carta escolhida {carta_escolhida} \n carta_jogador_01 {carta_jogador_01}')
             pontos_truco = jogo.retornaTrucoPontos()
             break
@@ -140,18 +143,15 @@ def jogadasHumanas():
     carta1 = Carta(carta_jogador_01.retornarNumero(), carta_jogador_01.retornarNaipe())
     return carta1
 
-def chamarJogadasBot(carta_jogador_01):
-    print(f"\n<< {jogador2.nome} - Jogador 2 >>")
+def chamarJogadasBot(carta_jogador_01=None):
+    # print(f"\n<< {jogador2.nome} - Jogador 2 >>")
     carta_jogador_02 = jogador2.jogarCarta(cbr)
-    # limpar()
+    # limpar_tela()
 
     if carta_jogador_01:
-        print(1)
+        pass
 
-    print(f"\n{jogador2.nome} jogou a carta: ")
     carta2 = Carta(carta_jogador_02.retornarNumero(), carta_jogador_02.retornarNaipe())
-    carta_jogador_02.printarCarta(carta2)
-
     return carta2
 
 if __name__ == '__main__':
@@ -173,7 +173,7 @@ if __name__ == '__main__':
     jogador2 = jogo.criarBot(nome, baralho)
     jogador1.primeiro = True
     jogador2.ultimo = True
-    # limpar()
+    # limpar_tela()
     print(f"Jogador 1 é mão")
 
     while True:
@@ -193,19 +193,26 @@ if __name__ == '__main__':
         #             jogador1.ultimo = True
         # print(f"Sorteio pra ver quem joga na primeira rodada\n Ganhador: {sorteado}")
 
-        print(f'truco fugiu: {truco_fugiu}, truco aceito {truco_aceito}')
+        # print(f'truco fugiu: {truco_fugiu}, truco aceito {truco_aceito}')
         if jogador1.primeiro == True:
             carta_jogador_01 = jogadasHumanas()
+            print(f"\n{jogador1.nome} jogou a carta: ")
+            carta_jogador_01.printarCarta()
             carta_jogador_02 = chamarJogadasBot(carta_jogador_01)
+            print(f"\n{jogador2.nome} jogou a carta: ")
+            carta_jogador_02.printarCarta()
 
         elif jogador2.primeiro == True:
             carta_jogador_02 = chamarJogadasBot(None)
+            print(f"\n{jogador2.nome} jogou a carta: ")
+            carta_jogador_02.printarCarta()
             carta_jogador_01 = jogadasHumanas()
-
+            print(f"\n{jogador1.nome} jogou a carta: ")
+            carta_jogador_01.printarCarta()
+        
+        
         if (truco_fugiu is False):
-            # carta2 = chamarJogadasBot(carta_jogador_01)
             ganhador = jogo.verificarGanhador(carta_jogador_01, carta_jogador_02)
-            print("\nCarta ganhadora: ")
             jogo.quemJogaPrimeiro(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
             jogo.adicionarRodada(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
 
@@ -221,8 +228,7 @@ if __name__ == '__main__':
                 print(f"\n{jogador2.nome} ganhou a rodada")
                 reiniciarJogo()
 
-            print(jogador1.pontos)
-            border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados")
+            border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados", title='Pontuação Total')
 
         # Testar situação corrigida: empate em 2 pontos, e o jogo trava sem possibidade de fazer mais nada.
         if(not(jogador1.checaMao()) and not(jogador2.checaMao()) or truco_fugiu is True):
@@ -244,10 +250,10 @@ if __name__ == '__main__':
                 print(f"\n{jogador2.nome} ganhou a rodada")
                 reiniciarJogo()
             
-            border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados")
+            border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados", title='Pontuação Total')
 
         if (ocultar_pontos_ac is False):
-            border_msg(f"Jogador 1 - {jogador1.nome}: Venceu {jogador1.rodadas} Rodada(s)\nJogador 2 - {jogador2.nome}: Venceu {jogador2.rodadas} Rodada(s)")
+            border_msg(f"Jogador 1 - {jogador1.nome}: Venceu {jogador1.rodadas} Rodada(s)\nJogador 2 - {jogador2.nome}: Venceu {jogador2.rodadas} Rodada(s)", title='Rodadas da Partida Atual')
 
         if jogador1.pontos >= 12:
             print(f"\n{jogador1.nome} ganhou o jogo")
