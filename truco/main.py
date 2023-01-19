@@ -36,9 +36,26 @@ def border_msg(msg, indent=1, width=None, title=None):
 def pedirTruco():
     if(jogador1.pediuTruco is not True and jogador2.avaliarTruco(cbr)):
         jogador1.pediuTruco = True
+        jogador2.pediuTruco = False
         return True
+    
     elif (jogador1.pediuTruco is True):
-        print('Jogador pediu truco e o pedido foi aceito, escolha outra carta!')
+        print('Jogador pediu truco e o pedido foi aceito, escolha outra jogada!')
+
+    elif (jogador2.pediuTruco is True and jogador1.pediuTruco is False):
+        jogador2.pediuTruco = True
+        temp = -1
+        while (temp != 0 and temp != 1):
+            temp = int(input('Jogador 2 pediu truco\n[0] Fugir\n[1] Aceitar'))
+        
+        if (temp == 0):
+            return False
+
+        if (temp == 1):
+            jogador1.pediuTruco = True
+            jogador2.pediuTruco = False
+            return True
+
     else:
         print('Jogador negou o truco!')
         return False

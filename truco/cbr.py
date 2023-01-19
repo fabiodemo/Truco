@@ -46,8 +46,8 @@ class Cbr():
     def retornarSimilares(self, registro):
         warnings.simplefilter(action='ignore', category=UserWarning)
         df = self.VizinhosProximos()
-        distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)));
-        print(distancias, indices)
+        distancias, indices = self.nbrs.neighbors((registro.to_numpy().reshape(1, -1)));
+        # print(distancias, indices)
         jogadas_vencidas = self.casos.iloc[indices.tolist()[0]]
         jogadas_vencidas = jogadas_vencidas[((jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorSegundaRodada == 2) | (jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2) | (jogadas_vencidas.ganhadorSegundaRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2))]
         return jogadas_vencidas
