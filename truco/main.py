@@ -264,10 +264,9 @@ if __name__ == '__main__':
             break
 '''
 To do:
-- Implementar classificação das cartas para o bot;
 - Implementar envido;
 - Implementar real envido;
 - Implementar falta envido;
-- Implementar negação do envido
+- Implementar Negação do envido
 - Checar funcionamento do Truco
 '''
