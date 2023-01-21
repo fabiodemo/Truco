@@ -12,7 +12,7 @@ class Bot():
         self.forcaMao = 0
         self.pontos = 0
         self.rodadas = 0
-        self.invido = 0
+        self.envido = 0
         self.primeiro = False
         self.ultimo = False
         self.flor = False

@@ -6,18 +6,23 @@ class Jogador():
         self.maoRank = []
         self.pontos = 0
         self.rodadas = 0
-        self.invido = 0
+        self.envido = 0
         self.primeiro = False
         self.ultimo = False
         self.flor = False
         self.pediuTruco = False
 
     def mostrarOpcoes(self):
+        print(f'pontos self.envido: {self.envido}')
         self.mostrarMao()
+        if (len(self.mao) >= 2): self.calculaEnvido(self.mao)
         if (self.pediuTruco is False): 
             print('[4] Truco')
         if ((len(self.mao)) == 3 and self.flor is False and (self.checaFlor())):
             print('[5] Flor')
+            self.flor = True
+        if ((len(self.mao) >= 2) and (self.envido > 0)):
+            print('[6] Envido')
             self.flor = True
 
     def criarMao(self, baralho):
@@ -51,8 +56,15 @@ class Jogador():
     def checaMao(self):
         return self.mao
     
-    def calculaInvido(self):
-        self.invido += 1
+    def calculaEnvido(self, mao):
+        pontos_envido = []
+
+        for i in range(len(mao)):
+            for j in range(i+1, len(mao)):
+                pontos_envido.append(mao[0].retornaPontoEnvido(mao[i]) + mao[0].retornaPontoEnvido(mao[j]))
+        
+        self.envido = max(pontos_envido)
+        print(self.envido)
     
     def checaFlor(self):
         if all(carta.retornarNaipe() == self.mao[0].retornarNaipe() for carta in self.mao):

@@ -1,5 +1,5 @@
 import itertools
-from pontos import MANILHA, CARTAS_VALORES
+from pontos import MANILHA, CARTAS_VALORES, ENVIDO
 
 class Carta():
 
@@ -122,6 +122,10 @@ class Carta():
             print(f"[{i}] Sete de Ouros +")
         else:
             print(f"[{i}] {self.numero} de {self.naipe}")
+    
+    def retornaPontoEnvido(self, carta):
+        # print(carta.retornarNumero())
+        return ENVIDO[str(carta.retornarNumero())]
 
     def retornarNumero(self):
         return self.numero
