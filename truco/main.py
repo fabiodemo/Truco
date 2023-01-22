@@ -177,7 +177,6 @@ if __name__ == '__main__':
     print(f"Jogador 1 é mão")
 
     while True:
-        truco_fugiu = False
         ocultar_pontos_ac = False
         # jogo.resetarTrucoPontos()
         #Sorteio pra ver quem joga na primeira rodada
