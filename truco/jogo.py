@@ -111,22 +111,22 @@ class Jogo():
                 return "Empate"
     
 
-    def trucoAceito(self, aceitou):
-        print("Truco")
-        if(aceitou is False and self.trucoPontos == 1):
-            self.trucoPontos = 1
+    # def trucoAceito(self, aceitou):
+    #     print("Truco")
+    #     if(aceitou is False and self.trucoPontos == 1):
+    #         self.trucoPontos = 1
             
-        elif(aceitou is False and self.trucoPontos != 1):
-            self.trucoPontos -= 1
+    #     elif(aceitou is False and self.trucoPontos != 1):
+    #         self.trucoPontos -= 1
 
-        elif(self.trucoPontos == 1):
-            self.trucoPontos += 1
+    #     elif(self.trucoPontos == 1):
+    #         self.trucoPontos += 1
         
-        else:
-            self.trucoPontos +=2
+    #     else:
+    #         self.trucoPontos +=2
     
-    def retornaTrucoPontos(self):
-        return self.trucoPontos
+    # def retornaTrucoPontos(self):
+    #     return self.trucoPontos
     
-    def resetarTrucoPontos(self):
-        self.trucoPontos = 1
+    # def resetarTrucoPontos(self):
+    #     self.trucoPontos = 1
