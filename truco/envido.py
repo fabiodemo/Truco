@@ -6,7 +6,7 @@ class Envido():
         self.jogador2_pontos = 0
         self.tipo_envido = "Envido"
         self.valor_envido = 2
-        self.valor_final = 30
+        self.valor_final = 0
         self.ultimo_tipo_envido = ""
         
     def jogador1_pediu_envido(self):
