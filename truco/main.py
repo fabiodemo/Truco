@@ -3,6 +3,7 @@ from carta import Carta
 from jogador import Jogador
 from jogo import Jogo
 from cbr import Cbr
+from interface import Interface
 import random
 import os
 
@@ -15,27 +16,6 @@ def reiniciarJogo():
     jogador1.criarMao(baralho)
     jogador2.criarMao(baralho)
     jogo.resetarTrucoPontos()
-
-def limpar_tela():
-    """Limpa a tela do usuário após determinado ponto da partida, necessário adaptar pro sistema operacional     utilizado"""
-    # Caso rodar em Linux
-    os.system("clear")
-    # Caso rodar em Windows
-    # os.system("cls")
-
-def border_msg(msg, indent=1, width=None, title=None):
-    """Print message-box with optional title."""
-    lines = msg.split('\n')
-    space = " " * indent
-    if not width:
-        width = max(map(len, lines))
-    box = f'╔{"═" * (width + indent * 2)}╗\n'  # upper_border
-    if title:
-        box += f'║{space}{title:<{width}}{space}║\n'  # title
-        box += f'║{space}{"-" * len(title):<{width}}{space}║\n'  # underscore
-    box += ''.join([f'║{space}{line:<{width}}{space}║\n' for line in lines])
-    box += f'╚{"═" * (width + indent * 2)}╝'  # lower_border
-    print(box)
 
 def pedirTruco():
     if(jogador1.pediuTruco is not True and jogador2.avaliarTruco(cbr)):
@@ -132,7 +112,7 @@ def jogadasHumanas():
                 jogador1.pontos += 3
             elif (jogador2.flor):
                 jogador2.pontos += 3
-            border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados")
+            interface.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados")
 
         elif (carta_escolhida == 6):
             print('envido')
@@ -159,6 +139,7 @@ if __name__ == '__main__':
     baralho = Baralho()
     baralho.embaralhar() # Voltar a embaralhar para o jogo funcionarnormalmente.
     cbr = Cbr()
+    interface = Interface()
 
     truco_aceito = False
     truco_fugiu = False
@@ -227,7 +208,7 @@ if __name__ == '__main__':
                 print(f"\n{jogador2.nome} ganhou a rodada")
                 reiniciarJogo()
 
-            border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados", title='Pontuação Total')
+            interface.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados", title='Pontuação Total')
 
         # Testar situação corrigida: empate em 2 pontos, e o jogo trava sem possibidade de fazer mais nada.
         if(not(jogador1.checaMao()) and not(jogador2.checaMao()) or truco_fugiu is True):
@@ -249,10 +230,10 @@ if __name__ == '__main__':
                 print(f"\n{jogador2.nome} ganhou a rodada")
                 reiniciarJogo()
             
-            border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados", title='Pontuação Total')
+            interface.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados", title='Pontuação Total')
 
         if (ocultar_pontos_ac is False):
-            border_msg(f"Jogador 1 - {jogador1.nome}: Venceu {jogador1.rodadas} Rodada(s)\nJogador 2 - {jogador2.nome}: Venceu {jogador2.rodadas} Rodada(s)", title='Rodadas da Partida Atual')
+            interface.border_msg(f"Jogador 1 - {jogador1.nome}: Venceu {jogador1.rodadas} Rodada(s)\nJogador 2 - {jogador2.nome}: Venceu {jogador2.rodadas} Rodada(s)", title='Rodadas da Partida Atual')
 
         if jogador1.pontos >= 12:
             print(f"\n{jogador1.nome} ganhou o jogo")
