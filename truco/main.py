@@ -84,7 +84,7 @@ def jogadasHumanas():
         
         if (carta_escolhida < len(jogador1.checaMao()) and int(carta_escolhida) >= 0):
             carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
-            # limpar_tela()
+            # interface.limpar_tela()
 
             # print(f'carta escolhida {carta_escolhida} \n carta_jogador_01 {carta_jogador_01}')
             pontos_truco = jogo.retornaTrucoPontos()
@@ -126,7 +126,7 @@ def jogadasHumanas():
 def chamarJogadasBot(carta_jogador_01=None):
     # print(f"\n<< {jogador2.nome} - Jogador 2 >>")
     carta_jogador_02 = jogador2.jogarCarta(cbr)
-    # limpar_tela()
+    # interface.limpar_tela()
 
     if carta_jogador_01:
         pass
@@ -154,7 +154,7 @@ if __name__ == '__main__':
     jogador2 = jogo.criarBot(nome, baralho)
     jogador1.primeiro = True
     jogador2.ultimo = True
-    # limpar_tela()
+    # interface.limpar_tela()
     print(f"Jogador 1 é mão")
 
     while True:

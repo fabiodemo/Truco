@@ -48,3 +48,18 @@ class Cbr():
         jogadas_vencidas = self.casos.iloc[indices.tolist()[0]]
         jogadas_vencidas = jogadas_vencidas[((jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorSegundaRodada == 2) | (jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2) | (jogadas_vencidas.ganhadorSegundaRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2))]
         return jogadas_vencidas
+
+    def cbr_truco(self):
+        pass
+    
+    def cbr_envido(self):
+        pass
+    
+    def cbr_primeira_rodada(self):
+        pass
+
+    def cbr_segunda_rodada(self):
+        pass
+
+    def cbr_terceira_rodada(self):
+        pass
