@@ -63,3 +63,6 @@ class Cbr():
 
     def cbr_terceira_rodada(self):
         pass
+
+    def cbr_similaridade_total(self):
+        pass
