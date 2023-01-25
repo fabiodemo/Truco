@@ -17,7 +17,6 @@ class Bot():
         self.ultimo = False
         self.flor = False
         self.pediuTruco = False
-        self.modeloRegistro = pd.read_csv('../modelo_registro.csv', index_col='idMao')
 
     def criarMao(self, baralho):
         self.indices = [0, 1, 2]
@@ -28,7 +27,6 @@ class Bot():
         self.flor = self.checaFlor()
         self.pontuacaoCartas, self.maoRank = self.mao[0].classificarCarta(self.mao)
         self.forcaMao = sum(self.pontuacaoCartas)
-        self.inicializarRegistro()
     
     def jogarCarta(self, cbr):
         df = cbr.retornarSimilares(self.modeloRegistro)
@@ -93,15 +91,6 @@ class Bot():
             self.flor = True
             return True
         return False
-    
-    def inicializarRegistro(self):
-        self.modeloRegistro.jogadorMao = 1
-        self.modeloRegistro.cartaAltaRobo = self.pontuacaoCartas[self.maoRank.index("Alta")]
-        self.modeloRegistro.cartaMediaRobo = self.pontuacaoCartas[self.maoRank.index("Media")]
-        self.modeloRegistro.cartaBaixaRobo = self.pontuacaoCartas[self.maoRank.index("Baixa")]
-        self.modeloRegistro.ganhadorPrimeiraRodada = 2
-        self.modeloRegistro.ganhadorSegundaRodada = 2
-        self.modeloRegistro.ganhadorTerceiraRodada = 2
     
     def avaliarJogadaHumano(self):
         pass

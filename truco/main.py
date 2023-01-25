@@ -4,6 +4,7 @@ from jogador import Jogador
 from jogo import Jogo
 from cbr import Cbr
 from interface import Interface
+from dados import Dados
 import random
 import os
 
@@ -137,9 +138,10 @@ def chamarJogadasBot(carta_jogador_01=None):
 if __name__ == '__main__':
     jogo = Jogo()
     baralho = Baralho()
-    baralho.embaralhar() # Voltar a embaralhar para o jogo funcionarnormalmente.
+    baralho.embaralhar() # Voltar a embaralhar para o jogo funcionar normalmente.
     cbr = Cbr()
     interface = Interface()
+    dados = Dados()
 
     truco_aceito = False
     truco_fugiu = False
