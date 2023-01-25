@@ -27,17 +27,23 @@ class Interface():
         # os.system("cls")
 
     def mostrar_carta_jogada(self, jogador, carta):
-        print(f"\n{jogador.nome} jogou a carta: ")
+        print(f"\n{jogador} jogou a carta: ")
         carta.printarCarta()
 
     def mostrar_ganhador_rodada(self, jogador):
-        print(f"\n{jogador.nome} ganhou a rodada")
+        print(f"\n{jogador} ganhou a rodada")
 
-    def mostrar_placar_total(self, jogador1, jogador2):
-        self.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados", title='Pontuação Total')
+    def mostrar_placar_total(self, jogador1, jogador1_pontos, jogador2, jogador2_pontos):
+        self.border_msg(f"Jogador 1 - {jogador1}: {jogador1_pontos} Pontos Acumulados\nJogador 2 - {jogador2}: {jogador2_pontos} Pontos Acumulados", title='Pontuação Total')
+
+    def mostrar_placar_rodadas(self, jogador1, jogador1_pontos, jogador2, jogador2_pontos):
+        self.border_msg(f"Jogador 1 - {jogador1}: Venceu {jogador1_pontos} Rodada(s)\nJogador 2 - {jogador2}: Venceu {jogador2_pontos} Rodada(s)", title='Rodadas da Partida Atual')
 
     def mostrar_ganhador_jogo(self, jogador):
-        print(f"\n{jogador.nome} ganhou o jogo")
+        print(f"\n{jogador} ganhou o jogo")
     
     def mostrar_pediu_truco(self, jogador):
-        print(f'{jogador.nome} pediu truco e o pedido já foi aceito, escolha outra jogada!')
+        print(f'{jogador} pediu truco e o pedido já foi aceito, escolha outra jogada!')
+
+    def mostrar_jogador_mao(self, jogador):
+        print(f"Jogador 1 é mão")

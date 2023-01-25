@@ -157,7 +157,7 @@ if __name__ == '__main__':
     jogador1.primeiro = True
     jogador2.ultimo = True
     # interface.limpar_tela()
-    print(f"Jogador 1 é mão")
+    interface.mostrar_jogador_mao(jogador1.nome)
 
     while True:
         ocultar_pontos_ac = False
@@ -178,20 +178,19 @@ if __name__ == '__main__':
         # print(f'truco fugiu: {truco_fugiu}, truco aceito {truco_aceito}')
         if jogador1.primeiro == True:
             carta_jogador_01 = jogadasHumanas()
-            print(f"\n{jogador1.nome} jogou a carta: ")
+            interface.mostrar_carta_jogada(jogador1.nome)
             carta_jogador_01.printarCarta()
             carta_jogador_02 = chamarJogadasBot(carta_jogador_01)
-            print(f"\n{jogador2.nome} jogou a carta: ")
+            interface.mostrar_carta_jogada(jogador2.nome)
             carta_jogador_02.printarCarta()
 
         elif jogador2.primeiro == True:
             carta_jogador_02 = chamarJogadasBot(None)
-            print(f"\n{jogador2.nome} jogou a carta: ")
+            interface.mostrar_carta_jogada(jogador2.nome)
             carta_jogador_02.printarCarta()
             carta_jogador_01 = jogadasHumanas()
-            print(f"\n{jogador1.nome} jogou a carta: ")
+            interface.mostrar_carta_jogada(jogador1.nome)
             carta_jogador_01.printarCarta()
-        
         
         if (truco_fugiu is False):
             ganhador = jogo.verificarGanhador(carta_jogador_01, carta_jogador_02)
@@ -202,15 +201,15 @@ if __name__ == '__main__':
             ocultar_pontos_ac = True
             if jogador1.rodadas == 2:
                 jogador1.adicionarPontos(jogo.retornaTrucoPontos())
-                print(f"\n{jogador1.nome} ganhou a rodada")
+                interface.mostrar_ganhador_rodada(jogador1.nome)
                 reiniciarJogo()
 
             elif jogador2.rodadas == 2:
                 jogador2.adicionarPontos(jogo.retornaTrucoPontos())
-                print(f"\n{jogador2.nome} ganhou a rodada")
+                interface.mostrar_ganhador_rodada(jogador2.nome)
                 reiniciarJogo()
 
-            interface.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados", title='Pontuação Total')
+            interface.mostrar_placar_total(jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
 
         # Testar situação corrigida: empate em 2 pontos, e o jogo trava sem possibidade de fazer mais nada.
         if(not(jogador1.checaMao()) and not(jogador2.checaMao()) or truco_fugiu is True):
@@ -219,30 +218,31 @@ if __name__ == '__main__':
             if truco_fugiu is True:
                 print(f'pontos truco:: {pontos_truco} | {jogo.retornaTrucoPontos()}')
                 jogador1.adicionarPontos(jogo.retornaTrucoPontos())
-                print(f"\n{jogador1.nome} ganhou a rodada")
+                interface.mostrar_ganhador_rodada(jogador1.nome)
                 reiniciarJogo()
             
             elif jogador1.rodadas > jogador2.rodadas:
                 jogador1.adicionarPontos(jogo.retornaTrucoPontos())
-                print(f"\n{jogador1.nome} ganhou a rodada")
+                interface.mostrar_ganhador_rodada(jogador1.nome)
                 reiniciarJogo()
 
             elif jogador2.rodadas > jogador1.rodadas:
                 jogador2.adicionarPontos(jogo.retornaTrucoPontos())
-                print(f"\n{jogador2.nome} ganhou a rodada")
+                interface.mostrar_ganhador_rodada(jogador2.nome)
                 reiniciarJogo()
             
-            interface.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados", title='Pontuação Total')
+            interface.mostrar_placar_total(jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
+
 
         if (ocultar_pontos_ac is False):
-            interface.border_msg(f"Jogador 1 - {jogador1.nome}: Venceu {jogador1.rodadas} Rodada(s)\nJogador 2 - {jogador2.nome}: Venceu {jogador2.rodadas} Rodada(s)", title='Rodadas da Partida Atual')
+            interface.mostrar_placar_rodadas(jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
 
         if jogador1.pontos >= 12:
-            print(f"\n{jogador1.nome} ganhou o jogo")
+            interface.mostrar_ganhador_jogo(jogador1.nome)
             break
 
         elif jogador2.pontos >= 12:
-            print(f"\n{jogador2.nome} ganhou o jogo")
+            interface.mostrar_ganhador_jogo(jogador2.nome)
             break
 '''
 To do:
