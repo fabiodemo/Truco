@@ -4,7 +4,7 @@ class Envido():
     def __init__(self):
         self.jogador1_pontos = 0
         self.jogador2_pontos = 0
-        self.tipo_envido = "Envido"
+        self.tipo_envido = ""
         self.valor_envido = 2
         self.valor_final = 0
         self.ultimo_tipo_envido = ""

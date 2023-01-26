@@ -5,6 +5,8 @@ from jogo import Jogo
 from cbr import Cbr
 from interface import Interface
 from dados import Dados
+from truco import Truco
+from envido import Envido
 import random
 import os
 
@@ -18,7 +20,7 @@ def reiniciarJogo():
     jogador2.criarMao(baralho)
     jogo.resetarTrucoPontos()
 
-def jogadasHumanas():
+def jogadasHumanas(jogador2):
     carta_escolhida = 6
     while (carta_escolhida > len(jogador1.checaMao()) or int(carta_escolhida) <= 1):
         print(f"\n<< {jogador1.nome} - Jogador 1 >>")
@@ -33,13 +35,11 @@ def jogadasHumanas():
             break
 
         elif (carta_escolhida == 4):
-            if((jogador1.pediuTruco is False) and (pedirTruco())):
-                truco_aceito = jogo.trucoAceito(True)
-
-            else:
-                truco_fugiu = True
-                truco_aceito = jogo.trucoAceito(False)
-                print('pontos truco', jogo.retornaTrucoPontos())
+            temp = (truco.redirecionar_pedir_truco(1, jogador1, jogador2))
+            print(f"temp: {temp}")
+            if((temp) is False):
+                print('pontos truco', truco.retornar_valor_aposta())
+                return -1
                 break
                 # jogador1.adicionarRodada()
 
@@ -81,6 +81,7 @@ if __name__ == '__main__':
     cbr = Cbr()
     interface = Interface()
     dados = Dados()
+    truco = Truco()
 
     truco_aceito = False
     truco_fugiu = False
@@ -116,35 +117,49 @@ if __name__ == '__main__':
 
         # print(f'truco fugiu: {truco_fugiu}, truco aceito {truco_aceito}')
         if jogador1.primeiro == True:
-            carta_jogador_01 = jogadasHumanas()
-            interface.mostrar_carta_jogada(jogador1.nome)
-            carta_jogador_01.printarCarta()
+            carta_jogador_01 = jogadasHumanas(jogador2)
+            if (carta_jogador_01 != -1):
+                interface.mostrar_carta_jogada(jogador1.nome)
+                carta_jogador_01.printarCarta()
             carta_jogador_02 = chamarJogadasBot(carta_jogador_01)
-            interface.mostrar_carta_jogada(jogador2.nome)
-            carta_jogador_02.printarCarta()
+            if (carta_jogador_02 != -1):
+                interface.mostrar_carta_jogada(jogador2.nome)
+                carta_jogador_02.printarCarta()
 
         elif jogador2.primeiro == True:
             carta_jogador_02 = chamarJogadasBot(None)
-            interface.mostrar_carta_jogada(jogador2.nome)
-            carta_jogador_02.printarCarta()
-            carta_jogador_01 = jogadasHumanas()
-            interface.mostrar_carta_jogada(jogador1.nome)
-            carta_jogador_01.printarCarta()
+            if (carta_jogador_02 != -1):
+                interface.mostrar_carta_jogada(jogador2.nome)
+                carta_jogador_02.printarCarta()
+            carta_jogador_01 = jogadasHumanas(jogador2)
+            if (carta_jogador_01 != -1):
+                interface.mostrar_carta_jogada(jogador1.nome)
+                carta_jogador_01.printarCarta()
         
-        if (truco_fugiu is False):
-            ganhador = jogo.verificarGanhador(carta_jogador_01, carta_jogador_02)
-            jogo.quemJogaPrimeiro(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
-            jogo.adicionarRodada(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
+        
+        if (carta_jogador_01 == -1 or carta_jogador_02 == -1):
+            # ganhador = jogo.verificarGanhador(carta_jogador_01, carta_jogador_02)
+            # jogo.quemJogaPrimeiro(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
+            # jogo.adicionarRodada(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
+            if(carta_jogador_01 == -1):
+                jogo.jogador_fugiu(jogador1, jogador1, jogador2)
+                interface.mostrar_placar_total_jogador_fugiu(jogador1, jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
+            
+            else:
+                jogo.jogador_fugiu(jogador2, jogador1, jogador2)
+                interface.mostrar_placar_total_jogador_fugiu(jogador2, jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
+            
+            reiniciarJogo()
 
         if (jogador1.rodadas == 2 or jogador2.rodadas == 2):
             ocultar_pontos_ac = True
             if jogador1.rodadas == 2:
-                jogador1.adicionarPontos(jogo.retornaTrucoPontos())
+                jogador1.adicionarPontos(truco.retornar_valor_aposta())
                 interface.mostrar_ganhador_rodada(jogador1.nome)
                 reiniciarJogo()
 
             elif jogador2.rodadas == 2:
-                jogador2.adicionarPontos(jogo.retornaTrucoPontos())
+                jogador2.adicionarPontos(truco.retornar_valor_aposta())
                 interface.mostrar_ganhador_rodada(jogador2.nome)
                 reiniciarJogo()
 
@@ -152,21 +167,21 @@ if __name__ == '__main__':
 
         # Testar situação corrigida: empate em 2 pontos, e o jogo trava sem possibidade de fazer mais nada.
         if(not(jogador1.checaMao()) and not(jogador2.checaMao()) or truco_fugiu is True):
-            pontos_truco = jogo.retornaTrucoPontos()
+            pontos_truco = truco.retornar_valor_aposta()
             ocultar_pontos_ac = True
             if truco_fugiu is True:
-                print(f'pontos truco:: {pontos_truco} | {jogo.retornaTrucoPontos()}')
-                jogador1.adicionarPontos(jogo.retornaTrucoPontos())
+                print(f'pontos truco:: {pontos_truco} | {truco.retornar_valor_aposta()}')
+                jogador1.adicionarPontos(truco.retornar_valor_aposta())
                 interface.mostrar_ganhador_rodada(jogador1.nome)
                 reiniciarJogo()
             
             elif jogador1.rodadas > jogador2.rodadas:
-                jogador1.adicionarPontos(jogo.retornaTrucoPontos())
+                jogador1.adicionarPontos(truco.retornar_valor_aposta())
                 interface.mostrar_ganhador_rodada(jogador1.nome)
                 reiniciarJogo()
 
             elif jogador2.rodadas > jogador1.rodadas:
-                jogador2.adicionarPontos(jogo.retornaTrucoPontos())
+                jogador2.adicionarPontos(truco.retornar_valor_aposta())
                 interface.mostrar_ganhador_rodada(jogador2.nome)
                 reiniciarJogo()
             

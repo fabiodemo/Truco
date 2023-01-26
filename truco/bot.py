@@ -95,12 +95,16 @@ class Bot():
     def avaliarJogadaHumano(self):
         pass
 
-    def avaliarTruco(self, cbr):
-        if (self.forcaMao > 40):
-            return True
-        
-        else:
-            return False
+    def avaliarTruco(self):
+        return 2
+        # if (self.forcaMao > 50):
+        #     return 2
+
+        # elif (self.forcaMao > 35):
+        #     return 1
+
+        # else:
+        #     return 0
     
     # implementar retruco do bot
     def avaliarAumentarTruco(self, possibilidade, cbr):

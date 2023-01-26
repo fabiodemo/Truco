@@ -33,6 +33,10 @@ class Interface():
     def mostrar_ganhador_rodada(self, jogador):
         print(f"\n{jogador} ganhou a rodada")
 
+    def mostrar_placar_total_jogador_fugiu(self, jogador_fugiu, jogador1, jogador1_pontos, jogador2, jogador2_pontos):
+        print('jogador {jogador_fugiu.nome} fugiu!')
+        self.mostrar_placar_total(jogador1, jogador1_pontos, jogador2, jogador2_pontos)
+
     def mostrar_placar_total(self, jogador1, jogador1_pontos, jogador2, jogador2_pontos):
         self.border_msg(f"Jogador 1 - {jogador1}: {jogador1_pontos} Pontos Acumulados\nJogador 2 - {jogador2}: {jogador2_pontos} Pontos Acumulados", title='Pontuação Total')
 
