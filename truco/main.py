@@ -36,9 +36,9 @@ def jogadasHumanas(jogador2):
             break
 
         elif (carta_escolhida == 4):
-            temp = (truco.redirecionar_pedir_truco(1, jogador1, jogador2))
-            print(f"temp: {temp}")
-            if((temp) is False):
+            chamou_truco = (truco.redirecionar_pedir_truco(1, jogador1, jogador2))
+            print(f"temp: {chamou_truco}")
+            if((chamou_truco) is False):
                 print('pontos truco', truco.retornar_valor_aposta())
                 return -1
                 break

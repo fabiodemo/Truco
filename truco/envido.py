@@ -8,11 +8,39 @@ class Envido():
         self.valor_envido = 2
         self.valor_final = 0
         self.ultimo_tipo_envido = ""
+        self.jogador_pediu_envido = 0
+        self.jogador_pediu_real_envido = 0
+        self.jogador_pediu_falta_envido = 0
+
         
-    def jogador1_pediu_envido(self):
+    def jogador_pediu_envido(self, quem_pediu, jogador1, jogador2, jogador1_pontos, jogador2_pontos):
+        self.jogador1_pontos = 0
+        self.jogador2_pontos = 0
         self.tipo_envido = "Envido"
         self.ultimo_tipo_envido = "Envido"
-        print("Jogador 1 pediu Envido")
+        print("Jogador pediu Envido")
+
+        if(quem_pediu == 1):
+            escolha = jogador2.avaliarEnvido()
+            self.jogador_pediu_envido = 1
+
+        else:
+            self.jogador_pediu_envido = 2
+            escolha -1
+            while(escolha not in [0, 1, 2]):
+                escolha = int(input(f"{jogador1}, você aceita o pedido (a mão passa a valer {(self.valor_aposta)} pontos)"))
+            self.jogador_bloqueado = 2
+        
+
+        if escolha == 0:
+            print(f"fugiu")
+            if(quemPediu == jogador1):
+                jogador1.pontos += 1
+
+            else:
+                jogador2.pontos += 1
+
+            return False
         
     def jogador2_aceitou_envido(self):
         if self.tipo_envido == "Envido":
