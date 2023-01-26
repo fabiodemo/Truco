@@ -28,8 +28,7 @@ class Envido():
             self.jogador_pediu_envido = 2
             escolha -1
             while(escolha not in [0, 1, 2]):
-                escolha = int(input(f"{jogador1}, você aceita o pedido (a mão passa a valer {(self.valor_aposta)} pontos)"))
-            self.jogador_bloqueado = 2
+                escolha = int(input(f"{jogador1.nome}, você aceita o pedido de envido?"))
         
 
         if escolha == 0:

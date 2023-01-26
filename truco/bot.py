@@ -117,4 +117,8 @@ class Bot():
 
 
     # def caseBasedReasoning(self):
-        
+
+'''
+- Centralizar toda a CBR em uma unica função, que retorna qual seria o tipo de jogada;
+- Quando necessário usar outra inteligência/agente, só substitui-la diretamente na classe bot.
+'''        
