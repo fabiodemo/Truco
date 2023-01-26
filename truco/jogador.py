@@ -21,9 +21,8 @@ class Jogador():
         if ((len(self.mao)) == 3 and self.flor is False and (self.checaFlor())):
             print('[5] Flor')
             self.flor = True
-        if ((len(self.mao) >= 2) and (self.envido > 0)):
+        if ((len(self.mao) > 2) and (self.envido > 0)):
             print('[6] Envido')
-            self.flor = True
 
     def criarMao(self, baralho):
         for i in range(3):

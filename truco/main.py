@@ -19,6 +19,7 @@ def reiniciarJogo():
     jogador1.criarMao(baralho)
     jogador2.criarMao(baralho)
     jogo.resetarTrucoPontos()
+    truco.resetar_pontos_truco()
 
 def jogadasHumanas(jogador2):
     carta_escolhida = 6
