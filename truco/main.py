@@ -18,64 +18,6 @@ def reiniciarJogo():
     jogador2.criarMao(baralho)
     jogo.resetarTrucoPontos()
 
-def pedirTruco():
-    if(jogador1.pediuTruco is not True and jogador2.avaliarTruco(cbr)):
-        jogador1.pediuTruco = True
-        jogador2.pediuTruco = False
-        return True
-    
-    elif (jogador1.pediuTruco is True):
-        print('Jogador pediu truco e o pedido foi aceito, escolha outra jogada!')
-
-    elif (jogador2.pediuTruco is True and jogador1.pediuTruco is False):
-        jogador2.pediuTruco = True
-        temp = -1
-        while (temp != 0 and temp != 1):
-            temp = int(input('Jogador 2 pediu truco\n[0] Fugir\n[1] Aceitar'))
-        
-        if (temp == 0):
-            return False
-
-        if (temp == 1):
-            jogador1.pediuTruco = True
-            jogador2.pediuTruco = False
-            return True
-
-    else:
-        print('Jogador negou o truco!')
-        return False
-
-def aumentarTruco(quemPediu):
-    if(quemPediu == jogador1):
-        if(jogador2.pediuTruco == True):
-            opcao = jogador2.avaliarAumentarTruco()
-            
-            if(opcao == 0):
-                return
-            
-            elif(opcao == 1):
-                return
-            
-            elif(opcao == 2):
-                return
-            
-            return jogador2.avaliarTruco(cbr)
-    
-    elif (jogador1.pediuTruco == True):
-        opcao = -1
-        while(opcao < 0 or opcao > 2):
-            print(f'[0] Aceitar\n[1] Fugir\n[2] Aumentar')
-            opcao = int(input(f"\n{jogador2.nome} Qual opção você deseja? "))
-            
-            if(opcao == 0):
-                return
-                
-            elif(opcao == 1):
-                return
-                
-            elif(opcao == 2):
-                return
-
 def jogadasHumanas():
     carta_escolhida = 6
     while (carta_escolhida > len(jogador1.checaMao()) or int(carta_escolhida) <= 1):
@@ -88,19 +30,16 @@ def jogadasHumanas():
             # interface.limpar_tela()
 
             # print(f'carta escolhida {carta_escolhida} \n carta_jogador_01 {carta_jogador_01}')
-            pontos_truco = jogo.retornaTrucoPontos()
             break
 
         elif (carta_escolhida == 4):
             if((jogador1.pediuTruco is False) and (pedirTruco())):
                 truco_aceito = jogo.trucoAceito(True)
-                pontos_truco = jogo.retornaTrucoPontos()
 
             else:
                 truco_fugiu = True
                 truco_aceito = jogo.trucoAceito(False)
                 print('pontos truco', jogo.retornaTrucoPontos())
-                pontos_truco = jogo.retornaTrucoPontos()
                 break
                 # jogador1.adicionarRodada()
 

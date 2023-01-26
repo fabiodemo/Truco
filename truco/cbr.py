@@ -7,8 +7,8 @@ class Cbr():
 
     def __init__(self):
         self.indice = 0
-        self.casos = self.atualizarDataframe()
-        self.nbrs = self.VizinhosProximos()
+        # self.casos = self.retornarSimilares()
+        # self.nbrs = self.VizinhosProximos()
 
     def codificarNaipe(self, naipe):
         if (naipe == 'ESPADAS'):
