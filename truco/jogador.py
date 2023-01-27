@@ -15,13 +15,13 @@ class Jogador():
     def mostrarOpcoes(self):
         print(f'pontos self.envido: {self.envido}')
         self.mostrarMao()
-        if (len(self.mao) >= 2): self.calculaEnvido(self.mao)
-        if (self.pediuTruco is False): 
+        if (len(self.mao) >= 2): 
             print('[4] Truco')
         if ((len(self.mao)) == 3 and self.flor is False and (self.checaFlor())):
             print('[5] Flor')
             self.flor = True
-        if ((len(self.mao) > 2) and (self.envido > 0)):
+        if ((len(self.mao) == 3) and (self.envido > 0)):
+            self.calculaEnvido(self.mao)
             print('[6] Envido')
 
     def criarMao(self, baralho):
