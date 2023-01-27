@@ -21,12 +21,12 @@ class Jogador():
             print('[5] Flor')
             self.flor = True
         if ((len(self.mao) == 3) and (self.envido > 0)):
-            self.calculaEnvido(self.mao)
             print('[6] Envido')
 
     def criarMao(self, baralho):
         for i in range(3):
             self.mao.append(baralho.retirarCarta())
+        self.calculaEnvido(self.mao)
 
     def jogarCarta(self, carta_escolhida):
         return self.mao.pop(carta_escolhida)

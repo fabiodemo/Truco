@@ -123,6 +123,21 @@ class Bot():
         
         self.forcaMao = m3
 
+    def jogada_bot(self):
+        jogada = self.avaliar_jogada()
+        # Envido
+        if ((len(self.mao) == 3) and (self.envido > 0)):
+            self.calculaEnvido(self.mao)
+        # Flor
+        if ((len(self.mao)) == 3 and self.flor is False and (self.checaFlor())):
+            print('[5] Flor')
+        # Pedir truco
+        if (len(self.mao) >= 2): 
+            print('[4] Truco')
+        # Verificar cartas na mão antes de jogar
+    
+    def avaliar_jogada(self):
+        return 1
 
     # def caseBasedReasoning(self):
 
