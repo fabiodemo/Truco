@@ -26,7 +26,7 @@ class Bot():
             self.mao.append(baralho.retirarCarta())
         self.flor = self.checaFlor()
         self.pontuacaoCartas, self.maoRank = self.mao[0].classificarCarta(self.mao)
-        self.forcaMao = sum(self.pontuacaoCartas)
+        self.forcaMao = self.calcular_forca_mao(self.pontuacaoCartas(), self.maoRank())
     
     def jogarCarta(self, cbr):
         df = cbr.retornarSimilares(self.modeloRegistro)
@@ -114,6 +114,14 @@ class Bot():
 
     def avaliarEnvido(self):
         return None
+
+    def calcular_forca_mao(self, lista_pontuacao, lista_maorank):
+        m1 = (2 / ((1/lista_pontuacao[int(lista_maorank.index('Alta'))]) + (1/lista_pontuacao[int(lista_maorank.index('Media'))])))
+        m2 = ((2 * lista_pontuacao[int(lista_maorank.index('Media'))]) + (lista_pontuacao[int(lista_maorank.index('Baixa'))])/2+1)
+        m3 = ((2 * m1) + m2) / (2+1)
+        print(m3)
+        
+        self.forcaMao = m3
 
 
     # def caseBasedReasoning(self):
