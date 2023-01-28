@@ -18,7 +18,7 @@ def reiniciarJogo():
     baralho.embaralhar()
     jogador1.criarMao(baralho)
     jogador2.criarMao(baralho)
-    jogo.resetarTrucoPontos()
+    # jogo.resetarTrucoPontos()
     truco.resetar_pontos_truco()
 
 def jogadasHumanas(jogador2):
@@ -120,28 +120,26 @@ if __name__ == '__main__':
         if jogador1.primeiro == True:
             carta_jogador_01 = jogadasHumanas(jogador2)
             if (carta_jogador_01 != -1):
-                interface.mostrar_carta_jogada(jogador1.nome)
+                interface.mostrar_carta_jogada(jogador1.nome, carta_jogador_01)
                 carta_jogador_01.printarCarta()
             carta_jogador_02 = chamarJogadasBot(carta_jogador_01)
             if (carta_jogador_02 != -1):
-                interface.mostrar_carta_jogada(jogador2.nome)
+                interface.mostrar_carta_jogada(jogador2.nome, carta_jogador_02)
                 carta_jogador_02.printarCarta()
 
         elif jogador2.primeiro == True:
             carta_jogador_02 = chamarJogadasBot(None)
             if (carta_jogador_02 != -1):
-                interface.mostrar_carta_jogada(jogador2.nome)
+                interface.mostrar_carta_jogada(jogador2.nome, carta_jogador_02)
                 carta_jogador_02.printarCarta()
             carta_jogador_01 = jogadasHumanas(jogador2)
             if (carta_jogador_01 != -1):
-                interface.mostrar_carta_jogada(jogador1.nome)
+                interface.mostrar_carta_jogada(jogador1.nome, carta_jogador_01)
                 carta_jogador_01.printarCarta()
         
         
         if (carta_jogador_01 == -1 or carta_jogador_02 == -1):
-            # ganhador = jogo.verificarGanhador(carta_jogador_01, carta_jogador_02)
-            # jogo.quemJogaPrimeiro(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
-            # jogo.adicionarRodada(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
+            truco_fugiu = True
             if(carta_jogador_01 == -1):
                 jogo.jogador_fugiu(jogador1, jogador1, jogador2)
                 interface.mostrar_placar_total_jogador_fugiu(jogador1, jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
@@ -151,6 +149,11 @@ if __name__ == '__main__':
                 interface.mostrar_placar_total_jogador_fugiu(jogador2, jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
             
             reiniciarJogo()
+
+        else:
+            ganhador = jogo.verificarGanhador(carta_jogador_01, carta_jogador_02)
+            jogo.quemJogaPrimeiro(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
+            jogo.adicionarRodada(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
 
         if (jogador1.rodadas == 2 or jogador2.rodadas == 2):
             ocultar_pontos_ac = True
@@ -172,8 +175,8 @@ if __name__ == '__main__':
             ocultar_pontos_ac = True
             if truco_fugiu is True:
                 print(f'pontos truco:: {pontos_truco} | {truco.retornar_valor_aposta()}')
-                jogador1.adicionarPontos(truco.retornar_valor_aposta())
-                interface.mostrar_ganhador_rodada(jogador1.nome)
+                # jogador1.adicionarPontos(truco.retornar_valor_aposta())
+                # interface.mostrar_ganhador_rodada(jogador1.nome)
                 reiniciarJogo()
             
             elif jogador1.rodadas > jogador2.rodadas:
@@ -201,9 +204,6 @@ if __name__ == '__main__':
             break
 '''
 To do:
-- Implementar envido;
-- Implementar real envido;
-- Implementar falta envido;
-- Implementar Negação do envido
-- Checar funcionamento do Truco
+- Arrumar bug do placar não mostrar rodadas
+- Checar funcionamento do Truco/Envido
 '''
