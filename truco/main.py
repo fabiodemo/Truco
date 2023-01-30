@@ -193,7 +193,7 @@ if __name__ == '__main__':
 
 
         if (ocultar_pontos_ac is False):
-            interface.mostrar_placar_rodadas(jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
+            interface.mostrar_placar_rodadas(jogador1.nome, jogador1.rodadas, jogador2.nome, jogador2.rodadas)
 
         if jogador1.pontos >= 12:
             interface.mostrar_ganhador_jogo(jogador1.nome)
