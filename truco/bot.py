@@ -1,5 +1,6 @@
 import random 
 import pandas as pd
+from cbr import Cbr
 
 class Bot():
 
@@ -18,6 +19,7 @@ class Bot():
         self.flor = False
         self.pediuTruco = False
         self.jogada = 1
+        self.cbr = Cbr()
 
     def criarMao(self, baralho):
         self.indices = [0, 1, 2]
@@ -132,10 +134,28 @@ class Bot():
             self.calculaEnvido(self.mao)
         # Flor
         if ((len(self.mao)) == 3 and self.flor is False and (self.checaFlor())):
-            print('[5] Flor')
+            return 4
+
         # Pedir truco
         if (len(self.mao) >= 2): 
-            print('[4] Truco')
+            escolha = self.cbr.cbr_truco()
+            return escolha
+
+
+        if (self.jogada == 1):
+            escolha = self.cbr.cbr_primeira_rodada()
+            return escolha         
+
+        if (self.jogada == 1):
+            escolha = self.cbr.cbr_segunda_rodada()
+            return escolha 
+
+        if (self.jogada == 1):
+            escolha = self.cbr.cbr_terceira_rodada()
+            return escolha         
+
+        self.jogada += 1
+        
         # Verificar cartas na mão antes de jogar
 
 

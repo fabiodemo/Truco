@@ -121,21 +121,17 @@ if __name__ == '__main__':
             carta_jogador_01 = jogadasHumanas(jogador2)
             if (carta_jogador_01 != -1):
                 interface.mostrar_carta_jogada(jogador1.nome, carta_jogador_01)
-                carta_jogador_01.printarCarta()
             carta_jogador_02 = chamarJogadasBot(carta_jogador_01)
             if (carta_jogador_02 != -1):
                 interface.mostrar_carta_jogada(jogador2.nome, carta_jogador_02)
-                carta_jogador_02.printarCarta()
 
         elif jogador2.primeiro == True:
             carta_jogador_02 = chamarJogadasBot(None)
             if (carta_jogador_02 != -1):
                 interface.mostrar_carta_jogada(jogador2.nome, carta_jogador_02)
-                carta_jogador_02.printarCarta()
             carta_jogador_01 = jogadasHumanas(jogador2)
             if (carta_jogador_01 != -1):
                 interface.mostrar_carta_jogada(jogador1.nome, carta_jogador_01)
-                carta_jogador_01.printarCarta()
         
         
         if (carta_jogador_01 == -1 or carta_jogador_02 == -1):
