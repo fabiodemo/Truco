@@ -1,6 +1,5 @@
 import random 
 import pandas as pd
-from cbr import Cbr
 
 class Bot():
 
@@ -19,7 +18,6 @@ class Bot():
         self.flor = False
         self.pediuTruco = False
         self.jogada = 1
-        self.cbr = Cbr()
 
     def criarMao(self, baralho):
         self.indices = [0, 1, 2]
@@ -33,29 +31,35 @@ class Bot():
     
     def jogarCarta(self, cbr):
         jogada = self.avaliar_jogada()
-        # df = cbr.retornarSimilares(self.modeloRegistro)
-        # carta_escolhida = 0
-        # ordem_carta_jogada = 'CartaRobo'
+       # Envido
+        if ((len(self.mao) == 3) and (self.envido > 0)):
+            self.calculaEnvido(self.mao)
+        # Flor
+        if ((len(self.mao)) == 3 and self.flor is False and (self.checaFlor())):
+            return 4
 
-        # if (len(self.indices) == 3): ordem_carta_jogada = 'primeira' + ordem_carta_jogada
-        # elif (len(self.indices) == 2): ordem_carta_jogada = 'segunda' + ordem_carta_jogada
-        # elif (len(self.indices) == 1): ordem_carta_jogada = 'terceira' + ordem_carta_jogada
+        # Pedir truco
+        if (len(self.mao) >= 2): 
+            escolha = cbr.cbr_truco()
+            return escolha
 
-        # for i in reversed(range(len(df[ordem_carta_jogada].value_counts().index.to_list()))): 
-        #     aux = df[ordem_carta_jogada].value_counts().index.to_list()[i]
-            
-        #     if(carta_escolhida in self.pontuacaoCartas):
-        #         carta_escolhida = aux
 
-        # if(carta_escolhida == 0):
-        #     valor_referencia = df[ordem_carta_jogada].value_counts().index.to_list()[0]
-        #     carta_escolhida = min(self.pontuacaoCartas, key=lambda x:abs(x-valor_referencia))
+        if (self.jogada == 1):
+            escolha = cbr.cbr_primeira_rodada()
+            return escolha         
 
-        # indice = self.pontuacaoCartas.index(carta_escolhida)
-        # self.indices.remove(indice)
-        # self.pontuacaoCartas.remove(self.pontuacaoCartas[self.pontuacaoCartas.index(carta_escolhida)])
-        # self.indices = self.AjustaIndicesMao(len(self.indices))
-        # return self.mao.pop(indice)
+        if (self.jogada == 1):
+            escolha = cbr.cbr_segunda_rodada()
+            return escolha 
+
+        if (self.jogada == 1):
+            escolha = cbr.cbr_terceira_rodada()
+            return escolha         
+
+        self.jogada += 1
+        
+        # Verificar cartas na mão antes de jogar
+
         return self.mao.pop(0)
 
 
@@ -128,36 +132,30 @@ class Bot():
         
         self.forcaMao = m3
 
-    def avaliar_jogada(self):
-        # Envido
-        if ((len(self.mao) == 3) and (self.envido > 0)):
-            self.calculaEnvido(self.mao)
-        # Flor
-        if ((len(self.mao)) == 3 and self.flor is False and (self.checaFlor())):
-            return 4
+    # def avaliar_jogada(self):        
+        # df = cbr.retornarSimilares(self.modeloRegistro)
+        # carta_escolhida = 0
+        # ordem_carta_jogada = 'CartaRobo'
 
-        # Pedir truco
-        if (len(self.mao) >= 2): 
-            escolha = self.cbr.cbr_truco()
-            return escolha
+        # if (len(self.indices) == 3): ordem_carta_jogada = 'primeira' + ordem_carta_jogada
+        # elif (len(self.indices) == 2): ordem_carta_jogada = 'segunda' + ordem_carta_jogada
+        # elif (len(self.indices) == 1): ordem_carta_jogada = 'terceira' + ordem_carta_jogada
 
+        # for i in reversed(range(len(df[ordem_carta_jogada].value_counts().index.to_list()))): 
+        #     aux = df[ordem_carta_jogada].value_counts().index.to_list()[i]
+            
+        #     if(carta_escolhida in self.pontuacaoCartas):
+        #         carta_escolhida = aux
 
-        if (self.jogada == 1):
-            escolha = self.cbr.cbr_primeira_rodada()
-            return escolha         
+        # if(carta_escolhida == 0):
+        #     valor_referencia = df[ordem_carta_jogada].value_counts().index.to_list()[0]
+        #     carta_escolhida = min(self.pontuacaoCartas, key=lambda x:abs(x-valor_referencia))
 
-        if (self.jogada == 1):
-            escolha = self.cbr.cbr_segunda_rodada()
-            return escolha 
-
-        if (self.jogada == 1):
-            escolha = self.cbr.cbr_terceira_rodada()
-            return escolha         
-
-        self.jogada += 1
-        
-        # Verificar cartas na mão antes de jogar
-
+        # indice = self.pontuacaoCartas.index(carta_escolhida)
+        # self.indices.remove(indice)
+        # self.pontuacaoCartas.remove(self.pontuacaoCartas[self.pontuacaoCartas.index(carta_escolhida)])
+        # self.indices = self.AjustaIndicesMao(len(self.indices))
+        # return self.mao.pop(indice)
 
     # def caseBasedReasoning(self):
 
