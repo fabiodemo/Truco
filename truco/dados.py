@@ -16,3 +16,7 @@ class Dados():
 
     def inserir_csv(self):
         self.modeloRegistro.to_csv('jogadas.csv')
+
+    def carregar_modelo_zerado(self):
+        registro = pd.read_csv('../modelo_registro.csv', index_col='idMao')
+        return registro

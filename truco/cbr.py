@@ -2,12 +2,14 @@ from sklearn.neighbors import NearestNeighbors
 import pandas as pd
 import warnings
 from pontos import MANILHA, CARTAS_VALORES
+from dados import Dados
 
 class Cbr():
 
     def __init__(self):
         self.indice = 0
         self.dataset = self.carregar_dataset()
+        self.dados = Dados()
         # self.casos = self.retornarSimilares()
         # self.nbrs = self.VizinhosProximos()
 
@@ -22,7 +24,7 @@ class Cbr():
         self.nbrs = NearestNeighbors(n_neighbors=100, algorithm='ball_tree').fit(self.casos)
 
     def retornarSimilares(self, registro, colunas_string):
-        registro = pd.read_csv('../modelo_registro.csv', index_col='idMao')
+        registro = self.dados.carregar_modelo_zerado()
         colunas_string = [
             'naipeCartaAltaRobo', 'naipeCartaMediaRobo','naipeCartaBaixaRobo', 'naipeCartaAltaHumano','naipeCartaMediaHumano', 'naipeCartaBaixaHumano','naipePrimeiraCartaRobo', 'naipePrimeiraCartaHumano',	'naipeSegundaCartaRobo', 'naipeSegundaCartaHumano','naipeTerceiraCartaRobo', 'naipeTerceiraCartaHumano',
             ]
@@ -51,11 +53,7 @@ class Cbr():
     def cbr_envido(self):
         pass
     
-    def cbr_primeira_rodada(self):
+    def cbr_jogada(self):
+
         pass
 
-    def cbr_segunda_rodada(self):
-        pass
-
-    def cbr_terceira_rodada(self):
-        pass
