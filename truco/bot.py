@@ -62,6 +62,18 @@ class Bot():
 
         return self.mao.pop(0)
 
+    def calculaEnvido(self, mao):
+        pontos_envido = []
+
+        for i in range(len(mao)):
+            for j in range(i+1, len(mao)):
+                if(mao[i].retornarNaipe() == mao[j].retornarNaipe()):
+                    pontos_envido.append(20 + (mao[0].retornaPontoEnvido(mao[i]) + mao[0].retornaPontoEnvido(mao[j])))
+                else:
+                    pontos_envido.append(max(mao[0].retornaPontoEnvido(mao[i]), mao[0].retornaPontoEnvido(mao[j])))
+        
+        return max(pontos_envido)
+
 
     def AjustaIndicesMao(self, tam_mao):
         if(tam_mao) == 2:
@@ -89,9 +101,6 @@ class Bot():
 
     def checaMao(self):
         return self.mao
-    
-    def calculaInvido(self):
-        self.invido += 1
 
     def checaFlor(self):
         # print('checaflor')

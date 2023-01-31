@@ -53,7 +53,8 @@ class Cbr():
     def cbr_envido(self):
         pass
     
-    def cbr_jogada(self):
-
+    def cbr_jogada(self, df):
+        cols = df.columns
+        novo_df = df.apply(lambda x: x > 0)
+        novo_df.apply(lambda x: list(cols[x.values]), axis=1)
         pass
-
