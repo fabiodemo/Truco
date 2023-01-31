@@ -1,7 +1,6 @@
 import pandas as pd
 
 class Dados():
-    pass
 
     def __init__(self):
         self.modeloRegistro = pd.read_csv('../modelo_registro.csv', index_col='idMao')
@@ -14,3 +13,6 @@ class Dados():
         self.modeloRegistro.ganhadorPrimeiraRodada = 2
         self.modeloRegistro.ganhadorSegundaRodada = 2
         self.modeloRegistro.ganhadorTerceiraRodada = 2
+
+    def inserir_csv(self):
+        self.modeloRegistro.to_csv('jogadas.csv')

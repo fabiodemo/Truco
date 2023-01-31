@@ -122,18 +122,15 @@ class Envido():
             print('aceitou Falta envido')
 
     
-    def avaliar_ganhador(self):
-        jogador1_envido_pontos = self.calculate_envido_pontos()
-        jogador2_envido_pontos = self.calculate_envido_pontos()
-        if jogador1_envido_pontos > jogador2_envido_pontos:
+    def avaliar_ganhador(self, jogador1, jogador2):
+        jogador1_pontos = jogador1.calculaEnvido()
+        jogador2_pontos = jogador2.calculaEnvido()
+        if jogador1_pontos > jogador2_pontos:
             return 1
-        elif jogador2_envido_pontos > jogador1_envido_pontos:
+        elif jogador2_pontos > jogador1_pontos:
             return 2
         else:
             return 0
-        
-    def calcular_pontos_envido(self):
-        pass
 
     def loop_resposta_envido(self):
         pass

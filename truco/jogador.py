@@ -26,7 +26,7 @@ class Jogador():
     def criarMao(self, baralho):
         for i in range(3):
             self.mao.append(baralho.retirarCarta())
-        self.calculaEnvido(self.mao)
+        self.envido = self.calculaEnvido(self.mao)
 
     def jogarCarta(self, carta_escolhida):
         return self.mao.pop(carta_escolhida)
@@ -65,8 +65,7 @@ class Jogador():
                 else:
                     pontos_envido.append(max(mao[0].retornaPontoEnvido(mao[i]), mao[0].retornaPontoEnvido(mao[j])))
         
-        self.envido = max(pontos_envido)
-        print(self.envido)
+        return max(pontos_envido)
     
     def checaFlor(self):
         if all(carta.retornarNaipe() == self.mao[0].retornarNaipe() for carta in self.mao):
