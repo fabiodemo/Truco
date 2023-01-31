@@ -45,7 +45,27 @@ class Cbr():
         # print(distancias, indices)
         jogadas_vencidas = self.casos.iloc[indices.tolist()[0]]
         jogadas_vencidas = jogadas_vencidas[((jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorSegundaRodada == 2) | (jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2) | (jogadas_vencidas.ganhadorSegundaRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2))]
-        return jogadas_vencidas
+        # return jogadas_vencidas
+
+        # df = cbr.retornarSimilares(self.modeloRegistro)
+        carta_escolhida = 0
+        ordem_carta_jogada = 'CartaRobo'
+
+        if (len(self.indices) == 3): ordem_carta_jogada = 'primeira' + ordem_carta_jogada
+        elif (len(self.indices) == 2): ordem_carta_jogada = 'segunda' + ordem_carta_jogada
+        elif (len(self.indices) == 1): ordem_carta_jogada = 'terceira' + ordem_carta_jogada
+
+        for i in reversed(range(len(df[ordem_carta_jogada].value_counts().index.to_list()))): 
+            aux = df[ordem_carta_jogada].value_counts().index.to_list()[i]
+            
+            if(carta_escolhida in self.pontuacaoCartas):
+                carta_escolhida = aux
+
+        if(carta_escolhida == 0):
+            valor_referencia = df[ordem_carta_jogada].value_counts().index.to_list()[0]
+            carta_escolhida = min(self.pontuacaoCartas, key=lambda x:abs(x-valor_referencia))
+        
+        return carta_escolhida
 
     def cbr_truco(self):
         pass
