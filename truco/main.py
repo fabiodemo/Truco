@@ -66,13 +66,14 @@ def jogadasHumanas(jogador2):
 
 def chamarJogadasBot(carta_jogador_01=None):
     # print(f"\n<< {jogador2.nome} - Jogador 2 >>")
-    carta_jogador_02 = jogador2.jogarCarta(cbr)
+    carta_jogador_02 = jogador2.jogarCarta(cbr, truco)
     # interface.limpar_tela()
 
     if carta_jogador_01:
         pass
 
-    carta2 = Carta(carta_jogador_02.retornarNumero(), carta_jogador_02.retornarNaipe())
+    if(carta_jogador_02 is not None):
+        carta2 = Carta(carta_jogador_02.retornarNumero(), carta_jogador_02.retornarNaipe())
     return carta2
 
 if __name__ == '__main__':

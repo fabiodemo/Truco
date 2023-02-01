@@ -29,7 +29,7 @@ class Bot():
         self.pontuacaoCartas, self.maoRank = self.mao[0].classificarCarta(self.mao)
         self.forcaMao = self.calcular_forca_mao(self.pontuacaoCartas, self.maoRank)
     
-    def jogarCarta(self, cbr):
+    def jogarCarta(self, cbr, truco):
         jogada = self.avaliar_jogada()
        # Envido
         if ((len(self.mao) == 3) and (self.envido > 0)):
@@ -41,18 +41,17 @@ class Bot():
         # Pedir truco
         if (len(self.mao) >= 2): 
             escolha = cbr.cbr_truco()
-            return escolha
-
+            return None
 
         if (self.jogada == 1):
             escolha = cbr.cbr_primeira_rodada()
             return escolha         
 
-        if (self.jogada == 1):
+        if (self.jogada == 2):
             escolha = cbr.cbr_segunda_rodada()
             return escolha 
 
-        if (self.jogada == 1):
+        if (self.jogada == 3):
             escolha = cbr.cbr_terceira_rodada()
             return escolha         
 
