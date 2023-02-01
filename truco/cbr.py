@@ -9,7 +9,7 @@ class Cbr():
     def __init__(self):
         self.indice = 0
         self.dataset = self.carregar_dataset()
-        self.dados = Dados()
+        self.casos = Dados()
         # self.casos = self.retornarSimilares()
         # self.nbrs = self.VizinhosProximos()
 
@@ -25,19 +25,6 @@ class Cbr():
 
     def retornarSimilares(self, registro, colunas_string):
         registro = self.dados.carregar_modelo_zerado()
-        colunas_string = [
-            'naipeCartaAltaRobo', 'naipeCartaMediaRobo','naipeCartaBaixaRobo', 'naipeCartaAltaHumano','naipeCartaMediaHumano', 'naipeCartaBaixaHumano','naipePrimeiraCartaRobo', 'naipePrimeiraCartaHumano',	'naipeSegundaCartaRobo', 'naipeSegundaCartaHumano','naipeTerceiraCartaRobo', 'naipeTerceiraCartaHumano',
-            ]
-        df = pd.read_csv('../dbtrucoimitacao_maos.csv', index_col='idMao').fillna(0)
-        colunas_int = [col for col in df.columns if col not in colunas_string]
-        # df[colunas_int] = df[colunas_int].astype('int').apply(abs)
-        df.replace('ESPADAS', '1', inplace=True)
-        df.replace('OURO', '2', inplace=True)
-        df.replace('BASTOS', '3', inplace=True)
-        df.replace('COPAS', '4', inplace=True)
-        df[colunas_string] = df[colunas_string].astype('int')
-        # df.apply(abs)
-        # df = df[(df >= 0).all(axis=1)]
 
         warnings.simplefilter(action='ignore', category=UserWarning)
         df = self.VizinhosProximos()
