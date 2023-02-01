@@ -7,7 +7,7 @@ class Dados():
         self.registro_modelo = pd.read_csv('../modelo_registro.csv', index_col='idMao')
         self.dados = pd.read_csv('../dbtrucoimitacao_maos.csv', index_col='idMao').fillna(0)
 
-    def inicializar_jogada(self, potuacao_cartas, mao_rank):
+    def inicializar_jogada(self, potuacao_cartas, mao_rank, qualidade_mao_bot, quem_flor, quem_contraflor):
         
         self.registro_modelo.jogadorMao = 1
         self.registro_modelo.cartaAltaRobo = potuacao_cartas[mao_rank.index("Alta")]
@@ -16,6 +16,9 @@ class Dados():
         self.registro_modelo.ganhadorPrimeiraRodada = 2
         self.registro_modelo.ganhadorSegundaRodada = 2
         self.registro_modelo.ganhadorTerceiraRodada = 2
+        self.registro_modelo.qualidadeMaoBot = qualidade_mao_bot
+        self.registro_modelo.quemFlor = quem_flor
+        self.registro_modelo.quemContraFlor =  quem_contraflor
 
         return self.registro_modelo
 
