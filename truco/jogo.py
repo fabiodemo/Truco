@@ -110,7 +110,7 @@ class Jogo():
             else:
                 return "Empate"
 
-    def jogador_fugiu(self, jogador, jogador1, jogador2):
+    def jogador_fugiu(self, jogador, jogador1, jogador2, pontos):
         print('jogador {jogador.nome} fugiu!')
         jogador1.primeiro = True
         jogador2.primeiro = False

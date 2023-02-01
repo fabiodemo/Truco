@@ -9,7 +9,7 @@ class Truco():
         self.jogador_retruco = 0
         self.jogador_vale4 = 0
         self.estado_atual = ""
-        self.aceitou_ou_fugiu = 0
+        self.jogador_fugiu = 0
 
     def reverter_jogador_bloqueado(self):
         if (self.jogador_bloqueado == 1):
@@ -142,6 +142,9 @@ class Truco():
 
     def retornar_valor_aposta(self):
         return self.valor_aposta
+
+    def retornar_quem_fugiu(self):
+        return self.retornar_quem_fugiu
     
     def resetar_pontos_truco(self):
         self.valor_aposta = 1
@@ -149,3 +152,4 @@ class Truco():
         self.jogador_pediu = 0
         self.jogador_aumentou2 = 0
         self.jogador_aumentou4 = 0
+        self.jogador_fugiu = 0
