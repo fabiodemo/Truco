@@ -1,13 +1,18 @@
 # Truco Gaudério
 
+A distribuição das cartas é feita de forma automática e aleatória pelo sistema, não havendo a intervenção de nenhum jogador.
+
  ### Jogo Truco em Python
 
-- **Jogadores:** Pode ser jogado 1v1.
-- **Número de cartas:** 40 (Não possui 8, 9, 10, 13).
-- **Distribuição de cartas:** Cada jogador recebe três cartas.
-- **Objetivo:** Fazer 12 pontos para ganhar.
-- **Sequência das cartas mais fortes:** 1 ♠, 1 ♣, 1 ♠, 1 ♦, 3, 2, 1, 12, 11, 7, 6, 5, 4.
-- **Naipes:** ♣ Bastos, ♥ Copas, ♠ Espadas, ♦ Ouros.
+- **Jogadores**: 2 ou 4
+- **Número de cartas**: 40 (retirando-se 8, 9, 10 e curingas)
+- **Distribuição**: 3 cartas para cada participante
+- **Objetivo**: O jogador ou a dupla que atingir o total de pontos, ganha a partida.
+
+### Convenções
+- **O baralho usado é o baralho espanhol**
+- **Sequência de menor para maior**: 4, 5, 6, 7, 10, 11, 12, 1, 2, 3 (de todos os naipes)
+- **As manilhas são na sequência de menor para maior**: 7 de ouros, 7 de espadas, 1 de paus e 1 de espadas
 
 ### Definições
 - **Mão** - Fração da partida, vale 1 ponto e poderá ter seu valor aumentado através das disputas de Truco e Envido. É disputada em melhor de 3 rodadas.
