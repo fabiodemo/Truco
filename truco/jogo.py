@@ -1,8 +1,8 @@
-from baralho import Baralho
-from jogador import Jogador
-from bot import Bot
+from .baralho import Baralho
+from .jogador import Jogador
+from .bot import Bot
+from .pontos import MANILHA, CARTAS_VALORES
 import random
-from pontos import MANILHA, CARTAS_VALORES
 
 class Jogo():
 

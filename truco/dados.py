@@ -5,13 +5,13 @@ class Dados():
 
     def __init__(self):
         self.registro_modelo = self.tratamento_inicial_df()
-        self.dados = pd.read_csv('../dbtrucoimitacao_maos.csv', index_col='idMao').fillna(0)
+        self.dados = pd.read_csv('dbtrucoimitacao_maos.csv', index_col='idMao').fillna(0)
 
     def tratamento_inicial_df(self):
         colunas_string = [
         'naipeCartaAltaRobo', 'naipeCartaMediaRobo','naipeCartaBaixaRobo', 'naipeCartaAltaHumano','naipeCartaMediaHumano', 'naipeCartaBaixaHumano','naipePrimeiraCartaRobo', 'naipePrimeiraCartaHumano',	'naipeSegundaCartaRobo', 'naipeSegundaCartaHumano','naipeTerceiraCartaRobo', 'naipeTerceiraCartaHumano',
         ]
-        df = pd.read_csv('../dbtrucoimitacao_maos.csv', index_col='idMao').fillna(0)
+        df = pd.read_csv('dbtrucoimitacao_maos.csv', index_col='idMao').fillna(0)
         colunas_int = [col for col in df.columns if col not in colunas_string]
         # df[colunas_int] = df[colunas_int].astype('int').apply(abs)
         df.replace('ESPADAS', '1', inplace=True)

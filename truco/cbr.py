@@ -1,8 +1,8 @@
 from sklearn.neighbors import NearestNeighbors
 import pandas as pd
 import warnings
-from pontos import MANILHA, CARTAS_VALORES
-from dados import Dados
+from .pontos import MANILHA, CARTAS_VALORES
+from .dados import Dados
 
 class Cbr():
 
@@ -14,7 +14,7 @@ class Cbr():
         # self.nbrs = self.VizinhosProximos()
 
     def carregar_dataset(self):
-        df = pd.read_csv('../dbtrucoimitacao_maos.csv', index_col='idMao').fillna(0)
+        df = pd.read_csv('dbtrucoimitacao_maos.csv', index_col='idMao').fillna(0)
         df.replace('ESPADAS', '1', inplace=True)
         df.replace('OURO', '2', inplace=True)
         df.replace('BASTOS', '3', inplace=True)

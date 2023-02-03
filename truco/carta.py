@@ -1,5 +1,5 @@
 import itertools
-from pontos import MANILHA, CARTAS_VALORES, ENVIDO
+from .pontos import MANILHA, CARTAS_VALORES, ENVIDO
 
 class Carta():
 
