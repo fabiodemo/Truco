@@ -205,4 +205,5 @@ while True:
 To do:
 - Arrumar bug do placar não mostrar rodadas
 - Checar funcionamento do Truco/Envido
+- Diferenciar flag -1 do fugiu_truco da flag de ir ao baralho
 '''
