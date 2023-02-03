@@ -2,7 +2,7 @@
 
  ### Jogo Truco em Python
 
-- **Jogadores**: 2 ou 4 (na atual implementação do jogo, somente 1v1 disponível)
+- **Jogadores**: 1v1 ou 2v2 (na atual implementação do jogo, somente 1v1 disponível)
 - **Número de cartas**: 40 (retirando-se 8, 9, 10 e curingas)
 - **Distribuição**: 3 cartas para cada participante
 - **Objetivo**: O jogador ou a dupla que atingir o total de pontos, ganha a partida.
