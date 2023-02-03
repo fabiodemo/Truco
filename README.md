@@ -6,18 +6,31 @@
 - **Número de cartas:** 40 (Não possui 8, 9, 10, 13).
 - **Distribuição de cartas:** Cada jogador recebe três cartas.
 - **Objetivo:** Fazer 12 pontos para ganhar.
-- **Sequência das cartas mais fortes:** A♠, A♣, 7♠, 7♦, 3, 2, 1, 12, 11, 7, 6, 5, 4.
-- **Naipes:** ♣Paus, ♥Copas, ♠Espadas, ♦Ouros.
+- **Sequência das cartas mais fortes:** 1 ♠, 1 ♣, 1 ♠, 1 ♦, 3, 2, 1, 12, 11, 7, 6, 5, 4.
+- **Naipes:** ♣ Bastos, ♥ Copas, ♠ Espadas, ♦ Ouros.
 
- ### Definições:
+### Definições
+- **Mão** - Fração da partida, vale 1 ponto e poderá ter seu valor aumentado através das disputas de Truco e Envido. É disputada em melhor de 3 rodadas.
+- **Rodada** - É a fração da “mão”, em cada rodada os jogadores mostram uma carta.
+- **Falta** - É a diferença entre o placar final do jogo e os pontos da pessoa que está ganhando.
+- **Empatar** - Quando a maior carta de cada dupla, numa determinada rodada, tem o mesmo valor.
+- **Esconder** - Carta Jogar a carta virada para a mesa, passando assim a não valer nada. Também chamado de carta “coberta”, ou “carta encoberta”.
+- **Ir ao baralho** - Quando o jogador ou dupla foge da rodada, entregando os pontos de Truco para o jogador ou dupla adversária.
 
-- **Vira:** É a carta que definirá as 4 manilhas.
-- **Manilhas:** São as cartas mais fortes do jogo.
-- **Rodadas:** Cada rodada é definida em melhor de três.
-- **Truco:** É um pedido de “aumento de aposta” que só pode ser feito na vez de cada jogador. Se nenhum jogador fizer o pedido, a partida valerá 1 **ponto. Se o Truco for pedido e o adversário aceitar, a partida passa a valer 3 pontos. Se o adversário não aceitar, o jogador que fez o pedido ganha um ponto.
-- **Seis:** É a mesma coisa que pedir truco porém só é permitido pedir depois que o adversário pedir truco e assim por diante no Nove e Doze.
-- **Mão de Onze:** A dupla que consegue chegar a 11 pontos na partida, tem o direito de olhar as cartas um do outro e analisar se irão ou não aceitar a partida. Caso a dupla aceite, a Mão de Onze já começa valendo 3 pontos. Se acharem que não será possível vencer a mão com tais cartas, podem optar por “Correr”, dando apenas 1 ponto à dupla adversária.
-- **Escurinho:** É a Mão de Onze especial, quando as duas duplas conseguem chegar a 11 pontos na partida. Todos os jogadores recebem as cartas "cobertas", isto é, viradas para baixo, e deverão jogar assim. Quem vencer a mão, vence a partida
+### Pontos obtidos na disputa de Truco Gaudério
+- **Truco** - Disputa para aumentar o valor da “mão” para 2
+- **Re-truco** - Disputa para aumentar o valor da “mão” para 3
+- **Vale 4** - Disputa para aumentar o valor da “mão” para 4
+
+### Pontos obtidos na disputa de Envido
+- **Envido** - Disputa paralela que ocorre durante a primeira rodada de uma mão para aumentar seu valor em até 2 pontos.
+- **Real Envido** - Similar ao Envido, mas pode aumentar o valor da mão em até 5 pontos.
+- **Falta Envido** - Similar ao Envido, mas pode aumentar o valor da mão para a diferença entre o placar final do jogo e os pontos da pessoa que está ganhando.
+
+### Pontos obtidos na disputa de Flor
+- **Flor** - Tipo especial de Envido em que o jogador deve ter 3 cartas do mesmo naipe. É possível aumentar o valor da mão em 3 pontos.
+- **Contra-flor** - Uma das possíveis respostas ao pedido de Flor. Pode aumentar o valor da mão em 6 pontos. (Em algumas situações o valor pode ser maior)
+- **Contra-flor** e o resto - Disputa similar a Contra-flor que pode aumentar o valor da mão para a diferença entre o placar final do jogo e os pontos da pessoa que está ganhando, além dos pontos da Contra-flor. (Em algumas situações o valor pode ser maior)
 
 
 ### A fundação/base dos códigos no presente projeto, está baseada no repositório original criado pelo usuário anthonyzutter, [disponível em neste link] (https://github.com/anthonyzutter/Truco-Jogo)
