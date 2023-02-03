@@ -1,13 +1,12 @@
 # Truco Gaudério
 
-A distribuição das cartas é feita de forma automática e aleatória pelo sistema, não havendo a intervenção de nenhum jogador.
-
  ### Jogo Truco em Python
 
-- **Jogadores**: 2 ou 4
+- **Jogadores**: 2 ou 4 (na atual implementação do jogo, somente 1v1 disponível)
 - **Número de cartas**: 40 (retirando-se 8, 9, 10 e curingas)
 - **Distribuição**: 3 cartas para cada participante
 - **Objetivo**: O jogador ou a dupla que atingir o total de pontos, ganha a partida.
+- **A distribuição das cartas é feita de forma automática e aleatória pelo sistema, não havendo a intervenção de nenhum jogador.**
 
 ### Convenções
 - **O baralho usado é o baralho espanhol**
