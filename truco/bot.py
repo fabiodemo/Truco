@@ -16,6 +16,7 @@ class Bot():
         self.primeiro = False
         self.ultimo = False
         self.flor = False
+        self.pediu_flor = False
         self.pediuTruco = False
         self.jogada = 1
 
@@ -105,7 +106,6 @@ class Bot():
         # print('checaflor')
         if all(carta.retornarNaipe() == self.mao[0].retornarNaipe() for carta in self.mao):
             print('Flor do Bot!')
-            self.flor = True
             return True
         return False
     
