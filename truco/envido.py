@@ -113,7 +113,7 @@ class Envido():
             self.avaliar_vencedor_envido(quem_pediu, jogador1, jogador2)
 
     
-    def avaliar_vencedor_envido(self, quem_pediu, jogador1, jogador2):
+    def pedir_envido(self, quem_pediu, jogador1, jogador2):
         jogador1_pontos = jogador1.calculaEnvido()
         jogador2_pontos = jogador2.calculaEnvido()
         if jogador1_pontos > jogador2_pontos:

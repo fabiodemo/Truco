@@ -18,7 +18,7 @@ class Truco():
         else:
             self.jogador_bloqueado = 1
 
-    def redirecionar_pedir_truco(self, quemPediu, jogador1, jogador2):
+    def pedir_truco(self, quemPediu, jogador1, jogador2):
         if(self.estado_atual == ""):
             estado = self.pedir_truco(quemPediu, jogador1, jogador2)
             self.estado_atual = "truco"

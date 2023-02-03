@@ -38,7 +38,7 @@ def turno_do_humano(jogador2):
             break
 
         elif (carta_escolhida == 4):
-            chamou_truco = (truco.redirecionar_pedir_truco(1, jogador1, jogador2))
+            chamou_truco = (truco.pedir_truco(1, jogador1, jogador2))
             print(f"temp: {chamou_truco}")
             if((chamou_truco) is False):
                 print('pontos truco', truco.retornar_valor_aposta())
@@ -53,6 +53,7 @@ def turno_do_humano(jogador2):
 
         elif (carta_escolhida == 6):
             print('envido')
+            Envido.pedir_envido(jogador1, jogador1, jogador2)
         
         else:
             print('Selecione um valor válido!')
