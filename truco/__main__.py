@@ -24,7 +24,7 @@ def reiniciarJogo():
     truco.resetar_pontos_truco()
 
 def turno_do_humano(jogador2):
-    carta_escolhida = 6
+    carta_escolhida = -1
     while (carta_escolhida > len(jogador1.checaMao()) or int(carta_escolhida) <= 1):
         print(f"\n<< {jogador1.nome} - Jogador 1 >>")
         jogador1.mostrarOpcoes()
@@ -54,6 +54,10 @@ def turno_do_humano(jogador2):
         elif (carta_escolhida == 6):
             print('envido')
             Envido.pedir_envido(jogador1, jogador1, jogador2)
+
+        elif (carta_escolhida == 7):
+            jogador2.pontos += 1
+            return -1
         
         else:
             print('Selecione um valor válido!')
@@ -84,7 +88,6 @@ truco = Truco()
 flor = Flor()
 
 truco_aceito = False
-truco_fugiu = False
 pontos_truco = 0
 carta_jogador_01 = 0
 carta_jogador_02 = 0
@@ -100,6 +103,7 @@ jogador2.ultimo = True
 interface.mostrar_jogador_mao(jogador1.nome)
 
 while True:
+    truco_fugiu = False
     ocultar_pontos_ac = False
     # jogo.resetarTrucoPontos()
     #Sorteio pra ver quem joga na primeira rodada
@@ -120,23 +124,23 @@ while True:
         carta_jogador_01 = turno_do_humano(jogador2)
         if (carta_jogador_01 != -1):
             interface.mostrar_carta_jogada(jogador1.nome, carta_jogador_01)
-        carta_jogador_02 = turno_do_bot(carta_jogador_01)
-        if (carta_jogador_02 != -1):
-            interface.mostrar_carta_jogada(jogador2.nome, carta_jogador_02)
+            carta_jogador_02 = turno_do_bot(carta_jogador_01)
+            if (carta_jogador_02 != -1):
+                interface.mostrar_carta_jogada(jogador2.nome, carta_jogador_02)
 
     elif jogador2.primeiro == True:
         carta_jogador_02 = turno_do_bot(None)
         if (carta_jogador_02 != -1):
             interface.mostrar_carta_jogada(jogador2.nome, carta_jogador_02)
-        carta_jogador_01 = turno_do_humano(jogador2)
-        if (carta_jogador_01 != -1):
-            interface.mostrar_carta_jogada(jogador1.nome, carta_jogador_01)
+            carta_jogador_01 = turno_do_humano(jogador2)
+            if (carta_jogador_01 != -1):
+                interface.mostrar_carta_jogada(jogador1.nome, carta_jogador_01)
     
     
     if (carta_jogador_01 == -1 or carta_jogador_02 == -1):
         truco_fugiu = True
         if(carta_jogador_01 == -1):
-            jogo.jogador_fugiu(jogador1, jogador1, jogador2)
+            jogo.jogador_fugiu(jogador1, jogador1, jogador2, -1)
             interface.mostrar_placar_total_jogador_fugiu(jogador1, jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
         
         else:
