@@ -30,7 +30,10 @@ class Bot():
         self.pontuacaoCartas, self.maoRank = self.mao[0].classificarCarta(self.mao)
         self.forcaMao = self.calcular_forca_mao(self.pontuacaoCartas, self.maoRank)
     
-    def jogarCarta(self, cbr, truco):
+    def jogarCarta(self, carta_escolhida):
+        return self.mao.pop(carta_escolhida)
+
+    def jogar_carta(self, cbr, truco):
         jogada = self.avaliar_jogada()
        # Envido
         if ((len(self.mao) == 3) and (self.envido > 0)):
@@ -73,6 +76,9 @@ class Bot():
                     pontos_envido.append(max(mao[0].retornaPontoEnvido(mao[i]), mao[0].retornaPontoEnvido(mao[j])))
         
         return max(pontos_envido)
+
+    def retorna_pontos_envido(self):
+        return self.envido
 
 
     def AjustaIndicesMao(self, tam_mao):

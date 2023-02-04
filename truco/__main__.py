@@ -29,6 +29,11 @@ def turno_do_humano(jogador2):
         print(f"\n<< {jogador1.nome} - Jogador 1 >>")
         jogador1.mostrarOpcoes()
         carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
+
+        # Chama a flor antes do jogador1 jogar envido 
+        if(len(jogador1.checaMao()) > 2 and (carta_escolhida == 6)):
+            print('bloqueou a flor')
+            jogador2.pedir_flor(jogador2, jogador1, jogador2)
         
         if (carta_escolhida < len(jogador1.checaMao()) and int(carta_escolhida) >= 0):
             carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
@@ -51,9 +56,9 @@ def turno_do_humano(jogador2):
             flor.pedir_flor(jogador1, jogador1, jogador2)
             interface.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados")
 
-        elif (carta_escolhida == 6):
+        elif (jogador2.flor is False and (len(jogador1.checaMao()) > 2 and carta_escolhida == 6)):
             print('envido')
-            Envido.pedir_envido(jogador1, jogador1, jogador2)
+            envido.pedir_envido(1, jogador1, jogador2)
 
         elif (carta_escolhida == 7):
             jogador2.adicionarPontos(1)
@@ -69,11 +74,12 @@ def turno_do_bot(carta_jogador_01=None):
     carta_escolhida = -1
     while (carta_escolhida > len(jogador2.checaMao()) or int(carta_escolhida) <= 1):
         print(f"\n<< {jogador2.nome} - Jogador 2 >>")
-        carta_jogador_02 = jogador2.jogarCarta(cbr, truco)
+        # carta_jogador_02 = jogador2.jogarCarta(cbr, truco)
+        carta_escolhida = -1
 
         if (jogador2.pediu_flor is False and (carta_escolhida == 5 and (len(jogador1.mao) == 3))):
             print('flor do Bot')
-            flor.pedir_flor(jogador2, jogador2, jogador1)
+            flor.pedir_flor(jogador2, jogador1, jogador2)
             interface.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados")
         
         if (carta_escolhida < len(jogador2.checaMao()) and int(carta_escolhida) >= 0):
@@ -94,7 +100,8 @@ def turno_do_bot(carta_jogador_01=None):
 
         elif (carta_escolhida == 6):
             print('envido')
-            Envido.pedir_envido(jogador1, jogador1, jogador2)
+            envido.pedir_envido(2, jogador2, jogador1)
+
 
         elif (carta_escolhida == 7):
             jogador1.adicionarPontos(1)
@@ -102,6 +109,9 @@ def turno_do_bot(carta_jogador_01=None):
         
         else:
             print('Selecione um valor válido!')
+        carta_jogador_02 = jogador2.jogarCarta(0)
+        carta_escolhida = 0
+        break
 
 
     # interface.limpar_tela()
@@ -122,6 +132,7 @@ interface = Interface()
 dados = Dados()
 truco = Truco()
 flor = Flor()
+envido = Envido()
 
 truco_aceito = False
 pontos_truco = 0
@@ -239,7 +250,6 @@ while True:
         break
 '''
 To do:
-- Arrumar bug do placar não mostrar rodadas
 - Checar funcionamento do Truco/Envido
 - Diferenciar flag -1 do fugiu_truco da flag de ir ao baralho
 '''

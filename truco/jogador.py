@@ -72,3 +72,7 @@ class Jogador():
             # print('Flor do Jogador')
             return True
         return False
+
+    
+    def retorna_pontos_envido(self):
+        return self.envido

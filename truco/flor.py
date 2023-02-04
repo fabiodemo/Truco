@@ -23,8 +23,8 @@ class Flor():
 
     def pedir_contraflor(self, quem_pediu, jogador1, jogador2):
         self.valor_flor = 6
-        jogador1_pontos = jogador1.calculaEnvido()
-        jogador2_pontos = jogador2.calculaEnvido()
+        jogador1_pontos = jogador1.retorna_pontos_envido()
+        jogador2_pontos = jogador2.retorna_pontos_envido()
         if jogador1_pontos > jogador2_pontos:
             jogador1.pontos += self.valor_flor
         elif jogador2_pontos > jogador1_pontos:
@@ -33,8 +33,8 @@ class Flor():
             quem_pediu.pontos += self.valor_flor
 
     def pedir_contraflor_resto(self, quem_pediu, jogador1, jogador2):
-        jogador1_pontos = jogador1.calculaEnvido()
-        jogador2_pontos = jogador2.calculaEnvido()
+        jogador1_pontos = jogador1.retorna_pontos_envido()
+        jogador2_pontos = jogador2.retorna_pontos_envido()
         if jogador1_pontos > jogador2_pontos:
             jogador1.pontos += 12 - jogador2.pontos
         elif jogador2_pontos > jogador1_pontos:

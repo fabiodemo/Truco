@@ -10,7 +10,7 @@ class Envido():
         self.quem_fugiu = 0
 
         
-    def jogador_pediu_envido(self, quem_pediu, jogador1, jogador2, jogador1_pontos, jogador2_pontos):
+    def pedir_envido(self, quem_pediu, jogador1, jogador2):
         self.ultimo_tipo_envido = "Envido"
         print("Jogador pediu Envido")
 
@@ -20,7 +20,7 @@ class Envido():
 
         else:
             self.jogador_pediu_envido = 2
-            escolha -1
+            escolha = -1
             while(escolha not in [0, 1, 2]):
                 escolha = int(input(f"{jogador1.nome}, você aceita o pedido de envido?"))
         
@@ -29,6 +29,7 @@ class Envido():
             print(f"fugiu")
             if(quem_pediu == jogador1):
                 jogador1.pontos += 1
+                return
 
             else:
                 jogador2.pontos += 1
@@ -41,15 +42,15 @@ class Envido():
 
         elif escolha == 2:
             print(f'Real Envido')
-            self.jogador_pediu_real_envido(quem_pediu, jogador1, jogador2, jogador1_pontos, jogador2_pontos)
+            self.jogador_pediu_real_envido(quem_pediu, jogador1, jogador2)
         
         else:
             print(f'Falta Envido')
-            self.jogador_pediu_falta_envido(quem_pediu, jogador1, jogador2, jogador1_pontos, jogador2_pontos)
+            self.jogador_pediu_falta_envido(quem_pediu, jogador1, jogador2)
 
         
         
-    def jogador_pediu_real_envido(self, quem_pediu, jogador1, jogador2, jogador1_pontos, jogador2_pontos):
+    def jogador_pediu_real_envido(self, quem_pediu, jogador1, jogador2):
         self.ultimo_tipo_envido = "Real Envido"
         print("Jogador pediu Envido")
 
@@ -59,7 +60,7 @@ class Envido():
 
         else:
             self.jogador_pediu_envido = 2
-            escolha -1
+            escolha = -1
             while(escolha not in [0, 1, 2]):
                 escolha = int(input(f"{jogador1.nome}, você aceita o pedido de envido?"))
         
@@ -80,10 +81,10 @@ class Envido():
         
         else:
             print(f'Falta Envido')
-            self.jogador_pediu_falta_envido(quem_pediu, jogador1, jogador2, jogador1_pontos, jogador2_pontos)
+            self.jogador_pediu_falta_envido(quem_pediu, jogador1, jogador2)
 
 
-    def jogador_pediu_falta_envido(self, quem_pediu, jogador1, jogador2, jogador1_pontos, jogador2_pontos):
+    def jogador_pediu_falta_envido(self, quem_pediu, jogador1, jogador2):
         self.ultimo_tipo_envido = "Falta Envido"
         print("Jogador pediu Envido")
 
@@ -93,7 +94,7 @@ class Envido():
 
         else:
             self.jogador_pediu_envido = 2
-            escolha -1
+            escolha = -1
             while(escolha not in [0, 1, 2]):
                 escolha = int(input(f"{jogador1.nome}, você aceita o pedido de envido?"))
         
@@ -113,9 +114,9 @@ class Envido():
             self.avaliar_vencedor_envido(quem_pediu, jogador1, jogador2)
 
     
-    def pedir_envido(self, quem_pediu, jogador1, jogador2):
-        jogador1_pontos = jogador1.calculaEnvido()
-        jogador2_pontos = jogador2.calculaEnvido()
+    def avaliar_vencedor_envido(self, quem_pediu, jogador1, jogador2):
+        jogador1_pontos = jogador1.retorna_pontos_envido()
+        jogador2_pontos = jogador2.retorna_pontos_envido()
         if jogador1_pontos > jogador2_pontos:
             jogador1.pontos += self.valor_envido
         elif jogador2_pontos > jogador1_pontos:
