@@ -31,7 +31,7 @@ def turno_do_humano(jogador2):
         carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
 
         # Chama a flor antes do jogador1 jogar envido 
-        if(len(jogador1.checaMao()) > 2 and (carta_escolhida == 6)):
+        if(len(jogador1.checaMao()) > 2 and (carta_escolhida == 6) and (jogador2.flor is True)):
             print('bloqueou a flor')
             jogador2.pedir_flor(jogador2, jogador1, jogador2)
         
@@ -98,7 +98,7 @@ def turno_do_bot(carta_jogador_01=None):
                 break
                 # jogador1.adicionarRodada()
 
-        elif (carta_escolhida == 6):
+        elif ((jogador1.pediu_flor or jogador2.pediu_flor) is False and carta_escolhida == 6):
             print('envido')
             envido.pedir_envido(2, jogador2, jogador1)
 

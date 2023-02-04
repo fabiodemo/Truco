@@ -38,6 +38,7 @@ class Bot():
        # Envido
         if ((len(self.mao) == 3) and (self.envido > 0)):
             self.calculaEnvido(self.mao)
+            return 6
         # Flor
         if ((len(self.mao)) == 3 and self.flor is False and (self.checaFlor())):
             return 4

@@ -9,6 +9,8 @@ class Flor():
     def pedir_flor(self, quem_pediu, jogador1, jogador2):
         if (quem_pediu == jogador2):
             jogador2.pediu_flor = True
+        else:
+            jogador1.pediu_flor = True
             
         if (jogador1.flor and jogador2.flor):
             print("contraflor")

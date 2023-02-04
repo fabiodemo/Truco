@@ -10,6 +10,7 @@ class Jogador():
         self.primeiro = False
         self.ultimo = False
         self.flor = False
+        self.pediu_flor = False
         self.pediuTruco = False
 
     def mostrarOpcoes(self):
