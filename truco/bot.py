@@ -34,9 +34,9 @@ class Bot():
         return self.mao.pop(carta_escolhida)
 
     def jogar_carta(self, cbr, truco):
-        jogada = self.avaliar_jogada()
-       # Envido
-        if ((len(self.mao) == 3) and (self.envido > 0)):
+        # jogada = self.avaliar_jogada()
+        # Envido
+        if ((len(self.mao) == 3) and (self.envido > 20)):
             self.calculaEnvido(self.mao)
             return 6
         # Flor
@@ -44,27 +44,18 @@ class Bot():
             return 4
 
         # Pedir truco
-        if (len(self.mao) >= 2): 
+        if (len(self.mao) >= 2):
             escolha = cbr.cbr_truco()
             return None
 
-        if (self.jogada == 1):
-            escolha = cbr.cbr_primeira_rodada()
-            return escolha         
+        # Manda o valor de acordo com a rodada, para o CBR escolher as colunas/campos necessários
+        escolha = cbr.jogar_rodada(self.rodada)
 
-        if (self.jogada == 2):
-            escolha = cbr.cbr_segunda_rodada()
-            return escolha 
-
-        if (self.jogada == 3):
-            escolha = cbr.cbr_terceira_rodada()
-            return escolha         
 
         self.jogada += 1
-        
         # Verificar cartas na mão antes de jogar
-
-        return self.mao.pop(0)
+        return escolha
+        # return self.mao.pop(0)
 
     def calculaEnvido(self, mao):
         pontos_envido = []

@@ -20,15 +20,15 @@ class Cbr():
         df.replace('BASTOS', '3', inplace=True)
         df.replace('COPAS', '4', inplace=True)
 
-    def VizinhosProximos(self):
-        self.nbrs = NearestNeighbors(n_neighbors=100, algorithm='ball_tree').fit(self.casos)
+    def vizinhos_proximos(self):
+        return NearestNeighbors(n_neighbors=100, algorithm='ball_tree').fit(self.casos.registro)
 
-    def retornarSimilares(self, registro, colunas_string):
-        registro = self.dados.carregar_modelo_zerado()
+    def retornar_similares(self, registro):
+        # registro = self.casos.carregar_modelo_zerado()
 
         warnings.simplefilter(action='ignore', category=UserWarning)
-        df = self.VizinhosProximos()
-        distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
+        df = self.vizinhos_proximos()
+        distancias, indices = self.vizinhos_proximos((registro.to_numpy().reshape(1, -1)))
         # print(distancias, indices)
         jogadas_vencidas = self.casos.iloc[indices.tolist()[0]]
         jogadas_vencidas = jogadas_vencidas[((jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorSegundaRodada == 2) | (jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2) | (jogadas_vencidas.ganhadorSegundaRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2))]
@@ -54,13 +54,17 @@ class Cbr():
         
         return carta_escolhida
 
-    def cbr_truco(self):
+    def truco(self):
         pass
     
-    def cbr_envido(self):
+    def envido(self):
         pass
     
-    def cbr_jogada(self, df):
+    def flor(self):
+        pass
+
+    def jogar_rodada(self, rodada):
+        df = self.dados
         cols = df.columns
         novo_df = df.apply(lambda x: x > 0)
         novo_df.apply(lambda x: list(cols[x.values]), axis=1)
