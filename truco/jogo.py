@@ -118,13 +118,13 @@ class Jogo():
 
     # def trucoAceito(self, aceitou):
     #     print("Truco")
-    #     if(aceitou is False and self.trucoPontos == 1):
+    #     if (aceitou is False and self.trucoPontos == 1):
     #         self.trucoPontos = 1
             
-    #     elif(aceitou is False and self.trucoPontos != 1):
+    #     elif (aceitou is False and self.trucoPontos != 1):
     #         self.trucoPontos -= 1
 
-    #     elif(self.trucoPontos == 1):
+    #     elif (self.trucoPontos == 1):
     #         self.trucoPontos += 1
         
     #     else:

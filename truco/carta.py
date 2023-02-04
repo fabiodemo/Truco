@@ -76,7 +76,7 @@ class Carta():
         return carta_01
 
     def cartaManilha(self, carta):
-        if(((carta.numero)+" de "+carta.naipe) in self.MANILHA):
+        if (((carta.numero)+" de "+carta.naipe) in self.MANILHA):
             return True
         return False
 

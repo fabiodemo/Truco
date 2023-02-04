@@ -36,48 +36,52 @@ class Bot():
     def jogar_carta(self, cbr, truco):
         # jogada = self.avaliar_jogada()
         # Envido
-        if ((len(self.mao) == 3) and (self.envido > 20)):
+        if ((len(self.mao) == 3)):
             self.calculaEnvido(self.mao)
-            return 6
+            envido = cbr.envido()
+            if (envido is True):
+                return 6
         # Flor
         if ((len(self.mao)) == 3 and self.flor is False and (self.checaFlor())):
-            return 4
+            flor = cbr.flor()
+            if (flor is True):
+                return 5
 
         # Pedir truco
-        if (len(self.mao) >= 2):
-            escolha = cbr.cbr_truco()
-            return None
+        escolha = cbr.cbr_truco()
+        if (escolha is not None):
+            return 4
 
         # Manda o valor de acordo com a rodada, para o CBR escolher as colunas/campos necessários
         escolha = cbr.jogar_rodada(self.rodada)
-
 
         self.jogada += 1
         # Verificar cartas na mão antes de jogar
         return escolha
         # return self.mao.pop(0)
 
+
     def calculaEnvido(self, mao):
         pontos_envido = []
-
         for i in range(len(mao)):
             for j in range(i+1, len(mao)):
-                if(mao[i].retornarNaipe() == mao[j].retornarNaipe()):
+                if (mao[i].retornarNaipe() == mao[j].retornarNaipe()):
                     pontos_envido.append(20 + (mao[0].retornaPontoEnvido(mao[i]) + mao[0].retornaPontoEnvido(mao[j])))
                 else:
                     pontos_envido.append(max(mao[0].retornaPontoEnvido(mao[i]), mao[0].retornaPontoEnvido(mao[j])))
         
         return max(pontos_envido)
 
+
     def retorna_pontos_envido(self):
         return self.envido
 
 
     def AjustaIndicesMao(self, tam_mao):
-        if(tam_mao) == 2:
+        if (tam_mao) == 2:
             return [0, 1]
         
-        if(tam_mao) == 1:
+        if (tam_mao) == 1:
             return [0]
 
     def mostrarMao(self):
@@ -150,10 +154,10 @@ class Bot():
         # for i in reversed(range(len(df[ordem_carta_jogada].value_counts().index.to_list()))): 
         #     aux = df[ordem_carta_jogada].value_counts().index.to_list()[i]
             
-        #     if(carta_escolhida in self.pontuacaoCartas):
+        #     if (carta_escolhida in self.pontuacaoCartas):
         #         carta_escolhida = aux
 
-        # if(carta_escolhida == 0):
+        # if (carta_escolhida == 0):
         #     valor_referencia = df[ordem_carta_jogada].value_counts().index.to_list()[0]
         #     carta_escolhida = min(self.pontuacaoCartas, key=lambda x:abs(x-valor_referencia))
 

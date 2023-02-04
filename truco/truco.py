@@ -19,13 +19,13 @@ class Truco():
             self.jogador_bloqueado = 1
 
     def pedir_truco(self, quemPediu, jogador1, jogador2):
-        if(self.estado_atual == ""):
+        if (self.estado_atual == ""):
             estado = self.pedir_truco(quemPediu, jogador1, jogador2)
             self.estado_atual = "truco"
-        elif(self.estado_atual == "truco"):
+        elif (self.estado_atual == "truco"):
             estado = self.pedir_retruco(quemPediu, jogador1, jogador2)
             self.estado_atual = "truco"
-        elif(self.estado_atual == "retruco"):
+        elif (self.estado_atual == "retruco"):
             estado = self.pedir_retruco(quemPediu, jogador1, jogador2)
             self.estado_atual = "vale4"
         return estado
@@ -33,10 +33,10 @@ class Truco():
     def pedir_truco(self, quemPediu, jogador1, jogador2):
         print("Truco")
         self.estado_atual = "truco"
-        if(quemPediu == self.jogador_bloqueado):
+        if (quemPediu == self.jogador_bloqueado):
             return None
 
-        if(quemPediu == 1):
+        if (quemPediu == 1):
             escolha = jogador2.avaliarTruco()
             self.jogador_bloqueado = 1
 
@@ -49,7 +49,7 @@ class Truco():
 
         if escolha == 0:
             print(f"fugiu")
-            if(quemPediu == jogador1):
+            if (quemPediu == jogador1):
                 jogador1.pontos += 1
 
             else:
@@ -72,10 +72,10 @@ class Truco():
         self.valor_aposta = 3
         self.estado_atual = "retruco"
         print("Retruco")
-        if(quemPediu == self.jogador_bloqueado):
+        if (quemPediu == self.jogador_bloqueado):
             return None
 
-        if(quemPediu == 1):
+        if (quemPediu == 1):
             escolha = jogador2.avaliarTruco()
             self.jogador_bloqueado = 1
 
@@ -88,7 +88,7 @@ class Truco():
 
         if escolha == 0:
             print(f"fugiu")
-            if(quemPediu == jogador1):
+            if (quemPediu == jogador1):
                 jogador1.pontos += 2
 
             else:
@@ -110,10 +110,10 @@ class Truco():
         self.valor_aposta = 4
         self.estado_atual = "vale4"
         print("Vale 4")
-        if(quemPediu == self.jogador_bloqueado):
+        if (quemPediu == self.jogador_bloqueado):
             return None
 
-        if(quemPediu == 1):
+        if (quemPediu == 1):
             escolha = jogador2.avaliarTruco()
             self.jogador_bloqueado = 1
 
@@ -126,7 +126,7 @@ class Truco():
 
         if escolha == 0:
             print(f"fugiu")
-            if(quemPediu == jogador1):
+            if (quemPediu == jogador1):
                 jogador1.pontos += 3
 
             else:

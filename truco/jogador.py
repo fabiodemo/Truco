@@ -61,7 +61,7 @@ class Jogador():
 
         for i in range(len(mao)):
             for j in range(i+1, len(mao)):
-                if(mao[i].retornarNaipe() == mao[j].retornarNaipe()):
+                if (mao[i].retornarNaipe() == mao[j].retornarNaipe()):
                     pontos_envido.append(20 + (mao[0].retornaPontoEnvido(mao[i]) + mao[0].retornaPontoEnvido(mao[j])))
                 else:
                     pontos_envido.append(max(mao[0].retornaPontoEnvido(mao[i]), mao[0].retornaPontoEnvido(mao[j])))

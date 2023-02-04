@@ -31,7 +31,7 @@ def turno_do_humano(jogador2):
         carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
 
         # Chama a flor antes do jogador1 jogar envido 
-        if(len(jogador1.checaMao()) > 2 and (carta_escolhida == 6) and (jogador2.flor is True)):
+        if (len(jogador1.checaMao()) > 2 and (carta_escolhida == 6) and (jogador2.flor is True)):
             print('bloqueou a flor')
             jogador2.pedir_flor(jogador2, jogador1, jogador2)
         
@@ -45,7 +45,7 @@ def turno_do_humano(jogador2):
         elif (carta_escolhida == 4):
             chamou_truco = (truco.pedir_truco(1, jogador1, jogador2))
             print(f"temp: {chamou_truco}")
-            if((chamou_truco) is False):
+            if ((chamou_truco) is False):
                 print('pontos truco', truco.retornar_valor_aposta())
                 return -1
                 break
@@ -92,7 +92,7 @@ def turno_do_bot(carta_jogador_01=None):
         elif (carta_escolhida == 4):
             chamou_truco = (truco.pedir_truco(1, jogador2, jogador1))
             print(f"temp: {chamou_truco}")
-            if((chamou_truco) is False):
+            if ((chamou_truco) is False):
                 print('pontos truco', truco.retornar_valor_aposta())
                 return -1
                 break
@@ -119,7 +119,7 @@ def turno_do_bot(carta_jogador_01=None):
     if carta_jogador_01:
         pass
 
-    if(carta_jogador_02 is not None):
+    if (carta_jogador_02 is not None):
         carta2 = Carta(carta_jogador_02.retornarNumero(), carta_jogador_02.retornarNaipe())
     return carta2
 
@@ -186,7 +186,7 @@ while True:
     
     if (carta_jogador_01 == -1 or carta_jogador_02 == -1):
         truco_fugiu = True
-        if(carta_jogador_01 == -1):
+        if (carta_jogador_01 == -1):
             jogo.jogador_fugiu(jogador1, jogador1, jogador2, -1)
             interface.mostrar_placar_total_jogador_fugiu(jogador1, jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
         
@@ -216,7 +216,7 @@ while True:
         interface.mostrar_placar_total(jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
 
     # Testar situação corrigida: empate em 2 pontos, e o jogo trava sem possibidade de fazer mais nada.
-    if(not(jogador1.checaMao()) and not(jogador2.checaMao()) or truco_fugiu is True):
+    if (not(jogador1.checaMao()) and not(jogador2.checaMao()) or truco_fugiu is True):
         pontos_truco = truco.retornar_valor_aposta()
         ocultar_pontos_ac = True
         if truco_fugiu is True:

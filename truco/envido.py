@@ -14,7 +14,7 @@ class Envido():
         self.ultimo_tipo_envido = "Envido"
         print("Jogador pediu Envido")
 
-        if(quem_pediu == 1):
+        if (quem_pediu == 1):
             self.jogador_pediu_envido = 1
             escolha = jogador2.avaliarEnvido()
 
@@ -27,7 +27,7 @@ class Envido():
 
         if escolha == 0:
             print(f"fugiu")
-            if(quem_pediu == jogador1):
+            if (quem_pediu == jogador1):
                 jogador1.pontos += 1
                 return
 
@@ -54,7 +54,7 @@ class Envido():
         self.ultimo_tipo_envido = "Real Envido"
         print("Jogador pediu Envido")
 
-        if(quem_pediu == 1):
+        if (quem_pediu == 1):
             self.jogador_pediu_envido = 1
             escolha = jogador2.avaliarEnvido()
 
@@ -67,7 +67,7 @@ class Envido():
 
         if escolha == 0:
             print(f"fugiu")
-            if(quem_pediu == jogador1):
+            if (quem_pediu == jogador1):
                 jogador1.pontos += 1
 
             else:
@@ -88,7 +88,7 @@ class Envido():
         self.ultimo_tipo_envido = "Falta Envido"
         print("Jogador pediu Envido")
 
-        if(quem_pediu == 1):
+        if (quem_pediu == 1):
             self.jogador_pediu_envido = 1
             escolha = jogador2.avaliarEnvido()
 
@@ -101,7 +101,7 @@ class Envido():
 
         if escolha == 0:
             print(f"fugiu")
-            if(quem_pediu == jogador1):
+            if (quem_pediu == jogador1):
                 jogador1.pontos += 1
 
             else:

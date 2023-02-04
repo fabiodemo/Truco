@@ -4,7 +4,7 @@ import os
 class Dados():
     def __init__(self):
         self.casos = self.tratamento_inicial_df()
-        self.registro = pd.read_csv('modelo_registro.csv', index_col='idMao')
+        self.registro = pd.read_csv('modelo_registro.csv', index_col='idMao').fillna(-100)
 
     def tratamento_inicial_df(self):
         df = pd.read_csv('dbtrucoimitacao_maos.csv', index_col='idMao')
