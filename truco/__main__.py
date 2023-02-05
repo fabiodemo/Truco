@@ -23,6 +23,7 @@ def reiniciarJogo():
     # jogo.resetarTrucoPontos()
     truco.resetar_pontos_truco()
 
+
 def turno_do_humano(jogador2):
     carta_escolhida = -1
     while (carta_escolhida > len(jogador1.checa_mao()) or int(carta_escolhida) <= 1):
@@ -69,6 +70,7 @@ def turno_do_humano(jogador2):
 
     carta1 = Carta(carta_jogador_01.retornar_numero(), carta_jogador_01.retornar_naipe())
     return carta1
+
 
 def turno_do_bot(carta_jogador_01=None):
     jogador2.enriquecer_bot(cbr, carta_jogador_01.retornar_pontos_carta())
@@ -140,7 +142,6 @@ pontos_truco = 0
 carta_jogador_01 = 0
 carta_jogador_02 = 0
 ganhador = 0
-
 nome = str(input("Nome Jogador 1: "))
 jogador1 = jogo.criar_jogador(nome, baralho)
 nome = str(input("Nome Jogador 2 (Bot): "))
@@ -237,7 +238,6 @@ while True:
             reiniciarJogo()
         
         interface.mostrar_placar_total(jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
-
 
     if (ocultar_pontos_ac is False):
         interface.mostrar_placar_rodadas(jogador1.nome, jogador1.rodadas, jogador2.nome, jogador2.rodadas)

@@ -5,43 +5,32 @@ from .pontos import MANILHA, CARTAS_VALORES
 import random
 
 class Jogo():
-
     def __init__(self):
         self.rodadas = []
         self.trucoPontos = 1
     
+
     def iniciarJogo(self):
         pass
+
 
     def criar_jogador(self, nome, baralho):
         jogador = Jogador(nome)
         jogador.criar_mao(baralho)
         return jogador
 
+
     def criar_bot(self, nome, baralho):
         bot = Bot(nome)
         bot.criar_mao(baralho)
         return bot
 
+
     def verificar_ganhador(self, carta1, carta2):
-        # print("numeros: ")
-        # print(str(carta1.numero))
-        # print(str(carta2.numero))
         ganhador = self.verificar_carta_vencedora(carta1, carta2)
         print("\nCarta ganhadora: ")
         print(ganhador.exibir_carta())
         return ganhador
-        # if self.verificar_carta_vencedora(carta1, carta2) is None:
-        #     if carta1.numero == carta2.numero:
-        #         ganhador = "Empate"
-        #     elif CARTAS_VALORES[str(carta1.numero)] > CARTAS_VALORES[str(carta2.numero)]:
-        #         ganhador = carta1
-        #     else:
-        #         ganhador = carta2
-        #     print(ganhador)
-        #     return ganhador
-        # else:
-        #     return self.verificar_carta_vencedora(carta1, carta2)
 
     
     def adicionar_rodada(self, jogador1, jogador2, carta1, carta2, ganhador):
@@ -61,6 +50,7 @@ class Jogo():
         else:
             return "Erro"
 
+
     def quem_joga_primeiro(self, jogador1, jogador2, carta1, carta2, ganhador):
         if carta1 == ganhador:
             jogador1.primeiro = True
@@ -72,6 +62,7 @@ class Jogo():
         
         elif ganhador == "Empate":
             pass
+
 
     def quem_inicia_rodada(self, jogador1, jogador2):
         if jogador1.rodadas == 0 and jogador2.rodadas == 0:
@@ -85,6 +76,7 @@ class Jogo():
                 jogador2.ultimo = False
                 jogador1.primeiro = False
                 jogador2.primeiro = True
+
 
     def verificar_carta_vencedora(self, carta_jogador_01, carta_jogador_02):
         if (str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in MANILHA and (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA:
@@ -109,6 +101,7 @@ class Jogo():
         
             else:
                 return "Empate"
+
 
     def jogador_fugiu(self, jogador, jogador1, jogador2, pontos):
         print('jogador {jogador.nome} fugiu!')

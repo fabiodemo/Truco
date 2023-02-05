@@ -1,7 +1,6 @@
 from .bot import Bot
 
 class Truco():
-    
     def __init__(self):
         self.valor_aposta = 1
         self.jogador_bloqueado = 0
@@ -11,12 +10,14 @@ class Truco():
         self.estado_atual = ""
         self.jogador_fugiu = 0
 
+
     def reverter_jogador_bloqueado(self):
         if (self.jogador_bloqueado == 1):
             self.jogador_bloqueado = 2
         
         else:
             self.jogador_bloqueado = 1
+
 
     def pedir_truco(self, quemPediu, jogador1, jogador2):
         if (self.estado_atual == ""):
@@ -29,6 +30,7 @@ class Truco():
             estado = self.pedir_retruco(quemPediu, jogador1, jogador2)
             self.estado_atual = "vale4"
         return estado
+
 
     def pedir_truco(self, quemPediu, jogador1, jogador2):
         print("Truco")
@@ -106,6 +108,7 @@ class Truco():
             self.reverter_jogador_bloqueado()
             return self.pedir_vale4(jogador1, jogador1, jogador2)
 
+
     def pedir_vale4(self, quemPediu, jogador1, jogador2):
         self.valor_aposta = 4
         self.estado_atual = "vale4"
@@ -143,8 +146,10 @@ class Truco():
     def retornar_valor_aposta(self):
         return self.valor_aposta
 
+
     def retornar_quem_fugiu(self):
         return self.retornar_quem_fugiu
+    
     
     def resetar_pontos_truco(self):
         self.valor_aposta = 1

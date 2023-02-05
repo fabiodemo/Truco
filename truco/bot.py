@@ -2,7 +2,6 @@ import random
 import pandas as pd
 
 class Bot():
-
     def __init__(self, nome):
         self.nome = nome
         self.mao = []
@@ -20,6 +19,7 @@ class Bot():
         self.pediu_flor = False
         self.pediu_truco = False
 
+
     def criar_mao(self, baralho):
         self.indices = [0, 1, 2]
         
@@ -30,11 +30,14 @@ class Bot():
         self.pontuacao_cartas, self.mao_rank = self.mao[0].classificar_carta(self.mao)
         self.qualidade_mao = self.calcular_qualidade_mao(self.pontuacao_cartas, self.mao_rank)
 
+
     def enriquecer_bot(self, cbr, carta_jogador_01):
         cbr.enriquecer_agente(self.rodada, self.pontuacao_cartas, self.mao_rank, self.qualidade_mao, carta_jogador_01, carta_jogador_01)
 
+
     def enriquecer_cartas_bot(self, cbr, carta_jogador_02):
         cbr.enriquecer_jogadas_bot(carta_jogador_02)
+
 
     def jogar_carta(self, cbr, truco):
         # jogada = self.avaliar_jogada()
@@ -80,12 +83,14 @@ class Bot():
     def retorna_pontos_envido(self):
         return self.envido
 
+
     def ajustar_indices(self, i):
         print(f'\n{self.mao_rank},{self.indices},{self.pontuacao_cartas},{self.mao}')
         self.mao_rank.pop(i)
         self.indices.pop(i)
         self.pontuacao_cartas.pop(i)
         # self.mao.pop(i)
+
 
     def ajustar_indice_mao(self, tam_mao):
         if (tam_mao) == 2:
@@ -94,18 +99,22 @@ class Bot():
         if (tam_mao) == 1:
             return [0]
 
+
     def mostrar_mao(self):
         i = 0
         for carta in self.mao:
             carta.exibir_carta(i)
             i += 1
         
+
     def adicionar_pontos(self, pontos):
         self.pontos += pontos
     
+
     def adicionar_rodada(self):
         self.rodadas += 1
     
+
     def resetar(self):
         self.mao = []
         self.mao_rank = []
@@ -119,8 +128,10 @@ class Bot():
         self.pediu_flor = False
         self.pediu_truco = False
 
+
     def checa_mao(self):
         return self.mao
+
 
     def checa_flor(self):
         # print('checa_flor')
@@ -128,6 +139,7 @@ class Bot():
             print('Flor do Bot!')
             return True
         return False
+
 
     def avaliar_truco(self):
         return 2
@@ -146,8 +158,10 @@ class Bot():
             return True
         return False
 
+
     def avaliar_envido(self):
         return None
+
 
     def calcular_qualidade_mao(self, lista_pontuacao, lista_mao_rank):
         m1 = (2 / ((1/lista_pontuacao[int(lista_mao_rank.index('Alta'))]) + (1/lista_pontuacao[int(lista_mao_rank.index('Media'))])))

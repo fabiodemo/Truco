@@ -2,42 +2,9 @@ import itertools
 from .pontos import MANILHA, CARTAS_VALORES, ENVIDO
 
 class Carta():
-
     def __init__(self, numero, naipe):
         self.numero = numero
         self.naipe = naipe
-
-    # def verificarCarta(self, carta_01, carta_02):
-    #     if self.CARTAS_VALORES[str(carta_01.numero)] > self.CARTAS_VALORES[str(carta_02.numero)]:
-    #         return carta_01
-    #     elif self.CARTAS_VALORES[str(carta_01.retornar_numero())] < self.CARTAS_VALORES[str(carta_02.retornar_numero())]:
-    #         return carta_02
-    #     else:
-    #         return "Empate"
-
-    # def verificarCarta(self, carta_01, carta_02):
-    #     print(1)
-    #     if (str(carta_01.numero)+" de "+carta_01.naipe) in self.MANILHA and (str(carta_02.numero)+" de "+carta_02.naipe) in self.MANILHA:
-    #         print(2)
-    #         if self.MANILHA[str(carta_01.numero)+" de "+carta_01.naipe] > self.MANILHA[str(carta_02.numero)+" de "+carta_02.naipe]:
-    #             return carta_01
-    #             print(3)
-    #         elif self.MANILHA[str(carta_02.numero)+" de "+carta_02.naipe] > self.MANILHA[str(carta_01.numero)+" de "+carta_01.naipe]:
-    #             return carta_02
-    #             print(4)
-    #     elif (str(carta_01.numero)+" de "+carta_01.naipe) in self.MANILHA:
-    #         return carta_01
-    #         print(5)
-    #     elif (str(carta_02.numero)+" de "+carta_02.naipe) in self.MANILHA:
-    #         return carta_02
-    #         print(6)
-    #     else:
-    #         if self.CARTAS_VALORES[str(carta_01.numero)] > self.CARTAS_VALORES[str(carta_02.numero)]:
-    #             return carta_01
-    #         elif self.CARTAS_VALORES[str(carta_01.retornar_numero())] < self.CARTAS_VALORES[str(carta_02.retornar_numero())]:
-    #             return carta_02
-    #         else:
-    #             return "Empate"
 
     def verificar_carta_alta(self, carta_01, carta_02):
         if (str(carta_01.numero)+" de "+carta_01.naipe) in MANILHA and (str(carta_02.numero)+" de "+carta_02.naipe) in MANILHA:
@@ -57,7 +24,8 @@ class Carta():
             else:
                 return carta_02
         return carta_01
-        
+
+
     def verificar_carta_baixa(self, carta_01, carta_02):
         if (str(carta_01.numero)+" de "+carta_01.naipe) in MANILHA and (str(carta_02.numero)+" de "+carta_02.naipe) in MANILHA:
             if MANILHA[str(carta_01.numero)+" de "+carta_01.naipe] < MANILHA[str(carta_02.numero)+" de "+carta_02.naipe]:
@@ -75,6 +43,7 @@ class Carta():
                 return carta_02
         return carta_01
 
+
     def carta_manilha(self, carta):
         if (((carta.numero)+" de "+carta.naipe) in self.MANILHA):
             return True
@@ -86,6 +55,7 @@ class Carta():
             return MANILHA[str(carta.numero)+" de "+carta.naipe]
         else:
             return CARTAS_VALORES[str(carta.numero)]
+
 
     def classificar_carta(self, cartas):
         carta_alta = self.verificar_carta_alta(self.verificar_carta_alta(cartas[0], cartas[1]), cartas[2])
@@ -106,8 +76,8 @@ class Carta():
                 lista_pontos[i] = self.retornar_pontos_carta(cartas[i])
                 lista_classificacao[i] = 'Media'
 
-
         return lista_pontos, lista_classificacao
+
 
     def exibir_carta(self, i=None):
         if i == None:
@@ -123,14 +93,33 @@ class Carta():
         else:
             print(f"[{i}] {self.numero} de {self.naipe}")
     
+
     def retornar_pontos_envido(self, carta):
         # print(carta.retornar_numero())
         return ENVIDO[str(carta.retornar_numero())]
 
+
     def retornar_numero(self):
         return self.numero
     
+
     def retornar_naipe(self):
         return self.naipe
 
 
+    def retornar_naipe_codificado(self):
+        naipe = self.naipe 
+        if (naipe == 'ESPADAS'):
+            return 1
+        elif (naipe == 'OUROS'):
+            return 2
+        elif (naipe == 'BASTOS'):
+            return 3
+        elif (naipe == 'COPAS'):
+            return 4
+    
+    # Codificação exemplo
+    # df.replace('ESPADAS', '1', inplace=True)
+    # df.replace('OURO', '2', inplace=True)
+    # df.replace('BASTOS', '3', inplace=True)
+    # df.replace('COPAS', '4', inplace=True)

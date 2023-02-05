@@ -1,6 +1,5 @@
 
 class Envido():
-    
     def __init__(self):
         self.valor_envido = 2
         self.ultimo_tipo_envido = ""
@@ -48,7 +47,6 @@ class Envido():
             print(f'Falta Envido')
             self.jogador_pediu_falta_envido(quem_pediu, jogador1, jogador2)
 
-        
         
     def jogador_pediu_real_envido(self, quem_pediu, jogador1, jogador2):
         self.ultimo_tipo_envido = "Real Envido"
@@ -127,6 +125,7 @@ class Envido():
 
     def retornar_quem_fugiu(self):
         return self.quem_fugiu
+
 
     def resetar_pontos_envido(self):
         self.valor_envido = 2

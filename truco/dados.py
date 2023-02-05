@@ -6,6 +6,7 @@ class Dados():
         self.casos = self.tratamento_inicial_df()
         self.registro = pd.read_csv('modelo_registro.csv', index_col='idMao').fillna(-100)
 
+
     def tratamento_inicial_df(self):
         colunas = ['idMao', 'jogadorMao', 'cartaAltaRobo', 'cartaMediaRobo', 'cartaBaixaRobo', 'cartaAltaHumano', 'cartaMediaHumano', 'cartaBaixaHumano', 'primeiraCartaRobo', 'primeiraCartaHumano', 'segundaCartaRobo', 'segundaCartaHumano', 'terceiraCartaRobo', 'terceiraCartaHumano', 'ganhadorPrimeiraRodada', 'ganhadorSegundaRodada', 'ganhadorTerceiraRodada', 'quemPediuEnvido', 'quemPediuFaltaEnvido', 'quemPediuRealEnvido', 'pontosEnvidoRobo', 'pontosEnvidoHumano', 'quemNegouEnvido', 'quemGanhouEnvido', 'quemFlor', 'quemContraFlor', 'quemContraFlorResto', 'quemNegouFlor', 'pontosFlorRobo', 'pontosFlorHumano', 'quemGanhouFlor', 'quemEscondeuPontosEnvido', 'quemEscondeuPontosFlor', 'quemTruco', 'quemRetruco', 'quemValeQuatro', 'quemNegouTruco', 'quemGanhouTruco','quemEnvidoEnvido', 'quemFlor', 'naipeCartaAltaRobo', 'naipeCartaMediaRobo', 'naipeCartaBaixaRobo', 'naipeCartaAltaHumano', 'naipeCartaMediaHumano', 'naipeCartaBaixaHumano', 'naipePrimeiraCartaRobo', 'naipePrimeiraCartaHumano', 'naipeSegundaCartaRobo', 'naipeSegundaCartaHumano', 'naipeTerceiraCartaRobo', 'naipeTerceiraCartaHumano', 'qualidadeMaoRobo', 'qualidadeMaoHumano']
         df = pd.read_csv('dbtrucoimitacao_maos.csv', usecols=colunas, index_col='idMao')
@@ -24,18 +25,19 @@ class Dados():
         df = df[df > 0] # Desativar essa condição para obter um Bot que vai mais vezes ao baralho
         return df
 
+
     def cartas_jogadas_pelo_bot(self, rodada, carta_robo):
         if (rodada == 'primeira'):
             self.registro.primeiraCartaRobo = carta_robo.retornar_numero()
-            self.registro.naipePrimeiraCartaRobo = carta_robo.retornar_naipe()
+            self.registro.naipePrimeiraCartaRobo = carta_robo.retornar_naipe_codificado()
         
         if (rodada == 'segunda'):
             self.registro.segundaCartaRobo = carta_robo.retornar_numero()
-            self.registro.naipeSegundaCartaRobo = carta_robo.retornar_naipe()
+            self.registro.naipeSegundaCartaRobo = carta_robo.retornar_naipe_codificado()
 
         if (rodada == 'terceira'):
             self.registro.terceiraCartaRobo = carta_robo.retornar_numero()
-            self.registro.naipeTerceiraCartaRobo = carta_robo.retornar_naipe()
+            self.registro.naipeTerceiraCartaRobo = carta_robo.retornar_naipe_codificado()
 
     def primeira_rodada(self, potuacao_cartas, mao_rank, qualidade_mao_bot):  
         self.registro.jogadorMao = 1
@@ -51,19 +53,19 @@ class Dados():
     def segunda_rodada(self, primeira_carta_humano, ganhador_primeira_rodada):
         self.registro.ganhadorPrimeiraRodada = ganhador_primeira_rodada
         self.registro.primeiraCartaHumano = primeira_carta_humano.retornar_numero()
-        self.registro.naipePrimeiraCartaHumano = primeira_carta_humano.retornar_naipe()
+        self.registro.naipePrimeiraCartaHumano = primeira_carta_humano.retornar_naipe_codificado()
     
 
     def terceira_rodada(self, segunda_carta_humano, ganhador_segunda_rodada):
         self.registro.ganhadorSegundaRodada = ganhador_segunda_rodada
         self.registro.SegundaCartaHumano = segunda_carta_humano.retornar_numero()
-        self.registro.naipeSegundaCartaHumano = segunda_carta_humano.retornar_naipe()
+        self.registro.naipeSegundaCartaHumano = segunda_carta_humano.retornar_naipe_codificado()
 
 
     def finalizar_rodadas(self, terceira_carta_humano, ganhador_terceira_rodada):
         self.registro.ganhadorTerceiraRodada = ganhador_terceira_rodada
         self.registro.terceiraCartaHumano = terceira_carta_humano.retornar_numero()
-        self.registro.naipeTerceiraCartaHumano = terceira_carta_humano.retornar_naipe()
+        self.registro.naipeTerceiraCartaHumano = terceira_carta_humano.retornar_naipe_codificado()
 
 
     def envido(self, quem_envido, quem_real_envido, quem_falta_envido, quem_ganhou_envido):
@@ -104,6 +106,7 @@ class Dados():
     def carregar_modelo_zerado(self):
         self.registro = pd.read_csv('../modelo_registro.csv', index_col='idMao')
 
+
     def retornar_registro(self):
         return self.registro
    
@@ -115,6 +118,7 @@ class Dados():
             df.to_csv('jogadas.csv', mode='a', header=False)
 
         # self.registro.to_csv('jogadas.csv')
+
 
     def resetar(self):
         self.casos = self.tratamento_inicial_df()

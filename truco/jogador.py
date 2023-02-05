@@ -1,5 +1,4 @@
 class Jogador():
-
     def __init__(self, nome):
         self.nome = nome
         self.mao = []
@@ -13,6 +12,7 @@ class Jogador():
         self.pediu_flor = False
         self.pediu_truco = False
 
+
     def mostrar_opcoes(self):
         print(f'pontos self.envido: {self.envido}')
         self.mostrar_mao()
@@ -24,14 +24,17 @@ class Jogador():
         if ((len(self.mao) == 3) and (self.envido > 0)):
             print('[6] Envido')
 
+
     def criar_mao(self, baralho):
         for i in range(3):
             self.mao.append(baralho.retirar_carta())
         self.envido = self.calcula_envido(self.mao)
 
+
     def jogar_carta(self, carta_escolhida):
         return self.mao.pop(carta_escolhida)
     
+
     def mostrar_mao(self):
         i = 0
         for carta in self.mao:
@@ -41,21 +44,26 @@ class Jogador():
         # print(cartas)
         # print('\n'.join(map('  '.join, zip(*(carta.desenharCarta(c) for c in cartas)))))
 
+
     def adicionar_pontos(self, pontos):
         self.pontos += pontos
+
 
     def adicionar_rodada(self):
         self.rodadas += 1
     
+
     def resetar(self):
         self.rodadas = 0
         self.mao = []
         self.flor = False
         self.pediu_truco = False
 
+
     def checa_mao(self):
         return self.mao
     
+
     def calcula_envido(self, mao):
         pontos_envido = []
 
@@ -67,6 +75,7 @@ class Jogador():
                     pontos_envido.append(max(mao[0].retornar_pontos_envido(mao[i]), mao[0].retornar_pontos_envido(mao[j])))
         
         return max(pontos_envido)
+    
     
     def checa_flor(self):
         if all(carta.retornar_naipe() == self.mao[0].retornar_naipe() for carta in self.mao):
