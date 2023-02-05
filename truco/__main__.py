@@ -15,7 +15,7 @@ import os
 def reiniciarJogo():
     jogador1.resetar()
     jogador2.resetar()
-    baralho.resetar_baralho()
+    baralho.resetar()
     baralho.criar_baralho()
     baralho.embaralhar()
     jogador1.criar_mao(baralho)
@@ -61,18 +61,18 @@ def turno_do_humano(jogador2):
             envido.pedir_envido(1, jogador1, jogador2)
 
         elif (carta_escolhida == 7):
-            jogador2.adicionarPontos(1)
+            jogador2.adicionar_pontos(1)
             return -1
         
         else:
             print('Selecione um valor válido!')
 
-    carta1 = Carta(carta_jogador_01.retornarNumero(), carta_jogador_01.retornarNaipe())
+    carta1 = Carta(carta_jogador_01.retornar_numero(), carta_jogador_01.retornar_naipe())
     return carta1
 
 def turno_do_bot(carta_jogador_01=None):
     print('\nMAO')
-    jogador2.mostrarMao()
+    jogador2.mostrar_mao()
     carta_escolhida = -1
     while (carta_escolhida > len(jogador2.checa_mao()) or int(carta_escolhida) <= 1):
         print(f"\n<< {jogador2.nome} - Jogador 2 >>")
@@ -109,7 +109,7 @@ def turno_do_bot(carta_jogador_01=None):
 
 
         elif (carta_escolhida == 7):
-            jogador1.adicionarPontos(1)
+            jogador1.adicionar_pontos(1)
             return -1
         
         else:
@@ -120,7 +120,7 @@ def turno_do_bot(carta_jogador_01=None):
     
     # interface.limpar_tela()
     if (carta_jogador_02 is not None):
-        carta2 = Carta(carta_jogador_02.retornarNumero(), carta_jogador_02.retornarNaipe())
+        carta2 = Carta(carta_jogador_02.retornar_numero(), carta_jogador_02.retornar_naipe())
     return carta2
 
 
@@ -204,12 +204,12 @@ while True:
     if (jogador1.rodadas == 2 or jogador2.rodadas == 2):
         ocultar_pontos_ac = True
         if jogador1.rodadas == 2:
-            jogador1.adicionarPontos(truco.retornar_valor_aposta())
+            jogador1.adicionar_pontos(truco.retornar_valor_aposta())
             interface.mostrar_ganhador_rodada(jogador1.nome)
             reiniciarJogo()
 
         elif jogador2.rodadas == 2:
-            jogador2.adicionarPontos(truco.retornar_valor_aposta())
+            jogador2.adicionar_pontos(truco.retornar_valor_aposta())
             interface.mostrar_ganhador_rodada(jogador2.nome)
             reiniciarJogo()
 
@@ -221,17 +221,17 @@ while True:
         ocultar_pontos_ac = True
         if truco_fugiu is True:
             print(f'pontos truco:: {pontos_truco} | {truco.retornar_valor_aposta()}')
-            # jogador1.adicionarPontos(truco.retornar_valor_aposta())
+            # jogador1.adicionar_pontos(truco.retornar_valor_aposta())
             # interface.mostrar_ganhador_rodada(jogador1.nome)
             reiniciarJogo()
         
         elif jogador1.rodadas > jogador2.rodadas:
-            jogador1.adicionarPontos(truco.retornar_valor_aposta())
+            jogador1.adicionar_pontos(truco.retornar_valor_aposta())
             interface.mostrar_ganhador_rodada(jogador1.nome)
             reiniciarJogo()
 
         elif jogador2.rodadas > jogador1.rodadas:
-            jogador2.adicionarPontos(truco.retornar_valor_aposta())
+            jogador2.adicionar_pontos(truco.retornar_valor_aposta())
             interface.mostrar_ganhador_rodada(jogador2.nome)
             reiniciarJogo()
         

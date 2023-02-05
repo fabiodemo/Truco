@@ -38,26 +38,26 @@ class Dados():
 
     def segunda_rodada(self, primeira_carta_robo, primeira_carta_humano, ganhador_primeira_rodada):
         self.registro.ganhadorPrimeiraRodada = ganhador_primeira_rodada
-        self.registro.primeiraCartaRobo = primeira_carta_robo.retornarNumero()
-        self.registro.naipePrimeiraCartaRobo = primeira_carta_robo.retornarNaipe()
-        self.registro.primeiraCartaHumano = primeira_carta_humano.retornarNumero()
-        self.registro.naipePrimeiraCartaHumano = primeira_carta_humano.retornarNaipe()
+        self.registro.primeiraCartaRobo = primeira_carta_robo.retornar_numero()
+        self.registro.naipePrimeiraCartaRobo = primeira_carta_robo.retornar_naipe()
+        self.registro.primeiraCartaHumano = primeira_carta_humano.retornar_numero()
+        self.registro.naipePrimeiraCartaHumano = primeira_carta_humano.retornar_naipe()
     
 
     def terceira_rodada(self, segunda_carta_robo, segunda_carta_humano, ganhador_segunda_rodada):
         self.registro.ganhadorSegundaRodada = ganhador_segunda_rodada
-        self.registro.segundaCartaRobo = segunda_carta_robo.retornarNumero()
-        self.registro.naipeSegundaCartaRobo = segunda_carta_robo.retornarNaipe()
-        self.registro.SegundaCartaHumano = segunda_carta_humano.retornarNumero()
-        self.registro.naipeSegundaCartaHumano = segunda_carta_humano.retornarNaipe()
+        self.registro.segundaCartaRobo = segunda_carta_robo.retornar_numero()
+        self.registro.naipeSegundaCartaRobo = segunda_carta_robo.retornar_naipe()
+        self.registro.SegundaCartaHumano = segunda_carta_humano.retornar_numero()
+        self.registro.naipeSegundaCartaHumano = segunda_carta_humano.retornar_naipe()
 
 
     def finalizar_rodadas(self, terceira_carta_robo, terceira_carta_humano, ganhador_terceira_rodada):
         self.registro.ganhadorTerceiraRodada = ganhador_terceira_rodada
-        self.registro.terceiraCartaRobo = terceira_carta_robo.retornarNumero()
-        self.registro.naipeTerceiraCartaRobo = terceira_carta_robo.retornarNaipe()
-        self.registro.terceiraCartaHumano = terceira_carta_humano.retornarNumero()
-        self.registro.naipeTerceiraCartaHumano = terceira_carta_humano.retornarNaipe()
+        self.registro.terceiraCartaRobo = terceira_carta_robo.retornar_numero()
+        self.registro.naipeTerceiraCartaRobo = terceira_carta_robo.retornar_naipe()
+        self.registro.terceiraCartaHumano = terceira_carta_humano.retornar_numero()
+        self.registro.naipeTerceiraCartaHumano = terceira_carta_humano.retornar_naipe()
 
 
     def envido(self, quem_envido, quem_real_envido, quem_falta_envido, quem_ganhou_envido):

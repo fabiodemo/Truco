@@ -6,10 +6,10 @@ class Bot():
     def __init__(self, nome):
         self.nome = nome
         self.mao = []
-        self.maoRank = []
+        self.mao_rank = []
         self.indices = []
-        self.pontuacaoCartas = []
-        self.forcaMao = 0
+        self.pontuacao_cartas = []
+        self.forca_mao = 0
         self.pontos = 0
         self.rodadas = 0
         self.envido = 0
@@ -18,28 +18,28 @@ class Bot():
         self.ultimo = False
         self.flor = False
         self.pediu_flor = False
-        self.pediuTruco = False
+        self.pediu_truco = False
 
     def criar_mao(self, baralho):
         self.indices = [0, 1, 2]
         
         # Mudar forma de classificação dos dados vindos da base de casos, para ter uma métrica extra de inserção
         for i in range(3):
-            self.mao.append(baralho.retirarCarta())
-        self.flor = self.checaFlor()
-        self.pontuacaoCartas, self.maoRank = self.mao[0].classificarCarta(self.mao)
-        self.forcaMao = self.calcular_forca_mao(self.pontuacaoCartas, self.maoRank)
+            self.mao.append(baralho.retirar_carta())
+        self.flor = self.checa_flor()
+        self.pontuacao_cartas, self.mao_rank = self.mao[0].classificar_carta(self.mao)
+        self.forca_mao = self.calcular_forca_mao(self.pontuacao_cartas, self.mao_rank)
 
     def jogar_carta(self, cbr, truco):
         # jogada = self.avaliar_jogada()
         # Envido
         if ((len(self.mao) == 3)):
-            self.calculaEnvido(self.mao)
+            self.calcula_envido(self.mao)
             envido = cbr.envido(self)
             if (envido is True):
                 return 6
         # Flor
-        if ((len(self.mao)) == 3 and self.flor is False and (self.checaFlor())):
+        if ((len(self.mao)) == 3 and self.flor is False and (self.checa_flor())):
             flor = cbr.flor()
             if (flor is True):
                 return 5
@@ -50,23 +50,23 @@ class Bot():
             return 4
 
         # Manda o valor de acordo com a rodada, para o CBR escolher as colunas/campos necessários
-        escolha = cbr.jogar_carta(self.rodada, self.pontuacaoCartas)
+        escolha = cbr.jogar_carta(self.rodada, self.pontuacao_cartas)
         print(escolha)
-        self.AjustaIndice(escolha)
+        self.ajustar_indices(escolha)
         self.rodada += 1
         # Verificar cartas na mão antes de jogar
         return escolha
         # return self.mao.pop(escolha)
 
 
-    def calculaEnvido(self, mao):
+    def calcula_envido(self, mao):
         pontos_envido = []
         for i in range(len(mao)):
             for j in range(i+1, len(mao)):
-                if (mao[i].retornarNaipe() == mao[j].retornarNaipe()):
-                    pontos_envido.append(20 + (mao[0].retornaPontoEnvido(mao[i]) + mao[0].retornaPontoEnvido(mao[j])))
+                if (mao[i].retornar_naipe() == mao[j].retornar_naipe()):
+                    pontos_envido.append(20 + (mao[0].retornar_pontos_envido(mao[i]) + mao[0].retornar_pontos_envido(mao[j])))
                 else:
-                    pontos_envido.append(max(mao[0].retornaPontoEnvido(mao[i]), mao[0].retornaPontoEnvido(mao[j])))
+                    pontos_envido.append(max(mao[0].retornar_pontos_envido(mao[i]), mao[0].retornar_pontos_envido(mao[j])))
         
         return max(pontos_envido)
 
@@ -74,27 +74,27 @@ class Bot():
     def retorna_pontos_envido(self):
         return self.envido
 
-    def AjustaIndice(self, i):
-        print(f'\n{self.maoRank},{self.indices},{self.pontuacaoCartas},{self.mao}')
-        self.maoRank.pop(i)
+    def ajustar_indices(self, i):
+        print(f'\n{self.mao_rank},{self.indices},{self.pontuacao_cartas},{self.mao}')
+        self.mao_rank.pop(i)
         self.indices.pop(i)
-        self.pontuacaoCartas.pop(i)
+        self.pontuacao_cartas.pop(i)
         # self.mao.pop(i)
 
-    def AjustaIndicesMao(self, tam_mao):
+    def ajustar_indice_mao(self, tam_mao):
         if (tam_mao) == 2:
             return [0, 1]
         
         if (tam_mao) == 1:
             return [0]
 
-    def mostrarMao(self):
+    def mostrar_mao(self):
         i = 0
         for carta in self.mao:
-            carta.printarCarta(i)
+            carta.exibir_carta(i)
             i += 1
         
-    def adicionarPontos(self, pontos):
+    def adicionar_pontos(self, pontos):
         self.pontos += pontos
     
     def adicionar_rodada(self):
@@ -102,54 +102,54 @@ class Bot():
     
     def resetar(self):
         self.mao = []
-        self.maoRank = []
+        self.mao_rank = []
         self.indices = []
-        self.pontuacaoCartas = []
-        self.forcaMao = 0
+        self.pontuacao_cartas = []
+        self.forca_mao = 0
         self.rodadas = 0
         self.envido = 0
         self.rodada = 1
         self.flor = False
         self.pediu_flor = False
-        self.pediuTruco = False
+        self.pediu_truco = False
 
     def checa_mao(self):
         return self.mao
 
-    def checaFlor(self):
-        # print('checaflor')
-        if all(carta.retornarNaipe() == self.mao[0].retornarNaipe() for carta in self.mao):
+    def checa_flor(self):
+        # print('checa_flor')
+        if all(carta.retornar_naipe() == self.mao[0].retornar_naipe() for carta in self.mao):
             print('Flor do Bot!')
             return True
         return False
 
-    def avaliarTruco(self):
+    def avaliar_truco(self):
         return 2
-        # if (self.forcaMao > 50):
+        # if (self.forca_mao > 50):
         #     return 2
 
-        # elif (self.forcaMao > 35):
+        # elif (self.forca_mao > 35):
         #     return 1
 
         # else:
         #     return 0
     
     # implementar retruco do bot
-    def avaliarAumentarTruco(self, possibilidade, cbr):
+    def avaliar_aumentar_truco(self, possibilidade, cbr):
         if (possibilidade):
             return True
         return False
 
-    def avaliarEnvido(self):
+    def avaliar_envido(self):
         return None
 
-    def calcular_forca_mao(self, lista_pontuacao, lista_maorank):
-        m1 = (2 / ((1/lista_pontuacao[int(lista_maorank.index('Alta'))]) + (1/lista_pontuacao[int(lista_maorank.index('Media'))])))
-        m2 = ((2 * lista_pontuacao[int(lista_maorank.index('Media'))]) + (lista_pontuacao[int(lista_maorank.index('Baixa'))])/2+1)
+    def calcular_forca_mao(self, lista_pontuacao, lista_mao_rank):
+        m1 = (2 / ((1/lista_pontuacao[int(lista_mao_rank.index('Alta'))]) + (1/lista_pontuacao[int(lista_mao_rank.index('Media'))])))
+        m2 = ((2 * lista_pontuacao[int(lista_mao_rank.index('Media'))]) + (lista_pontuacao[int(lista_mao_rank.index('Baixa'))])/2+1)
         m3 = ((2 * m1) + m2) / (2+1)
         print(m3)
         
-        self.forcaMao = m3
+        self.forca_mao = m3
 
     # def avaliar_jogada(self):        
         # df = cbr.retornarSimilares(self.modeloRegistro)
@@ -163,17 +163,17 @@ class Bot():
         # for i in reversed(range(len(df[ordem_carta_jogada].value_counts().index.to_list()))): 
         #     aux = df[ordem_carta_jogada].value_counts().index.to_list()[i]
             
-        #     if (carta_escolhida in self.pontuacaoCartas):
+        #     if (carta_escolhida in self.pontuacao_cartas):
         #         carta_escolhida = aux
 
         # if (carta_escolhida == 0):
         #     valor_referencia = df[ordem_carta_jogada].value_counts().index.to_list()[0]
-        #     carta_escolhida = min(self.pontuacaoCartas, key=lambda x:abs(x-valor_referencia))
+        #     carta_escolhida = min(self.pontuacao_cartas, key=lambda x:abs(x-valor_referencia))
 
-        # indice = self.pontuacaoCartas.index(carta_escolhida)
+        # indice = self.pontuacao_cartas.index(carta_escolhida)
         # self.indices.remove(indice)
-        # self.pontuacaoCartas.remove(self.pontuacaoCartas[self.pontuacaoCartas.index(carta_escolhida)])
-        # self.indices = self.AjustaIndicesMao(len(self.indices))
+        # self.pontuacao_cartas.remove(self.pontuacao_cartas[self.pontuacao_cartas.index(carta_escolhida)])
+        # self.indices = self.ajustar_indice_mao(len(self.indices))
         # return self.mao.pop(indice)
 
     # def caseBasedReasoning(self):

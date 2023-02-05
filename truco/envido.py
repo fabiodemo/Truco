@@ -16,7 +16,7 @@ class Envido():
 
         if (quem_pediu == 1):
             self.jogador_pediu_envido = 1
-            escolha = jogador2.avaliarEnvido()
+            escolha = jogador2.avaliar_envido()
 
         else:
             self.jogador_pediu_envido = 2
@@ -56,7 +56,7 @@ class Envido():
 
         if (quem_pediu == 1):
             self.jogador_pediu_envido = 1
-            escolha = jogador2.avaliarEnvido()
+            escolha = jogador2.avaliar_envido()
 
         else:
             self.jogador_pediu_envido = 2
@@ -90,7 +90,7 @@ class Envido():
 
         if (quem_pediu == 1):
             self.jogador_pediu_envido = 1
-            escolha = jogador2.avaliarEnvido()
+            escolha = jogador2.avaliar_envido()
 
         else:
             self.jogador_pediu_envido = 2

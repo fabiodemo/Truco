@@ -28,7 +28,7 @@ class Interface():
 
     def mostrar_carta_jogada(self, jogador, carta):
         print(f"\n{jogador} jogou a carta: ")
-        carta.printarCarta()
+        carta.exibir_carta()
 
     def mostrar_ganhador_rodada(self, jogador):
         print(f"\n{jogador} ganhou a rodada")

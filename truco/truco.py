@@ -37,7 +37,7 @@ class Truco():
             return None
 
         if (quemPediu == 1):
-            escolha = jogador2.avaliarTruco()
+            escolha = jogador2.avaliar_truco()
             self.jogador_bloqueado = 1
 
         else:
@@ -76,7 +76,7 @@ class Truco():
             return None
 
         if (quemPediu == 1):
-            escolha = jogador2.avaliarTruco()
+            escolha = jogador2.avaliar_truco()
             self.jogador_bloqueado = 1
 
         else:
@@ -114,7 +114,7 @@ class Truco():
             return None
 
         if (quemPediu == 1):
-            escolha = jogador2.avaliarTruco()
+            escolha = jogador2.avaliar_truco()
             self.jogador_bloqueado = 1
 
         else:

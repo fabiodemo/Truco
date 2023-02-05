@@ -27,7 +27,7 @@ class Cbr():
         return NearestNeighbors(n_neighbors=100, algorithm='ball_tree').fit(self.dataset)
 
 
-    def jogar_carta(self, rodada, pontuacaoCartas):
+    def jogar_carta(self, rodada, pontuacao_cartas):
         registro = self.dados.retornar_registro()
         warnings.simplefilter(action='ignore', category=UserWarning)
         distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
@@ -41,12 +41,12 @@ class Cbr():
         valor_referencia = jogadas_vencidas[ordem_carta_jogada].value_counts().index.to_list()[0]
         if (valor_referencia <= 0): 
             return -1
-        carta_escolhida = min(pontuacaoCartas, key=lambda x:abs(x-valor_referencia))
+        carta_escolhida = min(pontuacao_cartas, key=lambda x:abs(x-valor_referencia))
         # print(jogadas_vencidas[ordem_carta_jogada].value_counts())
-        print(pontuacaoCartas)
+        print(pontuacao_cartas)
         print(carta_escolhida)
         # return carta_escolhida
-        return pontuacaoCartas.index(int(carta_escolhida))
+        return pontuacao_cartas.index(int(carta_escolhida))
 
 
     def truco(self, quem_pediu):
@@ -68,10 +68,10 @@ class Cbr():
         pass
 
 
-    def jogar_rodada(self, jogador2, rodada, pontuacaoCartas):
+    def jogar_rodada(self, jogador2, rodada, pontuacao_cartas):
 
         # truco = self.truco(jogador2)
         # if (truco is True):
         #     return 4
 
-        return self.jogar_carta(rodada, pontuacaoCartas)
+        return self.jogar_carta(rodada, pontuacao_cartas)

@@ -29,7 +29,7 @@ class Jogo():
         # print(str(carta2.numero))
         ganhador = self.verificar_carta_vencedora(carta1, carta2)
         print("\nCarta ganhadora: ")
-        print(ganhador.printarCarta())
+        print(ganhador.exibir_carta())
         return ganhador
         # if self.verificar_carta_vencedora(carta1, carta2) is None:
         #     if carta1.numero == carta2.numero:
@@ -104,7 +104,7 @@ class Jogo():
             if CARTAS_VALORES[str(carta_jogador_01.numero)] >= CARTAS_VALORES[str(carta_jogador_02.numero)]:
                 return carta_jogador_01
         
-            elif CARTAS_VALORES[str(carta_jogador_01.retornarNumero())] < CARTAS_VALORES[str(carta_jogador_02.retornarNumero())]:
+            elif CARTAS_VALORES[str(carta_jogador_01.retornar_numero())] < CARTAS_VALORES[str(carta_jogador_02.retornar_numero())]:
                 return carta_jogador_02
         
             else:

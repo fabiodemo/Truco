@@ -10,7 +10,7 @@ class Carta():
     # def verificarCarta(self, carta_01, carta_02):
     #     if self.CARTAS_VALORES[str(carta_01.numero)] > self.CARTAS_VALORES[str(carta_02.numero)]:
     #         return carta_01
-    #     elif self.CARTAS_VALORES[str(carta_01.retornarNumero())] < self.CARTAS_VALORES[str(carta_02.retornarNumero())]:
+    #     elif self.CARTAS_VALORES[str(carta_01.retornar_numero())] < self.CARTAS_VALORES[str(carta_02.retornar_numero())]:
     #         return carta_02
     #     else:
     #         return "Empate"
@@ -34,12 +34,12 @@ class Carta():
     #     else:
     #         if self.CARTAS_VALORES[str(carta_01.numero)] > self.CARTAS_VALORES[str(carta_02.numero)]:
     #             return carta_01
-    #         elif self.CARTAS_VALORES[str(carta_01.retornarNumero())] < self.CARTAS_VALORES[str(carta_02.retornarNumero())]:
+    #         elif self.CARTAS_VALORES[str(carta_01.retornar_numero())] < self.CARTAS_VALORES[str(carta_02.retornar_numero())]:
     #             return carta_02
     #         else:
     #             return "Empate"
 
-    def verificarCartaAlta(self, carta_01, carta_02):
+    def verificar_carta_alta(self, carta_01, carta_02):
         if (str(carta_01.numero)+" de "+carta_01.naipe) in MANILHA and (str(carta_02.numero)+" de "+carta_02.naipe) in MANILHA:
             if MANILHA[str(carta_01.numero)+" de "+carta_01.naipe] > MANILHA[str(carta_02.numero)+" de "+carta_02.naipe]:
                 return carta_01
@@ -58,7 +58,7 @@ class Carta():
                 return carta_02
         return carta_01
         
-    def verificarCartaBaixa(self, carta_01, carta_02):
+    def verificar_carta_baixa(self, carta_01, carta_02):
         if (str(carta_01.numero)+" de "+carta_01.naipe) in MANILHA and (str(carta_02.numero)+" de "+carta_02.naipe) in MANILHA:
             if MANILHA[str(carta_01.numero)+" de "+carta_01.naipe] < MANILHA[str(carta_02.numero)+" de "+carta_02.naipe]:
                 return carta_01
@@ -75,41 +75,41 @@ class Carta():
                 return carta_02
         return carta_01
 
-    def cartaManilha(self, carta):
+    def carta_manilha(self, carta):
         if (((carta.numero)+" de "+carta.naipe) in self.MANILHA):
             return True
         return False
 
     
-    def retornarPontosCarta(self, carta):
+    def retornar_pontos_carta(self, carta):
         if (str(carta.numero)+" de "+carta.naipe) in MANILHA:
             return MANILHA[str(carta.numero)+" de "+carta.naipe]
         else:
             return CARTAS_VALORES[str(carta.numero)]
 
-    def classificarCarta(self, cartas):
-        carta_alta = self.verificarCartaAlta(self.verificarCartaAlta(cartas[0], cartas[1]), cartas[2])
-        carta_baixa = self.verificarCartaBaixa(self.verificarCartaBaixa(cartas[0], cartas[1]), cartas[2])
+    def classificar_carta(self, cartas):
+        carta_alta = self.verificar_carta_alta(self.verificar_carta_alta(cartas[0], cartas[1]), cartas[2])
+        carta_baixa = self.verificar_carta_baixa(self.verificar_carta_baixa(cartas[0], cartas[1]), cartas[2])
         lista_classificacao = ['', '', '']
         lista_pontos = ['', '', '']
         
         for i in range(len(lista_classificacao)):
             if carta_alta == cartas[i]: 
-                lista_pontos[i] = self.retornarPontosCarta(cartas[i])
+                lista_pontos[i] = self.retornar_pontos_carta(cartas[i])
                 lista_classificacao[i] = 'Alta'
             
             if carta_baixa == cartas[i]: 
-                lista_pontos[i] = self.retornarPontosCarta(cartas[i])
+                lista_pontos[i] = self.retornar_pontos_carta(cartas[i])
                 lista_classificacao[i] = 'Baixa'
             
             if not lista_classificacao[i]: 
-                lista_pontos[i] = self.retornarPontosCarta(cartas[i])
+                lista_pontos[i] = self.retornar_pontos_carta(cartas[i])
                 lista_classificacao[i] = 'Media'
 
 
         return lista_pontos, lista_classificacao
 
-    def printarCarta(self, i=None):
+    def exibir_carta(self, i=None):
         if i == None:
             i = ""
         if self.numero == 1 and self.naipe == 'Espadas':
@@ -123,14 +123,14 @@ class Carta():
         else:
             print(f"[{i}] {self.numero} de {self.naipe}")
     
-    def retornaPontoEnvido(self, carta):
-        # print(carta.retornarNumero())
-        return ENVIDO[str(carta.retornarNumero())]
+    def retornar_pontos_envido(self, carta):
+        # print(carta.retornar_numero())
+        return ENVIDO[str(carta.retornar_numero())]
 
-    def retornarNumero(self):
+    def retornar_numero(self):
         return self.numero
     
-    def retornarNaipe(self):
+    def retornar_naipe(self):
         return self.naipe
 
 

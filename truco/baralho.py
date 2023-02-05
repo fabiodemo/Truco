@@ -19,22 +19,14 @@ class Baralho():
     def embaralhar(self):
         random.shuffle(self.cartas)
 
-    def retirarCarta(self):
+    def retirar_carta(self):
         return self.cartas.pop()
     
-    def resetar_baralho(self):
+    def resetar(self):
         self.vira = []
         self.manilhas = []
         self.cartas = []
-
-    def printarVira(self):
-        for v in self.vira:
-            v.printarCarta()
-
-    def printarManilhas(self):
-        for m in self.manilhas:
-            m.printarCarta()
     
-    def printarBaralho(self):
+    def printar_baralho(self):
         for c in self.cartas:
-            c.printarCarta()
+            c.exibir_carta()
