@@ -71,6 +71,7 @@ def turno_do_humano(jogador2):
     return carta1
 
 def turno_do_bot(carta_jogador_01=None):
+    jogador2.enriquecer_bot()
     print('\nMAO')
     jogador2.mostrar_mao()
     carta_escolhida = -1
