@@ -86,10 +86,12 @@ def turno_do_bot(carta_jogador_01=None):
             interface.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados")
         
         if (carta_escolhida <= len(jogador2.checaMao()) and int(carta_escolhida) >= 0):
-            carta_jogador_02 = jogador2.jogar_carta(carta_escolhida, truco)
+            #carta_jogador_02 = jogador2.jogar_carta(carta_escolhida, truco)
+            
             # interface.limpar_tela()
 
             # print(f'carta escolhida {carta_escolhida} \n carta_jogador_01 {carta_jogador_01}')
+            carta_jogador_02 = jogador2.mao.pop(carta_escolhida)
             break
 
         elif (carta_escolhida == 4):
@@ -115,13 +117,8 @@ def turno_do_bot(carta_jogador_01=None):
         # carta_jogador_02 = jogador2.jogarCarta(0)
         # carta_escolhida = 0
         break
-
-
+    
     # interface.limpar_tela()
-
-    if carta_jogador_01:
-        pass
-
     if (carta_jogador_02 is not None):
         carta2 = Carta(carta_jogador_02.retornarNumero(), carta_jogador_02.retornarNaipe())
     return carta2

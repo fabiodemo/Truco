@@ -13,12 +13,12 @@ class Bot():
         self.pontos = 0
         self.rodadas = 0
         self.envido = 0
+        self.rodada = 1
         self.primeiro = False
         self.ultimo = False
         self.flor = False
         self.pediu_flor = False
         self.pediuTruco = False
-        self.rodada = 1
 
     def criarMao(self, baralho):
         self.indices = [0, 1, 2]
@@ -59,7 +59,7 @@ class Bot():
         self.rodada += 1
         # Verificar cartas na mão antes de jogar
         return escolha
-        # return self.mao.pop(0)
+        # return self.mao.pop(escolha)
 
 
     def calculaEnvido(self, mao):
@@ -82,7 +82,7 @@ class Bot():
         self.maoRank.pop(i)
         self.indices.pop(i)
         self.pontuacaoCartas.pop(i)
-        self.mao.pop(i)
+        # self.mao.pop(i)
 
     def AjustaIndicesMao(self, tam_mao):
         if (tam_mao) == 2:
@@ -104,9 +104,17 @@ class Bot():
         self.rodadas += 1
     
     def resetar(self):
-        self.rodadas = 0
         self.mao = []
+        self.maoRank = []
+        self.indices = []
+        self.pontuacaoCartas = []
+        self.forcaMao = 0
+        self.rodadas = 0
+        self.envido = 0
+        self.rodada = 1
         self.flor = False
+        self.pediu_flor = False
+        self.pediuTruco = False
 
     def checaMao(self):
         return self.mao
@@ -175,7 +183,6 @@ class Bot():
         # return self.mao.pop(indice)
 
     # def caseBasedReasoning(self):
-
 '''
 - Centralizar toda a CBR em uma unica função, que retorna qual seria o tipo de jogada;
 - Quando necessário usar outra inteligência/agente, só substitui-la diretamente na classe bot.
