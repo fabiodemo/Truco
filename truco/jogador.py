@@ -13,7 +13,7 @@ class Jogador():
         self.pediu_flor = False
         self.pediuTruco = False
 
-    def mostrarOpcoes(self):
+    def mostrar_opcoes(self):
         print(f'pontos self.envido: {self.envido}')
         self.mostrarMao()
         if (len(self.mao) >= 2): 
@@ -24,12 +24,12 @@ class Jogador():
         if ((len(self.mao) == 3) and (self.envido > 0)):
             print('[6] Envido')
 
-    def criarMao(self, baralho):
+    def criar_mao(self, baralho):
         for i in range(3):
             self.mao.append(baralho.retirarCarta())
         self.envido = self.calculaEnvido(self.mao)
 
-    def jogarCarta(self, carta_escolhida):
+    def jogar_carta(self, carta_escolhida):
         return self.mao.pop(carta_escolhida)
     
     def mostrarMao(self):
@@ -44,7 +44,7 @@ class Jogador():
     def adicionarPontos(self, pontos):
         self.pontos += pontos
 
-    def adicionarRodada(self):
+    def adicionar_rodada(self):
         self.rodadas += 1
     
     def resetar(self):
@@ -53,7 +53,7 @@ class Jogador():
         self.flor = False
         self.pediuTruco = False
 
-    def checaMao(self):
+    def checa_mao(self):
         return self.mao
     
     def calculaEnvido(self, mao):

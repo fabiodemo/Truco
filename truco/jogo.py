@@ -13,25 +13,25 @@ class Jogo():
     def iniciarJogo(self):
         pass
 
-    def criarJogador(self, nome, baralho):
+    def criar_jogador(self, nome, baralho):
         jogador = Jogador(nome)
-        jogador.criarMao(baralho)
+        jogador.criar_mao(baralho)
         return jogador
 
-    def criarBot(self, nome, baralho):
+    def criar_bot(self, nome, baralho):
         bot = Bot(nome)
-        bot.criarMao(baralho)
+        bot.criar_mao(baralho)
         return bot
 
-    def verificarGanhador(self, carta1, carta2):
+    def verificar_ganhador(self, carta1, carta2):
         # print("numeros: ")
         # print(str(carta1.numero))
         # print(str(carta2.numero))
-        ganhador = self.verificarCartaVencedora(carta1, carta2)
+        ganhador = self.verificar_carta_vencedora(carta1, carta2)
         print("\nCarta ganhadora: ")
         print(ganhador.printarCarta())
         return ganhador
-        # if self.verificarCartaVencedora(carta1, carta2) is None:
+        # if self.verificar_carta_vencedora(carta1, carta2) is None:
         #     if carta1.numero == carta2.numero:
         #         ganhador = "Empate"
         #     elif CARTAS_VALORES[str(carta1.numero)] > CARTAS_VALORES[str(carta2.numero)]:
@@ -41,27 +41,27 @@ class Jogo():
         #     print(ganhador)
         #     return ganhador
         # else:
-        #     return self.verificarCartaVencedora(carta1, carta2)
+        #     return self.verificar_carta_vencedora(carta1, carta2)
 
     
-    def adicionarRodada(self, jogador1, jogador2, carta1, carta2, ganhador):
+    def adicionar_rodada(self, jogador1, jogador2, carta1, carta2, ganhador):
         if ganhador == "Empate":
-            jogador1.adicionarRodada()
-            jogador2.adicionarRodada()
+            jogador1.adicionar_rodada()
+            jogador2.adicionar_rodada()
             return "Empate"
         
         elif ganhador == carta1:
-            jogador1.adicionarRodada()
-            # ganhador.adicionarRodada()
+            jogador1.adicionar_rodada()
+            # ganhador.adicionar_rodada()
         
         elif ganhador == carta2:
-            jogador2.adicionarRodada()
-            # ganhador.adicionarRodada()
+            jogador2.adicionar_rodada()
+            # ganhador.adicionar_rodada()
         
         else:
             return "Erro"
 
-    def quemJogaPrimeiro(self, jogador1, jogador2, carta1, carta2, ganhador):
+    def quem_joga_primeiro(self, jogador1, jogador2, carta1, carta2, ganhador):
         if carta1 == ganhador:
             jogador1.primeiro = True
             jogador2.primeiro = False
@@ -73,7 +73,7 @@ class Jogo():
         elif ganhador == "Empate":
             pass
 
-    def quemIniciaRodada(self, jogador1, jogador2):
+    def quem_inicia_rodada(self, jogador1, jogador2):
         if jogador1.rodadas == 0 and jogador2.rodadas == 0:
             if jogador1.ultimo == True:
                 jogador2.ultimo = True
@@ -86,7 +86,7 @@ class Jogo():
                 jogador1.primeiro = False
                 jogador2.primeiro = True
 
-    def verificarCartaVencedora(self, carta_jogador_01, carta_jogador_02):
+    def verificar_carta_vencedora(self, carta_jogador_01, carta_jogador_02):
         if (str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in MANILHA and (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA:
             if MANILHA[str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe] > MANILHA[str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe]:
                 return carta_jogador_01

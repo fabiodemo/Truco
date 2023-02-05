@@ -20,7 +20,7 @@ class Bot():
         self.pediu_flor = False
         self.pediuTruco = False
 
-    def criarMao(self, baralho):
+    def criar_mao(self, baralho):
         self.indices = [0, 1, 2]
         
         # Mudar forma de classificação dos dados vindos da base de casos, para ter uma métrica extra de inserção
@@ -29,9 +29,6 @@ class Bot():
         self.flor = self.checaFlor()
         self.pontuacaoCartas, self.maoRank = self.mao[0].classificarCarta(self.mao)
         self.forcaMao = self.calcular_forca_mao(self.pontuacaoCartas, self.maoRank)
-    
-    def jogarCarta(self, carta_escolhida):
-        return self.mao.pop(carta_escolhida)
 
     def jogar_carta(self, cbr, truco):
         # jogada = self.avaliar_jogada()
@@ -100,7 +97,7 @@ class Bot():
     def adicionarPontos(self, pontos):
         self.pontos += pontos
     
-    def adicionarRodada(self):
+    def adicionar_rodada(self):
         self.rodadas += 1
     
     def resetar(self):
@@ -116,7 +113,7 @@ class Bot():
         self.pediu_flor = False
         self.pediuTruco = False
 
-    def checaMao(self):
+    def checa_mao(self):
         return self.mao
 
     def checaFlor(self):
@@ -125,9 +122,6 @@ class Bot():
             print('Flor do Bot!')
             return True
         return False
-    
-    def avaliarJogadaHumano(self):
-        pass
 
     def avaliarTruco(self):
         return 2

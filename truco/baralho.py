@@ -8,9 +8,9 @@ class Baralho():
         # self.vira = []
         self.manilhas = []
         self.cartas = []
-        self.criarBaralho() 
+        self.criar_baralho() 
 
-    def criarBaralho(self):
+    def criar_baralho(self):
         for i in ["ESPADAS", "OUROS", "COPAS", "BASTOS"]:
             for n in range(1, 13):
                 if n < 8 or n >= 10:
@@ -22,7 +22,7 @@ class Baralho():
     def retirarCarta(self):
         return self.cartas.pop()
     
-    def resetarBaralho(self):
+    def resetar_baralho(self):
         self.vira = []
         self.manilhas = []
         self.cartas = []
