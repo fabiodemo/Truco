@@ -21,9 +21,21 @@ class Dados():
         # df.loc[:, df.dtypes == object] = df.loc[:, df.dtypes == object].astype(int)
         # df = df[df.columns].astype(int)
         df[colunas_string] = df[colunas_string].astype('int16')
-        df = df[df > 0 ] # Desativar essa condição para obter um Bot que vai mais vezes ao baralho
+        df = df[df > 0] # Desativar essa condição para obter um Bot que vai mais vezes ao baralho
         return df
 
+    def cartas_jogadas_pelo_bot(self, rodada, carta_robo):
+        if (rodada == 'primeira'):
+            self.registro.primeiraCartaRobo = carta_robo.retornar_numero()
+            self.registro.naipePrimeiraCartaRobo = carta_robo.retornar_naipe()
+        
+        if (rodada == 'segunda'):
+            self.registro.segundaCartaRobo = carta_robo.retornar_numero()
+            self.registro.naipeSegundaCartaRobo = carta_robo.retornar_naipe()
+
+        if (rodada == 'terceira'):
+            self.registro.terceiraCartaRobo = carta_robo.retornar_numero()
+            self.registro.naipeTerceiraCartaRobo = carta_robo.retornar_naipe()
 
     def primeira_rodada(self, potuacao_cartas, mao_rank, qualidade_mao_bot):  
         self.registro.jogadorMao = 1
@@ -36,26 +48,20 @@ class Dados():
         self.registro.qualidadeMaoBot = qualidade_mao_bot
 
 
-    def segunda_rodada(self, primeira_carta_robo, primeira_carta_humano, ganhador_primeira_rodada):
+    def segunda_rodada(self, primeira_carta_humano, ganhador_primeira_rodada):
         self.registro.ganhadorPrimeiraRodada = ganhador_primeira_rodada
-        self.registro.primeiraCartaRobo = primeira_carta_robo.retornar_numero()
-        self.registro.naipePrimeiraCartaRobo = primeira_carta_robo.retornar_naipe()
         self.registro.primeiraCartaHumano = primeira_carta_humano.retornar_numero()
         self.registro.naipePrimeiraCartaHumano = primeira_carta_humano.retornar_naipe()
     
 
-    def terceira_rodada(self, segunda_carta_robo, segunda_carta_humano, ganhador_segunda_rodada):
+    def terceira_rodada(self, segunda_carta_humano, ganhador_segunda_rodada):
         self.registro.ganhadorSegundaRodada = ganhador_segunda_rodada
-        self.registro.segundaCartaRobo = segunda_carta_robo.retornar_numero()
-        self.registro.naipeSegundaCartaRobo = segunda_carta_robo.retornar_naipe()
         self.registro.SegundaCartaHumano = segunda_carta_humano.retornar_numero()
         self.registro.naipeSegundaCartaHumano = segunda_carta_humano.retornar_naipe()
 
 
-    def finalizar_rodadas(self, terceira_carta_robo, terceira_carta_humano, ganhador_terceira_rodada):
+    def finalizar_rodadas(self, terceira_carta_humano, ganhador_terceira_rodada):
         self.registro.ganhadorTerceiraRodada = ganhador_terceira_rodada
-        self.registro.terceiraCartaRobo = terceira_carta_robo.retornar_numero()
-        self.registro.naipeTerceiraCartaRobo = terceira_carta_robo.retornar_naipe()
         self.registro.terceiraCartaHumano = terceira_carta_humano.retornar_numero()
         self.registro.naipeTerceiraCartaHumano = terceira_carta_humano.retornar_naipe()
 

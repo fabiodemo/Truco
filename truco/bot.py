@@ -30,8 +30,11 @@ class Bot():
         self.pontuacao_cartas, self.mao_rank = self.mao[0].classificar_carta(self.mao)
         self.qualidade_mao = self.calcular_qualidade_mao(self.pontuacao_cartas, self.mao_rank)
 
-    def enriquecer_bot(self,):
-        cbr.enriquecer_agente(self.rodada, self.pontuacao_cartas, self.mao_rank, self.qualidade_mao, segunda_rodada, primeira_carta_robo, primeira_carta_humano, ganhador_primeira_rodada)
+    def enriquecer_bot(self, cbr, carta_jogador_01):
+        cbr.enriquecer_agente(self.rodada, self.pontuacao_cartas, self.mao_rank, self.qualidade_mao, carta_jogador_01, carta_jogador_01)
+
+    def enriquecer_cartas_bot(self, cbr, carta_jogador_02):
+        cbr.enriquecer_jogadas_bot(carta_jogador_02)
 
     def jogar_carta(self, cbr, truco):
         # jogada = self.avaliar_jogada()
