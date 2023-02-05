@@ -95,16 +95,16 @@ class Carta():
         
         for i in range(len(lista_classificacao)):
             if carta_alta == cartas[i]: 
-                lista_classificacao[i] = 'Alta'
                 lista_pontos[i] = self.retornarPontosCarta(cartas[i])
+                lista_classificacao[i] = 'Alta'
             
             if carta_baixa == cartas[i]: 
-                lista_classificacao[i] = 'Baixa'
                 lista_pontos[i] = self.retornarPontosCarta(cartas[i])
+                lista_classificacao[i] = 'Baixa'
             
             if not lista_classificacao[i]: 
-                lista_classificacao[i] = 'Media'
                 lista_pontos[i] = self.retornarPontosCarta(cartas[i])
+                lista_classificacao[i] = 'Media'
 
 
         return lista_pontos, lista_classificacao

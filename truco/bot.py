@@ -18,7 +18,7 @@ class Bot():
         self.flor = False
         self.pediu_flor = False
         self.pediuTruco = False
-        self.jogada = 1
+        self.rodada = 1
 
     def criarMao(self, baralho):
         self.indices = [0, 1, 2]
@@ -38,7 +38,7 @@ class Bot():
         # Envido
         if ((len(self.mao) == 3)):
             self.calculaEnvido(self.mao)
-            envido = cbr.envido()
+            envido = cbr.envido(self)
             if (envido is True):
                 return 6
         # Flor
@@ -48,14 +48,15 @@ class Bot():
                 return 5
 
         # Pedir truco
-        escolha = cbr.cbr_truco()
-        if (escolha is not None):
+        truco = cbr.truco(self)
+        if (truco is True):
             return 4
 
         # Manda o valor de acordo com a rodada, para o CBR escolher as colunas/campos necessários
-        escolha = cbr.jogar_rodada(self.rodada)
-
-        self.jogada += 1
+        escolha = cbr.jogar_carta(self.rodada, self.pontuacaoCartas)
+        print(escolha)
+        self.AjustaIndice(escolha)
+        self.rodada += 1
         # Verificar cartas na mão antes de jogar
         return escolha
         # return self.mao.pop(0)
@@ -76,6 +77,12 @@ class Bot():
     def retorna_pontos_envido(self):
         return self.envido
 
+    def AjustaIndice(self, i):
+        print(f'\n{self.maoRank},{self.indices},{self.pontuacaoCartas},{self.mao}')
+        self.maoRank.pop(i)
+        self.indices.pop(i)
+        self.pontuacaoCartas.pop(i)
+        self.mao.pop(i)
 
     def AjustaIndicesMao(self, tam_mao):
         if (tam_mao) == 2:

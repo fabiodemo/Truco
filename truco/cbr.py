@@ -39,12 +39,14 @@ class Cbr():
         elif ((rodada) == 2): ordem_carta_jogada = 'segunda' + ordem_carta_jogada
         elif ((rodada) == 1): ordem_carta_jogada = 'terceira' + ordem_carta_jogada
         valor_referencia = jogadas_vencidas[ordem_carta_jogada].value_counts().index.to_list()[0]
-        print(valor_referencia)
         if (valor_referencia <= 0): 
             return -1
-        
         carta_escolhida = min(pontuacaoCartas, key=lambda x:abs(x-valor_referencia))
-        return carta_escolhida
+        # print(jogadas_vencidas[ordem_carta_jogada].value_counts())
+        print(pontuacaoCartas)
+        print(carta_escolhida)
+        # return carta_escolhida
+        return pontuacaoCartas.index(int(carta_escolhida))
 
 
     def truco(self, quem_pediu):
@@ -67,18 +69,9 @@ class Cbr():
 
 
     def jogar_rodada(self, jogador2, rodada, pontuacaoCartas):
-        if (len(jogador2.checaMao()) >= 3 and jogador2.flor is True and jogador2.pediu_flor is False):
-            flor = self.flor()
-            if (flor is True):
-                return 5
-        
-        if (len(jogador2.checaMao()) >= 3 and jogador2.flor is False):
-            envido = self.envido()
-            if (envido is True):
-                return 6
 
-        truco = self.truco()
-        if (truco is True):
-            return 4
+        # truco = self.truco(jogador2)
+        # if (truco is True):
+        #     return 4
 
         return self.jogar_carta(rodada, pontuacaoCartas)

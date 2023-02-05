@@ -35,7 +35,7 @@ def turno_do_humano(jogador2):
             print('bloqueou a flor')
             jogador2.pedir_flor(jogador2, jogador1, jogador2)
         
-        if (carta_escolhida < len(jogador1.checaMao()) and int(carta_escolhida) >= 0):
+        if (carta_escolhida <= len(jogador1.checaMao()) and int(carta_escolhida) >= 0):
             carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
             # interface.limpar_tela()
 
@@ -71,20 +71,22 @@ def turno_do_humano(jogador2):
     return carta1
 
 def turno_do_bot(carta_jogador_01=None):
-    # jogador2.mostrarMao()
+    print('\nMAO')
+    jogador2.mostrarMao()
     carta_escolhida = -1
     while (carta_escolhida > len(jogador2.checaMao()) or int(carta_escolhida) <= 1):
         print(f"\n<< {jogador2.nome} - Jogador 2 >>")
         # carta_jogador_02 = jogador2.jogarCarta(cbr, truco)
-        carta_escolhida = -1
+        # carta_escolhida = -1
+        carta_escolhida = jogador2.jogar_carta(cbr, truco)
 
         if (jogador2.pediu_flor is False and (carta_escolhida == 5 and (len(jogador1.mao) == 3))):
             print('flor do Bot')
             flor.pedir_flor(jogador2, jogador1, jogador2)
             interface.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados")
         
-        if (carta_escolhida < len(jogador2.checaMao()) and int(carta_escolhida) >= 0):
-            carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
+        if (carta_escolhida <= len(jogador2.checaMao()) and int(carta_escolhida) >= 0):
+            carta_jogador_02 = jogador2.jogar_carta(carta_escolhida, truco)
             # interface.limpar_tela()
 
             # print(f'carta escolhida {carta_escolhida} \n carta_jogador_01 {carta_jogador_01}')
@@ -110,8 +112,8 @@ def turno_do_bot(carta_jogador_01=None):
         
         else:
             print('Selecione um valor válido!')
-        carta_jogador_02 = jogador2.jogarCarta(0)
-        carta_escolhida = 0
+        # carta_jogador_02 = jogador2.jogarCarta(0)
+        # carta_escolhida = 0
         break
 
 
