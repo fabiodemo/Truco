@@ -9,7 +9,7 @@ class Bot():
         self.mao_rank = []
         self.indices = []
         self.pontuacao_cartas = []
-        self.forca_mao = 0
+        self.qualidade_mao = 0
         self.pontos = 0
         self.rodadas = 0
         self.envido = 0
@@ -28,11 +28,12 @@ class Bot():
             self.mao.append(baralho.retirar_carta())
         self.flor = self.checa_flor()
         self.pontuacao_cartas, self.mao_rank = self.mao[0].classificar_carta(self.mao)
-        self.forca_mao = self.calcular_forca_mao(self.pontuacao_cartas, self.mao_rank)
+        self.qualidade_mao = self.calcular_qualidade_mao(self.pontuacao_cartas, self.mao_rank)
 
     def jogar_carta(self, cbr, truco):
         # jogada = self.avaliar_jogada()
         # Envido
+        cbr.enriquecer_agente(self.rodada, self.pontuacao_cartas, self.mao_rank, self.qualidade_mao)
         if ((len(self.mao) == 3)):
             self.calcula_envido(self.mao)
             envido = cbr.envido(self)
@@ -105,7 +106,7 @@ class Bot():
         self.mao_rank = []
         self.indices = []
         self.pontuacao_cartas = []
-        self.forca_mao = 0
+        self.qualidade_mao = 0
         self.rodadas = 0
         self.envido = 0
         self.rodada = 1
@@ -125,10 +126,10 @@ class Bot():
 
     def avaliar_truco(self):
         return 2
-        # if (self.forca_mao > 50):
+        # if (self.qualidade_mao > 50):
         #     return 2
 
-        # elif (self.forca_mao > 35):
+        # elif (self.qualidade_mao > 35):
         #     return 1
 
         # else:
@@ -143,13 +144,13 @@ class Bot():
     def avaliar_envido(self):
         return None
 
-    def calcular_forca_mao(self, lista_pontuacao, lista_mao_rank):
+    def calcular_qualidade_mao(self, lista_pontuacao, lista_mao_rank):
         m1 = (2 / ((1/lista_pontuacao[int(lista_mao_rank.index('Alta'))]) + (1/lista_pontuacao[int(lista_mao_rank.index('Media'))])))
         m2 = ((2 * lista_pontuacao[int(lista_mao_rank.index('Media'))]) + (lista_pontuacao[int(lista_mao_rank.index('Baixa'))])/2+1)
         m3 = ((2 * m1) + m2) / (2+1)
         print(m3)
         
-        self.forca_mao = m3
+        self.qualidade_mao = m3
 
     # def avaliar_jogada(self):        
         # df = cbr.retornarSimilares(self.modeloRegistro)

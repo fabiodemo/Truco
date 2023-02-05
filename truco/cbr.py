@@ -75,3 +75,7 @@ class Cbr():
         #     return 4
 
         return self.jogar_carta(rodada, pontuacao_cartas)
+
+    def enriquecer_agente(self, rodada, pontuacao_cartas, mao_rank, qualidade_mao_bot):
+        if (rodada == 1):
+            self.dados.primeira_rodada(pontuacao_cartas, mao_rank, qualidade_mao_bot)
