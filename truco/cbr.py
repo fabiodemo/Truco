@@ -76,13 +76,13 @@ class Cbr():
 
         return self.jogar_carta(rodada, pontuacao_cartas)
 
-    def enriquecer_agente(self, rodada=None, pontuacao_cartas=None, mao_rank=None, qualidade_mao_bot=None, carta_humano=None, ganhador=None):
+    def enriquecer_agente(self, rodada=None, pontuacao_cartas=None, mao_rank=None, qualidade_mao_bot=None, carta_humano=None):
         if (rodada == 1):
             self.dados.primeira_rodada(pontuacao_cartas, mao_rank, qualidade_mao_bot, carta_humano)
-        if (rodada == 2):
-            self.dados.segunda_rodada(carta_humano, ganhador)
-        if (rodada == 3):
-            self.dados.terceira_rodada(carta_humano, ganhador)
+        # if (rodada == 2):
+        #     self.dados.segunda_rodada(carta_humano, ganhador)
+        # if (rodada == 3):
+        #     self.dados.terceira_rodada(carta_humano, ganhador)
 
     def enriquecer_jogadas_bot(self, rodada, carta_jogador_02):
         if (rodada == 2):

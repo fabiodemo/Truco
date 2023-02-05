@@ -73,7 +73,7 @@ def turno_do_humano(jogador2):
 
 
 def turno_do_bot(carta_jogador_01=None):
-    jogador2.enriquecer_bot(cbr, carta_jogador_01.retornar_pontos_carta())
+    jogador2.enriquecer_bot(cbr, carta_jogador_01)
     print('\nMAO')
     jogador2.mostrar_mao()
     carta_escolhida = -1

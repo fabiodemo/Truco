@@ -39,7 +39,7 @@ class Dados():
             self.registro.terceiraCartaRobo = carta_robo.retornar_numero()
             self.registro.naipeTerceiraCartaRobo = carta_robo.retornar_naipe_codificado()
 
-    def primeira_rodada(self, potuacao_cartas, mao_rank, qualidade_mao_bot):  
+    def primeira_rodada(self, potuacao_cartas, mao_rank, qualidade_mao_bot, carta_humano):  
         self.registro.jogadorMao = 1
         self.registro.cartaAltaRobo = potuacao_cartas[mao_rank.index("Alta")]
         self.registro.cartaMediaRobo = potuacao_cartas[mao_rank.index("Media")]
@@ -48,6 +48,8 @@ class Dados():
         self.registro.ganhadorSegundaRodada = 2
         self.registro.ganhadorTerceiraRodada = 2
         self.registro.qualidadeMaoBot = qualidade_mao_bot
+        self.registro.primeiraCartaHumano = carta_humano.retornar_numero()
+        self.registro.primeiraCartaHumano = carta_humano.retornar_naipe_codificado()
 
 
     def segunda_rodada(self, primeira_carta_humano, ganhador_primeira_rodada):
