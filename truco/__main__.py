@@ -15,28 +15,28 @@ import os
 def reiniciarJogo():
     jogador1.resetar()
     jogador2.resetar()
-    baralho.resetarBaralho()
-    baralho.criarBaralho()
+    baralho.resetar_baralho()
+    baralho.criar_baralho()
     baralho.embaralhar()
-    jogador1.criarMao(baralho)
-    jogador2.criarMao(baralho)
+    jogador1.criar_mao(baralho)
+    jogador2.criar_mao(baralho)
     # jogo.resetarTrucoPontos()
     truco.resetar_pontos_truco()
 
 def turno_do_humano(jogador2):
     carta_escolhida = -1
-    while (carta_escolhida > len(jogador1.checaMao()) or int(carta_escolhida) <= 1):
+    while (carta_escolhida > len(jogador1.checa_mao()) or int(carta_escolhida) <= 1):
         print(f"\n<< {jogador1.nome} - Jogador 1 >>")
-        jogador1.mostrarOpcoes()
+        jogador1.mostrar_opcoes()
         carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
 
         # Chama a flor antes do jogador1 jogar envido 
-        if (len(jogador1.checaMao()) > 2 and (carta_escolhida == 6) and (jogador2.flor is True)):
+        if (len(jogador1.checa_mao()) > 2 and (carta_escolhida == 6) and (jogador2.flor is True)):
             print('bloqueou a flor')
             jogador2.pedir_flor(jogador2, jogador1, jogador2)
         
-        if (carta_escolhida <= len(jogador1.checaMao()) and int(carta_escolhida) >= 0):
-            carta_jogador_01 = jogador1.jogarCarta(carta_escolhida)
+        if (carta_escolhida <= len(jogador1.checa_mao()) and int(carta_escolhida) >= 0):
+            carta_jogador_01 = jogador1.jogar_carta(carta_escolhida)
             # interface.limpar_tela()
 
             # print(f'carta escolhida {carta_escolhida} \n carta_jogador_01 {carta_jogador_01}')
@@ -49,14 +49,14 @@ def turno_do_humano(jogador2):
                 print('pontos truco', truco.retornar_valor_aposta())
                 return -1
                 break
-                # jogador1.adicionarRodada()
+                # jogador1.adicionar_rodada()
 
         elif (carta_escolhida == 5 and (len(jogador2.mao) == 3)):
             print('flor')
             flor.pedir_flor(jogador1, jogador1, jogador2)
             interface.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados")
 
-        elif (jogador2.flor is False and (len(jogador1.checaMao()) > 2 and carta_escolhida == 6)):
+        elif (jogador2.flor is False and (len(jogador1.checa_mao()) > 2 and carta_escolhida == 6)):
             print('envido')
             envido.pedir_envido(1, jogador1, jogador2)
 
@@ -74,9 +74,9 @@ def turno_do_bot(carta_jogador_01=None):
     print('\nMAO')
     jogador2.mostrarMao()
     carta_escolhida = -1
-    while (carta_escolhida > len(jogador2.checaMao()) or int(carta_escolhida) <= 1):
+    while (carta_escolhida > len(jogador2.checa_mao()) or int(carta_escolhida) <= 1):
         print(f"\n<< {jogador2.nome} - Jogador 2 >>")
-        # carta_jogador_02 = jogador2.jogarCarta(cbr, truco)
+        # carta_jogador_02 = jogador2.jogar_carta(cbr, truco)
         # carta_escolhida = -1
         carta_escolhida = jogador2.jogar_carta(cbr, truco)
 
@@ -85,7 +85,7 @@ def turno_do_bot(carta_jogador_01=None):
             flor.pedir_flor(jogador2, jogador1, jogador2)
             interface.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados")
         
-        if (carta_escolhida <= len(jogador2.checaMao()) and int(carta_escolhida) >= 0):
+        if (carta_escolhida <= len(jogador2.checa_mao()) and int(carta_escolhida) >= 0):
             #carta_jogador_02 = jogador2.jogar_carta(carta_escolhida, truco)
             
             # interface.limpar_tela()
@@ -101,7 +101,7 @@ def turno_do_bot(carta_jogador_01=None):
                 print('pontos truco', truco.retornar_valor_aposta())
                 return -1
                 break
-                # jogador1.adicionarRodada()
+                # jogador1.adicionar_rodada()
 
         elif ((jogador1.pediu_flor or jogador2.pediu_flor) is False and carta_escolhida == 6):
             print('envido')
@@ -114,7 +114,7 @@ def turno_do_bot(carta_jogador_01=None):
         
         else:
             print('Selecione um valor válido!')
-        # carta_jogador_02 = jogador2.jogarCarta(0)
+        # carta_jogador_02 = jogador2.jogar_carta(0)
         # carta_escolhida = 0
         break
     
@@ -141,9 +141,9 @@ carta_jogador_02 = 0
 ganhador = 0
 
 nome = str(input("Nome Jogador 1: "))
-jogador1 = jogo.criarJogador(nome, baralho)
+jogador1 = jogo.criar_jogador(nome, baralho)
 nome = str(input("Nome Jogador 2 (Bot): "))
-jogador2 = jogo.criarBot(nome, baralho)
+jogador2 = jogo.criar_bot(nome, baralho)
 jogador1.primeiro = True
 jogador2.ultimo = True
 # interface.limpar_tela()
@@ -197,9 +197,9 @@ while True:
         reiniciarJogo()
 
     else:
-        ganhador = jogo.verificarGanhador(carta_jogador_01, carta_jogador_02)
-        jogo.quemJogaPrimeiro(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
-        jogo.adicionarRodada(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
+        ganhador = jogo.verificar_ganhador(carta_jogador_01, carta_jogador_02)
+        jogo.quem_joga_primeiro(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
+        jogo.adicionar_rodada(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
 
     if (jogador1.rodadas == 2 or jogador2.rodadas == 2):
         ocultar_pontos_ac = True
@@ -216,7 +216,7 @@ while True:
         interface.mostrar_placar_total(jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
 
     # Testar situação corrigida: empate em 2 pontos, e o jogo trava sem possibidade de fazer mais nada.
-    if (not(jogador1.checaMao()) and not(jogador2.checaMao()) or truco_fugiu is True):
+    if (not(jogador1.checa_mao()) and not(jogador2.checa_mao()) or truco_fugiu is True):
         pontos_truco = truco.retornar_valor_aposta()
         ocultar_pontos_ac = True
         if truco_fugiu is True:
@@ -252,4 +252,5 @@ while True:
 To do:
 - Checar funcionamento do Truco/Envido
 - Diferenciar flag -1 do fugiu_truco da flag de ir ao baralho
+- Pegar valor da aposta de truco da classe Truco e não do Jogo (verificar atribuição de pontos).
 '''
