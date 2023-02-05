@@ -15,7 +15,7 @@ class Cbr():
 
 
     def carregar_dataset(self):
-        df = pd.read_csv('dbtrucoimitacao_maos.csv', index_col='idMao').fillna(0)
+        df = pd.read_csv('dbtrucoimitacao_maos.csv', index_col='idMao').fillna(-66)
         df.replace('ESPADAS', '1', inplace=True)
         df.replace('OURO', '2', inplace=True)
         df.replace('BASTOS', '3', inplace=True)
@@ -24,14 +24,6 @@ class Cbr():
 
 
     def vizinhos_proximos(self):
-        return NearestNeighbors(n_neighbors=100, algorithm='ball_tree').fit(self.dataset)
-
-
-    def vizinhos_proximos_truco(self):
-        return NearestNeighbors(n_neighbors=100, algorithm='ball_tree').fit(self.dataset)
-
-
-    def vizinhos_proximos_truco(self):
         return NearestNeighbors(n_neighbors=100, algorithm='ball_tree').fit(self.dataset)
 
 
@@ -51,17 +43,24 @@ class Cbr():
         if (valor_referencia <= 0): 
             return -1
         
-        carta_escolhida = min(self.pontuacaoCartas, key=lambda x:abs(x-valor_referencia))
+        carta_escolhida = min(pontuacaoCartas, key=lambda x:abs(x-valor_referencia))
         return carta_escolhida
 
 
-    def truco(self):
-        pass
+    def truco(self, quem_pediu):
+        if (quem_pediu is None):
+            pass
+
+        else:
+            pass
 
 
-    def envido(self):
-        pass
+    def envido(self, quem_pediu):
+        if (quem_pediu is None):
+            pass
 
+        else:
+            pass
 
     def flor(self):
         pass
@@ -78,7 +77,8 @@ class Cbr():
             if (envido is True):
                 return 6
 
-        self.truco()
-        self.jogar_carta()
+        truco = self.truco()
+        if (truco is True):
+            return 4
 
-        pass
+        return self.jogar_carta(rodada, pontuacaoCartas)
