@@ -17,7 +17,7 @@ def reiniciarJogo():
     jogador2.resetar()
     baralho.resetarBaralho()
     baralho.criarBaralho()
-    # baralho.embaralhar()
+    baralho.embaralhar()
     jogador1.criarMao(baralho)
     jogador2.criarMao(baralho)
     # jogo.resetarTrucoPontos()
@@ -71,6 +71,7 @@ def turno_do_humano(jogador2):
     return carta1
 
 def turno_do_bot(carta_jogador_01=None):
+    # jogador2.mostrarMao()
     carta_escolhida = -1
     while (carta_escolhida > len(jogador2.checaMao()) or int(carta_escolhida) <= 1):
         print(f"\n<< {jogador2.nome} - Jogador 2 >>")

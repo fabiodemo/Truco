@@ -17,10 +17,10 @@ class Dados():
         df.replace('BASTOS', '3', inplace=True)
         df.replace('COPAS', '4', inplace=True)
         df[colunas_string] = df[colunas_string].fillna(0)
-        df.loc[:, df.dtypes == object] = df.loc[:, df.dtypes == object].astype(int)
-        df = df[df.columns].astype(int)
-        df = df[df > 0 ] # Desativar essa condição para obter um Bot que vai mais vezes ao baralho
+        # df.loc[:, df.dtypes == object] = df.loc[:, df.dtypes == object].astype(int)
+        # df = df[df.columns].astype(int)
         df[colunas_string] = df[colunas_string].astype('int16')
+        df = df[df > 0 ] # Desativar essa condição para obter um Bot que vai mais vezes ao baralho
         return df
 
 
