@@ -50,19 +50,49 @@ class Cbr():
 
 
     def truco(self, quem_pediu):
-        if (quem_pediu is None):
-            pass
-
-        else:
-            pass
+        registro = self.dados.retornar_registro()
+        warnings.simplefilter(action='ignore', category=UserWarning)
+        distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
+        jogadas_vencidas = jogadas_perdidas = self.dataset.iloc[indices.tolist()[0]]
+        jogadas_vencidas = jogadas_vencidas[((jogadas_vencidas.quemGanhouTruco == 2) & (jogadas_vencidas.quemTruco == 2))]
+        jogadas_perdidas = jogadas_perdidas[((jogadas_vencidas.quemGanhouTruco == 1) |((jogadas_perdidas.quemNegouTruco == 2) & ((jogadas_perdidas.quemTruco == 2) | jogadas_perdidas.quemRetruco == 2)))]
+        # 'quemNegouTruco', 'quemGanhouTruco', 'quemTruco', 'quemRetruco', 
+        ordem_carta_jogada = 'CartaRobo'
+        if ((rodada) == 3): ordem_carta_jogada = 'primeira' + ordem_carta_jogada
+        elif ((rodada) == 2): ordem_carta_jogada = 'segunda' + ordem_carta_jogada
+        elif ((rodada) == 1): ordem_carta_jogada = 'terceira' + ordem_carta_jogada
+        valor_referencia = jogadas_vencidas[ordem_carta_jogada].value_counts().index.to_list()[0]
+        if (valor_referencia <= 0): 
+            return -1
+        carta_escolhida = min(pontuacao_cartas, key=lambda x:abs(x-valor_referencia))
+        # print(jogadas_vencidas[ordem_carta_jogada].value_counts())
+        print(pontuacao_cartas)
+        print(carta_escolhida)
+        # return carta_escolhida
+        return pontuacao_cartas.index(int(carta_escolhida))
 
 
     def envido(self, quem_pediu):
-        if (quem_pediu is None):
-            pass
-
-        else:
-            pass
+        registro = self.dados.retornar_registro()
+        warnings.simplefilter(action='ignore', category=UserWarning)
+        distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
+        jogadas_vencidas = jogadas_perdidas = self.dataset.iloc[indices.tolist()[0]]
+        jogadas_vencidas = jogadas_vencidas[((jogadas_vencidas.quemGanhouTruco == 2) & (jogadas_vencidas.quemTruco == 2))]
+        jogadas_perdidas = jogadas_perdidas[((jogadas_perdidas.quemNegouTruco == 2) & ((jogadas_perdidas.quemTruco == 2) | jogadas_perdidas.quemRetruco == 2))]
+        # 'quemPediuEnvido', 'quemPediuFaltaEnvido', 'quemPediuRealEnvido', 'pontosEnvidoRobo', 'pontosEnvidoHumano', 'quemNegouEnvido', 'quemGanhouEnvido', 'quemEscondeuPontosEnvido'
+        ordem_carta_jogada = 'CartaRobo'
+        if ((rodada) == 3): ordem_carta_jogada = 'primeira' + ordem_carta_jogada
+        elif ((rodada) == 2): ordem_carta_jogada = 'segunda' + ordem_carta_jogada
+        elif ((rodada) == 1): ordem_carta_jogada = 'terceira' + ordem_carta_jogada
+        valor_referencia = jogadas_vencidas[ordem_carta_jogada].value_counts().index.to_list()[0]
+        if (valor_referencia <= 0): 
+            return -1
+        carta_escolhida = min(pontuacao_cartas, key=lambda x:abs(x-valor_referencia))
+        # print(jogadas_vencidas[ordem_carta_jogada].value_counts())
+        print(pontuacao_cartas)
+        print(carta_escolhida)
+        # return carta_escolhida
+        return pontuacao_cartas.index(int(carta_escolhida))
 
     def flor(self):
         pass
