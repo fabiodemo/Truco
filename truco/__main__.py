@@ -119,8 +119,7 @@ def turno_do_bot(carta_jogador_01=None):
         
         else:
             print('Selecione um valor válido!')
-        # carta_jogador_02 = jogador2.jogar_carta(0)
-        # carta_escolhida = 0
+
         break
     
     # interface.limpar_tela()
@@ -156,21 +155,7 @@ interface.mostrar_jogador_mao(jogador1.nome)
 while True:
     truco_fugiu = False
     ocultar_pontos_ac = False
-    # jogo.resetarTrucoPontos()
-    #Sorteio pra ver quem joga na primeira rodada
-    # if jogador1.pontos == 0 and jogador2.pontos == 0:
-    #     if jogador1.rodadas == 0 and jogador2.rodadas == 0:
-    #         jogadores = ["jogador1", "jogador2"]
-    #         sorteado = random.choice(jogadores)
-    #         if sorteado == "jogador1":
-    #             jogador1.primeiro = True
-    #             jogador2.ultimo = True
-    #         elif sorteado == "jogador2":
-    #             jogador2.primeiro = True
-    #             jogador1.ultimo = True
-    # print(f"Sorteio pra ver quem joga na primeira rodada\n Ganhador: {sorteado}")
 
-    # print(f'truco fugiu: {truco_fugiu}, truco aceito {truco_aceito}')
     if jogador1.primeiro == True:
         carta_jogador_01 = turno_do_humano(jogador2)
         if (carta_jogador_01 != -1):
@@ -190,14 +175,14 @@ while True:
                 interface.mostrar_carta_jogada(jogador1.nome, carta_jogador_01)
     
     
-    if (carta_jogador_01 == -1 or carta_jogador_02 == -1):
+    if ((carta_jogador_01 == -1 or carta_jogador_02 == -1)):
         truco_fugiu = True
         if (carta_jogador_01 == -1):
-            jogo.jogador_fugiu(jogador1, jogador1, jogador2, -1)
+            # jogo.jogador_fugiu(jogador1, jogador1, jogador2, -1)
             interface.mostrar_placar_total_jogador_fugiu(jogador1, jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
         
         else:
-            jogo.jogador_fugiu(jogador2, jogador1, jogador2)
+            # jogo.jogador_fugiu(jogador2, jogador1, jogador2)
             interface.mostrar_placar_total_jogador_fugiu(jogador2, jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
         
         reiniciarJogo()
@@ -221,7 +206,7 @@ while True:
 
         interface.mostrar_placar_total(jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
 
-    # Testar situação corrigida: empate em 2 pontos, e o jogo trava sem possibidade de fazer mais nada.
+    # Caso acabem as cartas nas mãos dos jogadores, ou houve fuga, finaliza as jogadas
     if (not(jogador1.checa_mao()) and not(jogador2.checa_mao()) or truco_fugiu is True):
         pontos_truco = truco.retornar_valor_aposta()
         ocultar_pontos_ac = True

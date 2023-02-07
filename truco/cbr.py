@@ -1,7 +1,6 @@
 from sklearn.neighbors import NearestNeighbors
 import pandas as pd
 import warnings
-from .pontos import MANILHA, CARTAS_VALORES
 from .dados import Dados
 
 class Cbr():
@@ -103,7 +102,7 @@ class Cbr():
         return None
 
     def enriquecer_agente(self, rodada=None, pontuacao_cartas=None, mao_rank=None, qualidade_mao_bot=None, carta_humano=None):
-        """Controlador do método da classe dados, que enriquecerá o conhecimento do bot com a carta jogada pelo humano."""
+        """Controlador do método pertencente a classe Dados, que enriquecerá o conhecimento do bot com a carta jogada pelo humano."""
         if (rodada == 1):
             self.dados.primeira_rodada(pontuacao_cartas, mao_rank, qualidade_mao_bot, carta_humano)
         # if (rodada == 2):
@@ -112,7 +111,7 @@ class Cbr():
         #     self.dados.terceira_rodada(carta_humano, ganhador)
 
     def enriquecer_jogadas_bot(self, rodada, carta_jogador_02):
-        """Controlador do método da classe dados, que enriquecerá o conhecimento do bot com a carta a qual ele jogou."""
+        """Controlador do método pertencente a classe Dados, que enriquecerá o conhecimento do bot com a carta a qual ele jogou."""
         if (rodada == 2):
             self.dados.cartas_jogadas_pelo_bot('primeira', carta_jogador_02)
         if (rodada == 3):

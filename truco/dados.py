@@ -82,11 +82,11 @@ class Dados():
         self.registro.quemFaltaEnvido = quem_falta_envido
 
 
-    def truco(self, quem_truco, quem_retruco, quem_vale4, quem_negou_truco, quem_ganhou_truco):
+    def truco(self, quem_truco, quem_retruco, quem_vale_quatro, quem_negou_truco, quem_ganhou_truco):
         """Adiciona na base de casos as informações referentes ao truco"""
         self.registro.quemTruco = quem_truco
         self.registro.quemRetruco = quem_retruco
-        self.registro.quemValeQuatro = quem_vale4
+        self.registro.quemValeQuatro = quem_vale_quatro
 
 
     def flor(self, quem_flor, quem_contraflor, quem_contraflor_resto, pontos_flor_robo):

@@ -112,6 +112,6 @@ class Jogo():
 
     def jogador_fugiu(self, jogador, jogador1, jogador2, pontos):
         """Indicação de que o jogador fugiu, resetando a ordem de jogadas com o jogador 1 sendo mão"""
-        print('jogador {jogador.nome} fugiu!')
+        print(f'jogador {jogador.nome} fugiu!')
         jogador1.primeiro = True
         jogador2.primeiro = False

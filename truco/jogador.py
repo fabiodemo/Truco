@@ -60,7 +60,7 @@ class Jogador():
 
 
     def checa_mao(self):
-        """Retorna as cartas em mão."""
+        """Retorna todas as cartas na mão do Jogador."""
         return self.mao
     
 

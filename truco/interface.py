@@ -41,7 +41,7 @@ class Interface():
 
     def mostrar_placar_total_jogador_fugiu(self, jogador_fugiu, jogador1, jogador1_pontos, jogador2, jogador2_pontos):
         """Exibe um aviso de que o jogador fugiu e o placar total,"""
-        print('jogador {jogador_fugiu.nome} fugiu!')
+        print(f'jogador {jogador_fugiu.nome} fugiu!')
         self.mostrar_placar_total(jogador1, jogador1_pontos, jogador2, jogador2_pontos)
 
 

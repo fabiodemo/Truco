@@ -119,11 +119,12 @@ class Bot():
 
 
     def checa_mao(self):
+        """Retorna todas as cartas na mão do bot."""
         return self.mao
 
 
     def checa_flor(self):
-        # print('checa_flor')
+        """Verifica se o bot possui flor em sua mão."""
         if all(carta.retornar_naipe() == self.mao[0].retornar_naipe() for carta in self.mao):
             print('Flor do Bot!')
             return True
@@ -131,6 +132,7 @@ class Bot():
 
 
     def avaliar_truco(self):
+        """Verifica se a melhor jogada para o bot seria aceitar, recusar ou aumentar a aposta do truco."""
         return 2
         # if (self.qualidade_mao > 50):
         #     return 2
@@ -140,15 +142,19 @@ class Bot():
 
         # else:
         #     return 0
-    
-    # implementar retruco do bot
-    def avaliar_aumentar_truco(self, possibilidade, cbr):
-        if (possibilidade):
-            return True
-        return False
 
+    def avaliar_retruco(self):
+        """Verificase a melhor jogada para o bot seria aceitar, recusar ou aumentar a aposta do retruco."""
+        return 1
+
+
+    def avaliar_vale_quatro(self):
+        """Verifica se a melhor jogada para o bot seria aceitar ou recusar vale quatro."""
+        return 1
+    
 
     def avaliar_envido(self):
+        """Verifica se a melhor jogada para o bot seria aceitar, pedir real ou falta envido."""
         return None
 
 

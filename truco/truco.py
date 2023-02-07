@@ -1,14 +1,12 @@
-from .bot import Bot
-
 class Truco():
     def __init__(self):
         self.valor_aposta = 1
         self.jogador_bloqueado = 0
         self.jogador_pediu = 0
         self.jogador_retruco = 0
-        self.jogador_vale4 = 0
-        self.estado_atual = ""
+        self.jogador_vale_quatro = 0
         self.jogador_fugiu = 0
+        self.estado_atual = ""
 
 
     def reverter_jogador_bloqueado(self):
@@ -20,41 +18,40 @@ class Truco():
             self.jogador_bloqueado = 1
 
 
-    def pedir_truco(self, quemPediu, jogador1, jogador2):
+    def pedir_truco(self, quem_pediu, jogador1, jogador2):
         """Controlador de métodos, para selecionar o que pode ser chamado ou não."""
         if (self.estado_atual == ""):
-            estado = self.pedir_truco(quemPediu, jogador1, jogador2)
+            estado = self.pedir_truco(quem_pediu, jogador1, jogador2)
             self.estado_atual = "truco"
         elif (self.estado_atual == "truco"):
-            estado = self.pedir_retruco(quemPediu, jogador1, jogador2)
+            estado = self.pedir_retruco(quem_pediu, jogador1, jogador2)
             self.estado_atual = "truco"
         elif (self.estado_atual == "retruco"):
-            estado = self.pedir_retruco(quemPediu, jogador1, jogador2)
-            self.estado_atual = "vale4"
+            estado = self.pedir_retruco(quem_pediu, jogador1, jogador2)
+            self.estado_atual = "vale_quatro"
         return estado
 
 
-    def pedir_truco(self, quemPediu, jogador1, jogador2):
+    def pedir_truco(self, quem_pediu, jogador1, jogador2):
         """Aumenta a aposta inicial do jogo, que passa a valer 2 pontos."""
         print("Truco")
         self.estado_atual = "truco"
-        if (quemPediu == self.jogador_bloqueado):
+        if (quem_pediu == self.jogador_bloqueado):
             return None
 
-        if (quemPediu == 1):
+        if (quem_pediu == 1):
             escolha = jogador2.avaliar_truco()
             self.jogador_bloqueado = 1
 
         else:
             escolha = -1
             while(escolha not in [0, 1, 2]):
-                escolha = int(input(f"{jogador1}, você aceita o pedido (a mão passa a valer {(self.valor_aposta)} pontos)"))
+                escolha = int(input(f"{jogador1.nome}, você aceita o pedido (a mão passa a valer {(self.valor_aposta)} pontos)"))
             self.jogador_bloqueado = 2
         
 
         if escolha == 0:
-            print(f"fugiu")
-            if (quemPediu == jogador1):
+            if (quem_pediu == jogador1):
                 jogador1.pontos += 1
 
             else:
@@ -63,38 +60,37 @@ class Truco():
             return False
 
         elif escolha == 1:
-            print(f"{jogador2} aceitou o pedido.")
+            print(f"Jogador {jogador2.nome} aceitou o pedido.")
             self.valor_aposta += self.valor_aposta
             return True
                 
         elif escolha == 2:
-            print(f"{jogador2} pediu Retruco.")
+            print(f"Jogador {jogador2.nome} pediu Retruco.")
             self.reverter_jogador_bloqueado()
             return self.pedir_retruco(jogador2, jogador1, jogador2)
 
 
-    def pedir_retruco(self, quemPediu, jogador1, jogador2):
+    def pedir_retruco(self, quem_pediu, jogador1, jogador2):
         """Aumenta a aposta, que passa a valer 3 pontos."""
         self.valor_aposta = 3
         self.estado_atual = "retruco"
         print("Retruco")
-        if (quemPediu == self.jogador_bloqueado):
+        if (quem_pediu == self.jogador_bloqueado):
             return None
 
-        if (quemPediu == 1):
-            escolha = jogador2.avaliar_truco()
+        if (quem_pediu == 1):
+            escolha = jogador2.avaliar_retruco()
             self.jogador_bloqueado = 1
 
         else:
             escolha = -1
             while(escolha not in [0, 1, 2]):
-                escolha = int(input(f"{jogador1}, você aceita o pedido (a mão passa a valer {(self.valor_aposta)} pontos)"))
+                escolha = int(input(f"Jogador {jogador1.nome}, você aceita o pedido (a mão passa a valer {(self.valor_aposta)} pontos)"))
             self.jogador_bloqueado = 2
         
 
         if escolha == 0:
-            print(f"fugiu")
-            if (quemPediu == jogador1):
+            if (quem_pediu == jogador1):
                 jogador1.pontos += 2
 
             else:
@@ -103,38 +99,37 @@ class Truco():
             return False
 
         elif escolha == 1:
-            print(f"{jogador2} aceitou o pedido.")
+            print(f"Jogador {jogador2.nome} aceitou o pedido.")
             self.valor_aposta += self.valor_aposta
             return True
                 
         elif escolha == 2:
-            print(f"{jogador2} pediu Retruco.")
+            print(f"Jogador {jogador2.nome} pediu Retruco.")
             self.reverter_jogador_bloqueado()
-            return self.pedir_vale4(jogador1, jogador1, jogador2)
+            return self.pedir_vale_quatro(jogador1, jogador1, jogador2)
 
 
-    def pedir_vale4(self, quemPediu, jogador1, jogador2):
+    def pedir_vale_quatro(self, quem_pediu, jogador1, jogador2):
         """Aumenta a aposta, que passa a valer 4 pontos"""
         self.valor_aposta = 4
-        self.estado_atual = "vale4"
+        self.estado_atual = "vale_quatro"
         print("Vale 4")
-        if (quemPediu == self.jogador_bloqueado):
+        if (quem_pediu == self.jogador_bloqueado):
             return None
 
-        if (quemPediu == 1):
-            escolha = jogador2.avaliar_truco()
+        if (quem_pediu == 1):
+            escolha = jogador2.avaliar_vale_quatro()
             self.jogador_bloqueado = 1
 
         else:
             escolha = -1
             while(escolha not in [0, 1]):
-                escolha = int(input(f"{jogador1}, você aceita o pedido (a mão passa a valer {(self.valor_aposta)} pontos)"))
+                escolha = int(input(f"{jogador1.nome}, você aceita o pedido (a mão passa a valer {(self.valor_aposta)} pontos)"))
             self.jogador_bloqueado = 2
         
 
         if escolha == 0:
-            print(f"fugiu")
-            if (quemPediu == jogador1):
+            if (quem_pediu == jogador1):
                 jogador1.pontos += 3
 
             else:
@@ -143,7 +138,7 @@ class Truco():
             return False
 
         elif escolha == 1:
-            print(f"{jogador2} aceitou o pedido.")
+            print(f"Jogador {jogador2.nome} aceitou o pedido.")
             self.valor_aposta += self.valor_aposta
             return True
 
@@ -166,3 +161,4 @@ class Truco():
         self.jogador_aumentou2 = 0
         self.jogador_aumentou4 = 0
         self.jogador_fugiu = 0
+        self.estado_atual = ""
