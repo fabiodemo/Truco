@@ -36,17 +36,15 @@ def turno_do_humano(jogador2):
         # Chama a flor antes do jogador1 jogar envido 
         if (len(jogador1.checa_mao()) > 2 and (carta_escolhida == 6) and (jogador2.flor is True)):
             print('bloqueou a flor')
-            jogador2.pedir_flor(jogador2, jogador1, jogador2)
+            jogador2.pedir_flor(2, jogador1, jogador2)
         
         if (carta_escolhida <= len(jogador1.checa_mao()) and int(carta_escolhida) >= 0):
             carta_jogador_01 = jogador1.jogar_carta(carta_escolhida)
             # interface.limpar_tela()
-
-            # print(f'carta escolhida {carta_escolhida} \n carta_jogador_01 {carta_jogador_01}')
             break
 
         elif (carta_escolhida == 4):
-            chamou_truco = (truco.pedir_truco(1, jogador1, jogador2))
+            chamou_truco = (truco.controlar_truco(1, jogador1, jogador2))
             print(f"temp: {chamou_truco}")
             if ((chamou_truco) is False):
                 print('pontos truco', truco.retornar_valor_aposta())
@@ -87,20 +85,16 @@ def turno_do_bot(carta_jogador_01=None):
 
         if (jogador2.pediu_flor is False and (carta_escolhida == 5 and (len(jogador1.mao) == 3))):
             print('flor do Bot')
-            flor.pedir_flor(jogador2, jogador1, jogador2)
+            flor.pedir_flor(1, jogador1, jogador2)
             interface.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados")
         
         if (carta_escolhida <= len(jogador2.checa_mao()) and int(carta_escolhida) >= 0):
-            #carta_jogador_02 = jogador2.jogar_carta(carta_escolhida, truco)
-            
             # interface.limpar_tela()
-
-            # print(f'carta escolhida {carta_escolhida} \n carta_jogador_01 {carta_jogador_01}')
             carta_jogador_02 = jogador2.mao.pop(carta_escolhida)
             break
 
         elif (carta_escolhida == 4):
-            chamou_truco = (truco.pedir_truco(1, jogador2, jogador1))
+            chamou_truco = (truco.controlar_truco(1, jogador2, jogador1))
             print(f"temp: {chamou_truco}")
             if ((chamou_truco) is False):
                 print('pontos truco', truco.retornar_valor_aposta())
@@ -185,7 +179,7 @@ while True:
             # jogo.jogador_fugiu(jogador2, jogador1, jogador2)
             interface.mostrar_placar_total_jogador_fugiu(jogador2, jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
         
-        reiniciarJogo()
+        # reiniciarJogo()
 
     else:
         ganhador = jogo.verificar_ganhador(carta_jogador_01, carta_jogador_02)
@@ -207,11 +201,11 @@ while True:
         interface.mostrar_placar_total(jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
 
     # Caso acabem as cartas nas mãos dos jogadores, ou houve fuga, finaliza as jogadas
-    if (not(jogador1.checa_mao()) and not(jogador2.checa_mao()) or truco_fugiu is True):
+    elif (not(jogador1.checa_mao()) and not(jogador2.checa_mao()) or truco_fugiu is True):
         pontos_truco = truco.retornar_valor_aposta()
         ocultar_pontos_ac = True
         if truco_fugiu is True:
-            print(f'pontos truco:: {pontos_truco} | {truco.retornar_valor_aposta()}')
+
             # jogador1.adicionar_pontos(truco.retornar_valor_aposta())
             # interface.mostrar_ganhador_rodada(jogador1.nome)
             reiniciarJogo()

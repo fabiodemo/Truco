@@ -52,7 +52,49 @@ class Cbr():
         return pontuacao_cartas.index(int(carta_escolhida))
 
     def truco(self, quem_pediu):
-        """Método que considera o pedido de truco e retorna as opções para aceitar, aumentar ou fugir."""
+        """Método que considera o pedido de truco e retorna a melhor opção entre aceitar, aumentar ou fugir."""
+        registro = self.dados.retornar_registro()
+        warnings.simplefilter(action='ignore', category=UserWarning)
+        distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
+        jogadas = jogadas_aumentadas = jogadas_perdidas = self.dataset.iloc[indices.tolist()[0]]
+        jogadas = jogadas[((jogadas.quemTruco == quem_pediu))]
+        # 'quemNegouTruco', 'quemGanhouTruco', 'quemTruco', 'quemRetruco', 
+
+        vencidas = jogadas['quemGanhouTruco'].value_counts().index.to_list()[0]
+        negadas = jogadas['quemNegouTruco'].value_counts().index.to_list()[0]
+        retruco = jogadas['quemRetruco'].value_counts().index.to_list()[0]
+
+        print(vencidas, negadas, retruco)
+
+        # carta_escolhida = min(pontuacao_cartas, key=lambda x:abs(x-valor_referencia))
+        # print(jogadas_vencidas[ordem_carta_jogada].value_counts())
+        # return carta_escolhida
+        # return pontuacao_cartas.index(int(carta_escolhida))
+        return False
+
+    def retruco(self, quem_pediu):
+        """Método que considera o pedido de retruco e retorna a melhor opção entre aceitar, aumentar ou fugir."""
+        registro = self.dados.retornar_registro()
+        warnings.simplefilter(action='ignore', category=UserWarning)
+        distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
+        jogadas = jogadas_aumentadas = jogadas_perdidas = self.dataset.iloc[indices.tolist()[0]]
+        jogadas = jogadas[((jogadas.quemTruco == quem_pediu))]
+        # 'quemNegouTruco', 'quemGanhouTruco', 'quemTruco', 'quemRetruco', 
+
+        vencidas = jogadas['quemGanhouTruco'].value_counts().index.to_list()[0]
+        negadas = jogadas['quemNegouTruco'].value_counts().index.to_list()[0]
+        retruco = jogadas['quemRetruco'].value_counts().index.to_list()[0]
+
+        print(vencidas, negadas, retruco)
+
+        # carta_escolhida = min(pontuacao_cartas, key=lambda x:abs(x-valor_referencia))
+        # print(jogadas_vencidas[ordem_carta_jogada].value_counts())
+        # return carta_escolhida
+        # return pontuacao_cartas.index(int(carta_escolhida))
+        return False
+
+    def vale_quatro(self, quem_pediu):
+        """Método que considera o pedido de truco e retorna a melhor opção entre aceitar ou fugir."""
         registro = self.dados.retornar_registro()
         warnings.simplefilter(action='ignore', category=UserWarning)
         distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
@@ -74,7 +116,7 @@ class Cbr():
 
 
     def envido(self, quem_pediu, pontos_envido_robo):
-        """Método que considera o pedido de envido e retorna as opções para aceitar, pedir real envido, falta envido ou fugir."""
+        """Método que considera o pedido de envido e retorna a melhor opção entre aceitar, pedir real envido, falta envido ou fugir."""
         registro = self.dados.retornar_registro()
         warnings.simplefilter(action='ignore', category=UserWarning)
         distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
