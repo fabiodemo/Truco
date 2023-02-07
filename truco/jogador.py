@@ -14,6 +14,7 @@ class Jogador():
 
 
     def mostrar_opcoes(self):
+        """Mostrar as opções que o jogador pode jogar"""
         print(f'pontos self.envido: {self.envido}')
         self.mostrar_mao()
         if (len(self.mao) >= 2): 
@@ -26,16 +27,19 @@ class Jogador():
 
 
     def criar_mao(self, baralho):
+        """Cria a mão do jogador e insere três cartas do baralho a ela."""
         for i in range(3):
             self.mao.append(baralho.retirar_carta())
         self.envido = self.calcula_envido(self.mao)
 
 
     def jogar_carta(self, carta_escolhida):
+        """Joga a carta, removendo da mão do jogador."""
         return self.mao.pop(carta_escolhida)
     
 
     def mostrar_mao(self):
+        """Exibe as cartas que o jogador possui na mão."""
         i = 0
         for carta in self.mao:
             carta.exibir_carta(i)
@@ -46,25 +50,22 @@ class Jogador():
 
 
     def adicionar_pontos(self, pontos):
+        """Adiciona pontos a pontuação acumulada do jogador."""
         self.pontos += pontos
 
 
     def adicionar_rodada(self):
+        """Adiciona uma rodada ganha ao jogador."""
         self.rodadas += 1
-    
-
-    def resetar(self):
-        self.rodadas = 0
-        self.mao = []
-        self.flor = False
-        self.pediu_truco = False
 
 
     def checa_mao(self):
+        """Retorna as cartas em mão."""
         return self.mao
     
 
     def calcula_envido(self, mao):
+        """Realização do cálculo de envido."""
         pontos_envido = []
 
         for i in range(len(mao)):
@@ -78,6 +79,7 @@ class Jogador():
     
     
     def checa_flor(self):
+        """Verifica se o jogador possui flor em sua mão."""
         if all(carta.retornar_naipe() == self.mao[0].retornar_naipe() for carta in self.mao):
             # print('Flor do Jogador')
             return True
@@ -85,4 +87,13 @@ class Jogador():
 
     
     def retorna_pontos_envido(self):
+        """Retorna os pontos do envido."""
         return self.envido
+
+
+    def resetar(self):
+        """Resetar variáveis ligadas a rodada."""
+        self.rodadas = 0
+        self.mao = []
+        self.flor = False
+        self.pediu_truco = False
