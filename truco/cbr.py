@@ -23,16 +23,20 @@ class Cbr():
         return df
 
 
-    def vizinhos_proximos(self):
-        return NearestNeighbors(n_neighbors=100, algorithm='ball_tree').fit(self.dataset)
+    def vizinhos_proximos(self, df=None):
+        if (df is None):
+            return NearestNeighbors(n_neighbors=100, algorithm='ball_tree').fit(self.dataset)
+        return NearestNeighbors(n_neighbors=100, algorithm='ball_tree').fit(df)
 
 
     def jogar_carta(self, rodada, pontuacao_cartas):
         registro = self.dados.retornar_registro()
         warnings.simplefilter(action='ignore', category=UserWarning)
         distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
-        jogadas_vencidas = self.dataset.iloc[indices.tolist()[0]]
-        jogadas_vencidas = jogadas_vencidas[((jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorSegundaRodada == 2) | (jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2) | (jogadas_vencidas.ganhadorSegundaRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2))]
+        jogadas_vencidas = jogadas_aumentadas = jogadas_perdidas = self.dataset.iloc[indices.tolist()[0]]
+        jogadas_vencidas = jogadas_vencidas[((jogadas_vencidas.quemGanhouTruco == 2) & (jogadas_vencidas.quemTruco == 2))]
+        jogadas_vencidas = jogadas_vencidas[((jogadas_vencidas.quemRetruco == 2) & (jogadas_vencidas.quemValeQuatro == 2))]
+        jogadas_perdidas = jogadas_perdidas[((jogadas_perdidas.quemGanhouTruco == 2) & ((jogadas_perdidas.quemTruco == 2) | jogadas_perdidas.quemRetruco == 2 | jogadas_perdidas.quemValeQuatro == 2 ))]
 
         ordem_carta_jogada = 'CartaRobo'
         if ((rodada) == 3): ordem_carta_jogada = 'primeira' + ordem_carta_jogada
@@ -54,7 +58,7 @@ class Cbr():
         warnings.simplefilter(action='ignore', category=UserWarning)
         distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
         jogadas_vencidas = jogadas_perdidas = self.dataset.iloc[indices.tolist()[0]]
-        jogadas_vencidas = jogadas_vencidas[((jogadas_vencidas.quemGanhouTruco == 2) & (jogadas_vencidas.quemTruco == 2))]
+        jogadas_vencidas = jogadas_vencidas[((jogadas_vencidas.quemGanhouTruco == 2) & (jogadas_vencidas.quemTruco == 2) & (jogadas_vencidas.quemGanhouTruco == 2) & (jogadas_vencidas.quemTruco == quem_pediu))]
         jogadas_perdidas = jogadas_perdidas[((jogadas_vencidas.quemGanhouTruco == 1) |((jogadas_perdidas.quemNegouTruco == 2) & ((jogadas_perdidas.quemTruco == 2) | jogadas_perdidas.quemRetruco == 2)))]
         # 'quemNegouTruco', 'quemGanhouTruco', 'quemTruco', 'quemRetruco', 
         ordem_carta_jogada = 'CartaRobo'
