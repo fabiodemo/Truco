@@ -44,7 +44,7 @@ class Bot():
         # Envido
         if ((len(self.mao) == 3)):
             self.calcula_envido(self.mao)
-            envido = cbr.envido(self)
+            envido = cbr.envido(1, self.envido)
             if (envido is True):
                 return 6
         # Flor
@@ -54,7 +54,7 @@ class Bot():
                 return 5
 
         # Pedir truco
-        truco = cbr.truco(self)
+        truco = cbr.truco(1)
         if (truco is True):
             return 4
 
