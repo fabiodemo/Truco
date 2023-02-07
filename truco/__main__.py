@@ -44,7 +44,7 @@ def turno_do_humano(jogador2):
             break
 
         elif (carta_escolhida == 4):
-            chamou_truco = (truco.controlar_truco(1, jogador1, jogador2))
+            chamou_truco = (truco.controlador_truco(1, jogador1, jogador2))
             # print(f"temp: {chamou_truco}")
             if ((chamou_truco) is False):
                 print('pontos truco', truco.retornar_valor_aposta())
@@ -59,7 +59,8 @@ def turno_do_humano(jogador2):
 
         elif (jogador2.flor is False and (len(jogador1.checa_mao()) > 2 and carta_escolhida == 6)):
             print('envido')
-            envido.pedir_envido(1, jogador1, jogador2)
+            # envido.pedir_envido(1, jogador1, jogador2)
+            envido.controlador_envido('Envido', 1, jogador1, jogador2, interface)
 
         elif (carta_escolhida == 7):
             jogador2.adicionar_pontos(1)
@@ -94,7 +95,7 @@ def turno_do_bot(carta_jogador_01=None):
             break
 
         elif (carta_escolhida == 4):
-            chamou_truco = (truco.controlar_truco(1, jogador2, jogador1))
+            chamou_truco = (truco.controlador_truco(1, jogador2, jogador1))
             # print(f"temp: {chamou_truco}")
             if ((chamou_truco) is False):
                 print('pontos truco', truco.retornar_valor_aposta())
@@ -104,7 +105,8 @@ def turno_do_bot(carta_jogador_01=None):
 
         elif ((jogador1.pediu_flor or jogador2.pediu_flor) is False and carta_escolhida == 6):
             print('envido')
-            envido.pedir_envido(2, jogador2, jogador1)
+            # envido.pedir_envido(2, jogador2, jogador1)
+            envido.controlador_envido('Envido', 2, jogador1, jogador2, interface)
 
 
         elif (carta_escolhida == 7):
