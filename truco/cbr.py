@@ -5,17 +5,17 @@ from .pontos import MANILHA, CARTAS_VALORES
 from .dados import Dados
 
 class Cbr():
-
     def __init__(self):
         self.indice = 0
-        self.dataset = self.carregar_dataset()
         self.dados = Dados()
+        self.dataset = self.dados.retornar_casos()
         # self.dados = self.retornarSimilares()
         self.nbrs = self.vizinhos_proximos()
 
 
     def carregar_dataset(self):
-        df = pd.read_csv('dbtrucoimitacao_maos.csv', index_col='idMao').fillna(-66)
+        """Carrega o dataset, caso necessário"""
+        df = pd.read_csv('dbtrucoimitacao_maos.csv', index_col='idMao').fillna(-100)
         df.replace('ESPADAS', '1', inplace=True)
         df.replace('OURO', '2', inplace=True)
         df.replace('BASTOS', '3', inplace=True)
@@ -24,12 +24,14 @@ class Cbr():
 
 
     def vizinhos_proximos(self, df=None):
+        """Cálculo dos 100 Nearest Neighbors."""
         if (df is None):
             return NearestNeighbors(n_neighbors=100, algorithm='ball_tree').fit(self.dataset)
         return NearestNeighbors(n_neighbors=100, algorithm='ball_tree').fit(df)
 
 
     def jogar_carta(self, rodada, pontuacao_cartas):
+        """Método que considera as jogadas em que o bot saiu vitorioso e retorna a pontuação mais próxima a ser jogada em determinada rodada."""
         registro = self.dados.retornar_registro()
         warnings.simplefilter(action='ignore', category=UserWarning)
         distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
@@ -51,6 +53,7 @@ class Cbr():
         return pontuacao_cartas.index(int(carta_escolhida))
 
     def truco(self, quem_pediu):
+        """Método que considera o pedido de truco e retorna as opções para aceitar, aumentar ou fugir."""
         registro = self.dados.retornar_registro()
         warnings.simplefilter(action='ignore', category=UserWarning)
         distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
@@ -72,6 +75,7 @@ class Cbr():
 
 
     def envido(self, quem_pediu, pontos_envido_robo):
+        """Método que considera o pedido de envido e retorna as opções para aceitar, pedir real envido, falta envido ou fugir."""
         registro = self.dados.retornar_registro()
         warnings.simplefilter(action='ignore', category=UserWarning)
         distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
@@ -98,19 +102,8 @@ class Cbr():
 
         return None
 
-    def flor(self):
-        pass
-
-
-    def jogar_rodada(self, jogador2, rodada, pontuacao_cartas):
-
-        # truco = self.truco(jogador2)
-        # if (truco is True):
-        #     return 4
-
-        return self.jogar_carta(rodada, pontuacao_cartas)
-
     def enriquecer_agente(self, rodada=None, pontuacao_cartas=None, mao_rank=None, qualidade_mao_bot=None, carta_humano=None):
+        """Controlador do método da classe dados, que enriquecerá o conhecimento do bot com a carta jogada pelo humano."""
         if (rodada == 1):
             self.dados.primeira_rodada(pontuacao_cartas, mao_rank, qualidade_mao_bot, carta_humano)
         # if (rodada == 2):
@@ -119,7 +112,7 @@ class Cbr():
         #     self.dados.terceira_rodada(carta_humano, ganhador)
 
     def enriquecer_jogadas_bot(self, rodada, carta_jogador_02):
-        """Controlador do submétodo para enriquecer as jogadas do bot"""
+        """Controlador do método da classe dados, que enriquecerá o conhecimento do bot com a carta a qual ele jogou."""
         if (rodada == 2):
             self.dados.cartas_jogadas_pelo_bot('primeira', carta_jogador_02)
         if (rodada == 3):
