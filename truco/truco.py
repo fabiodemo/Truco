@@ -74,7 +74,7 @@ class Truco():
 
 
     def pedir_retruco(self, quemPediu, jogador1, jogador2):
-        """Aumenta a aposta, que passa a valer 3 pontos"""
+        """Aumenta a aposta, que passa a valer 3 pontos."""
         self.valor_aposta = 3
         self.estado_atual = "retruco"
         print("Retruco")
@@ -154,7 +154,7 @@ class Truco():
 
 
     def retornar_quem_fugiu(self):
-        """Retorna o jogador que fugiu do truco"""
+        """Retorna o jogador que fugiu do truco."""
         return self.retornar_quem_fugiu
     
     

@@ -7,16 +7,15 @@ class Carta():
         self.naipe = naipe
 
     def verificar_carta_alta(self, carta_01, carta_02):
+        """Verificação de qual carta é a carta mais alta, entre duas cartas."""
         if (str(carta_01.numero)+" de "+carta_01.naipe) in MANILHA and (str(carta_02.numero)+" de "+carta_02.naipe) in MANILHA:
             if MANILHA[str(carta_01.numero)+" de "+carta_01.naipe] > MANILHA[str(carta_02.numero)+" de "+carta_02.naipe]:
                 return carta_01
             elif MANILHA[str(carta_02.numero)+" de "+carta_02.naipe] > MANILHA[str(carta_01.numero)+" de "+carta_01.naipe]:
                 return carta_02
         elif (str(carta_01.numero)+" de "+carta_01.naipe) in MANILHA:
-            print('in manilha')
             return carta_01
         elif (str(carta_02.numero)+" de "+carta_02.naipe) in MANILHA:
-            print('in manilha')
             return carta_02
         else:
             if CARTAS_VALORES[str(carta_01.numero)] > CARTAS_VALORES[str(carta_02.numero)]:
@@ -27,6 +26,7 @@ class Carta():
 
 
     def verificar_carta_baixa(self, carta_01, carta_02):
+        """Verificação de qual é a carta mais baixa entre duas cartas."""
         if (str(carta_01.numero)+" de "+carta_01.naipe) in MANILHA and (str(carta_02.numero)+" de "+carta_02.naipe) in MANILHA:
             if MANILHA[str(carta_01.numero)+" de "+carta_01.naipe] < MANILHA[str(carta_02.numero)+" de "+carta_02.naipe]:
                 return carta_01
@@ -43,14 +43,9 @@ class Carta():
                 return carta_02
         return carta_01
 
-
-    def carta_manilha(self, carta):
-        if (((carta.numero)+" de "+carta.naipe) in self.MANILHA):
-            return True
-        return False
-
     
     def retornar_pontos_carta(self, carta):
+        """Retorna a pontuação equivalente de determinada carta."""
         if (str(carta.numero)+" de "+carta.naipe) in MANILHA:
             return MANILHA[str(carta.numero)+" de "+carta.naipe]
         else:
@@ -58,6 +53,7 @@ class Carta():
 
 
     def classificar_carta(self, cartas):
+        """Método para classificar as cartas por ranks (alto, médio, baixo) e retorna a pontuação individual de cada carta."""
         carta_alta = self.verificar_carta_alta(self.verificar_carta_alta(cartas[0], cartas[1]), cartas[2])
         carta_baixa = self.verificar_carta_baixa(self.verificar_carta_baixa(cartas[0], cartas[1]), cartas[2])
         lista_classificacao = ['', '', '']
@@ -80,6 +76,7 @@ class Carta():
 
 
     def exibir_carta(self, i=None):
+        """Exibe a carta a ser jogada e a opção para jogá-la."""
         if i == None:
             i = ""
         if self.numero == 1 and self.naipe == 'Espadas':
@@ -95,15 +92,18 @@ class Carta():
     
 
     def retornar_pontos_envido(self, carta):
+        """Retorna os pontos do envido para determinada carta, de acordo com a codificação."""
         # print(carta.retornar_numero())
         return ENVIDO[str(carta.retornar_numero())]
 
 
     def retornar_numero(self):
+        """Retorna o número de determinada carta."""
         return self.numero
     
 
     def retornar_naipe(self):
+        """Retorna o naipe de determinada carta."""
         return self.naipe
 
 
