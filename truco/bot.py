@@ -155,7 +155,7 @@ class Bot():
 
     def avaliar_envido(self):
         """Verifica se a melhor jogada para o bot seria aceitar, pedir real ou falta envido."""
-        return None
+        return 1
 
 
     def calcular_qualidade_mao(self, lista_pontuacao, lista_mao_rank):

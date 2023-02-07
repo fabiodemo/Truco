@@ -45,7 +45,7 @@ def turno_do_humano(jogador2):
 
         elif (carta_escolhida == 4):
             chamou_truco = (truco.controlar_truco(1, jogador1, jogador2))
-            print(f"temp: {chamou_truco}")
+            # print(f"temp: {chamou_truco}")
             if ((chamou_truco) is False):
                 print('pontos truco', truco.retornar_valor_aposta())
                 return -1
@@ -95,7 +95,7 @@ def turno_do_bot(carta_jogador_01=None):
 
         elif (carta_escolhida == 4):
             chamou_truco = (truco.controlar_truco(1, jogador2, jogador1))
-            print(f"temp: {chamou_truco}")
+            # print(f"temp: {chamou_truco}")
             if ((chamou_truco) is False):
                 print('pontos truco', truco.retornar_valor_aposta())
                 return -1

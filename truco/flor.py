@@ -53,12 +53,18 @@ class Flor():
         jogador1_pontos = jogador1.retorna_pontos_envido()
         jogador2_pontos = jogador2.retorna_pontos_envido()
 
+        if (quem_pediu == 1):
+            self.valor_envido = self.valor_flor
+            
+        else:
+            self.valor_envido = self.valor_flor
+
         if jogador1_pontos > jogador2_pontos:
-            jogador1.pontos += 12 - jogador2.pontos
+            jogador1.pontos += self.valor_flor
             self.quem_venceu_flor = 1
 
         elif jogador2_pontos > jogador1_pontos:
-            jogador2.pontos += 12 - jogador1.pontos
+            jogador2.pontos += self.valor_flor
             self.quem_venceu_flor = 2
 
         else:
