@@ -15,18 +15,21 @@ class Jogo():
 
 
     def criar_jogador(self, nome, baralho):
+        """Criação do jogador, baseado em sua própria classe"""
         jogador = Jogador(nome)
         jogador.criar_mao(baralho)
         return jogador
 
 
     def criar_bot(self, nome, baralho):
+        """Criação do bot, baseado em sua própria classe"""
         bot = Bot(nome)
         bot.criar_mao(baralho)
         return bot
 
 
     def verificar_ganhador(self, carta1, carta2):
+        """Função que chama o método para verificar a carta vencedora"""
         ganhador = self.verificar_carta_vencedora(carta1, carta2)
         print("\nCarta ganhadora: ")
         print(ganhador.exibir_carta())
@@ -34,12 +37,13 @@ class Jogo():
 
     
     def adicionar_rodada(self, jogador1, jogador2, carta1, carta2, ganhador):
-        if ganhador == "Empate":
-            jogador1.adicionar_rodada()
-            jogador2.adicionar_rodada()
-            return "Empate"
+        """Adição da rodada para cada jogador"""
+        # if ganhador == "Empate":
+        #     jogador1.adicionar_rodada()
+        #     jogador2.adicionar_rodada()
+        #     return "Empate"
         
-        elif ganhador == carta1:
+        if ganhador == carta1:
             jogador1.adicionar_rodada()
             # ganhador.adicionar_rodada()
         
@@ -52,6 +56,7 @@ class Jogo():
 
 
     def quem_joga_primeiro(self, jogador1, jogador2, carta1, carta2, ganhador):
+        """Definição de quem joga primeiro, a cada round"""
         if carta1 == ganhador:
             jogador1.primeiro = True
             jogador2.primeiro = False
@@ -60,11 +65,12 @@ class Jogo():
             jogador1.primeiro = False
             jogador2.primeiro = True
         
-        elif ganhador == "Empate":
-            pass
+        # elif ganhador == "Empate":
+        #     pass
 
 
     def quem_inicia_rodada(self, jogador1, jogador2):
+        """Seleção de quem inicia a rodada"""
         if jogador1.rodadas == 0 and jogador2.rodadas == 0:
             if jogador1.ultimo == True:
                 jogador2.ultimo = True
@@ -79,6 +85,7 @@ class Jogo():
 
 
     def verificar_carta_vencedora(self, carta_jogador_01, carta_jogador_02):
+        """Verifica a carta vencedora entre as duas cartas escolhidas"""
         if (str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in MANILHA and (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA:
             if MANILHA[str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe] > MANILHA[str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe]:
                 return carta_jogador_01
@@ -104,27 +111,7 @@ class Jogo():
 
 
     def jogador_fugiu(self, jogador, jogador1, jogador2, pontos):
+        """Indicação de que o jogador fugiu, resetando a ordem de jogadas com o jogador 1 sendo mão"""
         print('jogador {jogador.nome} fugiu!')
         jogador1.primeiro = True
         jogador2.primeiro = False
-    
-
-    # def trucoAceito(self, aceitou):
-    #     print("Truco")
-    #     if (aceitou is False and self.trucoPontos == 1):
-    #         self.trucoPontos = 1
-            
-    #     elif (aceitou is False and self.trucoPontos != 1):
-    #         self.trucoPontos -= 1
-
-    #     elif (self.trucoPontos == 1):
-    #         self.trucoPontos += 1
-        
-    #     else:
-    #         self.trucoPontos +=2
-    
-    # def retornaTrucoPontos(self):
-    #     return self.trucoPontos
-    
-    # def resetarTrucoPontos(self):
-    #     self.trucoPontos = 1

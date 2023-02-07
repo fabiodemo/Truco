@@ -13,6 +13,7 @@ import os
 
 
 def reiniciarJogo():
+    """Reseta todos os parâmetros do jogo, referente as rodadas"""
     jogador1.resetar()
     jogador2.resetar()
     baralho.resetar()
@@ -25,6 +26,7 @@ def reiniciarJogo():
 
 
 def turno_do_humano(jogador2):
+    """Turno de jogadas do humano, para selecionar o que ele gostaria de jogar."""
     carta_escolhida = -1
     while (carta_escolhida > len(jogador1.checa_mao()) or int(carta_escolhida) <= 1):
         print(f"\n<< {jogador1.nome} - Jogador 1 >>")
@@ -73,7 +75,8 @@ def turno_do_humano(jogador2):
 
 
 def turno_do_bot(carta_jogador_01=None):
-    jogador2.enriquecer_bot(cbr, carta_jogador_01)
+    """Turno do Bot, para avaliar o estado atual do jogo e jogar suas cartas."""
+
     print('\nMAO')
     jogador2.mostrar_mao()
     carta_escolhida = -1
@@ -173,6 +176,7 @@ while True:
         carta_jogador_01 = turno_do_humano(jogador2)
         if (carta_jogador_01 != -1):
             interface.mostrar_carta_jogada(jogador1.nome, carta_jogador_01)
+            jogador2.enriquecer_bot(cbr, carta_jogador_01)
             carta_jogador_02 = turno_do_bot(carta_jogador_01)
             if (carta_jogador_02 != -1):
                 interface.mostrar_carta_jogada(jogador2.nome, carta_jogador_02)
@@ -184,6 +188,7 @@ while True:
             carta_jogador_01 = turno_do_humano(jogador2)
             if (carta_jogador_01 != -1):
                 interface.mostrar_carta_jogada(jogador1.nome, carta_jogador_01)
+                jogador2.enriquecer_bot(cbr, carta_jogador_01)
     
     
     if (carta_jogador_01 == -1 or carta_jogador_02 == -1):
