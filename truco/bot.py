@@ -32,7 +32,10 @@ class Bot():
 
 
     def enriquecer_bot(self, cbr, carta_jogador_01):
-        cbr.enriquecer_agente(self.rodada, self.pontuacao_cartas, self.mao_rank, self.qualidade_mao, carta_jogador_01)
+        if(self.rodada == 1):
+            cbr.enriquecer_agente(self.rodada, self.pontuacao_cartas, self.mao_rank, self.qualidade_mao, carta_jogador_01)
+        else:
+            pass
 
 
     def enriquecer_cartas_bot(self, cbr, carta_jogador_02):

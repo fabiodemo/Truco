@@ -12,6 +12,7 @@ class Truco():
 
 
     def reverter_jogador_bloqueado(self):
+        """Lógica para impedir que o mesmo jogador não peça o aumento de aposta seguidamente."""
         if (self.jogador_bloqueado == 1):
             self.jogador_bloqueado = 2
         
@@ -20,6 +21,7 @@ class Truco():
 
 
     def pedir_truco(self, quemPediu, jogador1, jogador2):
+        """Controlador de métodos, para selecionar o que pode ser chamado ou não."""
         if (self.estado_atual == ""):
             estado = self.pedir_truco(quemPediu, jogador1, jogador2)
             self.estado_atual = "truco"
@@ -33,6 +35,7 @@ class Truco():
 
 
     def pedir_truco(self, quemPediu, jogador1, jogador2):
+        """Aumenta a aposta inicial do jogo, que passa a valer 2 pontos."""
         print("Truco")
         self.estado_atual = "truco"
         if (quemPediu == self.jogador_bloqueado):
@@ -71,6 +74,7 @@ class Truco():
 
 
     def pedir_retruco(self, quemPediu, jogador1, jogador2):
+        """Aumenta a aposta, que passa a valer 3 pontos"""
         self.valor_aposta = 3
         self.estado_atual = "retruco"
         print("Retruco")
@@ -110,6 +114,7 @@ class Truco():
 
 
     def pedir_vale4(self, quemPediu, jogador1, jogador2):
+        """Aumenta a aposta, que passa a valer 4 pontos"""
         self.valor_aposta = 4
         self.estado_atual = "vale4"
         print("Vale 4")
@@ -144,14 +149,17 @@ class Truco():
 
 
     def retornar_valor_aposta(self):
+        """Retorna o valor atual de pontos (normal, truco, retruco, vale quatro)."""
         return self.valor_aposta
 
 
     def retornar_quem_fugiu(self):
+        """Retorna o jogador que fugiu do truco"""
         return self.retornar_quem_fugiu
     
     
     def resetar_pontos_truco(self):
+        """Reset dos pontos da classe truco."""
         self.valor_aposta = 1
         self.jogador_bloqueado = 0
         self.jogador_pediu = 0

@@ -76,7 +76,6 @@ def turno_do_humano(jogador2):
 
 def turno_do_bot(carta_jogador_01=None):
     """Turno do Bot, para avaliar o estado atual do jogo e jogar suas cartas."""
-
     print('\nMAO')
     jogador2.mostrar_mao()
     carta_escolhida = -1
@@ -186,9 +185,9 @@ while True:
         if (carta_jogador_02 != -1):
             interface.mostrar_carta_jogada(jogador2.nome, carta_jogador_02)
             carta_jogador_01 = turno_do_humano(jogador2)
+            jogador2.enriquecer_bot(cbr, carta_jogador_01)
             if (carta_jogador_01 != -1):
                 interface.mostrar_carta_jogada(jogador1.nome, carta_jogador_01)
-                jogador2.enriquecer_bot(cbr, carta_jogador_01)
     
     
     if (carta_jogador_01 == -1 or carta_jogador_02 == -1):

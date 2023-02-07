@@ -119,6 +119,7 @@ class Cbr():
         #     self.dados.terceira_rodada(carta_humano, ganhador)
 
     def enriquecer_jogadas_bot(self, rodada, carta_jogador_02):
+        """Controlador do submétodo para enriquecer as jogadas do bot"""
         if (rodada == 2):
             self.dados.cartas_jogadas_pelo_bot('primeira', carta_jogador_02)
         if (rodada == 3):
