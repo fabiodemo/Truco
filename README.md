@@ -69,4 +69,4 @@ As regras para o jogo do truco foram retiradas do site [Jogatina](https://www.jo
 - **Contra-flor** - Uma das possíveis respostas ao pedido de Flor. Pode aumentar o valor da mão em 6 pontos. (Em algumas situações o valor pode ser maior)
 - **Contra-flor** e o resto - Disputa similar a Contra-flor que pode aumentar o valor da mão para a diferença entre o placar final do jogo e os pontos da pessoa que está ganhando, além dos pontos da Contra-flor. (Em algumas situações o valor pode ser maior)
 
-### A fundação/base dos códigos no presente projeto, foi baseada no [repositório criado pelo usuário anthonyzutterdisponível em neste link](https://github.com/anthonyzutter/Truco-Jogo)
+### A fundação/base dos códigos no presente projeto, foi baseada no [repositório criado pelo usuário anthonyzutter](https://github.com/anthonyzutter/Truco-Jogo).
