@@ -51,7 +51,7 @@ class Cbr():
         # return carta_escolhida
         return pontuacao_cartas.index(int(carta_escolhida))
 
-    def truco(self, tipo, quem_pediu):
+    def truco(self, tipo, quem_pediu, qualidade_mao_bot):
         """Método que considera o pedido de truco e retorna a melhor opção entre aceitar, aumentar ou fugir."""
         registro = self.dados.retornar_registro()
         warnings.simplefilter(action='ignore', category=UserWarning)
@@ -71,8 +71,16 @@ class Cbr():
         vencidas = jogadas['quemGanhouTruco'].value_counts().index.to_list()[0]
         negadas = jogadas['quemNegouTruco'].value_counts().index.to_list()[0]
         retruco = jogadas['quemRetruco'].value_counts().index.to_list()[0]
+        qualidade_mao_humana = jogadas['qualidadeMaoHumano'].value_counts().index.to_list()[0]
 
-        return False
+        if (vencidas > negadas and qualidade_mao_bot > qualidade_mao_humana):
+            return 2
+        
+        elif (qualidade_mao_bot > qualidade_mao_humana):
+            return 1
+        
+        else:
+            return 0
 
 
     def envido(self, tipo, quem_pediu, pontos_envido_robo, robo_perdendo):
