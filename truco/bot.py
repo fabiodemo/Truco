@@ -137,7 +137,7 @@ class Bot():
 
     def avaliar_truco(self):
         """Verifica se a melhor jogada para o bot seria aceitar, recusar ou aumentar a aposta do truco."""
-        return 2
+        return 1
         # if (self.qualidade_mao > 50):
         #     return 2
 

@@ -25,7 +25,7 @@ class Truco():
 
     def controlador_truco(self, quem_pediu, jogador1, jogador2):
         """Controlador de métodos, para selecionar o que pode ser chamado ou não."""
-        if (self.estado_atual != ""):
+        if (self.estado_atual == "vale_quatro"):
             return None
 
         if (quem_pediu == self.jogador_bloqueado):

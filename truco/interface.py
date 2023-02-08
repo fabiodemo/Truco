@@ -37,6 +37,9 @@ class Interface():
         """Exibe quem ganhou a rodada."""
         print(f"\nCarta ganhadora: {carta.retornar_carta()}\n")
 
+    def mostrar_ganhador_rodada(self, jogador):
+        print(f"{jogador} ganhou a rodada\n")
+
 
     def mostrar_placar_total_jogador_fugiu(self, jogador_fugiu, jogador1, jogador1_pontos, jogador2, jogador2_pontos):
         """Exibe um aviso de que o jogador fugiu e o placar total,"""
@@ -97,10 +100,10 @@ class Interface():
         l_mostrar_carta.append("│. . .{}{}│")
         l_mostrar_carta.append("└─────────┘")
 
-        x = ("│.", s[:1], ". . . .│")
+        x = ("│.", s[:2], " . . .│")
         l_mostrar_carta[1] = "".join(x)
 
-        x = ("│. . . .", s[:1], ".│")
+        x = ("│. . . ", s[:2], ".│")
         l_mostrar_carta[7] = "".join(x)
         
         #  ["Espadas", "Ouros", "Copas", "Espadas"]
