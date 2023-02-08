@@ -2,7 +2,11 @@
 
 O presente projeto foi desenvolvido como trabalho para a disciplina de Aplicações em Aprendizado de Máquina, para a Pós-Graduação em Ciência da Computação na Universidade Federal de Santa Maria.
 
-O intuito deste projeto é implementar um jogo Truco em Python, em que um humano possar jogar contra um bot. Sendo que, este bot terá suas decisões baseadas em Case-Based Reasoning.
+O intuito deste projeto é implementar um jogo Truco em Python, em que um humano possar jogar contra um bot. Sendo que, este bot terá suas decisões baseadas na técnica de **Inteligência Artificial (IA)** denominada **Case-Based Reasoning (CBR)**.
+
+Nessa técnica de **IA**, existe um problema que precisa ser resolvido (caso), e o CBR utiliza uma base de casos com problemas antigos já conhecidos e documentados (podendo apresentar uma solução com sucesso ou até mesmo sem sucesso). Havendo também a viabilidade de utilizar casos que não sejam exatamente idênticos, possibilitando que os casos mais similares possam ser usados como referência de solução para o problema que se quer solucionar.
+
+Sendo assim, o bot do jogo deverá tomar ações de acordo com os eventos situacionais do jogo, ou seja, considerar as cartas que tem em mão, as condições especiais do jogo (Truco, Envido, Flor) e por fim as jogadas do oponente humano.
 
 A base de casos encontra-se no arquivo dbtrucoimitacao_maos.csv, e pode ser alterada conforme nencessário. O modelo de caso encontra-se no arquivo modelo_registro.csv, e deve seguir o mesmo padrão da base de casos.
 
