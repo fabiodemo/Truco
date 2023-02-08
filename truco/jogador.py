@@ -13,10 +13,10 @@ class Jogador():
         self.pediu_truco = False
 
 
-    def mostrar_opcoes(self):
+    def mostrar_opcoes(self, interface):
         """Mostrar as opções que o jogador pode jogar"""
         print(f'pontos self.envido: {self.envido}')
-        self.mostrar_mao()
+        self.mostrar_mao(interface)
         if (len(self.mao) >= 2): 
             print('[4] Truco')
         if ((len(self.mao)) == 3 and self.flor is False and (self.checa_flor())):
@@ -25,7 +25,8 @@ class Jogador():
         if ((len(self.mao) == 3)):
             print(f'[6] Envido\n[7] Real Envido\n[8] Falta Envido')
         print('[9] Ir ao baralho')
-
+        cartas = [(f"{carta.numero} de {carta.naipe}") for carta in self.mao]
+        interface.exibir_cartas(cartas)
 
 
     def criar_mao(self, baralho):
@@ -40,15 +41,14 @@ class Jogador():
         return self.mao.pop(carta_escolhida)
     
 
-    def mostrar_mao(self):
+    def mostrar_mao(self, interface):
         """Exibe as cartas que o jogador possui na mão."""
         i = 0
         for carta in self.mao:
             carta.exibir_carta(i)
             i += 1
-        cartas = [(f"{carta.numero} de {carta.naipe}") for carta in self.mao]
-        # print(cartas)
-        # print('\n'.join(map('  '.join, zip(*(carta.desenharCarta(c) for c in cartas)))))
+        # cartas = [(f"{carta.numero} de {carta.naipe}") for carta in self.mao]
+        # print('\n'.join(map('  '.join, zip(*(interface.desenhar_cartas(c) for c in cartas)))))
 
 
     def adicionar_pontos(self, pontos):

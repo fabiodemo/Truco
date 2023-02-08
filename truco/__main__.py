@@ -31,7 +31,7 @@ def turno_do_humano(jogador2):
     carta_escolhida = -1
     while (carta_escolhida > len(jogador1.checa_mao()) or int(carta_escolhida) <= 1):
         print(f"\n<< {jogador1.nome} - Jogador 1 >>")
-        jogador1.mostrar_opcoes()
+        jogador1.mostrar_opcoes(interface)
         carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
 
         # Chama a flor antes do jogador1 jogar envido 
@@ -81,8 +81,6 @@ def turno_do_humano(jogador2):
 
 def turno_do_bot(carta_jogador_01=None):
     """Turno do Bot, para avaliar o estado atual do jogo e jogar suas cartas."""
-    print('\nMAO')
-    jogador2.mostrar_mao()
     carta_escolhida = -1
     while (carta_escolhida > len(jogador2.checa_mao()) or int(carta_escolhida) <= 1):
         print(f"\n<< {jogador2.nome} - Jogador 2 >>")
@@ -152,7 +150,7 @@ jogador2 = jogo.criar_bot(nome, baralho)
 jogador1.primeiro = True
 jogador2.ultimo = True
 # interface.limpar_tela()
-interface.mostrar_jogador_mao(jogador1.nome)
+# interface.mostrar_jogador_mao(jogador1.nome)
 
 while True:
     truco_fugiu = False

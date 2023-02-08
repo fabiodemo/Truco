@@ -80,12 +80,12 @@ class Interface():
         print(f'{jogador} pediu truco e o pedido já foi aceito, escolha outra jogada!')
 
 
-    def mostrar_jogador_mao(self, jogador):
+    def mostrar_jogador_opcoes(self, jogador):
         """Exibe as possibilidades de jogada para o jogador."""
         print(f"Jogador 1 é mão")
 
 
-    def desenharCarta(self, s):
+    def desenhar_cartas(self, s):
         """Exibe/desenha a carta jogada."""
         l_mostrar_carta = [] 
         l_mostrar_carta.append("┌─────────┐")
@@ -115,3 +115,9 @@ class Interface():
             l_mostrar_carta[4] = "│. . ♠ . .│"
 
         return l_mostrar_carta
+
+    def exibir_cartas(self, cartas):
+        print('\n'.join(map('  '.join, zip(*(self.desenhar_cartas(c) for c in cartas)))))
+
+    def exibir_unica_carta(self, carta):
+        print('\n'.join(map('  '.join, zip(*(self.desenhar_cartas(carta))))))
