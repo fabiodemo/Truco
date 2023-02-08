@@ -39,11 +39,9 @@ class Envido():
 
         print(quem_pediu, jogador1, jogador2, tipo)
         if (tipo == 6):
-            print(str(type(tipo)))
             self.envido(quem_pediu, jogador1, jogador2)
 
         if (tipo == 7):
-            print(str(type(tipo)))
             self.real_envido(quem_pediu, jogador1, jogador2)
 
         if (tipo == 8):

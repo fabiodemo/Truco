@@ -40,39 +40,48 @@ class Dados():
             self.registro.terceiraCartaRobo = carta_robo.retornar_numero()
             self.registro.naipeTerceiraCartaRobo = carta_robo.retornar_naipe_codificado()
 
-    def primeira_rodada(self, potuacao_cartas, mao_rank, qualidade_mao_bot, carta_humano):
+    def primeira_rodada(self, pontuacao_cartas, mao_rank, qualidade_mao_bot, carta_humano):
         """Adiciona na base de casos as cartas jogadas pelo bot na primeira rodada"""
         self.registro.jogadorMao = 1
-        self.registro.cartaAltaRobo = potuacao_cartas[mao_rank.index("Alta")]
-        self.registro.cartaMediaRobo = potuacao_cartas[mao_rank.index("Media")]
-        self.registro.cartaBaixaRobo = potuacao_cartas[mao_rank.index("Baixa")]
+        self.registro.cartaAltaRobo = pontuacao_cartas[mao_rank.index("Alta")]
+        self.registro.cartaMediaRobo = pontuacao_cartas[mao_rank.index("Media")]
+        self.registro.cartaBaixaRobo = pontuacao_cartas[mao_rank.index("Baixa")]
         self.registro.ganhadorPrimeiraRodada = 2
         self.registro.ganhadorSegundaRodada = 2
         self.registro.ganhadorTerceiraRodada = 2
         self.registro.qualidadeMaoBot = qualidade_mao_bot
         self.registro.primeiraCartaHumano = carta_humano.retornar_numero()
-        self.registro.primeiraCartaHumano = carta_humano.retornar_naipe_codificado()
+        self.registro.naipePrimeiraCartaHumano = carta_humano.retornar_naipe_codificado()
 
 
-    def segunda_rodada(self, primeira_carta_humano, ganhador_primeira_rodada):
+    def segunda_rodada(self, primeira_carta_humano, primeira_carta_robo, ganhador_primeira_rodada):
         """Adiciona na base de casos as cartas jogadas pelo oponente na segunda rodada"""
         self.registro.ganhadorPrimeiraRodada = ganhador_primeira_rodada
         self.registro.primeiraCartaHumano = primeira_carta_humano.retornar_numero()
         self.registro.naipePrimeiraCartaHumano = primeira_carta_humano.retornar_naipe_codificado()
+        self.registro.terceiraCartaRobo = primeira_carta_robo.retornar_numero()
+        self.registro.terceiraCartaRobo = primeira_carta_robo.retornar_numero()
+
     
 
-    def terceira_rodada(self, segunda_carta_humano, ganhador_segunda_rodada):
+    def terceira_rodada(self, segunda_carta_humano, segunda_carta_robo, ganhador_segunda_rodada):
         """Adiciona na base de casos as cartas jogadas pelo oponente na segunda rodada"""
         self.registro.ganhadorSegundaRodada = ganhador_segunda_rodada
         self.registro.SegundaCartaHumano = segunda_carta_humano.retornar_numero()
         self.registro.naipeSegundaCartaHumano = segunda_carta_humano.retornar_naipe_codificado()
+        self.registro.terceiraCartaRobo = segunda_carta_robo.retornar_numero()
+        self.registro.terceiraCartaRobo = segunda_carta_robo.retornar_numero()
 
 
-    def finalizar_rodadas(self, terceira_carta_humano, ganhador_terceira_rodada):
+
+    def finalizar_rodadas(self, terceira_carta_humano, terceira_carta_robo, ganhador_terceira_rodada):
         """Adiciona na base de casos as cartas jogadas pelo oponente na terceira rodada"""
         self.registro.ganhadorTerceiraRodada = ganhador_terceira_rodada
         self.registro.terceiraCartaHumano = terceira_carta_humano.retornar_numero()
         self.registro.naipeTerceiraCartaHumano = terceira_carta_humano.retornar_naipe_codificado()
+        self.registro.terceiraCartaRobo = terceira_carta_humano.retornar_numero()
+        self.registro.terceiraCartaRobo = terceira_carta_humano.retornar_numero()
+
 
 
     def envido(self, quem_envido, quem_real_envido, quem_falta_envido, quem_ganhou_envido):
@@ -80,6 +89,7 @@ class Dados():
         self.registro.quemEnvido = quem_envido
         self.registro.quemRealEnvido = quem_real_envido
         self.registro.quemFaltaEnvido = quem_falta_envido
+        self.registro.quemGanhouEnvido = quem_ganhou_envido
 
 
     def truco(self, quem_truco, quem_retruco, quem_vale_quatro, quem_negou_truco, quem_ganhou_truco):
@@ -87,6 +97,9 @@ class Dados():
         self.registro.quemTruco = quem_truco
         self.registro.quemRetruco = quem_retruco
         self.registro.quemValeQuatro = quem_vale_quatro
+        self.registro.quemNegouTruco = quem_negou_truco
+        self.registro.quemGanhouTruco = quem_ganhou_truco
+
 
 
     def flor(self, quem_flor, quem_contraflor, quem_contraflor_resto, pontos_flor_robo):

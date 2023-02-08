@@ -81,6 +81,9 @@ def turno_do_humano(jogador2):
 
 def turno_do_bot(carta_jogador_01=None):
     """Turno do Bot, para avaliar o estado atual do jogo e jogar suas cartas."""
+    if (len(jogador1.checa_mao()) == 2):
+        jogador2.enriquecer_bot(dados=dados, carta_jogador_01=carta_jogador_01)
+
     carta_escolhida = -1
     while (carta_escolhida > len(jogador2.checa_mao()) or int(carta_escolhida) <= 1):
         print(f"\n<< {jogador2.nome} - Jogador 2 >>")
@@ -160,7 +163,6 @@ while True:
         carta_jogador_01 = turno_do_humano(jogador2)
         if (carta_jogador_01 != -1):
             interface.mostrar_carta_jogada(jogador1.nome, carta_jogador_01)
-            jogador2.enriquecer_bot(cbr, carta_jogador_01)
             carta_jogador_02 = turno_do_bot(carta_jogador_01)
             if (carta_jogador_02 != -1):
                 interface.mostrar_carta_jogada(jogador2.nome, carta_jogador_02)
@@ -170,7 +172,6 @@ while True:
         if (carta_jogador_02 != -1):
             interface.mostrar_carta_jogada(jogador2.nome, carta_jogador_02)
             carta_jogador_01 = turno_do_humano(jogador2)
-            jogador2.enriquecer_bot(cbr, carta_jogador_01)
             if (carta_jogador_01 != -1):
                 interface.mostrar_carta_jogada(jogador1.nome, carta_jogador_01)
     
@@ -190,17 +191,20 @@ while True:
     else:
         ganhador = jogo.verificar_ganhador(carta_jogador_01, carta_jogador_02, interface)
         jogo.quem_joga_primeiro(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
-        jogo.adicionar_rodada(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
+        jogador_ganhou = jogo.adicionar_rodada(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
+        jogador2.enriquecer_bot(dados, carta_jogador_01, carta_jogador_02, jogador_ganhou)
 
     if (jogador1.rodadas == 2 or jogador2.rodadas == 2):
         ocultar_pontos_ac = True
         if jogador1.rodadas == 2:
             jogador1.adicionar_pontos(truco.retornar_valor_aposta())
             interface.mostrar_ganhador_rodada(jogador1.nome)
+            jogador2.enriquecer_bot(dados, carta_jogador_01, carta_jogador_02, 2)
             reiniciarJogo()
 
         elif jogador2.rodadas == 2:
             jogador2.adicionar_pontos(truco.retornar_valor_aposta())
+            jogador2.enriquecer_bot(dados, carta_jogador_01, carta_jogador_02, 1)
             interface.mostrar_ganhador_rodada(jogador2.nome)
             reiniciarJogo()
 

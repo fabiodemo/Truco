@@ -44,10 +44,12 @@ class Jogo():
         
         if ganhador == carta1:
             jogador1.adicionar_rodada()
+            return 1
             # ganhador.adicionar_rodada()
         
         elif ganhador == carta2:
             jogador2.adicionar_rodada()
+            return 2
             # ganhador.adicionar_rodada()
         
         else:

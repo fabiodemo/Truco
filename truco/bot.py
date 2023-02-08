@@ -32,13 +32,17 @@ class Bot():
         # print(self.mostrar_mao())
 
 
-    def enriquecer_bot(self, cbr, carta_jogador_01):
+    def enriquecer_bot(self, dados=None, carta_jogador_01=None, carta_jogador_02=None, ganhador=None):
         """Enriquece os dados com cartas jogadas pelo oponente, que serão utilizadas como entrada para cálculo de similaridade."""
+        print(f'self.rodada {self.rodada}')
         if(self.rodada == 1):
-            cbr.enriquecer_agente(self.rodada, self.pontuacao_cartas, self.mao_rank, self.qualidade_mao, carta_jogador_01)
-        else:
-            pass
-
+            dados.primeira_rodada(self.pontuacao_cartas, self.mao_rank, self.qualidade_mao, carta_jogador_01)
+        elif(self.rodada == 2):
+            dados.segunda_rodada(carta_jogador_01, carta_jogador_02, ganhador)
+        elif(self.rodada == 3):
+            dados.terceira_rodada(carta_jogador_01, carta_jogador_02, ganhador)
+        elif(self.rodada == 4):
+            dados.finalizar_rodadas(carta_jogador_01, carta_jogador_02, ganhador)
 
     def enriquecer_cartas_bot(self, cbr, carta_jogador_02):
         """Enriquece os dados com cartas jogadas pelo bot, que serão utilizadas como entrada para cálculo de similaridade."""

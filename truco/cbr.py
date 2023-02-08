@@ -64,12 +64,6 @@ class Cbr():
         negadas = jogadas['quemNegouTruco'].value_counts().index.to_list()[0]
         retruco = jogadas['quemRetruco'].value_counts().index.to_list()[0]
 
-        # print(vencidas, negadas, retruco)
-
-        # carta_escolhida = min(pontuacao_cartas, key=lambda x:abs(x-valor_referencia))
-        # print(jogadas_vencidas[ordem_carta_jogada].value_counts())
-        # return carta_escolhida
-        # return pontuacao_cartas.index(int(carta_escolhida))
         return False
 
     def retruco(self, quem_pediu):
