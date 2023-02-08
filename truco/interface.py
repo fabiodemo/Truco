@@ -54,6 +54,21 @@ class Interface():
         """Exibe o placar entre cada uma das rodadas."""
         self.border_msg(f"Jogador 1 - {jogador1}: Venceu {jogador1_pontos} Rodada(s)\nJogador 2 - {jogador2}: Venceu {jogador2_pontos} Rodada(s)", title='Rodadas da Partida Atual')
 
+    def mostrar_vencedor_flor(self, jogador1, vencedor, jogador1_pontos, jogador2, jogador2_pontos):
+        """Exibe o placar entre cada uma das rodadas."""
+        if (vencedor == 1):
+            self.border_msg(f"Jogador 1 - {jogador1}: Venceu a flor e ganhou {jogador1_pontos} pontos", title='Vencedor Flor')
+        else:
+            self.border_msg(f"Jogador 2 - {jogador2}: Venceu a flor e ganhou {jogador2_pontos} pontos", title='Vencedor Flor')
+
+
+    def mostrar_vencedor_envido(self, vencedor, jogador1, jogador1_pontos, jogador2, jogador2_pontos):
+        """Exibe o placar entre cada uma das rodadas."""
+        if (vencedor == 1):
+            self.border_msg(f"Jogador 1 - {jogador1}: Venceu o envido com {jogador1_pontos} pontos", title='Vencedor Envido')
+        else:
+            self.border_msg(f"Jogador 2 - {jogador2}: Venceu o envido com {jogador2_pontos} pontos", title='Vencedor Envido')
+
 
     def mostrar_ganhador_jogo(self, jogador):
         """Exibe o jogador que obteu a pontuação necessária para vencer o jogo."""

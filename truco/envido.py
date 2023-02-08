@@ -6,6 +6,7 @@ class Envido():
         self.real_envido = 0
         self.falta_envido = 0
         self.quem_fugiu = 0
+        self.quem_venceu_envido = 0
         self.jogador_bloqueado = 0
         self.jogador1_pontos = 0
         self.jogador2_pontos = 0
@@ -33,6 +34,8 @@ class Envido():
             self.inicializar_jogador_bloqueado(quem_pediu)
 
         self.definir_pontos_jogadores(jogador1, jogador2)
+        print(jogador1.retorna_pontos_envido())
+        print(jogador2.retorna_pontos_envido())
 
         if (tipo == 'Envido'):
             self.envido(quem_pediu, jogador1, jogador2)
@@ -43,7 +46,7 @@ class Envido():
         elif (tipo == 'Falta Envido'):
             self.falta_envido(quem_pediu, jogador1, jogador2)
 
-        
+        interface.mostrar_vencedor_envido(self.quem_venceu_envido, jogador1.nome, self.jogador1_pontos, jogador2.nome, self.jogador2_pontos)
         
     def envido(self, quem_pediu, jogador1, jogador2):
         self.estado_atual = "Envido"
@@ -153,12 +156,12 @@ class Envido():
     
     def avaliar_vencedor_envido(self, quem_pediu, jogador1, jogador2):
         if self.jogador1_pontos >= self.jogador2_pontos:
-            print(f'Jogador 1 ganhou {self.valor_envido} pontos')
             jogador1.pontos += self.valor_envido
+            self.quem_venceu_envido = 1
 
-        else:
-            print(f'Jogador 2 ganhou {self.valor_envido} pontos')
-            jogador1.pontos += self.valor_envido
+        elif self.jogador2_pontos > self.jogador1_pontos:
+            jogador2.pontos += self.valor_envido
+            self.quem_venceu_envido = 2
 
 
     def avaliar_vencedor_falta_envido(self, quem_pediu, jogador1, jogador2):
@@ -170,13 +173,11 @@ class Envido():
 
         if self.jogador1_pontos >= self.jogador2_pontos:
             jogador1.pontos += self.valor_envido
-            self.quem_venceu_flor = 1
+            self.quem_venceu_envido = 1
 
         elif self.jogador2_pontos > self.jogador1_pontos:
             jogador2.pontos += self.valor_envido
-            self.quem_venceu_flor = 2
-
-        return (self.jogador1_pontos, self.jogador2_pontos)
+            self.quem_venceu_envido = 2
 
 
     def definir_pontos_jogadores(self, jogador1, jogador2):
@@ -194,6 +195,7 @@ class Envido():
         self.jogador_pediu_envido = 0
         self.real_envido = 0
         self.falta_envido = 0
+        self.quem_venceu_envido = 0
         self.quem_fugiu = 0
         self.jogador_bloqueado = 0
         self.jogador1_pontos = 0
