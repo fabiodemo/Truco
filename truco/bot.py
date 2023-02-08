@@ -34,7 +34,6 @@ class Bot():
 
     def enriquecer_bot(self, dados=None, carta_jogador_01=None, carta_jogador_02=None, ganhador=None):
         """Enriquece os dados com cartas jogadas pelo oponente, que serão utilizadas como entrada para cálculo de similaridade."""
-        print(f'self.rodada {self.rodada}')
         if(self.rodada == 1):
             dados.primeira_rodada(self.pontuacao_cartas, self.mao_rank, self.qualidade_mao, carta_jogador_01)
         elif(self.rodada == 2):

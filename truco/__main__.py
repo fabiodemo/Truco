@@ -14,6 +14,7 @@ import os
 
 def reiniciarJogo():
     """Reseta todos os parâmetros do jogo, referente as rodadas"""
+    dados.finalizar_partida()
     jogador1.resetar()
     jogador2.resetar()
     baralho.resetar()
@@ -79,9 +80,9 @@ def turno_do_humano(jogador2):
     return carta1
 
 
-def turno_do_bot(carta_jogador_01=None):
+def turno_do_bot(carta_jogador_01):
     """Turno do Bot, para avaliar o estado atual do jogo e jogar suas cartas."""
-    if (len(jogador1.checa_mao()) == 2):
+    if (len(jogador2.checa_mao()) == 3 and carta_jogador_01):
         jogador2.enriquecer_bot(dados=dados, carta_jogador_01=carta_jogador_01)
 
     carta_escolhida = -1
@@ -186,13 +187,14 @@ while True:
             # jogo.jogador_fugiu(jogador2, jogador1, jogador2)
             interface.mostrar_placar_total_jogador_fugiu(jogador2, jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
         
-        # reiniciarJogo()
+        reiniciarJogo()
 
     else:
         ganhador = jogo.verificar_ganhador(carta_jogador_01, carta_jogador_02, interface)
         jogo.quem_joga_primeiro(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
         jogador_ganhou = jogo.adicionar_rodada(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
-        jogador2.enriquecer_bot(dados, carta_jogador_01, carta_jogador_02, jogador_ganhou)
+        if (carta_jogador_01 and carta_jogador_02):
+            jogador2.enriquecer_bot(dados, carta_jogador_01, carta_jogador_02, jogador_ganhou)
 
     if (jogador1.rodadas == 2 or jogador2.rodadas == 2):
         ocultar_pontos_ac = True

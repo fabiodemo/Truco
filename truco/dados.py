@@ -143,12 +143,12 @@ class Dados():
         """Retorna os casos."""
         return self.casos
    
-    def finalizar_jogo(self, df):
+    def finalizar_partida(self):
         """Método para salvar as jogadas da partida em um csv."""
         if not(os.path.isfile('jogadas.csv')):
-            df.to_csv('jogadas.csv', header=df.columns)
+            self.registro.to_csv('jogadas.csv', header=self.registro.columns)
         else:
-            df.to_csv('jogadas.csv', mode='a', header=False)
+            self.registro.to_csv('jogadas.csv', mode='a', header=False)
 
 
     def resetar(self):

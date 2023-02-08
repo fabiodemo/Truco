@@ -51,12 +51,20 @@ class Cbr():
         # return carta_escolhida
         return pontuacao_cartas.index(int(carta_escolhida))
 
-    def truco(self, quem_pediu):
+    def truco(self, tipo, quem_pediu):
         """Método que considera o pedido de truco e retorna a melhor opção entre aceitar, aumentar ou fugir."""
         registro = self.dados.retornar_registro()
         warnings.simplefilter(action='ignore', category=UserWarning)
         distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
         jogadas = jogadas_aumentadas = jogadas_perdidas = self.dataset.iloc[indices.tolist()[0]]
+        
+        if (tipo == 'Truco'):
+            jogadas = jogadas[((jogadas.quemTruco == quem_pediu))]
+        elif (tipo == 'Retruco'):
+            jogadas = jogadas[((jogadas.quemRetruco == quem_pediu))]
+        else:
+            jogadas = jogadas[((jogadas.quemValeQuatro == quem_pediu))]
+
         jogadas = jogadas[((jogadas.quemTruco == quem_pediu))]
         # 'quemNegouTruco', 'quemGanhouTruco', 'quemTruco', 'quemRetruco', 
 
@@ -66,91 +74,49 @@ class Cbr():
 
         return False
 
-    def retruco(self, quem_pediu):
-        """Método que considera o pedido de retruco e retorna a melhor opção entre aceitar, aumentar ou fugir."""
-        registro = self.dados.retornar_registro()
-        warnings.simplefilter(action='ignore', category=UserWarning)
-        distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
-        jogadas = jogadas_aumentadas = jogadas_perdidas = self.dataset.iloc[indices.tolist()[0]]
-        jogadas = jogadas[((jogadas.quemTruco == quem_pediu))]
-        # 'quemNegouTruco', 'quemGanhouTruco', 'quemTruco', 'quemRetruco', 
 
-        vencidas = jogadas['quemGanhouTruco'].value_counts().index.to_list()[0]
-        negadas = jogadas['quemNegouTruco'].value_counts().index.to_list()[0]
-        retruco = jogadas['quemRetruco'].value_counts().index.to_list()[0]
-
-        # print(vencidas, negadas, retruco)
-
-        # carta_escolhida = min(pontuacao_cartas, key=lambda x:abs(x-valor_referencia))
-        # print(jogadas_vencidas[ordem_carta_jogada].value_counts())
-        # return carta_escolhida
-        # return pontuacao_cartas.index(int(carta_escolhida))
-        return False
-
-    def vale_quatro(self, quem_pediu):
-        """Método que considera o pedido de truco e retorna a melhor opção entre aceitar ou fugir."""
-        registro = self.dados.retornar_registro()
-        warnings.simplefilter(action='ignore', category=UserWarning)
-        distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
-        jogadas = jogadas_aumentadas = jogadas_perdidas = self.dataset.iloc[indices.tolist()[0]]
-        jogadas = jogadas[((jogadas.quemTruco == quem_pediu))]
-        # 'quemNegouTruco', 'quemGanhouTruco', 'quemTruco', 'quemRetruco', 
-
-        vencidas = jogadas['quemGanhouTruco'].value_counts().index.to_list()[0]
-        negadas = jogadas['quemNegouTruco'].value_counts().index.to_list()[0]
-        retruco = jogadas['quemRetruco'].value_counts().index.to_list()[0]
-
-        # print(vencidas, negadas, retruco)
-
-        # carta_escolhida = min(pontuacao_cartas, key=lambda x:abs(x-valor_referencia))
-        # print(jogadas_vencidas[ordem_carta_jogada].value_counts())
-        # return carta_escolhida
-        # return pontuacao_cartas.index(int(carta_escolhida))
-        return False
-
-
-    def envido(self, quem_pediu, pontos_envido_robo):
+    def envido(self, tipo, quem_pediu, pontos_envido_robo, robo_perdendo):
         """Método que considera o pedido de envido e retorna a melhor opção entre aceitar, pedir real envido, falta envido ou fugir."""
         registro = self.dados.retornar_registro()
         warnings.simplefilter(action='ignore', category=UserWarning)
         distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
         jogadas = self.dataset.iloc[indices.tolist()[0]]
-        jogadas = jogadas[((jogadas.pontosEnvidoRobo > jogadas.pontosEnvidoHumano))]
+        ganhas = jogadas[((jogadas.pontosEnvidoRobo > jogadas.pontosEnvidoHumano) | (jogadas.quemGanhouEnvido == 2))]
+        perdidas = jogadas[((jogadas.pontosEnvidoRobo < jogadas.pontosEnvidoHumano) | (jogadas.quemGanhouEnvido == 1))]
         # 'quemPediuEnvido', 'quemPediuFaltaEnvido', 'quemPediuRealEnvido', 'pontosEnvidoRobo', 'pontosEnvidoHumano', 'quemNegouEnvido', 'quemGanhouEnvido', 'quemEscondeuPontosEnvido'
         # print(jogadas)
-        ganhas = jogadas['quemGanhouEnvido'].value_counts().index.to_list()[0]
-        aumentadas = jogadas['quemPediuRealEnvido'].value_counts().index.to_list()[0]
-        perdidas = jogadas['quemGanhouEnvido'].value_counts().index.to_list()[0]
-        pontos_jogador = jogadas['pontosEnvidoHumano'].value_counts().index.to_list()[0]
+        envido_ganhas = ganhas['quemGanhouEnvido'].value_counts().index.to_list()[0]
+        envido_perdidas = perdidas['quemGanhouEnvido'].value_counts().index.to_list()[0]
+        real_envido_ganhas = ganhas['quemPediuRealEnvido'].value_counts().index.to_list()[0]
+        real_envido_perdidas = perdidas['quemPediuFaltaEnvido'].value_counts().index.to_list()[0]
+        falta_envido_ganhas = ganhas['quemPediuFaltaEnvido'].value_counts().index.to_list()[0]
+        falta_envido_perdidas = perdidas['quemPediuFaltaEnvido'].value_counts().index.to_list()[0]
+        pontos_jogador = ganhas['pontosEnvidoHumano'].value_counts().index.to_list()[0]
 
         # print(ganhas, aumentadas, perdidas, pontos_jogador)
-        if (quem_pediu == 1):
-            if (ganhas > aumentadas and ganhas > perdidas):
-                return 1
-            elif (aumentadas > ganhas and aumentadas > perdidas):
+        if (tipo == "Envido"):
+            if (pontos_jogador < pontos_envido_robo and real_envido_ganhas > real_envido_perdidas and envido_ganhas > envido_perdidas):
                 return 2
+
+            elif (real_envido_ganhas > real_envido_perdidas and envido_ganhas > envido_perdidas and robo_perdendo):
+                return 3
+
+            elif (envido_ganhas > envido_perdidas or envido_ganhas < envido_perdidas):
+                return 1
+
             else:
                 return 0
-        else:
-            if (pontos_envido_robo > pontos_jogador and pontos_envido_robo > 0):
+
+        elif (tipo == "Real Envido"):
+            if (envido_ganhas > envido_perdidas and real_envido_ganhas > real_envido_perdidas):
                 return 1
 
-        return None
+            else:
+                return 0
 
-    def enriquecer_agente(self, rodada=None, pontuacao_cartas=None, mao_rank=None, qualidade_mao_bot=None, carta_humano=None):
-        """Controlador do método pertencente a classe Dados, que enriquecerá o conhecimento do bot com a carta jogada pelo humano."""
-        if (rodada == 1):
-            self.dados.primeira_rodada(pontuacao_cartas, mao_rank, qualidade_mao_bot, carta_humano)
-        # if (rodada == 2):
-        #     self.dados.segunda_rodada(carta_humano, ganhador)
-        # if (rodada == 3):
-        #     self.dados.terceira_rodada(carta_humano, ganhador)
+        else:
+            if (falta_envido_ganhas > falta_envido_perdidas and pontos_jogador < pontos_envido_robo):
+                return 1
 
-    def enriquecer_jogadas_bot(self, rodada, carta_jogador_02):
-        """Controlador do método pertencente a classe Dados, que enriquecerá o conhecimento do bot com a carta a qual ele jogou."""
-        if (rodada == 2):
-            self.dados.cartas_jogadas_pelo_bot('primeira', carta_jogador_02)
-        if (rodada == 3):
-            self.dados.cartas_jogadas_pelo_bot('segunda', carta_jogador_02)
-        if (rodada == 4):
-            self.dados.cartas_jogadas_pelo_bot('terceira', carta_jogador_02)
+            else:
+                return 0
