@@ -188,7 +188,7 @@ while True:
         # reiniciarJogo()
 
     else:
-        ganhador = jogo.verificar_ganhador(carta_jogador_01, carta_jogador_02)
+        ganhador = jogo.verificar_ganhador(carta_jogador_01, carta_jogador_02, interface)
         jogo.quem_joga_primeiro(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
         jogo.adicionar_rodada(jogador1, jogador2, carta_jogador_01, carta_jogador_02, ganhador)
 

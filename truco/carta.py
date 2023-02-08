@@ -89,6 +89,9 @@ class Carta():
             print(f"[{i}] Sete de Ouros +")
         else:
             print(f"[{i}] {self.numero} de {self.naipe}")
+
+    def retornar_carta(self):
+        return f"{self.numero} de {self.naipe}"
     
 
     def retornar_pontos_envido(self, carta):

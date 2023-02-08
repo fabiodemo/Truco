@@ -46,8 +46,8 @@ class Cbr():
             return -1
         carta_escolhida = min(pontuacao_cartas, key=lambda x:abs(x-valor_referencia))
         # print(jogadas_vencidas[ordem_carta_jogada].value_counts())
-        print(pontuacao_cartas)
-        print(carta_escolhida)
+        # print(pontuacao_cartas)
+        # print(carta_escolhida)
         # return carta_escolhida
         return pontuacao_cartas.index(int(carta_escolhida))
 
@@ -64,7 +64,7 @@ class Cbr():
         negadas = jogadas['quemNegouTruco'].value_counts().index.to_list()[0]
         retruco = jogadas['quemRetruco'].value_counts().index.to_list()[0]
 
-        print(vencidas, negadas, retruco)
+        # print(vencidas, negadas, retruco)
 
         # carta_escolhida = min(pontuacao_cartas, key=lambda x:abs(x-valor_referencia))
         # print(jogadas_vencidas[ordem_carta_jogada].value_counts())
@@ -85,7 +85,7 @@ class Cbr():
         negadas = jogadas['quemNegouTruco'].value_counts().index.to_list()[0]
         retruco = jogadas['quemRetruco'].value_counts().index.to_list()[0]
 
-        print(vencidas, negadas, retruco)
+        # print(vencidas, negadas, retruco)
 
         # carta_escolhida = min(pontuacao_cartas, key=lambda x:abs(x-valor_referencia))
         # print(jogadas_vencidas[ordem_carta_jogada].value_counts())
@@ -106,7 +106,7 @@ class Cbr():
         negadas = jogadas['quemNegouTruco'].value_counts().index.to_list()[0]
         retruco = jogadas['quemRetruco'].value_counts().index.to_list()[0]
 
-        print(vencidas, negadas, retruco)
+        # print(vencidas, negadas, retruco)
 
         # carta_escolhida = min(pontuacao_cartas, key=lambda x:abs(x-valor_referencia))
         # print(jogadas_vencidas[ordem_carta_jogada].value_counts())
@@ -129,7 +129,7 @@ class Cbr():
         perdidas = jogadas['quemGanhouEnvido'].value_counts().index.to_list()[0]
         pontos_jogador = jogadas['pontosEnvidoHumano'].value_counts().index.to_list()[0]
 
-        print(ganhas, aumentadas, perdidas, pontos_jogador)
+        # print(ganhas, aumentadas, perdidas, pontos_jogador)
         if (quem_pediu == 1):
             if (ganhas > aumentadas and ganhas > perdidas):
                 return 1

@@ -28,11 +28,10 @@ class Jogo():
         return bot
 
 
-    def verificar_ganhador(self, carta1, carta2):
+    def verificar_ganhador(self, carta1, carta2, interface):
         """Função que chama o método para verificar a carta vencedora"""
         ganhador = self.verificar_carta_vencedora(carta1, carta2)
-        print("\nCarta ganhadora: ")
-        print(ganhador.exibir_carta())
+        interface.mostrar_carta_ganhadora(ganhador)
         return ganhador
 
     
@@ -106,8 +105,8 @@ class Jogo():
             elif CARTAS_VALORES[str(carta_jogador_01.retornar_numero())] < CARTAS_VALORES[str(carta_jogador_02.retornar_numero())]:
                 return carta_jogador_02
         
-            else:
-                return "Empate"
+            # else:
+            #     return "Empate"
 
 
     def jogador_fugiu(self, jogador, jogador1, jogador2, pontos):

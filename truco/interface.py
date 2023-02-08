@@ -30,13 +30,12 @@ class Interface():
 
     def mostrar_carta_jogada(self, jogador, carta):
         """Exibe a última carta jogada."""
-        print(f"\n{jogador} jogou a carta: ")
-        carta.exibir_carta()
+        print(f"{jogador} jogou a carta: {carta.retornar_carta()}")
 
 
-    def mostrar_ganhador_rodada(self, jogador):
+    def mostrar_carta_ganhadora(self, carta):
         """Exibe quem ganhou a rodada."""
-        print(f"\n{jogador} ganhou a rodada")
+        print(f"\nCarta ganhadora: {carta.retornar_carta()}\n")
 
 
     def mostrar_placar_total_jogador_fugiu(self, jogador_fugiu, jogador1, jogador1_pontos, jogador2, jogador2_pontos):
@@ -73,7 +72,7 @@ class Interface():
     def mostrar_ganhador_jogo(self, jogador):
         """Exibe o jogador que obteu a pontuação necessária para vencer o jogo."""
         print(f"\n{jogador} ganhou o jogo")
-    
+
 
     def mostrar_pediu_truco(self, jogador):
         """Exibe aviso de que o pedido de truco já foi realizado."""
@@ -117,6 +116,7 @@ class Interface():
         return l_mostrar_carta
 
     def exibir_cartas(self, cartas):
+        """Chama o método que exibe todas as cartas da mão, fazendo um join entre toda a mão do jogador"""
         print('\n'.join(map('  '.join, zip(*(self.desenhar_cartas(c) for c in cartas)))))
 
     def exibir_unica_carta(self, carta):

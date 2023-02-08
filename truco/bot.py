@@ -67,7 +67,7 @@ class Bot():
 
         # Manda o valor de acordo com a rodada, para o CBR escolher as colunas/campos necessários
         escolha = cbr.jogar_carta(self.rodada, self.pontuacao_cartas)
-        print(escolha)
+        # print(escolha)
         self.ajustar_indices(escolha)
         self.rodada += 1
         # Verificar cartas na mão antes de jogar
@@ -130,7 +130,7 @@ class Bot():
     def checa_flor(self):
         """Verifica se o bot possui flor em sua mão."""
         if all(carta.retornar_naipe() == self.mao[0].retornar_naipe() for carta in self.mao):
-            print('Flor do Bot!')
+            # print('Flor do Bot!')
             return True
         return False
 
@@ -171,7 +171,7 @@ class Bot():
         m1 = (2 / ((1/lista_pontuacao[int(lista_mao_rank.index('Alta'))]) + (1/lista_pontuacao[int(lista_mao_rank.index('Media'))])))
         m2 = ((2 * lista_pontuacao[int(lista_mao_rank.index('Media'))]) + (lista_pontuacao[int(lista_mao_rank.index('Baixa'))])/2+1)
         m3 = ((2 * m1) + m2) / (2+1)
-        print(m3)
+        # print(m3)
         
         self.qualidade_mao = m3
 

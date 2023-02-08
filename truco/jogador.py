@@ -27,6 +27,7 @@ class Jogador():
         print('[9] Ir ao baralho')
         cartas = [(f"{carta.numero} de {carta.naipe}") for carta in self.mao]
         interface.exibir_cartas(cartas)
+        # interface.exibir_unica_carta(cartas[0])
 
 
     def criar_mao(self, baralho):
