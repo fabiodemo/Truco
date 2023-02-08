@@ -28,6 +28,8 @@ class Bot():
         self.flor = self.checa_flor()
         self.pontuacao_cartas, self.mao_rank = self.mao[0].classificar_carta(self.mao)
         self.qualidade_mao = self.calcular_qualidade_mao(self.pontuacao_cartas, self.mao_rank)
+        self.envido = self.calcula_envido(self.mao)
+        # print(self.mostrar_mao())
 
 
     def enriquecer_bot(self, cbr, carta_jogador_01):
@@ -76,14 +78,16 @@ class Bot():
     def calcula_envido(self, mao):
         """Realização do cálculo de envido."""
         pontos_envido = []
+
         for i in range(len(mao)):
             for j in range(i+1, len(mao)):
-                if (mao[i].retornar_naipe() == mao[j].retornar_naipe()):
+                if ((mao[0].retornar_pontos_envido(mao[i]) > 0 and mao[0].retornar_pontos_envido(mao[j]) > 0) and (mao[i].retornar_naipe() == mao[j].retornar_naipe())):
                     pontos_envido.append(20 + (mao[0].retornar_pontos_envido(mao[i]) + mao[0].retornar_pontos_envido(mao[j])))
                 else:
                     pontos_envido.append(max(mao[0].retornar_pontos_envido(mao[i]), mao[0].retornar_pontos_envido(mao[j])))
         
         return max(pontos_envido)
+    
 
 
     def retorna_pontos_envido(self):
@@ -155,6 +159,10 @@ class Bot():
 
     def avaliar_envido(self):
         """Verifica se a melhor jogada para o bot seria aceitar, pedir real ou falta envido."""
+        return 1
+
+    def avaliar_pedir_envido(self):
+        """Verifica se a melhor jogada para o bot seria pedir envido."""
         return 1
 
 

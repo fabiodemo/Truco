@@ -34,16 +34,17 @@ class Envido():
             self.inicializar_jogador_bloqueado(quem_pediu)
 
         self.definir_pontos_jogadores(jogador1, jogador2)
-        print(jogador1.retorna_pontos_envido())
-        print(jogador2.retorna_pontos_envido())
 
-        if (tipo == 'Envido'):
+        print(quem_pediu, jogador1, jogador2, tipo)
+        if (tipo == 6):
+            print(str(type(tipo)))
             self.envido(quem_pediu, jogador1, jogador2)
 
-        elif (tipo == 'Real Envido'):
+        if (tipo == 7):
+            print(str(type(tipo)))
             self.real_envido(quem_pediu, jogador1, jogador2)
 
-        elif (tipo == 'Falta Envido'):
+        if (tipo == 8):
             self.falta_envido(quem_pediu, jogador1, jogador2)
 
         interface.mostrar_vencedor_envido(self.quem_venceu_envido, jogador1.nome, self.jogador1_pontos, jogador2.nome, self.jogador2_pontos)
@@ -77,51 +78,54 @@ class Envido():
 
         elif escolha == 1:
             print('Jogador aceitou envido!')
-            return self.avaliar_vencedor_envido(quem_pediu, jogador1, jogador2)
+            self.avaliar_vencedor_envido(quem_pediu, jogador1, jogador2)
 
         elif escolha == 2:
             print(f'Real Envido')
             self.reverter_jogador_bloqueado()
-            return self.real_envido(quem_pediu, jogador1, jogador2)
+            self.real_envido(quem_pediu, jogador1, jogador2)
         
         else:
             print(f'Falta Envido')
             self.reverter_jogador_bloqueado()
-            return self.falta_envido(quem_pediu, jogador1, jogador2)
+            self.falta_envido(quem_pediu, jogador1, jogador2)
 
         
     def real_envido(self, quem_pediu, jogador1, jogador2):
         self.estado_atual = "Real Envido"
-        print("Jogador pediu Envido")
+        self.reverter_jogador_bloqueado()
+        print("Jogador pediu Real Envido")
 
         if (quem_pediu == 1):
-            self.jogador_pediu_envido = 1
+            # self.jogador_pediu_real_envido = 1
             escolha = jogador2.avaliar_envido()
 
         else:
-            self.jogador_pediu_envido = 2
+            # self.jogador_pediu_real_envido = 2
             escolha = -1
             while(escolha not in [0, 1, 2]):
-                escolha = int(input(f"Jogador {quem_pediu}, você aceita o pedido de envido?"))
+                escolha = int(input(f"Jogador {quem_pediu}, você aceita o pedido de Real envido?"))
         
 
         if escolha == 0:
             print(f"fugiu")
             if (quem_pediu == 1):
                 jogador1.pontos += 1
+                return
 
             else:
                 jogador2.pontos += 1
 
             return False
-        
+
         elif escolha == 1:
-            print('aceitou Real envido')
-            return self.avaliar_vencedor_envido(quem_pediu, jogador1, jogador2)
-        
+            print('Jogador aceitou Real envido!')
+            self.avaliar_vencedor_envido(quem_pediu, jogador1, jogador2)
+
         else:
-            print(f'Falta Envido')
-            return self.falta_envido(quem_pediu, jogador1, jogador2)
+            print(f'Pediu Falta Envido')
+            self.reverter_jogador_bloqueado()
+            self.falta_envido(quem_pediu, jogador1, jogador2)
 
 
     def falta_envido(self, quem_pediu, jogador1, jogador2):
@@ -151,7 +155,7 @@ class Envido():
 
         elif escolha == 1:
             print('aceitou Falta envido')
-            return self.avaliar_vencedor_envido(quem_pediu, jogador1, jogador2)
+            self.avaliar_vencedor_envido(quem_pediu, jogador1, jogador2)
 
     
     def avaliar_vencedor_envido(self, quem_pediu, jogador1, jogador2):
@@ -189,7 +193,7 @@ class Envido():
         return self.quem_fugiu
 
 
-    def resetar_pontos_envido(self):
+    def resetar(self):
         self.valor_envido = 2
         self.estado_atual = ""
         self.jogador_pediu_envido = 0

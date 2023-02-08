@@ -22,7 +22,8 @@ def reiniciarJogo():
     jogador1.criar_mao(baralho)
     jogador2.criar_mao(baralho)
     # jogo.resetarTrucoPontos()
-    truco.resetar_pontos_truco()
+    envido.resetar()
+    truco.resetar()
 
 
 def turno_do_humano(jogador2):
@@ -34,9 +35,9 @@ def turno_do_humano(jogador2):
         carta_escolhida = int(input(f"\n{jogador1.nome} Qual carta você quer jogar? "))
 
         # Chama a flor antes do jogador1 jogar envido 
-        if (len(jogador1.checa_mao()) > 2 and (carta_escolhida == 6) and (jogador2.flor is True)):
-            print('bloqueou a flor')
-            jogador2.pedir_flor(2, jogador1, jogador2, interface)
+        if ((len(jogador1.checa_mao()) == 3) and (carta_escolhida in [6, 7, 8]) and (jogador2.flor is True)):
+            print('Bloqueou o envido com a flor')
+            flor.pedir_flor(2, jogador1, jogador2, interface)
         
         if (carta_escolhida <= len(jogador1.checa_mao()) and int(carta_escolhida) >= 0):
             carta_jogador_01 = jogador1.jogar_carta(carta_escolhida)
@@ -52,17 +53,22 @@ def turno_do_humano(jogador2):
                 break
                 # jogador1.adicionar_rodada()
 
-        elif (carta_escolhida == 5 and (len(jogador2.mao) == 3)):
+        elif ((len(jogador1.mao) == 3) and (jogador1.flor) and carta_escolhida == 5):
             print('flor')
             flor.pedir_flor(jogador1, jogador1, jogador2, interface)
             interface.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados")
 
-        elif (jogador2.flor is False and (len(jogador1.checa_mao()) > 2 and carta_escolhida == 6)):
-            print('envido')
+        elif ((len(jogador1.checa_mao()) == 3) and (jogador2.pediu_flor is False) and (carta_escolhida in [6,7,8])):
+            # print('envido')
             # envido.pedir_envido(1, jogador1, jogador2)
-            envido.controlador_envido('Envido', 1, jogador1, jogador2, interface)
+            if (carta_escolhida == 6):
+                envido.controlador_envido(6, 1, jogador1, jogador2, interface)
+            if (carta_escolhida == 7):
+                envido.controlador_envido(7, 1, jogador1, jogador2, interface)
+            if (carta_escolhida == 8):
+                envido.controlador_envido(8, 1, jogador1, jogador2, interface)
 
-        elif (carta_escolhida == 7):
+        elif (carta_escolhida == 9):
             jogador2.adicionar_pontos(1)
             return -1
         

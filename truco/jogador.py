@@ -22,8 +22,10 @@ class Jogador():
         if ((len(self.mao)) == 3 and self.flor is False and (self.checa_flor())):
             print('[5] Flor')
             self.flor = True
-        if ((len(self.mao) == 3) and (self.envido > 0)):
-            print('[6] Envido')
+        if ((len(self.mao) == 3)):
+            print(f'[6] Envido\n[7] Real Envido\n[8] Falta Envido')
+        print('[9] Ir ao baralho')
+
 
 
     def criar_mao(self, baralho):
@@ -70,7 +72,7 @@ class Jogador():
 
         for i in range(len(mao)):
             for j in range(i+1, len(mao)):
-                if (mao[i].retornar_naipe() == mao[j].retornar_naipe()):
+                if ((mao[0].retornar_pontos_envido(mao[i]) > 0 and mao[0].retornar_pontos_envido(mao[j]) > 0) and (mao[i].retornar_naipe() == mao[j].retornar_naipe())):
                     pontos_envido.append(20 + (mao[0].retornar_pontos_envido(mao[i]) + mao[0].retornar_pontos_envido(mao[j])))
                 else:
                     pontos_envido.append(max(mao[0].retornar_pontos_envido(mao[i]), mao[0].retornar_pontos_envido(mao[j])))

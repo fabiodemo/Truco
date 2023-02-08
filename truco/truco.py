@@ -160,7 +160,7 @@ class Truco():
         return self.retornar_quem_fugiu
     
     
-    def resetar_pontos_truco(self):
+    def resetar(self):
         """Reset dos pontos da classe truco."""
         self.valor_aposta = 1
         self.jogador_bloqueado = 0
