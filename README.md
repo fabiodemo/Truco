@@ -9,18 +9,20 @@ A base de casos encontra-se no arquivo dbtrucoimitacao_maos.csv, e pode ser alte
 ## Pré-requisitos e Execução do Código
 
 Como pré-requisito, é necessário realizar a instalação dos pacotes necessários (pandas e scikit-learn), e poderão ser instalados através do comando:
-'''
+
+```
 pip install -r requirements.txt
-'''
+```
 
 Para executar o jogo, é necessário o seguinte comando:
-'''
+
+```
 python -m truco
-'''
+```
 
 ## Regras Gerais do Jogo
 
-As regras para o jogo do truco foram retiradas do site [Jogatina] (https://www.jogatina.com/regras-como-jogar-truco-gauderio.html), embora existam muitas variantes dessas regras, optou-se por seguir um guia mais direto para simplificar o entendimento do jogo e da implementação.
+As regras para o jogo do truco foram retiradas do site [Jogatina](https://www.jogatina.com/regras-como-jogar-truco-gauderio.html), embora existam muitas variantes dessas regras, optou-se por seguir um guia mais direto para simplificar o entendimento do jogo e da implementação.
 
 ### Jogo Truco em Python
 
@@ -63,4 +65,4 @@ As regras para o jogo do truco foram retiradas do site [Jogatina] (https://www.j
 - **Contra-flor** - Uma das possíveis respostas ao pedido de Flor. Pode aumentar o valor da mão em 6 pontos. (Em algumas situações o valor pode ser maior)
 - **Contra-flor** e o resto - Disputa similar a Contra-flor que pode aumentar o valor da mão para a diferença entre o placar final do jogo e os pontos da pessoa que está ganhando, além dos pontos da Contra-flor. (Em algumas situações o valor pode ser maior)
 
-### A fundação/base dos códigos no presente projeto, está baseada no repositório original criado pelo usuário anthonyzutter, [disponível em neste link] (https://github.com/anthonyzutter/Truco-Jogo)
+### A fundação/base dos códigos no presente projeto, está baseada no repositório original criado pelo usuário anthonyzutter, [disponível em neste link](https://github.com/anthonyzutter/Truco-Jogo)
