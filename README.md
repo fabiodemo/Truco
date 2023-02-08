@@ -1,5 +1,27 @@
 # Truco Gaudério
 
+O presente projeto foi desenvolvido como trabalho para a disciplina de Aplicações em Aprendizado de Máquina, para a Pós-Graduação em Ciência da Computação na Universidade Federal de Santa Maria.
+
+O intuito deste projeto é implementar um jogo Truco em Python, em que um humano possar jogar contra um bot. Sendo que, este bot terá suas decisões baseadas em Case-Based Reasoning.
+
+A base de casos encontra-se no arquivo dbtrucoimitacao_maos.csv, e pode ser alterada conforme nencessário. O modelo de caso encontra-se no arquivo modelo_registro.csv, e deve seguir o mesmo padrão da base de casos.
+
+## Pré-requisitos e Execução do Código
+
+Como pré-requisito, é necessário realizar a instalação dos pacotes necessários (pandas e scikit-learn), e poderão ser instalados através do comando:
+'''
+pip install -r requirements.txt
+'''
+
+Para executar o jogo, é necessário o seguinte comando:
+'''
+python -m truco
+'''
+
+## Regras Gerais do Jogo
+
+As regras para o jogo do truco foram retiradas do site [Jogatina] (https://www.jogatina.com/regras-como-jogar-truco-gauderio.html), embora existam muitas variantes dessas regras, optou-se por seguir um guia mais direto para simplificar o entendimento do jogo e da implementação.
+
 ### Jogo Truco em Python
 
 - **Jogadores**: 1v1 ou 2v2 (na atual implementação do jogo, somente 1v1 disponível)
