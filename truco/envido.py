@@ -24,7 +24,7 @@ class Envido():
         """Inicialização do jogador que foi bloqueado e não pode pedir aumento da aposta do jogo."""
         self.jogador_bloqueado = quem_pediu
 
-    def controlador_envido(self, tipo, quem_pediu, jogador1, jogador2, interface):
+    def controlador_envido(self, dados, tipo, quem_pediu, jogador1, jogador2, interface):
         """Controlador de métodos, para selecionar o que pode ser chamado ou não."""
         if (self.estado_atual != "" or tipo == self.estado_atual):
             return None

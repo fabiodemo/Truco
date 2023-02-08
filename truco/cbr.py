@@ -58,9 +58,9 @@ class Cbr():
         distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
         jogadas = jogadas_aumentadas = jogadas_perdidas = self.dataset.iloc[indices.tolist()[0]]
         
-        if (tipo == 'Truco'):
+        if (tipo == 'truco'):
             jogadas = jogadas[((jogadas.quemTruco == quem_pediu))]
-        elif (tipo == 'Retruco'):
+        elif (tipo == 'retruco'):
             jogadas = jogadas[((jogadas.quemRetruco == quem_pediu))]
         else:
             jogadas = jogadas[((jogadas.quemValeQuatro == quem_pediu))]

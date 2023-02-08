@@ -23,7 +23,7 @@ class Truco():
         self.jogador_bloqueado = quem_pediu
 
 
-    def controlador_truco(self, quem_pediu, jogador1, jogador2):
+    def controlador_truco(self, cbr, dados, quem_pediu, jogador1, jogador2):
         """Controlador de métodos, para selecionar o que pode ser chamado ou não."""
         if (self.estado_atual == "vale_quatro"):
             return None
@@ -34,25 +34,22 @@ class Truco():
             self.inicializar_jogador_bloqueado(quem_pediu)
 
         if (self.estado_atual == ""):
-            estado = self.pedir_truco(quem_pediu, jogador1, jogador2)
-            self.estado_atual = "truco"
+            estado = self.pedir_truco(cbr, quem_pediu, jogador1, jogador2)
         elif (self.estado_atual == "truco"):
-            estado = self.pedir_retruco(quem_pediu, jogador1, jogador2)
-            self.estado_atual = "truco"
+            estado = self.pedir_retruco(cbr, quem_pediu, jogador1, jogador2)
         elif (self.estado_atual == "retruco"):
-            estado = self.pedir_retruco(quem_pediu, jogador1, jogador2)
-            self.estado_atual = "vale_quatro"
+            estado = self.pedir_retruco(cbr, quem_pediu, jogador1, jogador2)
 
         return estado
 
 
-    def pedir_truco(self, quem_pediu, jogador1, jogador2):
+    def pedir_truco(self, cbr, quem_pediu, jogador1, jogador2):
         """Aumenta a aposta inicial do jogo, que passa a valer 2 pontos."""
         print("Truco")
         self.estado_atual = "truco"
 
         if (quem_pediu == 1):
-            escolha = jogador2.avaliar_truco()
+            escolha = jogador2.avaliar_truco(cbr, self.estado_atual, quem_pediu)
             self.jogador_bloqueado = 1
 
         else:
@@ -82,7 +79,7 @@ class Truco():
             return self.pedir_retruco(self.jogador_bloqueado, jogador1, jogador2)
 
 
-    def pedir_retruco(self, quem_pediu, jogador1, jogador2):
+    def pedir_retruco(self, cbr, quem_pediu, jogador1, jogador2):
         """Aumenta a aposta, que passa a valer 3 pontos."""
         self.valor_aposta = 3
         self.estado_atual = "retruco"
@@ -119,7 +116,7 @@ class Truco():
             return self.pedir_vale_quatro(self.jogador_bloqueado, jogador1, jogador2)
 
 
-    def pedir_vale_quatro(self, quem_pediu, jogador1, jogador2):
+    def pedir_vale_quatro(self, cbr, quem_pediu, jogador1, jogador2):
         """Aumenta a aposta, que passa a valer 4 pontos"""
         self.valor_aposta = 4
         print("Vale 4")
