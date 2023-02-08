@@ -9,6 +9,7 @@ class Flor():
 
 
     def pedir_flor(self, quem_pediu, jogador1, jogador2, interface):
+        """Pedido de flor, permitindo controlar os métodos de contraflor ou contraflor e resto."""
         if (self.estado_atual != ""):
             return
         else:

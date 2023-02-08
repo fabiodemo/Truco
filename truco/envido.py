@@ -3,8 +3,8 @@ class Envido():
         self.valor_envido = 2
         self.estado_atual = ""
         self.jogador_pediu_envido = 0
-        self.real_envido = 0
-        self.falta_envido = 0
+        self.quem_real_envido = 0
+        self.quem_falta_envido = 0
         self.quem_fugiu = 0
         self.quem_venceu_envido = 0
         self.jogador_bloqueado = 0
@@ -25,11 +25,13 @@ class Envido():
         self.jogador_bloqueado = quem_pediu
 
     def controlador_envido(self, tipo, quem_pediu, jogador1, jogador2, interface):
+        """Controlador de métodos, para selecionar o que pode ser chamado ou não."""
         if (self.estado_atual != "" or tipo == self.estado_atual):
             return None
         
         if (quem_pediu == self.jogador_bloqueado):
             return None
+
         else:
             self.inicializar_jogador_bloqueado(quem_pediu)
 
@@ -93,7 +95,7 @@ class Envido():
         
     def real_envido(self, quem_pediu, jogador1, jogador2):
         self.estado_atual = "Real Envido"
-        self.reverter_jogador_bloqueado()
+        self.valor_envido = 5
         print("Jogador pediu Real Envido")
 
         if (quem_pediu == 1):
@@ -155,7 +157,7 @@ class Envido():
 
         elif escolha == 1:
             print('aceitou Falta envido')
-            self.avaliar_vencedor_envido(quem_pediu, jogador1, jogador2)
+            self.avaliar_vencedor_falta_envido(quem_pediu, jogador1, jogador2)
 
     
     def avaliar_vencedor_envido(self, quem_pediu, jogador1, jogador2):
@@ -170,10 +172,10 @@ class Envido():
 
     def avaliar_vencedor_falta_envido(self, quem_pediu, jogador1, jogador2):
         if (quem_pediu == 1):
-            self.valor_envido = 12 - jogador1.pontos
+            self.valor_envido = 12 - jogador2.retorna_pontos_totais()
 
         else:
-            self.valor_envido = 12 - jogador2.pontos
+            self.valor_envido = 12 - jogador1.retorna_pontos_totais()
 
         if self.jogador1_pontos >= self.jogador2_pontos:
             jogador1.pontos += self.valor_envido
@@ -197,8 +199,8 @@ class Envido():
         self.valor_envido = 2
         self.estado_atual = ""
         self.jogador_pediu_envido = 0
-        self.real_envido = 0
-        self.falta_envido = 0
+        self.quem_real_envido = 0
+        self.quem_falta_envido = 0
         self.quem_venceu_envido = 0
         self.quem_fugiu = 0
         self.jogador_bloqueado = 0

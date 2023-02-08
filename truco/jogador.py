@@ -92,6 +92,9 @@ class Jogador():
         """Retorna os pontos do envido."""
         return self.envido
 
+    def retorna_pontos_totais(self):
+        """Retorna os pontos totais do jogador."""
+        return self.pontos
 
     def resetar(self):
         """Resetar variáveis ligadas a rodada."""

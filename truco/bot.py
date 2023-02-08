@@ -175,6 +175,10 @@ class Bot():
         
         self.qualidade_mao = m3
 
+    def retorna_pontos_totais(self):
+        """Retorna os pontos totais do bot."""
+        return self.pontos
+
 
     def resetar(self):
         """Resetar variáveis ligadas a rodada."""
