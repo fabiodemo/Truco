@@ -79,16 +79,7 @@ class Carta():
         """Exibe a carta a ser jogada e a opção para jogá-la."""
         if i == None:
             i = ""
-        if self.numero == 1 and self.naipe == 'Espadas':
-            print(f"[{i}] ESPADÃO +")
-        elif self.numero == 1 and self.naipe == 'Bastos':
-            print(f"[{i}] BASTIÃO +")
-        elif self.numero == 7 and self.naipe == 'Espadas':
-            print(f"[{i}] Sete de espadas +")
-        elif self.numero == 7 and self.naipe == 'Ouros':
-            print(f"[{i}] Sete de Ouros +")
-        else:
-            print(f"[{i}] {self.numero} de {self.naipe}")
+        print(f"[{i}] {self.numero} de {self.naipe}")
 
     def retornar_carta(self):
         return f"{self.numero} de {self.naipe}"

@@ -29,6 +29,12 @@ def reiniciarJogo():
 
 def turno_do_humano(jogador2):
     """Turno de jogadas do humano, para selecionar o que ele gostaria de jogar."""
+    
+    if(len(jogador1.checa_mao()) == 3):
+        envido = jogador2.avaliar_envido(cbr, 'Envido', 2, jogador2.envido)
+        if (envido is True):
+            return 6
+    
     carta_escolhida = -1
     while (carta_escolhida > len(jogador1.checa_mao()) or int(carta_escolhida) <= 1):
         print(f"\n<< {jogador1.nome} - Jogador 1 >>")

@@ -59,25 +59,11 @@ class Cbr():
         jogadas = perdidas = self.dataset.iloc[indices.tolist()[0]]
         jogadas = jogadas[(jogadas.quemGanhouTruco == 2)]
         perdidas = perdidas[(perdidas.quemGanhouTruco == 1)]
-        
-        # if (tipo == 'truco'):
-        #     jogadas = jogadas[((jogadas.quemTruco == quem_pediu) | jogadas.quemGanhouTruco == 2)]
-        # elif (tipo == 'retruco'):
-        #     jogadas = jogadas[((jogadas.quemRetruco == quem_pediu) | jogadas.quemGanhouTruco == 2)]
-        # else:
-        #     jogadas = jogadas[((jogadas.quemValeQuatro == quem_pediu) | jogadas.quemGanhouTruco == 2)]
-
-        # 'quemNegouTruco', 'quemGanhouTruco', 'quemTruco', 'quemRetruco', 
 
         vencidas = jogadas['quemGanhouTruco'].value_counts().index.to_list()[0]
         perdidas = perdidas['quemGanhouTruco'].value_counts().index.to_list()[0]
         retruco = jogadas['quemRetruco'].value_counts().index.to_list()[0]
         qualidade_mao_humana = jogadas['qualidadeMaoHumano'].dropna().value_counts().index.to_list()[0]
-        print(vencidas)
-        print(perdidas)
-        print(retruco)
-        print(qualidade_mao_humana)
-        print(qualidade_mao_bot)
 
 
         if (vencidas > perdidas and qualidade_mao_bot > qualidade_mao_humana and qualidade_mao_bot > 15):
@@ -111,9 +97,13 @@ class Cbr():
         # Condição especial quando o robô considera pedir o envido na primeira jogada
         if (quem_pediu == 1):
             if (pontos_jogador < pontos_envido_robo and real_envido_ganhas > real_envido_perdidas and envido_ganhas > envido_perdidas):
+                if (robo_perdendo):
+                    return 8
                 return 7
             
             elif (envido_ganhas > envido_perdidas or envido_ganhas < envido_perdidas):
+                if (robo_perdendo):
+                    return 8
                 return 6
 
         if (tipo == "Envido"):

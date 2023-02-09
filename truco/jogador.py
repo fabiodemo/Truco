@@ -48,8 +48,6 @@ class Jogador():
         for carta in self.mao:
             carta.exibir_carta(i)
             i += 1
-        # cartas = [(f"{carta.numero} de {carta.naipe}") for carta in self.mao]
-        # print('\n'.join(map('  '.join, zip(*(interface.desenhar_cartas(c) for c in cartas)))))
 
 
     def adicionar_pontos(self, pontos):

@@ -52,11 +52,6 @@ class Bot():
         """Joga a carta, removendo da mão do jogador."""
         # jogada = self.avaliar_jogada()
         # Envido
-        if ((len(self.mao) == 3)):
-            self.calcula_envido(self.mao)
-            envido = cbr.envido('Envido', 1, self.envido, None, 1)
-            if (envido is True):
-                return 6
         # Flor
         if ((len(self.mao)) == 3 and self.flor is False and (self.checa_flor())):
             flor = cbr.flor()
@@ -64,7 +59,7 @@ class Bot():
                 return 5
 
         # Pedir truco
-        print(self.qualidade_mao)
+        # print(self.qualidade_mao)
         truco = cbr.truco('Truco', 1, self.qualidade_mao)
         if (truco in [1, 2]):
             return 4
@@ -149,7 +144,8 @@ class Bot():
         if (pontos_jogador1 > (self.pontos/1.4)):
             perdendo = True
 
-        cbr.envido(tipo, quem_pediu, self.envido, robo_perdendo=perdendo)
+        cbr.envido(tipo, quem_pediu, self.envido, perdendo)
+
         return 1
 
     def avaliar_pedir_envido(self):
