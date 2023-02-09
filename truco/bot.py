@@ -27,7 +27,7 @@ class Bot():
             self.mao.append(baralho.retirar_carta())
         self.flor = self.checa_flor()
         self.pontuacao_cartas, self.mao_rank = self.mao[0].classificar_carta(self.mao)
-        self.qualidade_mao = self.calcular_qualidade_mao(self.pontuacao_cartas, self.mao_rank)
+        self.calcular_qualidade_mao(self.pontuacao_cartas, self.mao_rank)
         self.envido = self.calcula_envido(self.mao)
         # print(self.mostrar_mao())
 
@@ -54,7 +54,7 @@ class Bot():
         # Envido
         if ((len(self.mao) == 3)):
             self.calcula_envido(self.mao)
-            envido = cbr.envido(1, self.envido)
+            envido = cbr.envido('Envido', 1, self.envido, None, 1)
             if (envido is True):
                 return 6
         # Flor
@@ -64,8 +64,9 @@ class Bot():
                 return 5
 
         # Pedir truco
-        truco = cbr.truco(1)
-        if (truco is True):
+        print(self.qualidade_mao)
+        truco = cbr.truco('Truco', 1, self.qualidade_mao)
+        if (truco in [1, 2]):
             return 4
 
         # Manda o valor de acordo com a rodada, para o CBR escolher as colunas/campos necessários
@@ -139,29 +140,16 @@ class Bot():
 
 
     def avaliar_truco(self, cbr, tipo, quem_pediu):
-        """Verifica se a melhor jogada para o bot seria aceitar, recusar ou aumentar a aposta do truco."""
+        """Verifica se a melhor jogada para o bot deve pedir, aceitar, recusar ou aumentar a aposta do truco."""
         return cbr.truco(tipo, quem_pediu, self.qualidade_mao)
-        # if (self.qualidade_mao > 50):
-        #     return 2
-
-        # elif (self.qualidade_mao > 35):
-        #     return 1
-
-        # else:
-        #     return 0
-
-    def avaliar_retruco(self):
-        """Verificase a melhor jogada para o bot seria aceitar, recusar ou aumentar a aposta do retruco."""
-        return 1
-
-
-    def avaliar_vale_quatro(self):
-        """Verifica se a melhor jogada para o bot seria aceitar ou recusar vale quatro."""
-        return 1
     
 
-    def avaliar_envido(self):
+    def avaliar_envido(self, cbr, tipo, quem_pediu, pontos_jogador1):
         """Verifica se a melhor jogada para o bot seria aceitar, pedir real ou falta envido."""
+        if (pontos_jogador1 > (self.pontos/1.4)):
+            perdendo = True
+
+        cbr.envido(tipo, quem_pediu, self.envido, robo_perdendo=perdendo)
         return 1
 
     def avaliar_pedir_envido(self):

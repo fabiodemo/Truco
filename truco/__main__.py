@@ -103,7 +103,7 @@ def turno_do_bot(carta_jogador_01):
             break
 
         elif (carta_escolhida == 4):
-            chamou_truco = (truco.controlador_truco(cbr, dados, 1, jogador2, jogador1))
+            chamou_truco = (truco.controlador_truco(cbr, dados, 2, jogador1, jogador2))
             # print(f"temp: {chamou_truco}")
             if ((chamou_truco) is False):
                 print('pontos truco', truco.retornar_valor_aposta())
@@ -193,7 +193,7 @@ while True:
             # jogo.jogador_fugiu(jogador2, jogador1, jogador2)
             interface.mostrar_placar_total_jogador_fugiu(jogador2, jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
         
-        reiniciarJogo()
+        # reiniciarJogo()
 
     else:
         ganhador = jogo.verificar_ganhador(carta_jogador_01, carta_jogador_02, interface)

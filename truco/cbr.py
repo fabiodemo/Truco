@@ -56,34 +56,41 @@ class Cbr():
         registro = self.dados.retornar_registro()
         warnings.simplefilter(action='ignore', category=UserWarning)
         distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
-        jogadas = jogadas_aumentadas = jogadas_perdidas = self.dataset.iloc[indices.tolist()[0]]
+        jogadas = perdidas = self.dataset.iloc[indices.tolist()[0]]
+        jogadas = jogadas[(jogadas.quemGanhouTruco == 2)]
+        perdidas = perdidas[(perdidas.quemGanhouTruco == 1)]
         
-        if (tipo == 'truco'):
-            jogadas = jogadas[((jogadas.quemTruco == quem_pediu))]
-        elif (tipo == 'retruco'):
-            jogadas = jogadas[((jogadas.quemRetruco == quem_pediu))]
-        else:
-            jogadas = jogadas[((jogadas.quemValeQuatro == quem_pediu))]
+        # if (tipo == 'truco'):
+        #     jogadas = jogadas[((jogadas.quemTruco == quem_pediu) | jogadas.quemGanhouTruco == 2)]
+        # elif (tipo == 'retruco'):
+        #     jogadas = jogadas[((jogadas.quemRetruco == quem_pediu) | jogadas.quemGanhouTruco == 2)]
+        # else:
+        #     jogadas = jogadas[((jogadas.quemValeQuatro == quem_pediu) | jogadas.quemGanhouTruco == 2)]
 
-        jogadas = jogadas[((jogadas.quemTruco == quem_pediu))]
         # 'quemNegouTruco', 'quemGanhouTruco', 'quemTruco', 'quemRetruco', 
 
         vencidas = jogadas['quemGanhouTruco'].value_counts().index.to_list()[0]
-        negadas = jogadas['quemNegouTruco'].value_counts().index.to_list()[0]
+        perdidas = perdidas['quemGanhouTruco'].value_counts().index.to_list()[0]
         retruco = jogadas['quemRetruco'].value_counts().index.to_list()[0]
-        qualidade_mao_humana = jogadas['qualidadeMaoHumano'].value_counts().index.to_list()[0]
+        qualidade_mao_humana = jogadas['qualidadeMaoHumano'].dropna().value_counts().index.to_list()[0]
+        print(vencidas)
+        print(perdidas)
+        print(retruco)
+        print(qualidade_mao_humana)
+        print(qualidade_mao_bot)
 
-        if (vencidas > negadas and qualidade_mao_bot > qualidade_mao_humana):
+
+        if (vencidas > perdidas and qualidade_mao_bot > qualidade_mao_humana and qualidade_mao_bot > 15):
             return 2
         
-        elif (qualidade_mao_bot > qualidade_mao_humana):
+        elif (qualidade_mao_bot > qualidade_mao_humana and qualidade_mao_bot > 15):
             return 1
         
         else:
             return 0
 
 
-    def envido(self, tipo, quem_pediu, pontos_envido_robo, robo_perdendo):
+    def envido(self, tipo, quem_pediu, pontos_envido_robo, robo_perdendo=None):
         """Método que considera o pedido de envido e retorna a melhor opção entre aceitar, pedir real envido, falta envido ou fugir."""
         registro = self.dados.retornar_registro()
         warnings.simplefilter(action='ignore', category=UserWarning)
@@ -101,7 +108,14 @@ class Cbr():
         falta_envido_perdidas = perdidas['quemPediuFaltaEnvido'].value_counts().index.to_list()[0]
         pontos_jogador = ganhas['pontosEnvidoHumano'].value_counts().index.to_list()[0]
 
-        # print(ganhas, aumentadas, perdidas, pontos_jogador)
+        # Condição especial quando o robô considera pedir o envido na primeira jogada
+        if (quem_pediu == 1):
+            if (pontos_jogador < pontos_envido_robo and real_envido_ganhas > real_envido_perdidas and envido_ganhas > envido_perdidas):
+                return 7
+            
+            elif (envido_ganhas > envido_perdidas or envido_ganhas < envido_perdidas):
+                return 6
+
         if (tipo == "Envido"):
             if (pontos_jogador < pontos_envido_robo and real_envido_ganhas > real_envido_perdidas and envido_ganhas > envido_perdidas):
                 return 2
