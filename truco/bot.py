@@ -48,6 +48,7 @@ class Bot():
 
     def enriquecer_cartas_bot(self, cbr, carta_jogador_02):
         """Enriquece os dados com cartas jogadas pelo bot, que serão utilizadas como entrada para cálculo de similaridade."""
+        # CHAMADA DO CBR OU OUTRA INTELIGÊNCIA DEVE OCORRER AQUI
         cbr.enriquecer_jogadas_bot(carta_jogador_02)
 
 
@@ -57,12 +58,14 @@ class Bot():
         # Envido
         # Flor
         if ((len(self.mao)) == 3 and self.flor is False and (self.checa_flor())):
+            # CHAMADA DO CBR OU OUTRA INTELIGÊNCIA DEVE OCORRER AQUI
             flor = cbr.flor()
             if (flor is True):
                 return 5
 
         # Pedir truco
         if (len(self.mao) <= 2 and self.pediu_truco is False):
+            # CHAMADA DO CBR OU OUTRA INTELIGÊNCIA DEVE OCORRER AQUI
             truco = cbr.truco('truco', 1, self.qualidade_mao)
             if (truco is None):
                 pass
@@ -72,6 +75,7 @@ class Bot():
                 return 4
 
         # Manda o valor de acordo com a rodada, para o CBR escolher as colunas/campos necessários
+        # CHAMADA DO CBR OU OUTRA INTELIGÊNCIA DEVE OCORRER AQUI
         escolha = cbr.jogar_carta(self.rodada, self.pontuacao_cartas)
         # print(escolha)
         self.ajustar_indices(escolha)
@@ -147,6 +151,7 @@ class Bot():
 
     def avaliar_truco(self, cbr, tipo, quem_pediu):
         """Verifica se a melhor jogada para o bot deve pedir, aceitar, recusar ou aumentar a aposta do truco."""
+        # CHAMADA DO CBR OU OUTRA INTELIGÊNCIA DEVE OCORRER AQUI
         return cbr.truco(tipo, quem_pediu, self.qualidade_mao)
     
 
@@ -159,6 +164,7 @@ class Bot():
         else:
             perdendo = False
 
+        # CHAMADA DO CBR OU OUTRA INTELIGÊNCIA DEVE OCORRER AQUI
         return cbr.envido(tipo, quem_pediu, self.envido, perdendo)
 
     def avaliar_pedir_envido(self):
