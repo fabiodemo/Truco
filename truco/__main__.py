@@ -263,7 +263,8 @@ while True:
         break
 '''
 To do:
-- Checar funcionamento do Truco/Envido
-- Diferenciar flag -1 do fugiu_truco da flag de ir ao baralho
-- Pegar valor da aposta de truco da classe Truco e não do Jogo (verificar atribuição de pontos).
+- Checar funcionamento do Truco/Envido;
+- Diferenciar flag -1 do fugiu_truco da flag de ir ao baralho;
+- Pegar valor da aposta de truco da classe Truco e não do Jogo (verificar atribuição de pontos);
+- Remover o NA da bases de caso, para que os Nearest Neighbors desconsiderem valores inexistentes. Scikit-Learn não aceita valores NaN, então no estado atual foi usado o método fillna, que não é a abordagem ideal para CBR.
 '''
