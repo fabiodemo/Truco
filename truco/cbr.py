@@ -66,10 +66,10 @@ class Cbr():
         qualidade_mao_humana = jogadas['qualidadeMaoHumano'].dropna().value_counts().index.to_list()[0]
 
 
-        if (vencidas > perdidas and qualidade_mao_bot > qualidade_mao_humana and qualidade_mao_bot > 15):
+        if (vencidas > perdidas and qualidade_mao_bot > qualidade_mao_humana):
             return 2
         
-        elif (qualidade_mao_bot > qualidade_mao_humana and qualidade_mao_bot > 15):
+        elif (qualidade_mao_bot > qualidade_mao_humana):
             return 1
         
         else:

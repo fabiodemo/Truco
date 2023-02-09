@@ -142,6 +142,7 @@ class Dados():
     def retornar_casos(self):
         """Retorna os casos."""
         return self.casos
+    
    
     def finalizar_partida(self):
         """Método para salvar as jogadas da partida em um csv."""

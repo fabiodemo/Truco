@@ -30,7 +30,7 @@ def reiniciarJogo():
 def turno_do_humano(jogador2):
     """Turno de jogadas do humano, para selecionar o que ele gostaria de jogar."""
     
-    if(len(jogador1.checa_mao()) == 3 and jogador2.envido > 15):
+    if(len(jogador1.checa_mao()) == 3 and jogador2.envido):
         envido_jogador2 = jogador2.avaliar_envido(cbr, 'Envido', 2, jogador1.pontos)
         if (envido_jogador2):
             jogador1.mostrar_opcoes(interface)
