@@ -60,7 +60,7 @@ class Truco():
         else:
             escolha = -1
             while(escolha not in [0, 1, 2]):
-                escolha = int(input(f"{quem_pediu}, você aceita o pedido (a mão passa a valer {(self.valor_aposta)} pontos)"))
+                escolha = int(input(f"{quem_pediu}, você aceita o pedido (a mão passa a valer {(self.valor_aposta)} pontos)\n[0] Recusar\n[1] Aceitar\n[2] Aumentar Aposta"))
             self.jogador_bloqueado = 2
         
 
@@ -79,7 +79,7 @@ class Truco():
             return True
                 
         elif escolha == 2:
-            print(f"Jogador {quem_pediu} pediu Truco.")
+            print(f"Jogador {quem_pediu} pediu Retruco.")
             self.inverter_jogador_bloqueado()
             return self.pedir_retruco(cbr, self.jogador_bloqueado, jogador1, jogador2)
 
@@ -97,7 +97,7 @@ class Truco():
         else:
             escolha = -1
             while(escolha not in [0, 1, 2]):
-                escolha = int(input(f"Jogador {quem_pediu}, você aceita o pedido (a mão passa a valer {(self.valor_aposta)} pontos)"))
+                escolha = int(input(f"Jogador {quem_pediu}, você aceita o pedido (a mão passa a valer {(self.valor_aposta)} pontos)\n[0] Recusar\n[1] Aceitar\n[2] Aumentar Aposta"))
             self.jogador_bloqueado = 2
         
 
@@ -133,7 +133,7 @@ class Truco():
         else:
             escolha = -1
             while(escolha not in [0, 1]):
-                escolha = int(input(f"Jogador {quem_pediu}, você aceita o pedido (a mão passa a valer {(self.valor_aposta)} pontos)"))
+                escolha = int(input(f"Jogador {quem_pediu}, você aceita o pedido (a mão passa a valer {(self.valor_aposta)} pontos)\n[0] Recusar\n[1] Aceitar"))
             self.jogador_bloqueado = 2
         
 

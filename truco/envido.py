@@ -69,7 +69,7 @@ class Envido():
             self.jogador_pediu_envido = 2
             escolha = -1
             while(escolha not in [0, 1, 2, 3]):
-                escolha = int(input(f"Jogador {quem_pediu}, você aceita o pedido de envido?"))
+                escolha = int(input(f"Jogador {quem_pediu}, você aceita o pedido de envido?\n[0] Recusar\n[1] Aceitar\n[2] Real Envido\n[3] Falta Envido"))
         
 
         if escolha == 0:
@@ -110,7 +110,7 @@ class Envido():
             # self.jogador_pediu_real_envido = 2
             escolha = -1
             while(escolha not in [0, 1, 2]):
-                escolha = int(input(f"Jogador {quem_pediu}, você aceita o pedido de Real envido?"))
+                escolha = int(input(f"Jogador {quem_pediu}, você aceita o pedido de Real envido?\n[0] Recusar\n[1] Aceitar\n[2] Falta Envido"))
         
 
         if escolha == 0:
@@ -153,7 +153,7 @@ class Envido():
             self.jogador_pediu_envido = 2
             escolha = -1
             while(escolha not in [0, 1]):
-                escolha = int(input(f"Jogador {quem_pediu}, você aceita o pedido de envido?"))
+                escolha = int(input(f"Jogador {quem_pediu}, você aceita o pedido de envido?\n[0] Recusar\n[1] Aceitar\n"))
         
 
         if escolha == 0:
