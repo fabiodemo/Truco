@@ -33,6 +33,7 @@ def turno_do_humano(jogador2):
     if(len(jogador1.checa_mao()) == 3 and jogador2.envido > 15):
         envido_jogador2 = jogador2.avaliar_envido(cbr, 'Envido', 2, jogador1.pontos)
         if (envido_jogador2):
+            jogador1.mostrar_opcoes(interface)
             envido.controlador_envido(cbr, dados, 6, 2, jogador1, jogador2, interface)
     
     carta_escolhida = -1

@@ -35,7 +35,7 @@ class Cbr():
         warnings.simplefilter(action='ignore', category=UserWarning)
         distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
         jogadas_vencidas = self.dataset.iloc[indices.tolist()[0]]
-        jogadas_vencidas = jogadas_vencidas[((jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorSegundaRodada == 2) | (jogadas_vencidas.ganhadorPrimeiraRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2) | (jogadas_vencidas.ganhadorSegundaRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2))]
+        jogadas_vencidas = jogadas_vencidas[(((jogadas_vencidas.ganhadorPrimeiraRodada == 2) & ((jogadas_vencidas.ganhadorSegundaRodada == 2)) | (jogadas_vencidas.ganhadorPrimeiraRodada == 2)) & (jogadas_vencidas.ganhadorTerceiraRodada == 2) | ((jogadas_vencidas.ganhadorSegundaRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2)))]
 
         ordem_carta_jogada = 'CartaRobo'
         if ((rodada) == 3): ordem_carta_jogada = 'primeira' + ordem_carta_jogada

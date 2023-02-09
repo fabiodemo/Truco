@@ -46,9 +46,9 @@ class Dados():
         self.registro.cartaAltaRobo = pontuacao_cartas[mao_rank.index("Alta")]
         self.registro.cartaMediaRobo = pontuacao_cartas[mao_rank.index("Media")]
         self.registro.cartaBaixaRobo = pontuacao_cartas[mao_rank.index("Baixa")]
-        self.registro.ganhadorPrimeiraRodada = 2
-        self.registro.ganhadorSegundaRodada = 2
-        self.registro.ganhadorTerceiraRodada = 2
+        # self.registro.ganhadorPrimeiraRodada = 2
+        # self.registro.ganhadorSegundaRodada = 2
+        # self.registro.ganhadorTerceiraRodada = 2
         self.registro.qualidadeMaoBot = qualidade_mao_bot
         self.registro.primeiraCartaHumano = carta_humano.retornar_numero()
         self.registro.naipePrimeiraCartaHumano = carta_humano.retornar_naipe_codificado()

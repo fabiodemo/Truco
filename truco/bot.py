@@ -147,7 +147,7 @@ class Bot():
     def avaliar_envido(self, cbr, tipo, quem_pediu, pontos_totais_adversario):
         """Verifica se a melhor jogada para o bot seria aceitar, pedir real ou falta envido."""
         if (pontos_totais_adversario > 6 or pontos_totais_adversario > int((self.pontos/1.5))):
-            print(f'{pontos_totais_adversario} - {self.pontos}')
+            # print(f'{pontos_totais_adversario} - {self.pontos}')
             perdendo = True
         
         else:
