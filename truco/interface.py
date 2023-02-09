@@ -67,7 +67,7 @@ class Interface():
     def mostrar_vencedor_envido(self, vencedor, jogador1, jogador1_pontos, jogador2, jogador2_pontos):
         """Exibe o placar entre cada uma das rodadas."""
         if (vencedor == 1):
-            self.border_msg(f"Jogador 1 - {jogador1}: Venceu o envido com {jogador1_pontos} pontos", title='Vencedor Envido')
+            self.border_msg(f"Jogador 1 - {jogador1}: Venceu o envido com {jogador1_pontos} pontos\n Jogador 2 - {jogador2}: PERDEU o envido com {jogador2_pontos} pontos", title='Vencedor Envido')
         else:
             self.border_msg(f"Jogador 2 - {jogador2}: Venceu o envido com {jogador2_pontos} pontos", title='Vencedor Envido')
 

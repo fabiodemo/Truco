@@ -19,7 +19,6 @@ class Bot():
         self.pediu_flor = False
         self.pediu_truco = False
 
-
     def criar_mao(self, baralho):
         """Cria a mão do jogador e insere três cartas do baralho a ela."""
         self.indices = [0, 1, 2]
@@ -59,10 +58,13 @@ class Bot():
                 return 5
 
         # Pedir truco
-        # print(self.qualidade_mao)
-        truco = cbr.truco('Truco', 1, self.qualidade_mao)
-        if (truco in [1, 2]):
-            return 4
+        if (self.pediu_truco is False):
+            truco = cbr.truco('truco', 1, self.qualidade_mao)
+            if (truco is None):
+                pass
+            elif (truco in [1, 2]):
+                self.pediu_truco = True
+                return 4
 
         # Manda o valor de acordo com a rodada, para o CBR escolher as colunas/campos necessários
         escolha = cbr.jogar_carta(self.rodada, self.pontuacao_cartas)
@@ -143,10 +145,11 @@ class Bot():
         """Verifica se a melhor jogada para o bot seria aceitar, pedir real ou falta envido."""
         if (pontos_jogador1 > (self.pontos/1.4)):
             perdendo = True
+        
+        else:
+            perdendo = False
 
-        cbr.envido(tipo, quem_pediu, self.envido, perdendo)
-
-        return 1
+        return cbr.envido(tipo, quem_pediu, self.envido, perdendo)
 
     def avaliar_pedir_envido(self):
         """Verifica se a melhor jogada para o bot seria pedir envido."""

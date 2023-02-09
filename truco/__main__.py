@@ -31,8 +31,8 @@ def turno_do_humano(jogador2):
     """Turno de jogadas do humano, para selecionar o que ele gostaria de jogar."""
     
     if(len(jogador1.checa_mao()) == 3):
-        envido = jogador2.avaliar_envido(cbr, 'Envido', 2, jogador2.envido)
-        if (envido is True):
+        envido_jogador2 = jogador2.avaliar_envido(cbr, 'Envido', 2, jogador2.envido)
+        if (envido_jogador2 is True):
             return 6
     
     carta_escolhida = -1
@@ -44,7 +44,7 @@ def turno_do_humano(jogador2):
         # Chama a flor antes do jogador1 jogar envido 
         if ((len(jogador1.checa_mao()) == 3) and (carta_escolhida in [6, 7, 8]) and (jogador2.flor is True)):
             print('Bloqueou o envido com a flor')
-            flor.pedir_flor(2, jogador1, jogador2, interface)
+            flor.pedir_flor(1, jogador1, jogador2, interface)
         
         if (carta_escolhida <= len(jogador1.checa_mao()) and int(carta_escolhida) >= 0):
             carta_jogador_01 = jogador1.jogar_carta(carta_escolhida)
@@ -62,22 +62,25 @@ def turno_do_humano(jogador2):
 
         elif ((len(jogador1.mao) == 3) and (jogador1.flor) and carta_escolhida == 5):
             print('flor')
-            flor.pedir_flor(jogador1, jogador1, jogador2, interface)
+            flor.pedir_flor(1, jogador1, jogador2, interface)
             interface.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados")
 
         elif ((len(jogador1.checa_mao()) == 3) and (jogador2.pediu_flor is False) and (carta_escolhida in [6, 7, 8])):
             # print('envido')
             # envido.pedir_envido(1, jogador1, jogador2)
             if (carta_escolhida == 6):
-                envido.controlador_envido(dados, 6, 1, jogador1, jogador2, interface)
-            if (carta_escolhida == 7):
-                envido.controlador_envido(dados, 7, 1, jogador1, jogador2, interface)
-            if (carta_escolhida == 8):
-                envido.controlador_envido(dados, 8, 1, jogador1, jogador2, interface)
+                envido.controlador_envido(dados, "envido", 1, jogador1, jogador2, interface)
+            elif (carta_escolhida == 7):
+                envido.controlador_envido(dados, "real_envido", 1, jogador1, jogador2, interface)
+            elif (carta_escolhida == 8):
+                envido.controlador_envido(dados, "falta_envido", 1, jogador1, jogador2, interface)
+                # self, dados, tipo, quem_pediu, jogador1, jogador2, interface
+                #  dados, tipo, quem_pediu, jogador1, jogador2, interface
 
         elif (carta_escolhida == 9):
-            jogador2.adicionar_pontos(1)
-            return -1
+            jogador2.adicionar_pontos(truco.retornar_valor_aposta())
+            carta1 = -1
+            return carta1
         
         else:
             print('Selecione um valor válido!')
@@ -100,7 +103,7 @@ def turno_do_bot(carta_jogador_01):
 
         if (jogador2.pediu_flor is False and (carta_escolhida == 5 and (len(jogador1.mao) == 3))):
             print('flor do Bot')
-            flor.pedir_flor(1, jogador1, jogador2, interface)
+            flor.pedir_flor(2, jogador1, jogador2, interface)
             interface.border_msg(f"Jogador 1 - {jogador1.nome}: {jogador1.pontos} Pontos Acumulados\nJogador 2 - {jogador2.nome}: {jogador2.pontos} Pontos Acumulados")
         
         if (carta_escolhida <= len(jogador2.checa_mao()) and int(carta_escolhida) >= 0):
@@ -112,7 +115,7 @@ def turno_do_bot(carta_jogador_01):
             chamou_truco = (truco.controlador_truco(cbr, dados, 2, jogador1, jogador2))
             # print(f"temp: {chamou_truco}")
             if ((chamou_truco) is False):
-                print('pontos truco', truco.retornar_valor_aposta())
+                # print('pontos truco', truco.retornar_valor_aposta())
                 return -1
                 break
                 # jogador1.adicionar_rodada()
@@ -128,7 +131,6 @@ def turno_do_bot(carta_jogador_01):
             if (carta_escolhida == 8):
                 envido.controlador_envido(dados, 8, 1, jogador1, jogador2, interface)
 
-
         elif (carta_escolhida == 7):
             jogador1.adicionar_pontos(1)
             return -1
@@ -136,8 +138,7 @@ def turno_do_bot(carta_jogador_01):
         else:
             print('Selecione um valor válido!')
 
-        break
-    
+
     # interface.limpar_tela()
     if (carta_jogador_02 is not None):
         carta2 = Carta(carta_jogador_02.retornar_numero(), carta_jogador_02.retornar_naipe())
@@ -191,7 +192,7 @@ while True:
     
     if ((carta_jogador_01 == -1 or carta_jogador_02 == -1)):
         truco_fugiu = True
-        if (carta_jogador_01 == -1):
+        if (carta_jogador_01 == -1 or carta_jogador_01 is None):
             # jogo.jogador_fugiu(jogador1, jogador1, jogador2, -1)
             interface.mostrar_placar_total_jogador_fugiu(jogador1, jogador1.nome, jogador1.pontos, jogador2.nome, jogador2.pontos)
         

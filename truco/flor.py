@@ -37,11 +37,11 @@ class Flor():
                 else:
                     jogador2.pontos += 4
             
-        elif (jogador1.pediu_flor):
+        elif (jogador1.flor):
             jogador1.pontos += self.valor_flor
             self.quem_venceu_flor = 1
         
-        elif (jogador2.pediu_flor):
+        elif (jogador2.flor):
             jogador2.pontos += self.valor_flor
             self.quem_venceu_flor = 2
 

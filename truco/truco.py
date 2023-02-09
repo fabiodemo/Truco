@@ -9,7 +9,7 @@ class Truco():
         self.estado_atual = ""
 
 
-    def reverter_jogador_bloqueado(self):
+    def inverter_jogador_bloqueado(self):
         """Lógica para impedir que o mesmo jogador não peça o aumento de aposta seguidamente."""
         if (self.jogador_bloqueado == 1):
             self.jogador_bloqueado = 2
@@ -39,6 +39,8 @@ class Truco():
             estado = self.pedir_retruco(cbr, quem_pediu, jogador1, jogador2)
         elif (self.estado_atual == "retruco"):
             estado = self.pedir_retruco(cbr, quem_pediu, jogador1, jogador2)
+        else:
+            return None
 
         return estado
 
@@ -75,8 +77,8 @@ class Truco():
                 
         elif escolha == 2:
             print(f"Jogador {quem_pediu} pediu Truco.")
-            self.reverter_jogador_bloqueado()
-            return self.pedir_retruco(self.jogador_bloqueado, jogador1, jogador2)
+            self.inverter_jogador_bloqueado()
+            return self.pedir_retruco(cbr, self.jogador_bloqueado, jogador1, jogador2)
 
 
     def pedir_retruco(self, cbr, quem_pediu, jogador1, jogador2):
@@ -86,7 +88,7 @@ class Truco():
         print("Retruco")
 
         if (quem_pediu == 1):
-            escolha = jogador2.avaliar_retruco()
+            escolha = jogador2.avaliar_truco(cbr, self.estado_atual, quem_pediu)
             self.jogador_bloqueado = 1
 
         else:
@@ -112,8 +114,8 @@ class Truco():
                 
         elif escolha == 2:
             print(f"Jogador {quem_pediu} pediu Retruco.")
-            self.reverter_jogador_bloqueado()
-            return self.pedir_vale_quatro(self.jogador_bloqueado, jogador1, jogador2)
+            self.inverter_jogador_bloqueado()
+            return self.pedir_vale_quatro(cbr, self.jogador_bloqueado, jogador1, jogador2)
 
 
     def pedir_vale_quatro(self, cbr, quem_pediu, jogador1, jogador2):
@@ -122,7 +124,7 @@ class Truco():
         print("Vale 4")
 
         if (quem_pediu == 1):
-            escolha = jogador2.avaliar_vale_quatro()
+            escolha = jogador2.avaliar_truco(cbr, self.estado_atual, quem_pediu)
             self.jogador_bloqueado = 1
 
         else:
@@ -141,8 +143,10 @@ class Truco():
 
             return False
 
-        elif escolha == 1:
+        else:
             print(f"Jogador {quem_pediu} aceitou o pedido.")
+            jogador1.pediu_truco = True
+            jogador2.pediu_truco = True
             # self.valor_aposta += self.valor_aposta
             return True
 
