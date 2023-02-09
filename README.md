@@ -1,4 +1,4 @@
-# Truco Gaudério
+# Truco Gaudério com CBR
 
 O presente projeto foi desenvolvido como trabalho para a disciplina de Aplicações em Aprendizado de Máquina, para a Pós-Graduação em Ciência da Computação na Universidade Federal de Santa Maria.
 
@@ -12,7 +12,7 @@ A base de casos encontra-se no arquivo dbtrucoimitacao_maos.csv, e pode ser alte
 
 ## Pré-requisitos e Execução do Código
 
-Como pré-requisito, é necessário realizar a instalação dos pacotes necessários (pandas e scikit-learn), e poderão ser instalados através do comando:
+Como pré-requisito, é necessário realizar a instalação dos pacotes pandas e scikit-learn em seu ambiente virtual (ou no seu próprio ambiente base), através do seguinte comando:
 
 ```
 pip install -r requirements.txt
