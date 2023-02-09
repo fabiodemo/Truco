@@ -42,12 +42,12 @@ class Jogo():
         #     jogador2.adicionar_rodada()
         #     return "Empate"
         
-        if ganhador == carta1:
+        if (ganhador == carta1):
             jogador1.adicionar_rodada()
             return 1
             # ganhador.adicionar_rodada()
         
-        elif ganhador == carta2:
+        elif (ganhador == carta2):
             jogador2.adicionar_rodada()
             return 2
             # ganhador.adicionar_rodada()
@@ -58,11 +58,11 @@ class Jogo():
 
     def quem_joga_primeiro(self, jogador1, jogador2, carta1, carta2, ganhador):
         """Definição de quem joga primeiro, a cada round"""
-        if carta1 == ganhador:
+        if (carta1 == ganhador):
             jogador1.primeiro = True
             jogador2.primeiro = False
         
-        elif carta2 == ganhador:
+        elif (carta2 == ganhador):
             jogador1.primeiro = False
             jogador2.primeiro = True
         
@@ -72,14 +72,14 @@ class Jogo():
 
     def quem_inicia_rodada(self, jogador1, jogador2):
         """Seleção de quem inicia a rodada"""
-        if jogador1.rodadas == 0 and jogador2.rodadas == 0:
-            if jogador1.ultimo == True:
+        if (jogador1.rodadas == 0 and jogador2.rodadas == 0):
+            if (jogador1.ultimo == True):
                 jogador2.ultimo = True
                 jogador1.ultimo = False
                 jogador1.primeiro = True
                 jogador2.primeiro = False
             
-            elif jogador2.ultimo == True:
+            elif (jogador2.ultimo == True):
                 jogador2.ultimo = False
                 jogador1.primeiro = False
                 jogador2.primeiro = True
@@ -87,24 +87,24 @@ class Jogo():
 
     def verificar_carta_vencedora(self, carta_jogador_01, carta_jogador_02):
         """Verifica a carta vencedora entre as duas cartas escolhidas"""
-        if (str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in MANILHA and (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA:
+        if ((str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in MANILHA and (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA):
             if MANILHA[str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe] > MANILHA[str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe]:
                 return carta_jogador_01
            
-            elif MANILHA[str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe] > MANILHA[str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe]:
+            elif (MANILHA[str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe] > MANILHA[str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe]):
                 return carta_jogador_02
         
-        elif (str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in MANILHA:
+        elif ((str(carta_jogador_01.numero)+" de "+carta_jogador_01.naipe) in MANILHA):
             return carta_jogador_01
         
-        elif (str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA:
+        elif ((str(carta_jogador_02.numero)+" de "+carta_jogador_02.naipe) in MANILHA):
             return carta_jogador_02
         
         else:
-            if CARTAS_VALORES[str(carta_jogador_01.numero)] >= CARTAS_VALORES[str(carta_jogador_02.numero)]:
+            if (CARTAS_VALORES[str(carta_jogador_01.numero)] >= CARTAS_VALORES[str(carta_jogador_02.numero)]):
                 return carta_jogador_01
         
-            elif CARTAS_VALORES[str(carta_jogador_01.retornar_numero())] < CARTAS_VALORES[str(carta_jogador_02.retornar_numero())]:
+            elif (CARTAS_VALORES[str(carta_jogador_01.retornar_numero())] < CARTAS_VALORES[str(carta_jogador_02.retornar_numero())]):
                 return carta_jogador_02
         
             # else:
@@ -113,6 +113,6 @@ class Jogo():
 
     def jogador_fugiu(self, jogador, jogador1, jogador2, pontos):
         """Indicação de que o jogador fugiu, resetando a ordem de jogadas com o jogador 1 sendo mão"""
-        print(f'jogador {jogador.nome} fugiu!')
+        print(f'Jogador fugiu!')
         jogador1.primeiro = True
         jogador2.primeiro = False

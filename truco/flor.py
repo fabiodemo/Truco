@@ -12,11 +12,13 @@ class Flor():
         """Pedido de flor, permitindo controlar os métodos de contraflor ou contraflor e resto."""
         if (self.estado_atual != ""):
             return
+            
         else:
             self.estado_atual = "Flor"
 
         if (quem_pediu == 2):
             jogador2.pediu_flor = True
+
         else:
             jogador1.pediu_flor = True
             

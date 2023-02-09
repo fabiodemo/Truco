@@ -19,11 +19,14 @@ class Jogador():
         self.mostrar_mao(interface)
         if (len(self.mao) >= 2 and self.pediu_truco is False): 
             print('[4] Truco')
+
         if ((len(self.mao)) == 3 and self.flor is False and (self.checa_flor())):
             print('[5] Flor')
             self.flor = True
+
         if ((len(self.mao) == 3)):
             print(f'[6] Envido\n[7] Real Envido\n[8] Falta Envido')
+
         print('[9] Ir ao baralho')
         cartas = [(f"{carta.numero} de {carta.naipe}") for carta in self.mao]
         # interface.exibir_cartas(cartas)
@@ -34,6 +37,7 @@ class Jogador():
         """Cria a mão do jogador e insere três cartas do baralho a ela."""
         for i in range(3):
             self.mao.append(baralho.retirar_carta())
+
         self.envido = self.calcula_envido(self.mao)
 
 
@@ -74,8 +78,10 @@ class Jogador():
                 if ((mao[i].retornar_naipe() == mao[j].retornar_naipe())):
                     if (mao[0].retornar_pontos_envido(mao[i]) > 0 and mao[0].retornar_pontos_envido(mao[j]) > 0):
                         pontos_envido.append(20 + (mao[0].retornar_pontos_envido(mao[i]) + mao[0].retornar_pontos_envido(mao[j])))
+                    
                     else:
                         pontos_envido.append(0)
+                
                 else:
                     pontos_envido.append(max(mao[0].retornar_pontos_envido(mao[i]), mao[0].retornar_pontos_envido(mao[j])))
         
@@ -87,6 +93,7 @@ class Jogador():
         if all(carta.retornar_naipe() == self.mao[0].retornar_naipe() for carta in self.mao):
             # print('Flor do Jogador')
             return True
+            
         return False
 
     

@@ -12,9 +12,11 @@ class Interface():
         if not width:
             width = max(map(len, lines))
         box = f'╔{"═" * (width + indent * 2)}╗\n'  # upper_border
+
         if title:
             box += f'║{space}{title:<{width}}{space}║\n'  # title
             box += f'║{space}{"-" * len(title):<{width}}{space}║\n'  # underscore
+
         box += ''.join([f'║{space}{line:<{width}}{space}║\n' for line in lines])
         box += f'╚{"═" * (width + indent * 2)}╝'  # lower_border
         print(box)
@@ -60,6 +62,7 @@ class Interface():
         """Exibe o placar entre cada uma das rodadas."""
         if (vencedor == 1):
             self.border_msg(f"Jogador 1 - {jogador1}: Venceu a flor e ganhou {pontos} pontos", title='Vencedor Flor')
+
         else:
             self.border_msg(f"Jogador 2 - {jogador2}: Venceu a flor e ganhou {pontos} pontos", title='Vencedor Flor')
 
@@ -68,6 +71,7 @@ class Interface():
         """Exibe o placar entre cada uma das rodadas."""
         if (vencedor == 1):
             self.border_msg(f"Jogador 1 - {jogador1}: Venceu o envido com {jogador1_pontos} pontos\nJogador 2 - {jogador2}: PERDEU o envido com {jogador2_pontos} pontos", title='Jogador 1 Vencedor Envido')
+            
         else:
              self.border_msg(f"Jogador 2 - {jogador2}: Venceu o envido com {jogador2_pontos} pontos\nJogador 1 - {jogador1}: PERDEU o envido com {jogador1_pontos} pontos", title='Jogador 2 Vencedor Envido')
 
@@ -109,10 +113,13 @@ class Interface():
         #  ["Espadas", "Ouros", "Copas", "Espadas"]
         if "OUROS" in s:
             l_mostrar_carta[4] = "│. . ♦ . .│"
+
         if "BASTOS" in s:
             l_mostrar_carta[4] = "│. . ♣ . .│"
+
         if "COPAS" in s:
             l_mostrar_carta[4] = "│. . ♥ . .│"
+
         if "ESPADAS" in s:
             l_mostrar_carta[4] = "│. . ♠ . .│"
 

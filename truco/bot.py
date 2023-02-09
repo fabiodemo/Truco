@@ -24,6 +24,7 @@ class Bot():
         self.indices = [0, 1, 2]
         for i in range(3):
             self.mao.append(baralho.retirar_carta())
+
         self.flor = self.checa_flor()
         self.pontuacao_cartas, self.mao_rank = self.mao[0].classificar_carta(self.mao)
         self.calcular_qualidade_mao(self.pontuacao_cartas, self.mao_rank)
@@ -33,12 +34,15 @@ class Bot():
 
     def enriquecer_bot(self, dados=None, carta_jogador_01=None, carta_jogador_02=None, ganhador=None):
         """Enriquece os dados com cartas jogadas pelo oponente, que serão utilizadas como entrada para cálculo de similaridade."""
-        if(self.rodada == 1):
+        if (self.rodada == 1):
             dados.primeira_rodada(self.pontuacao_cartas, self.mao_rank, self.qualidade_mao, carta_jogador_01)
+
         elif(self.rodada == 2):
             dados.segunda_rodada(carta_jogador_01, carta_jogador_02, ganhador)
+
         elif(self.rodada == 3):
             dados.terceira_rodada(carta_jogador_01, carta_jogador_02, ganhador)
+
         elif(self.rodada == 4):
             dados.finalizar_rodadas(carta_jogador_01, carta_jogador_02, ganhador)
 
@@ -62,6 +66,7 @@ class Bot():
             truco = cbr.truco('truco', 1, self.qualidade_mao)
             if (truco is None):
                 pass
+
             elif (truco in [1, 2]):
                 self.pediu_truco = True
                 return 4
@@ -136,6 +141,7 @@ class Bot():
         if all(carta.retornar_naipe() == self.mao[0].retornar_naipe() for carta in self.mao):
             # print('Flor do Bot!')
             return True
+
         return False
 
 
@@ -165,8 +171,6 @@ class Bot():
         m1 = (2 / ((1/lista_pontuacao[int(lista_mao_rank.index('Alta'))]) + (1/lista_pontuacao[int(lista_mao_rank.index('Media'))])))
         m2 = ((2 * lista_pontuacao[int(lista_mao_rank.index('Media'))]) + (lista_pontuacao[int(lista_mao_rank.index('Baixa'))])/2+1)
         m3 = ((2 * m1) + m2) / (2+1)
-        # print(m3)
-        
         self.qualidade_mao = m3
 
     def retorna_pontos_totais(self):

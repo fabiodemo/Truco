@@ -35,10 +35,13 @@ class Truco():
 
         if (self.estado_atual == ""):
             estado = self.pedir_truco(cbr, quem_pediu, jogador1, jogador2)
+
         elif (self.estado_atual == "truco"):
             estado = self.pedir_retruco(cbr, quem_pediu, jogador1, jogador2)
+
         elif (self.estado_atual == "retruco"):
             estado = self.pedir_retruco(cbr, quem_pediu, jogador1, jogador2)
+            
         else:
             return None
 

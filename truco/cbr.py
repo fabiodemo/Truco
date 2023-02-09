@@ -26,6 +26,7 @@ class Cbr():
         """Cálculo dos 100 Nearest Neighbors."""
         if (df is None):
             return NearestNeighbors(n_neighbors=100, algorithm='ball_tree').fit(self.dataset)
+            
         return NearestNeighbors(n_neighbors=100, algorithm='ball_tree').fit(df)
 
 
@@ -36,14 +37,15 @@ class Cbr():
         distancias, indices = self.nbrs.kneighbors((registro.to_numpy().reshape(1, -1)))
         jogadas_vencidas = self.dataset.iloc[indices.tolist()[0]]
         jogadas_vencidas = jogadas_vencidas[(((jogadas_vencidas.ganhadorPrimeiraRodada == 2) & ((jogadas_vencidas.ganhadorSegundaRodada == 2)) | (jogadas_vencidas.ganhadorPrimeiraRodada == 2)) & (jogadas_vencidas.ganhadorTerceiraRodada == 2) | ((jogadas_vencidas.ganhadorSegundaRodada == 2) & (jogadas_vencidas.ganhadorTerceiraRodada == 2)))]
-
         ordem_carta_jogada = 'CartaRobo'
         if ((rodada) == 3): ordem_carta_jogada = 'primeira' + ordem_carta_jogada
         elif ((rodada) == 2): ordem_carta_jogada = 'segunda' + ordem_carta_jogada
         elif ((rodada) == 1): ordem_carta_jogada = 'terceira' + ordem_carta_jogada
+
         valor_referencia = jogadas_vencidas[ordem_carta_jogada].value_counts().index.to_list()[0]
         if (valor_referencia <= 0): 
             return -1
+
         carta_escolhida = min(pontuacao_cartas, key=lambda x:abs(x-valor_referencia))
         # print(jogadas_vencidas[ordem_carta_jogada].value_counts())
         # print(pontuacao_cartas)
@@ -99,11 +101,13 @@ class Cbr():
             if (pontos_jogador < pontos_envido_robo and real_envido_ganhas > real_envido_perdidas and envido_ganhas > envido_perdidas):
                 if (robo_perdendo):
                     return 8
+
                 return 7
             
             elif (envido_ganhas > envido_perdidas or envido_ganhas < envido_perdidas):
                 if (robo_perdendo):
                     return 8
+
                 return 6
 
         if (tipo == 6):
