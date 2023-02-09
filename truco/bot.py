@@ -58,7 +58,7 @@ class Bot():
                 return 5
 
         # Pedir truco
-        if (self.pediu_truco is False):
+        if (len(self.mao) <= 2 and self.pediu_truco is False):
             truco = cbr.truco('truco', 1, self.qualidade_mao)
             if (truco is None):
                 pass
@@ -82,8 +82,11 @@ class Bot():
 
         for i in range(len(mao)):
             for j in range(i+1, len(mao)):
-                if ((mao[0].retornar_pontos_envido(mao[i]) > 0 and mao[0].retornar_pontos_envido(mao[j]) > 0) and (mao[i].retornar_naipe() == mao[j].retornar_naipe())):
-                    pontos_envido.append(20 + (mao[0].retornar_pontos_envido(mao[i]) + mao[0].retornar_pontos_envido(mao[j])))
+                if ((mao[i].retornar_naipe() == mao[j].retornar_naipe())):
+                    if (mao[0].retornar_pontos_envido(mao[i]) > 0 and mao[0].retornar_pontos_envido(mao[j]) > 0):
+                        pontos_envido.append(20 + (mao[0].retornar_pontos_envido(mao[i]) + mao[0].retornar_pontos_envido(mao[j])))
+                    else:
+                        pontos_envido.append(0)
                 else:
                     pontos_envido.append(max(mao[0].retornar_pontos_envido(mao[i]), mao[0].retornar_pontos_envido(mao[j])))
         
@@ -141,9 +144,10 @@ class Bot():
         return cbr.truco(tipo, quem_pediu, self.qualidade_mao)
     
 
-    def avaliar_envido(self, cbr, tipo, quem_pediu, pontos_jogador1):
+    def avaliar_envido(self, cbr, tipo, quem_pediu, pontos_totais_adversario):
         """Verifica se a melhor jogada para o bot seria aceitar, pedir real ou falta envido."""
-        if (pontos_jogador1 > (self.pontos/1.4)):
+        if (pontos_totais_adversario > 6 or pontos_totais_adversario > int((self.pontos/1.5))):
+            print(f'{pontos_totais_adversario} - {self.pontos}')
             perdendo = True
         
         else:

@@ -43,8 +43,8 @@ class Interface():
 
     def mostrar_placar_total_jogador_fugiu(self, jogador_fugiu, jogador1, jogador1_pontos, jogador2, jogador2_pontos):
         """Exibe um aviso de que o jogador fugiu e o placar total,"""
-        print(f'jogador {jogador_fugiu.nome} fugiu!')
-        self.mostrar_placar_total(jogador1, jogador1_pontos, jogador2, jogador2_pontos)
+        print(f'Jogador {jogador_fugiu.nome} fugiu!')
+        # self.mostrar_placar_total(jogador1, jogador1_pontos, jogador2, jogador2_pontos)
 
 
     def mostrar_placar_total(self, jogador1, jogador1_pontos, jogador2, jogador2_pontos):
@@ -67,9 +67,9 @@ class Interface():
     def mostrar_vencedor_envido(self, vencedor, jogador1, jogador1_pontos, jogador2, jogador2_pontos):
         """Exibe o placar entre cada uma das rodadas."""
         if (vencedor == 1):
-            self.border_msg(f"Jogador 1 - {jogador1}: Venceu o envido com {jogador1_pontos} pontos\n Jogador 2 - {jogador2}: PERDEU o envido com {jogador2_pontos} pontos", title='Vencedor Envido')
+            self.border_msg(f"Jogador 1 - {jogador1}: Venceu o envido com {jogador1_pontos} pontos\nJogador 2 - {jogador2}: PERDEU o envido com {jogador2_pontos} pontos", title='Jogador 1 Vencedor Envido')
         else:
-            self.border_msg(f"Jogador 2 - {jogador2}: Venceu o envido com {jogador2_pontos} pontos", title='Vencedor Envido')
+             self.border_msg(f"Jogador 2 - {jogador2}: Venceu o envido com {jogador2_pontos} pontos\nJogador 1 - {jogador1}: PERDEU o envido com {jogador1_pontos} pontos", title='Jogador 2 Vencedor Envido')
 
 
     def mostrar_ganhador_jogo(self, jogador):

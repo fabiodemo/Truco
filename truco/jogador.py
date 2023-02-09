@@ -15,9 +15,9 @@ class Jogador():
 
     def mostrar_opcoes(self, interface):
         """Mostrar as opções que o jogador pode jogar"""
-        print(f'pontos self.envido: {self.envido}')
+        # print(f'pontos self.envido: {self.envido}')
         self.mostrar_mao(interface)
-        if (len(self.mao) >= 2): 
+        if (len(self.mao) >= 2 and self.pediu_truco is False): 
             print('[4] Truco')
         if ((len(self.mao)) == 3 and self.flor is False and (self.checa_flor())):
             print('[5] Flor')
@@ -26,7 +26,7 @@ class Jogador():
             print(f'[6] Envido\n[7] Real Envido\n[8] Falta Envido')
         print('[9] Ir ao baralho')
         cartas = [(f"{carta.numero} de {carta.naipe}") for carta in self.mao]
-        interface.exibir_cartas(cartas)
+        # interface.exibir_cartas(cartas)
         # interface.exibir_unica_carta(cartas[0])
 
 
@@ -71,8 +71,11 @@ class Jogador():
 
         for i in range(len(mao)):
             for j in range(i+1, len(mao)):
-                if ((mao[0].retornar_pontos_envido(mao[i]) > 0 and mao[0].retornar_pontos_envido(mao[j]) > 0) and (mao[i].retornar_naipe() == mao[j].retornar_naipe())):
-                    pontos_envido.append(20 + (mao[0].retornar_pontos_envido(mao[i]) + mao[0].retornar_pontos_envido(mao[j])))
+                if ((mao[i].retornar_naipe() == mao[j].retornar_naipe())):
+                    if (mao[0].retornar_pontos_envido(mao[i]) > 0 and mao[0].retornar_pontos_envido(mao[j]) > 0):
+                        pontos_envido.append(20 + (mao[0].retornar_pontos_envido(mao[i]) + mao[0].retornar_pontos_envido(mao[j])))
+                    else:
+                        pontos_envido.append(0)
                 else:
                     pontos_envido.append(max(mao[0].retornar_pontos_envido(mao[i]), mao[0].retornar_pontos_envido(mao[j])))
         

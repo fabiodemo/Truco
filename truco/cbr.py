@@ -95,7 +95,7 @@ class Cbr():
         pontos_jogador = ganhas['pontosEnvidoHumano'].value_counts().index.to_list()[0]
 
         # Condição especial quando o robô considera pedir o envido na primeira jogada
-        if (quem_pediu == 1 and pontos_envido_robo > 5):
+        if (quem_pediu == 2 and pontos_envido_robo > 5):
             if (pontos_jogador < pontos_envido_robo and real_envido_ganhas > real_envido_perdidas and envido_ganhas > envido_perdidas):
                 if (robo_perdendo):
                     return 8
@@ -120,14 +120,14 @@ class Cbr():
                 return 0
 
         elif (tipo == 7):
-            if (envido_ganhas > envido_perdidas and real_envido_ganhas > real_envido_perdidas):
+            if ((pontos_jogador < pontos_envido_robo) or (envido_ganhas > envido_perdidas and real_envido_ganhas > real_envido_perdidas)):
                 return 1
 
             else:
                 return 0
 
         else:
-            if (falta_envido_ganhas > falta_envido_perdidas and pontos_jogador < pontos_envido_robo):
+            if ((pontos_jogador < pontos_envido_robo) or falta_envido_ganhas > falta_envido_perdidas and pontos_jogador < pontos_envido_robo):
                 return 1
 
             else:
